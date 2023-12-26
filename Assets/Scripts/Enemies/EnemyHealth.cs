@@ -24,13 +24,11 @@ public class EnemyHealth : MonoBehaviour
         if (currentHealth <= 0)
         {
             Destroy(gameObject);
-            print("Enemy died");
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
             TakeDamage(10);
-            print("Enemy took 10 damage");
         }
     }
 

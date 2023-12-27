@@ -611,7 +611,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bba38482013845189ecf5a0f173c80d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyStats: {fileID: 11400000, guid: f84df0104d39741749528d6510c0d2ae, type: 2}
+  scriptableObject: {fileID: 11400000, guid: f9ef54a7353fe4199893fe84443e2f22, type: 2}
   healthBar: {fileID: 1814218695}
 --- !u!114 &930783569
 MonoBehaviour:
@@ -625,11 +625,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bf62aa41999846678df88e75c4b3751, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aggroRange: 5
-  deaggroRange: 10
-  stoppingDistance: 1
-  speed: 5
-  projectile: {fileID: 0}
+  scriptableObject: {fileID: 11400000, guid: f9ef54a7353fe4199893fe84443e2f22, type: 2}
   rigidBody: {fileID: 930783571}
 --- !u!58 &930783570
 CircleCollider2D:

@@ -6,14 +6,14 @@ using UnityEngine.UI;
 
 public class EnemyHealth : MonoBehaviour
 {
-    [SerializeField] private EnemyStatsScriptableObject enemyStats;
+    [SerializeField] private EnemyScriptableObject scriptableObject;
     [SerializeField] private UnityEngine.UI.Image healthBar;
     private float maxHealth;
     private float currentHealth;
 
     void Start()
     {
-        maxHealth = enemyStats.maxHealth;
+        maxHealth = scriptableObject.maxHealth;
         currentHealth = maxHealth;
     }
 

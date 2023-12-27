@@ -10,9 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b6ce511382bf245eab032647af4b7f9d, type: 3}
-  m_Name: AsdfStats
+  m_Name: test
   m_EditorClassIdentifier: 
   speed: 2
   maxHealth: 100
   damage: 20
-  attackCooldown: 1
+  attackCooldown: 2
+  aggroRange: 5
+  deaggroRange: 10
+  stoppingDistance: 4
+  projectile: {fileID: 9085602268992797658, guid: db4ba7359709a46a3b7d967fa6b6e9b5, type: 3}

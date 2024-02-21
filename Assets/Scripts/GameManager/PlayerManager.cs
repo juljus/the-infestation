@@ -9,4 +9,8 @@ public class PlayerManager : MonoBehaviour
         public Transform GetPlayerTransform {
             get { return player.transform; }
         }
+
+        public GameObject GetPlayer {
+            get { return player; }
+        }
 }

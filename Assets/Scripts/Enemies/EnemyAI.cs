@@ -11,6 +11,7 @@ public class EnemyAI : MonoBehaviour
     private float stoppingDistance;
     private float speed;
     private GameObject projectile;
+    private float projectileSpeed;
     private float damage;
     private float attackCooldown;
     private float distance;
@@ -30,6 +31,7 @@ public class EnemyAI : MonoBehaviour
         projectile = scriptableObject.projectile;
         damage = scriptableObject.damage;
         attackCooldown = scriptableObject.attackCooldown;
+        projectileSpeed = scriptableObject.projectileSpeed;
 
         attackCooldownRemaining = attackCooldown;
     }
@@ -72,5 +74,12 @@ public class EnemyAI : MonoBehaviour
         GameObject projectileClone = Instantiate(projectile, transform.position, Quaternion.identity);
         projectileClone.transform.parent = transform;
         attackCooldownRemaining = attackCooldown;
+    }
+
+    public float GetProjectileSpeed {
+        get { return projectileSpeed; }
+    }
+    public float GetDamage {
+        get { return damage; }
     }
 }

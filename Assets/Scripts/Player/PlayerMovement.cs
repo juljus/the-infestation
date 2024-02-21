@@ -15,8 +15,10 @@ public class PlayerMovement : MonoBehaviour
         rigidBody.velocity = new Vector2(movementInput.x * speed, movementInput.y * speed);
     }
 
-    void Update()
-    {
-
+    public void SetSpeed(float newSpeed) {
+        speed = newSpeed;
+    }
+    public float GetSpeed() {
+        return speed;
     }
 }

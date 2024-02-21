@@ -14,4 +14,6 @@ public class EnemyScriptableObject : ScriptableObject
     public float deaggroRange;
     public float stoppingDistance;
     public GameObject projectile;
+    public float projectileSpeed;
+    
 }

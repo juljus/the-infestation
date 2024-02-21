@@ -30,7 +30,7 @@ public class EnemyProjectile : MonoBehaviour
         if (other.gameObject == player) {
             //deal damage to player
             player.GetComponent<PlayerLogic>().TakeEffect("damage", damage, 0);
-            player.GetComponent<PlayerLogic>().TakeEffect("slow", 0.8f, 4, statusEffectIcon);
+            player.GetComponent<PlayerLogic>().TakeEffect("slow", 0.8f, 4.8f, statusEffectIcon);
             Destroy(gameObject);
         }
     }

@@ -7,20 +7,30 @@ using UnityEngine;
 
 public class PlayerLogic : MonoBehaviour
 {
-    [SerializeField] private Vector3 canvasStartPosition;
+    [SerializeField] private Vector2 canvasStartPosition;
     [SerializeField] private float statusEffectIconStep = 75f;
 
     static UnityEngine.UI.Image[] statusEffectIconList = new UnityEngine.UI.Image[15];
 
+    void Start()
+    {
+        canvasStartPosition = new Vector2(-500f, 265f);
+    }
+
     void Update()
     {
-        // print(statusEffectIcons);
-
+        int j = 0;
         for (int i = 0; i < statusEffectIconList.Length; i++)
         {
             if (statusEffectIconList[i] != null)
             {
-                statusEffectIconList[i].transform.position = new Vector3(canvasStartPosition.x + (statusEffectIconStep * i), canvasStartPosition.y, canvasStartPosition.z);
+                // print(canvasStartPosition.x);
+                // print(canvasStartPosition.y);
+                statusEffectIconList[i].GetComponent<RectTransform>().anchoredPosition =  new Vector2(canvasStartPosition.x + (statusEffectIconStep * j), canvasStartPosition.y);
+                print("set as: " + statusEffectIconList[i].GetComponent<RectTransform>().anchoredPosition);
+                // print(statusEffectIconList[i].transform.position.x + "asdf");
+                // print(statusEffectIconList[i].transform.position.y + "asdf");
+                j += 1;
             }
         }
     }

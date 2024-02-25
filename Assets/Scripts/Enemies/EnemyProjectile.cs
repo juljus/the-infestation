@@ -5,14 +5,21 @@ using UnityEngine;
 public class EnemyProjectile : MonoBehaviour
 {
     private float projectileSpeed;
+    private float projectileEffectValue;
+    private string projectileEffectType;
+    private float projectileEffectDuration;
+    private UnityEngine.UI.Image projectileEffectIcon;
     private float damage;
     private GameObject player;
-    [SerializeField] private UnityEngine.UI.Image statusEffectIcon;
 
     void Start()
-    {
+    {        
         //get from parent object
         projectileSpeed = transform.parent.GetComponent<EnemyAI>().GetProjectileSpeed;
+        projectileEffectValue = transform.parent.GetComponent<EnemyAI>().GetProjectileEffectValue;
+        projectileEffectType = transform.parent.GetComponent<EnemyAI>().GetProjectileEffectType;
+        projectileEffectDuration = transform.parent.GetComponent<EnemyAI>().GetProjectileEffectDuration;
+        projectileEffectIcon = transform.parent.GetComponent<EnemyAI>().GetProjectileEffectIcon;
         damage = transform.parent.GetComponent<EnemyAI>().GetDamage;
 
         //get player object
@@ -30,7 +37,7 @@ public class EnemyProjectile : MonoBehaviour
         if (other.gameObject == player) {
             //deal damage to player
             player.GetComponent<PlayerLogic>().TakeEffect("damage", damage, 0);
-            player.GetComponent<PlayerLogic>().TakeEffect("slow", 0.6f, 4.8f, statusEffectIcon);
+            player.GetComponent<PlayerLogic>().TakeEffect(projectileEffectType, projectileEffectValue, projectileEffectDuration, projectileEffectIcon);
             Destroy(gameObject);
         }
     }

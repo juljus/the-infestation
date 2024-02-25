@@ -18,6 +18,10 @@ public class EnemyAI : MonoBehaviour
     private Transform target;
     private bool isAggroed = false;
     private float attackCooldownRemaining;
+    private float projectileEffectValue;
+    private string projectileEffectType;
+    private float projectileEffectDuration;
+    private UnityEngine.UI.Image projectileEffectIcon;
 
     void Start()
     {
@@ -31,7 +35,13 @@ public class EnemyAI : MonoBehaviour
         projectile = scriptableObject.projectile;
         damage = scriptableObject.damage;
         attackCooldown = scriptableObject.attackCooldown;
+
+        // projectile
         projectileSpeed = scriptableObject.projectileSpeed;
+        projectileEffectValue = scriptableObject.projectileEffectValue;
+        projectileEffectType = scriptableObject.projectileEffectType;
+        projectileEffectDuration = scriptableObject.projectileEffectDuration;
+        projectileEffectIcon = scriptableObject.projectileEffectIcon;
 
         attackCooldownRemaining = attackCooldown;
     }
@@ -81,5 +91,17 @@ public class EnemyAI : MonoBehaviour
     }
     public float GetDamage {
         get { return damage; }
+    }
+    public float GetProjectileEffectValue {
+        get { return projectileEffectValue; }
+    }
+    public string GetProjectileEffectType {
+        get { return projectileEffectType; }
+    }
+    public float GetProjectileEffectDuration {
+        get { return projectileEffectDuration; }
+    }
+    public UnityEngine.UI.Image GetProjectileEffectIcon {
+        get { return projectileEffectIcon; }
     }
 }

@@ -15,5 +15,8 @@ public class EnemyScriptableObject : ScriptableObject
     public float stoppingDistance;
     public GameObject projectile;
     public float projectileSpeed;
-    
+    public string projectileEffectType;
+    public float projectileEffectValue;
+    public float projectileEffectDuration;
+    public UnityEngine.UI.Image projectileEffectIcon;
 }

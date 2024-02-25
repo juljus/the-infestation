@@ -25,11 +25,6 @@ public class EnemyHealth : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            TakeDamage(10);
-        }
     }
 
     public void TakeDamage(float damage)

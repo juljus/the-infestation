@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa468c54a196b43eb956ee2b0d12584e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statusEffectIcon: {fileID: 6105795678443708983, guid: 71e5a85cd440141528bdb759033d31fa, type: 3}
+  statusEffectIcon: {fileID: 6105795678443708983, guid: e1cd8ec275ca7490d967cd1c55caff71, type: 3}
 --- !u!58 &4985225449562957359
 CircleCollider2D:
   m_ObjectHideFlags: 0

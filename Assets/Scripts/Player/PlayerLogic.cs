@@ -10,8 +10,8 @@ public class PlayerLogic : MonoBehaviour
     [SerializeField] private Vector2 canvasStartPosition;
     [SerializeField] private float statusEffectIconStep = 75f;
 
+    // static variables
     static GameObject thisGameObject;
-
     static StatusEffect[] statusEffectList = new StatusEffect[15];
 
     void Start()
@@ -36,6 +36,20 @@ public class PlayerLogic : MonoBehaviour
                 j += 1;
             }
         }
+
+        // when space is pressed, remove all speed slow effects
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            for (int i = 0; i < statusEffectList.Length; i++)
+            {
+                if (statusEffectList[i] != null && statusEffectList[i].type == "speedMod" && statusEffectList[i].value < 1)
+                {
+                    StatusEffect.SpeedModEffect speedModEffect = statusEffectList[i] as StatusEffect.SpeedModEffect;
+
+                    speedModEffect.EndEffect();
+                }
+            }
+        }
     }
 
     class StatusEffect
@@ -53,7 +67,7 @@ public class PlayerLogic : MonoBehaviour
                 this.type = "speedMod";
                 this.value = value;
                 this.duration = duration;
-                this.icon = Instantiate(icon, new Vector3(0, 0, 0), Quaternion.identity, GameObject.Find("MainCanvas").transform);
+                this.icon = Instantiate(icon, new Vector3(-1000, -1000, 0), Quaternion.identity, GameObject.Find("MainCanvas").transform);
                 this.startTime = Time.time;
 
                 for (int i = 0; i < statusEffectList.Length; i++)
@@ -102,13 +116,9 @@ public class PlayerLogic : MonoBehaviour
             case "heal":
                 GetComponent<PlayerHeath>().Heal(value);
                 break;
-            case "speed":
-                StatusEffect.SpeedModEffect speedEffect = new StatusEffect.SpeedModEffect(value, duration, icon);
-                StartCoroutine(speedModEffectCorutine(speedEffect));
-                break;
-            case "slow":
-                StatusEffect.SpeedModEffect slowEffect = new StatusEffect.SpeedModEffect(value, duration, icon);                
-                StartCoroutine(speedModEffectCorutine(slowEffect));
+            case "speedMod":
+                StatusEffect.SpeedModEffect speedModEffect = new StatusEffect.SpeedModEffect(value, duration, icon);
+                StartCoroutine(speedModEffectCorutine(speedModEffect));
                 break;
             default:
                 break;
@@ -120,7 +130,13 @@ public class PlayerLogic : MonoBehaviour
         speedMod.StartEffect();
         while (Time.time < speedMod.startTime + speedMod.duration)
         {
-            speedMod.icon.fillAmount = 1 - ((Time.time - speedMod.startTime) / speedMod.duration);
+            // check if the effect was removed
+            if (speedMod.icon == null)
+            {
+                yield break;
+            }
+
+            speedMod.icon.transform.GetChild(0).GetComponent<UnityEngine.UI.Image>().fillAmount = 1 - ((Time.time - speedMod.startTime) / speedMod.duration);
             yield return null;
         }
         speedMod.EndEffect();

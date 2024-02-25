@@ -31,6 +31,10 @@ public class EnemyProjectile : MonoBehaviour
     {
         //move projectile towards player
         transform.position = Vector2.MoveTowards(transform.position, GameObject.Find("GameManager").GetComponent<PlayerManager>().GetPlayerTransform.position, projectileSpeed * Time.deltaTime);
+
+        // rotate based on move direction
+        Vector3 moveDirection = GameObject.Find("GameManager").GetComponent<PlayerManager>().GetPlayerTransform.position - transform.position;
+        gameObject.transform.rotation = Quaternion.LookRotation(Vector3.forward, moveDirection);
     }
 
     private void OnTriggerEnter2D(Collider2D other) {

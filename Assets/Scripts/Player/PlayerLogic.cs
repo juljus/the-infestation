@@ -10,26 +10,29 @@ public class PlayerLogic : MonoBehaviour
     [SerializeField] private Vector2 canvasStartPosition;
     [SerializeField] private float statusEffectIconStep = 75f;
 
-    static UnityEngine.UI.Image[] statusEffectIconList = new UnityEngine.UI.Image[15];
+    static GameObject thisGameObject;
+
+    static StatusEffect[] statusEffectList = new StatusEffect[15];
 
     void Start()
     {
         canvasStartPosition = new Vector2(-500f, 265f);
+
+        thisGameObject = gameObject;
     }
 
     void Update()
     {
+        // move all the null elements to the end of the list
+        statusEffectList = statusEffectList.OrderBy(x => x != null).ToArray();
+
+        // arrange status effect icons on screen
         int j = 0;
-        for (int i = 0; i < statusEffectIconList.Length; i++)
+        for (int i = 0; i < statusEffectList.Length; i++)
         {
-            if (statusEffectIconList[i] != null)
+            if (statusEffectList[i] != null)
             {
-                // print(canvasStartPosition.x);
-                // print(canvasStartPosition.y);
-                statusEffectIconList[i].GetComponent<RectTransform>().anchoredPosition =  new Vector2(canvasStartPosition.x + (statusEffectIconStep * j), canvasStartPosition.y);
-                print("set as: " + statusEffectIconList[i].GetComponent<RectTransform>().anchoredPosition);
-                // print(statusEffectIconList[i].transform.position.x + "asdf");
-                // print(statusEffectIconList[i].transform.position.y + "asdf");
+                statusEffectList[i].icon.GetComponent<RectTransform>().anchoredPosition =  new Vector2(canvasStartPosition.x + (statusEffectIconStep * j), canvasStartPosition.y);
                 j += 1;
             }
         }
@@ -53,25 +56,40 @@ public class PlayerLogic : MonoBehaviour
                 this.icon = Instantiate(icon, new Vector3(0, 0, 0), Quaternion.identity, GameObject.Find("MainCanvas").transform);
                 this.startTime = Time.time;
 
-                for (int i = 0; i < statusEffectIconList.Length; i++)
+                for (int i = 0; i < statusEffectList.Length; i++)
                 {
-                    if (statusEffectIconList[i] == null)
+                    if (statusEffectList[i] == null)
                     {
-                        statusEffectIconList[i] = this.icon;
+                        statusEffectList[i] = this;
+                        break;
+                    }
+                }
+            }
+            public void StartEffect()
+            {
+                float speed = thisGameObject.GetComponent<PlayerMovement>().GetSpeed();
+                thisGameObject.GetComponent<PlayerMovement>().SetSpeed(speed * this.value);
+            }
+
+            public void EndEffect()
+            {
+                float speed = thisGameObject.GetComponent<PlayerMovement>().GetSpeed();
+                thisGameObject.GetComponent<PlayerMovement>().SetSpeed(speed / this.value);
+
+                // remove status effect icon
+                Destroy(this.icon.gameObject);
+
+                // replace status effect in list with null
+                for (int i = 0; i < statusEffectList.Length; i++)
+                {
+                    if (statusEffectList[i] == this)
+                    {
+                        statusEffectList[i] = null;
                         break;
                     }
                 }
             }
         }
-
-        // public StatusEffect(string type, float value, float duration, UnityEngine.UI.Image icon)
-        // {
-        //     this.type = type;
-        //     this.value = value;
-        //     this.duration = duration;
-        //     this.icon = Instantiate(icon, new Vector3(0, 0, 0), Quaternion.identity, GameObject.Find("MainCanvas").transform);
-        //     this.startTime = Time.time;
-        // }
     }
 
     public void TakeEffect(string type, float value, float duration, UnityEngine.UI.Image icon = null)
@@ -89,7 +107,7 @@ public class PlayerLogic : MonoBehaviour
                 StartCoroutine(speedModEffectCorutine(speedEffect));
                 break;
             case "slow":
-                StatusEffect.SpeedModEffect slowEffect = new StatusEffect.SpeedModEffect(value, duration, icon);
+                StatusEffect.SpeedModEffect slowEffect = new StatusEffect.SpeedModEffect(value, duration, icon);                
                 StartCoroutine(speedModEffectCorutine(slowEffect));
                 break;
             default:
@@ -99,17 +117,12 @@ public class PlayerLogic : MonoBehaviour
 
     private IEnumerator speedModEffectCorutine(StatusEffect.SpeedModEffect speedMod)
     {
-        float speed = GetComponent<PlayerMovement>().GetSpeed();
-        GetComponent<PlayerMovement>().SetSpeed(speed * speedMod.value);
-
+        speedMod.StartEffect();
         while (Time.time < speedMod.startTime + speedMod.duration)
         {
             speedMod.icon.fillAmount = 1 - ((Time.time - speedMod.startTime) / speedMod.duration);
             yield return null;
         }
-
-        speed = GetComponent<PlayerMovement>().GetSpeed();
-        GetComponent<PlayerMovement>().SetSpeed(speed / speedMod.value);
-        Destroy(speedMod.icon.gameObject);
+        speedMod.EndEffect();
     }
 }

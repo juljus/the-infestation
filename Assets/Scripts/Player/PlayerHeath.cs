@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerHeath : MonoBehaviour
+public class PlayerHeath : MonoBehaviour, IDataPersistance
 {
     [SerializeField] private PlayerScriptableObject scriptableObject;
     [SerializeField] private UnityEngine.UI.Image healthBar;
@@ -39,6 +39,14 @@ public class PlayerHeath : MonoBehaviour
         {
             currentHealth = maxHealth;
         }
+    }
+
+    public void LoadData(GameData data) {
+        this.currentHealth = data.playerHealth;
+    }
+
+    public void SaveData(ref GameData data) {
+        data.playerHealth = this.currentHealth;
     }
 
 }

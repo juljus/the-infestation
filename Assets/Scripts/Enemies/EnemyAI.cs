@@ -9,6 +9,7 @@ public class EnemyAI : MonoBehaviour
     private float aggroRange;
     private float deaggroRange;
     private float stoppingDistance;
+    private float maxSpeed;
     private float speed;
     private GameObject projectile;
     private float projectileSpeed;
@@ -31,10 +32,12 @@ public class EnemyAI : MonoBehaviour
         aggroRange = scriptableObject.aggroRange;
         deaggroRange = scriptableObject.deaggroRange;
         stoppingDistance = scriptableObject.stoppingDistance;
-        speed = scriptableObject.speed;
+        maxSpeed = scriptableObject.speed;
         projectile = scriptableObject.projectile;
         damage = scriptableObject.damage;
         attackCooldown = scriptableObject.attackCooldown;
+
+        speed = maxSpeed;
 
         // projectile
         projectileSpeed = scriptableObject.projectileSpeed;
@@ -86,6 +89,7 @@ public class EnemyAI : MonoBehaviour
         attackCooldownRemaining = attackCooldown;
     }
 
+    // Getters 
     public float GetProjectileSpeed {
         get { return projectileSpeed; }
     }
@@ -103,5 +107,14 @@ public class EnemyAI : MonoBehaviour
     }
     public UnityEngine.UI.Image GetProjectileEffectIcon {
         get { return projectileEffectIcon; }
+    }
+    public float GetMaxSpeed() {
+        return maxSpeed;
+    }
+
+    // Setters
+    public void SetSpeed(float newSpeed) {
+        speed = newSpeed;
+        // print("enemy speed set: " + newSpeed);
     }
 }

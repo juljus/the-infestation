@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerHeath : MonoBehaviour, IDataPersistance
+public class PlayerHealth : MonoBehaviour, IDataPersistance
 {
     [SerializeField] private PlayerScriptableObject scriptableObject;
     [SerializeField] private UnityEngine.UI.Image healthBar;
@@ -22,6 +22,12 @@ public class PlayerHeath : MonoBehaviour, IDataPersistance
         if (currentHealth <= 0)
         {
             Destroy(gameObject);
+        }
+
+        // when x is pressed apply a slow effect to enemy
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            GameObject.Find("Enemy").GetComponent<EffectSystem>().TakeStatusEffect("speedMod", 0.6f, 10f);
         }
 
     }
@@ -47,6 +53,5 @@ public class PlayerHeath : MonoBehaviour, IDataPersistance
 
     public void SaveData(ref GameData data) {
         data.playerHealth = this.currentHealth;
-    }
-
+    }    
 }

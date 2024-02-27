@@ -7,18 +7,28 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float speed = 5f;
+    [SerializeField] private float speed;
+    [SerializeField] private float maxSpeed;
     [SerializeField] private Rigidbody2D rigidBody;
+
+    void Start()
+    {
+        speed = maxSpeed;
+    }
 
     public void Movement(InputAction.CallbackContext callbackContext) {
         Vector2 movementInput = callbackContext.ReadValue<Vector2>();
         rigidBody.velocity = new Vector2(movementInput.x * speed, movementInput.y * speed);
     }
 
+    // Getters
+    public float GetMaxSpeed() {
+        return maxSpeed;
+    }
+
+    // Setters
     public void SetSpeed(float newSpeed) {
         speed = newSpeed;
-    }
-    public float GetSpeed() {
-        return speed;
+        // print("player peed set: " + speed);
     }
 }

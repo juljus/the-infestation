@@ -40,8 +40,8 @@ public class EnemyProjectile : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject == player) {
             //deal damage to player
-            player.GetComponent<PlayerLogic>().TakeEffect("damage", damage, 0);
-            player.GetComponent<PlayerLogic>().TakeEffect(projectileEffectType, projectileEffectValue, projectileEffectDuration, projectileEffectIcon);
+            player.GetComponent<PlayerHealth>().TakeDamage(damage);
+            player.GetComponent<EffectSystem>().TakeStatusEffect(projectileEffectType, projectileEffectValue, projectileEffectDuration, projectileEffectIcon);
             Destroy(gameObject);
         }
     }

@@ -11,15 +11,6 @@ public class EffectSystem : MonoBehaviour
 
     void Update()
     {
-        // print("here:");
-        // for (int i = 0; i < statusEffectList.Length; i++)
-        // {
-        //     if (statusEffectList[i] != null)
-        //     {
-        //         print(statusEffectList[i].type + " " + statusEffectList[i].value + " " + statusEffectList[i].duration);
-        //     }
-        // }
-
         // when space is pressed, remove all slow effects
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -62,7 +53,7 @@ public class EffectSystem : MonoBehaviour
             }
         }
 
-        public void MakeStatusEffect(StatusEffect[] statusEffectList)
+        public void MakeStatusEffect(StatusEffect[] statusEffectList, UnityEngine.UI.Image icon = null)
         {
                 if (icon != null)
                 {
@@ -89,7 +80,7 @@ public class EffectSystem : MonoBehaviour
                 this.value = value;
                 this.duration = duration;
 
-                MakeStatusEffect(statusEffectList);
+                MakeStatusEffect(statusEffectList, icon);
             }
         }
 
@@ -101,7 +92,7 @@ public class EffectSystem : MonoBehaviour
                 this.value = value;
                 this.duration = duration;
 
-                MakeStatusEffect(statusEffectList);
+                MakeStatusEffect(statusEffectList, icon);
             }
         }
     }

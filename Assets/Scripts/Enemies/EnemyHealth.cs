@@ -41,4 +41,16 @@ public class EnemyHealth : MonoBehaviour
             currentHealth = maxHealth;
         }
     }
+
+    // Getters
+    public float GetCurrentHealth()
+    {
+        return currentHealth;
+    }
+
+    // Setters
+    public void SetCurrentHealth(float newHealth)
+    {
+        currentHealth = newHealth;
+    }
 }

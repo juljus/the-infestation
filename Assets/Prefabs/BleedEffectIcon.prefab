@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5251494599025515059}
   - component: {fileID: 1504828597481645693}
   m_Layer: 5
-  m_Name: SlowEffectIcon
+  m_Name: BleedEffectIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f03118996816546a0a4ca6225f7cfb8b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 958d3f992a4c64480be989fc63372b16, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 7832627585674665068}
   - component: {fileID: 6105795678443708983}
   m_Layer: 5
-  m_Name: SlowEffectIcon
+  m_Name: BleedEffectIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -134,14 +134,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 1}
+  m_Color: {r: 0.4433962, g: 0.4433962, b: 0.4433962, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f03118996816546a0a4ca6225f7cfb8b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 958d3f992a4c64480be989fc63372b16, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1

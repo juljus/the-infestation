@@ -25,9 +25,37 @@ public class PlayerStatusEffectManager : MonoBehaviour
         // print status effect list
 
         // set player stats according to status effects
-        SetPlayerSpeed();
+        SetPlayerStats();
 
         // arrange status effect icons on screen
+        ArrangeStatusEffectIcons();
+
+        // change icon fill amount based on time remaining
+        ChangeIconFillAmount();
+    }
+
+    private void SetPlayerStats()
+    {
+        // get scripts
+        PlayerMovement playerMovement = transform.GetComponent<PlayerMovement>();
+        PlayerHealth playerHealth = transform.GetComponent<PlayerHealth>();
+
+        // get current stats
+        float maxSpeed = playerMovement.GetMaxSpeed();
+        float currentHealth = playerHealth.GetCurrentHealth();
+
+        // get new values
+        float[] recieveValues = new float[2];
+        UsedFunctions usedFunctions = new UsedFunctions();
+        recieveValues = usedFunctions.SetStatsAccordingToStatusEffects(statusEffectList, maxSpeed, currentHealth);
+
+        // set new values
+        playerMovement.SetSpeed(recieveValues[0]);
+        playerHealth.SetCurrentHealth(recieveValues[1]);
+    }
+
+    private void ArrangeStatusEffectIcons()
+    {
         int j = 0;
         for (int i = 0; i < statusEffectList.Length; i++)
         {
@@ -37,8 +65,10 @@ public class PlayerStatusEffectManager : MonoBehaviour
                 j += 1;
             }
         }
+    }
 
-        // change icon fill amount based on time remaining
+    private void ChangeIconFillAmount()
+    {
         for (int i = 0; i < statusEffectList.Length; i++)
         {
             if (statusEffectList[i] != null && statusEffectList[i].icon != null)
@@ -46,19 +76,5 @@ public class PlayerStatusEffectManager : MonoBehaviour
                 statusEffectList[i].icon.transform.GetChild(0).GetComponent<UnityEngine.UI.Image>().fillAmount = 1 - ((Time.time - statusEffectList[i].startTime) / statusEffectList[i].duration);
             }
         }
-    }
-
-    private void SetPlayerSpeed()
-    {
-        float newSpeed = transform.GetComponent<PlayerMovement>().GetMaxSpeed();
-        for (int i = 0; i < statusEffectList.Length; i++)
-        {
-            EffectSystem.StatusEffect.SpeedModEffect speedModEffect = statusEffectList[i] as EffectSystem.StatusEffect.SpeedModEffect;
-            if (speedModEffect != null && speedModEffect.type == "speedMod" && speedModEffect.value < 1f)
-            {
-                newSpeed *= statusEffectList[i].value;
-            }
-        }
-        transform.GetComponent<PlayerMovement>().SetSpeed(newSpeed);
     }
 }

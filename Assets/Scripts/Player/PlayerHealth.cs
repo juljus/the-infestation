@@ -17,21 +17,34 @@ public class PlayerHealth : MonoBehaviour, IDataPersistance
 
     void Update()
     {
+        // update health bar
         healthBar.fillAmount = currentHealth / maxHealth;
-
+        
+        // death
         if (currentHealth <= 0)
         {
-            Destroy(gameObject);
+            Death();
+        }
+
+        // if health is above max health, set it to max health
+        if (currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
         }
 
         // when x is pressed apply a slow effect to enemy
         if (Input.GetKeyDown(KeyCode.X))
         {
-            GameObject.Find("Enemy").GetComponent<EffectSystem>().TakeStatusEffect("speedMod", 0.6f, 10f);
+            GameObject.Find("Enemy").GetComponent<EffectSystem>().TakeStatusEffect("healthMod", -5, 10f);
         }
 
     }
 
+    private void Death()
+    {
+        // destroy the player
+        Destroy(gameObject);
+    }
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
@@ -40,11 +53,6 @@ public class PlayerHealth : MonoBehaviour, IDataPersistance
     public void Heal(float heal)
     {
         currentHealth += heal;
-
-        if (currentHealth > maxHealth)
-        {
-            currentHealth = maxHealth;
-        }
     }
 
     public void LoadData(GameData data) {
@@ -53,5 +61,17 @@ public class PlayerHealth : MonoBehaviour, IDataPersistance
 
     public void SaveData(ref GameData data) {
         data.playerHealth = this.currentHealth;
-    }    
+    }
+
+    // Getters
+    public float GetCurrentHealth()
+    {
+        return currentHealth;
+    }
+
+    // Setters
+    public void SetCurrentHealth(float newHealth)
+    {
+        currentHealth = newHealth;
+    }
 }

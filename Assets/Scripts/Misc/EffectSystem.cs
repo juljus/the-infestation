@@ -102,7 +102,8 @@ public class EffectSystem : MonoBehaviour
         switch (type)
         {
             case "healthMod":
-                GetComponent<PlayerHealth>().TakeDamage(value);
+                StatusEffect.HealthModEffect healthModEffect = new StatusEffect.HealthModEffect(value, duration, icon, statusEffectList);
+                StartCoroutine(statusEffectCorutine(healthModEffect));
                 break;
             case "speedMod":
                 StatusEffect.SpeedModEffect speedModEffect = new StatusEffect.SpeedModEffect(value, duration, icon, statusEffectList);

@@ -5,22 +5,33 @@ using UnityEngine;
 public class EnemyProjectile : MonoBehaviour
 {
     private float projectileSpeed;
-    private float projectileEffectValue;
-    private string projectileEffectType;
-    private float projectileEffectDuration;
-    private UnityEngine.UI.Image projectileEffectIcon;
+    private float projectileEffectValue1;
+    private string projectileEffectType1;
+    private float projectileEffectDuration1;
+    private UnityEngine.UI.Image projectileEffectIcon1;
+    private float projectileEffectValue2;
+    private string projectileEffectType2;
+    private float projectileEffectDuration2;
+    private UnityEngine.UI.Image projectileEffectIcon2;
     private float damage;
     private GameObject player;
 
     void Start()
     {        
-        //get from parent object
-        projectileSpeed = transform.parent.GetComponent<EnemyAI>().GetProjectileSpeed;
-        projectileEffectValue = transform.parent.GetComponent<EnemyAI>().GetProjectileEffectValue;
-        projectileEffectType = transform.parent.GetComponent<EnemyAI>().GetProjectileEffectType;
-        projectileEffectDuration = transform.parent.GetComponent<EnemyAI>().GetProjectileEffectDuration;
-        projectileEffectIcon = transform.parent.GetComponent<EnemyAI>().GetProjectileEffectIcon;
-        damage = transform.parent.GetComponent<EnemyAI>().GetDamage;
+        // get from parent object
+        EnemyAI enemyAI = transform.parent.GetComponent<EnemyAI>();
+        projectileSpeed = enemyAI.GetProjectileSpeed;
+        damage = enemyAI.GetDamage;
+        // effect 1
+        projectileEffectValue1 = enemyAI.GetProjectileEffectValue1;
+        projectileEffectType1 = enemyAI.GetProjectileEffectType1;
+        projectileEffectDuration1 = enemyAI.GetProjectileEffectDuration1;
+        projectileEffectIcon1 = enemyAI.GetProjectileEffectIcon1;
+        // effect 2
+        projectileEffectValue2 = enemyAI.GetProjectileEffectValue2;
+        projectileEffectType2 = enemyAI.GetProjectileEffectType2;
+        projectileEffectDuration2 = enemyAI.GetProjectileEffectDuration2;
+        projectileEffectIcon2 = enemyAI.GetProjectileEffectIcon2;
 
         //get player object
         player = GameObject.Find("GameManager").GetComponent<PlayerManager>().GetPlayer;
@@ -41,7 +52,11 @@ public class EnemyProjectile : MonoBehaviour
         if (other.gameObject == player) {
             //deal damage to player
             player.GetComponent<PlayerHealth>().TakeDamage(damage);
-            player.GetComponent<EffectSystem>().TakeStatusEffect(projectileEffectType, projectileEffectValue, projectileEffectDuration, projectileEffectIcon);
+            //apply status effect 1
+            player.GetComponent<EffectSystem>().TakeStatusEffect(projectileEffectType1, projectileEffectValue1, projectileEffectDuration1, projectileEffectIcon1);
+            //apply status effect 2
+            player.GetComponent<EffectSystem>().TakeStatusEffect(projectileEffectType2, projectileEffectValue2, projectileEffectDuration2, projectileEffectIcon2);
+            //destroy projectile
             Destroy(gameObject);
         }
     }

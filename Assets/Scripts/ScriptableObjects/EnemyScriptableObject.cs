@@ -13,10 +13,20 @@ public class EnemyScriptableObject : ScriptableObject
     public float aggroRange;
     public float deaggroRange;
     public float stoppingDistance;
+
+    [Header("Enemy Projectile")]
     public GameObject projectile;
     public float projectileSpeed;
-    public string projectileEffectType;
-    public float projectileEffectValue;
-    public float projectileEffectDuration;
-    public UnityEngine.UI.Image projectileEffectIcon;
+
+    [Header("Enemy Projectile Effect 1")]
+    public string projectileEffectType1;
+    public float projectileEffectValue1;
+    public float projectileEffectDuration1;
+    public UnityEngine.UI.Image projectileEffectIcon1;
+    
+    [Header("Enemy Projectile Effect 2")]
+    public string projectileEffectType2;
+    public float projectileEffectValue2;
+    public float projectileEffectDuration2;
+    public UnityEngine.UI.Image projectileEffectIcon2;
 }

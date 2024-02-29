@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerHealth : MonoBehaviour, IDataPersistance
+public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private PlayerScriptableObject scriptableObject;
     [SerializeField] private UnityEngine.UI.Image healthBar;
@@ -53,14 +53,6 @@ public class PlayerHealth : MonoBehaviour, IDataPersistance
     public void Heal(float heal)
     {
         currentHealth += heal;
-    }
-
-    public void LoadData(GameData data) {
-        this.currentHealth = data.playerHealth;
-    }
-
-    public void SaveData(ref GameData data) {
-        data.playerHealth = this.currentHealth;
     }
 
     // Getters

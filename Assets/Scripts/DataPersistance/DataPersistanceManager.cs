@@ -7,7 +7,7 @@ using Unity.VisualScripting;
 public class DataPersistanceManager : MonoBehaviour
 {
     [Header("File Storage Config")]
-    [SerializeField] private string fileName;
+    private string fileName = "GameData.json";
     private GameData gameData;
     private List<IDataPersistance> dataPersistanceObjects;
     private FileDataHandler dataHandler;
@@ -21,13 +21,14 @@ public class DataPersistanceManager : MonoBehaviour
             Debug.LogError("There is more than one DataPersistanceManager in the scene");
         }
         instance = this;
+
+        this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
+        this.dataPersistanceObjects = FindAllDataPersistanceObjects();
+        LoadGame();
     }
 
     private void Start() 
     {
-        this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
-        this.dataPersistanceObjects = FindAllDataPersistanceObjects();
-        LoadGame();
     }
 
     public void NewGame()

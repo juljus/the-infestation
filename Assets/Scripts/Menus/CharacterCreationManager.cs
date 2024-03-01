@@ -32,8 +32,8 @@ public class CharacterCreationManager : MonoBehaviour, IDataPersistance
         // save the data
         transform.GetComponent<DataPersistanceManager>().SaveGame();
 
-        // switch to character selection scene
-        UnityEngine.SceneManagement.SceneManager.LoadScene("CharacterSelection");
+        // switch to pre game scene
+        UnityEngine.SceneManagement.SceneManager.LoadScene("PreGame");
     }
 
     // data persistance

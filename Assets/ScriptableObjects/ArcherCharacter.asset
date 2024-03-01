@@ -10,7 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ae079ff879e464e18a5de367c187f564, type: 3}
-  m_Name: player
+  m_Name: ArcherCharacter
   m_EditorClassIdentifier: 
   speed: 5
   maxHealth: 100
+  playerSprite: {fileID: 4125137125113311479, guid: 08555ebeb13bd426e81c1ea6f30d48f7, type: 3}

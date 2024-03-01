@@ -3,31 +3,42 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class PlayerLevel : MonoBehaviour, IDataPersistance
+public class PlayerLevel : MonoBehaviour// , IDataPersistance
 {
-    private int playerLevel;
-    [SerializeField] private TMPro.TMP_Text levelText;
+    // private int playerLevel;
+    // private int[] characterLevels;
+    // private int selectedCharacter;
+    // [SerializeField] private TMPro.TMP_Text levelText;
 
-    void Update()
-    {
-        levelText.text = "Level: " + playerLevel;
+    // void Start()
+    // {
+    //     playerLevel = characterLevels[selectedCharacter];
+    // }
 
-        // change level with up/down arrow keys
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            playerLevel++;
-        }
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            playerLevel--;
-        }
-    }
+    // void Update()
+    // {
+    //     levelText.text = "Level: " + playerLevel;
 
-    public void LoadData(GameData data) {
-        this.playerLevel = data.playerLevel;
-    }
+    //     // change level with up/down arrow keys
+    //     if (Input.GetKeyDown(KeyCode.UpArrow))
+    //     {
+    //         playerLevel++;
+    //         characterLevels[selectedCharacter] = playerLevel;
+    //     }
+    //     if (Input.GetKeyDown(KeyCode.DownArrow))
+    //     {
+    //         playerLevel--;
+    //         characterLevels[selectedCharacter] = playerLevel;
+    //     }
+    // }
 
-    public void SaveData(ref GameData data) {
-        data.playerLevel = this.playerLevel;
-    }
+    // public void LoadData(GameData data) {
+    //     this.characterLevels = data.characterLevels;
+    //     this.selectedCharacter = data.selectedCharacter;
+    // }
+
+    // public void SaveData(ref GameData data) {
+    //     data.characterLevels = this.characterLevels;
+    //     data.selectedCharacter = this.selectedCharacter;
+    // }
 }

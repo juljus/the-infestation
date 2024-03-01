@@ -8,5 +8,6 @@ public class PlayerScriptableObject : ScriptableObject
     [Header("Player Stats")]
     public float speed;
     public float maxHealth;
+    public GameObject playerSprite;
     
 }

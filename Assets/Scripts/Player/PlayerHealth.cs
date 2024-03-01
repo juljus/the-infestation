@@ -4,19 +4,23 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField] private PlayerScriptableObject scriptableObject;
+    private PlayerScriptableObject scriptableObject;
     [SerializeField] private UnityEngine.UI.Image healthBar;
     private float maxHealth;
     private float currentHealth;
 
     void Start()
     {
+        scriptableObject = GameObject.Find("GameManager").GetComponent<PlayerManager>().GetPlayerScriptableObject;
+
         maxHealth = scriptableObject.maxHealth;
         currentHealth = maxHealth;
     }
 
     void Update()
     {
+        print(currentHealth);
+
         // update health bar
         healthBar.fillAmount = currentHealth / maxHealth;
         

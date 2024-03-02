@@ -10,26 +10,6 @@ public class PlayerManager : MonoBehaviour, IDataPersistance
         private int[] slotCharacterTypes;
         private PlayerScriptableObject playerScriptableObject;
 
-        void Start()
-        {
-            // instantiate player
-            player = Instantiate(player, new Vector3(0, 0, 0), Quaternion.identity);
-
-            // get player scriptable object
-            if (slotCharacterTypes[selectedCharacter] == 1)
-            {
-                playerScriptableObject = playerScriptableObjectList[0];
-            }
-            else if (slotCharacterTypes[selectedCharacter] == 2)
-            {
-                playerScriptableObject = playerScriptableObjectList[1];
-            }
-            else
-            {
-                Debug.LogError("character type not selected");
-            }
-        }
-
         // Getters
         public Transform GetPlayerTransform {
             get { return player.transform; }
@@ -45,6 +25,20 @@ public class PlayerManager : MonoBehaviour, IDataPersistance
         public void LoadData(GameData data) {
             this.slotCharacterTypes = data.slotCharacterTypes;
             this.selectedCharacter = data.selectedCharacter;
+
+            // get player scriptable object
+            if (slotCharacterTypes[selectedCharacter] == 1)
+            {
+                playerScriptableObject = playerScriptableObjectList[0];
+            }
+            else if (slotCharacterTypes[selectedCharacter] == 2)
+            {
+                playerScriptableObject = playerScriptableObjectList[1];
+            }
+            else
+            {
+                Debug.LogError("character type not selected");
+            }
         }
         public void SaveData(ref GameData data) {
             data.slotCharacterTypes = this.slotCharacterTypes;

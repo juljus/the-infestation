@@ -7,6 +7,7 @@ public class PreGameManager : MonoBehaviour, IDataPersistance
     [SerializeField] private GameObject characterIcon;
     private int selectedCharacter;
     private int[] slotCharacterTypes;
+    private int[] characterLevels;
 
     void Start()
     {
@@ -41,6 +42,9 @@ public class PreGameManager : MonoBehaviour, IDataPersistance
         // delete the selected character
         slotCharacterTypes[selectedCharacter] = 0;
 
+        // delete the selected characters data
+        characterLevels[selectedCharacter] = 0;
+
         // save the data
         transform.GetComponent<DataPersistanceManager>().SaveGame();
 
@@ -52,9 +56,11 @@ public class PreGameManager : MonoBehaviour, IDataPersistance
     public void LoadData(GameData data) {
         this.selectedCharacter = data.selectedCharacter;
         this.slotCharacterTypes = data.slotCharacterTypes;
+        this.characterLevels = data.characterLevels;
     }
     public void SaveData(ref GameData data) {
         data.selectedCharacter = this.selectedCharacter;
         data.slotCharacterTypes = this.slotCharacterTypes;
+        data.characterLevels = this.characterLevels;
     }
 }

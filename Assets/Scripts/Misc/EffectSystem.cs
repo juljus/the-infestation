@@ -57,7 +57,7 @@ public class EffectSystem : MonoBehaviour
         {
                 if (icon != null)
                 {
-                    this.icon = Instantiate(icon, new Vector3(-1000, -1000, 0), Quaternion.identity, GameObject.Find("MainCanvas").transform);
+                    this.icon = Instantiate(icon, new Vector3(-1000, -1000, 0), Quaternion.identity, GameObject.Find("SecondaryCanvas").transform);
                 }
 
                 this.startTime = Time.time;

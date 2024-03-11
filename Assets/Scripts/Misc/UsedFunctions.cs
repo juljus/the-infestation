@@ -34,4 +34,5 @@ public class UsedFunctions
         returnValues[1] = newHealth;
         return returnValues;
     }
+
 }

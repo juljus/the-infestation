@@ -15,3 +15,18 @@ MonoBehaviour:
   speed: 5
   maxHealth: 100
   playerSprite: {fileID: 4125137125113311479, guid: 08555ebeb13bd426e81c1ea6f30d48f7, type: 3}
+  SkillIcons:
+  - {fileID: 21300000, guid: f03118996816546a0a4ca6225f7cfb8b, type: 3}
+  - {fileID: 21300000, guid: f03118996816546a0a4ca6225f7cfb8b, type: 3}
+  - {fileID: 21300000, guid: 958d3f992a4c64480be989fc63372b16, type: 3}
+  - {fileID: 21300000, guid: 958d3f992a4c64480be989fc63372b16, type: 3}
+  - {fileID: 21300000, guid: 958d3f992a4c64480be989fc63372b16, type: 3}
+  - {fileID: 21300000, guid: 958d3f992a4c64480be989fc63372b16, type: 3}
+  - {fileID: 21300000, guid: 958d3f992a4c64480be989fc63372b16, type: 3}
+  - {fileID: 21300000, guid: 958d3f992a4c64480be989fc63372b16, type: 3}
+  - {fileID: 21300000, guid: 958d3f992a4c64480be989fc63372b16, type: 3}
+  - {fileID: 21300000, guid: 958d3f992a4c64480be989fc63372b16, type: 3}
+  - {fileID: 21300000, guid: 958d3f992a4c64480be989fc63372b16, type: 3}
+  - {fileID: 21300000, guid: 958d3f992a4c64480be989fc63372b16, type: 3}
+  - {fileID: 21300000, guid: 958d3f992a4c64480be989fc63372b16, type: 3}
+  - {fileID: 21300000, guid: 958d3f992a4c64480be989fc63372b16, type: 3}

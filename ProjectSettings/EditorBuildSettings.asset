@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PreGame.unity
     guid: e35f09a3f6c0d42c585b4092cfb4d623
+  - enabled: 1
+    path: Assets/Scenes/SkillMenu.unity
+    guid: bc65f319ac5584f41ad25c7a934cdd63
   m_configObjects: {}

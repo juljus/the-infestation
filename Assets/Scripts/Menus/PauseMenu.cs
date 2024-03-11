@@ -6,6 +6,7 @@ public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private GameObject pauseBtn;
     [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private GameObject skillMenu;
     public void PauseGame()
     {
         Time.timeScale = 0;
@@ -24,5 +25,10 @@ public class PauseMenu : MonoBehaviour
     {
         Time.timeScale = 1;
         UnityEngine.SceneManagement.SceneManager.LoadScene("PreGame");
+    }
+
+    public void SkillMenu()
+    {
+        skillMenu.SetActive(true);
     }
 }

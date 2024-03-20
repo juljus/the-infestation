@@ -8,9 +8,10 @@ public class SkillMenuManager : MonoBehaviour, IDataPersistance
 {
     [SerializeField] private GameObject skillMenu;
     [SerializeField] private GameObject[] skillButtons;
+    [SerializeField] private string[] skillIDs;
     private PlayerScriptableObject playerScriptableObject;
-
     private int[] learnedSkills;
+    private int[] shownSkills;
 
     private void Start()
     {
@@ -18,7 +19,7 @@ public class SkillMenuManager : MonoBehaviour, IDataPersistance
 
         SetSkillButtonIcons();
 
-        learnedSkills = new int[14];
+        ShowSkills();
     }
 
     private void SetSkillButtonIcons()
@@ -52,19 +53,76 @@ public class SkillMenuManager : MonoBehaviour, IDataPersistance
         // get the index of the button
         int index = System.Array.IndexOf(skillButtons, button);
 
+        // use the index to get the skill ID
+        string skillID = skillIDs[index];
+
         // learn the skill
-        
-        // hide unavailable skill buttons
+        learnedSkills[index] = 1;
+
+        // make list of skills to show
+        ShownSkillList(skillID);
+
+        // show the skills
+        ShowSkills();
+    }
+
+    private void ShownSkillList(string skillID)
+    {
+        for (int i = 0; i < skillButtons.Length; i++)
+        {
+            shownSkills[i] = 0;
+
+            if (skillIDs[i].StartsWith(skillID) && skillIDs[i].Length <= skillID.Length + 2)
+            {
+                shownSkills[i] = 1;
+            }
+            else if (learnedSkills[i] == 1)
+            {
+                shownSkills[i] = 1;
+            }
+            else if (skillIDs[i].Length > skillID.Length + 2)
+            {
+                shownSkills[i] = 0;
+            }
+        }
+    }
+
+    private void ShowSkills()
+    {
+        for (int i = 0; i < skillButtons.Length; i++)
+        {
+            if (shownSkills[i] == 1 || i == 0)
+            {
+                skillButtons[i].SetActive(true);
+            }
+            else
+            {
+                skillButtons[i].SetActive(false);
+            }
+        }
+    }
+
+    public void UnLearnAllSkills()
+    {
+        for (int i = 0; i < learnedSkills.Length; i++)
+        {
+            learnedSkills[i] = 0;
+            shownSkills[i] = 0;
+        }
+
+        ShowSkills();
     }
 
     public void LoadData(GameData data)
     {
         this.learnedSkills = data.learnedSkills;
+        this.shownSkills = data.shownSkills;
     }
 
     public void SaveData(ref GameData data)
     {
         data.learnedSkills = this.learnedSkills;
+        data.shownSkills = this.shownSkills;
     }
 
 }

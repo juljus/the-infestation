@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: 0 1
   m_EditorClassIdentifier: 
   skillName: asdf
+  skillDescription: ability 2
   skillIcon: {fileID: 21300000, guid: 958d3f992a4c64480be989fc63372b16, type: 3}

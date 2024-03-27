@@ -145,13 +145,20 @@ public class SkillMenuManager : MonoBehaviour, IDataPersistance
     {
         for (int i = 0; i < skillButtons.Length; i++)
         {
-            if (availableSkills[i] == 0)
+            if (learnedSkills[i] == 1)
             {
-                skillButtons[i].GetComponent<Image>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+                //white
+                skillButtons[i].GetComponent<Image>().color = new Color(1, 1, 1, 1);
+            }
+            else if (availableSkills[i] == 1)
+            {
+                // blue
+                skillButtons[i].GetComponent<Image>().color = new Color(0.5f, 0.5f, 1, 1);
             }
             else
             {
-                skillButtons[i].GetComponent<Image>().color = new Color(1, 1, 1, 1);
+                // grey
+                skillButtons[i].GetComponent<Image>().color = new Color(0.5f, 0.5f, 0.5f, 1);
             }
         }
     }

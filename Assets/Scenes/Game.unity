@@ -3557,6 +3557,7 @@ MonoBehaviour:
   previewMenu: {fileID: 1584451785}
   titleText: {fileID: 177380293}
   descriptionText: {fileID: 618100188}
+  learnButton: {fileID: 1606737980}
 --- !u!1 &1048783348
 GameObject:
   m_ObjectHideFlags: 0

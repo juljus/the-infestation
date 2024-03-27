@@ -15,19 +15,19 @@ MonoBehaviour:
   speed: 5
   maxHealth: 100
   playerSprite: {fileID: 4125137125113311479, guid: 08555ebeb13bd426e81c1ea6f30d48f7, type: 3}
-  SkillIcons:
-  - {fileID: 21300000, guid: f03118996816546a0a4ca6225f7cfb8b, type: 3}
-  - {fileID: 21300000, guid: f03118996816546a0a4ca6225f7cfb8b, type: 3}
-  - {fileID: 21300000, guid: 958d3f992a4c64480be989fc63372b16, type: 3}
-  - {fileID: 21300000, guid: 958d3f992a4c64480be989fc63372b16, type: 3}
-  - {fileID: 21300000, guid: 958d3f992a4c64480be989fc63372b16, type: 3}
-  - {fileID: 21300000, guid: 958d3f992a4c64480be989fc63372b16, type: 3}
-  - {fileID: 21300000, guid: 958d3f992a4c64480be989fc63372b16, type: 3}
-  - {fileID: 21300000, guid: 958d3f992a4c64480be989fc63372b16, type: 3}
-  - {fileID: 21300000, guid: 958d3f992a4c64480be989fc63372b16, type: 3}
-  - {fileID: 21300000, guid: 958d3f992a4c64480be989fc63372b16, type: 3}
-  - {fileID: 21300000, guid: 958d3f992a4c64480be989fc63372b16, type: 3}
-  - {fileID: 21300000, guid: 958d3f992a4c64480be989fc63372b16, type: 3}
-  - {fileID: 21300000, guid: 958d3f992a4c64480be989fc63372b16, type: 3}
-  - {fileID: 21300000, guid: 958d3f992a4c64480be989fc63372b16, type: 3}
-  - {fileID: 21300000, guid: 958d3f992a4c64480be989fc63372b16, type: 3}
+  skills:
+  - {fileID: 11400000, guid: b75f3d7c543f8470f929185e069931e0, type: 2}
+  - {fileID: 11400000, guid: 43a46d154e6b74411bfb247e2b6956f1, type: 2}
+  - {fileID: 11400000, guid: 9b688ac20daa744a8ab377d66fe8b7a2, type: 2}
+  - {fileID: 11400000, guid: 901ddd02add13407993b08a2b85688b9, type: 2}
+  - {fileID: 11400000, guid: c74f0d21ab821486e898b88e992c3945, type: 2}
+  - {fileID: 11400000, guid: c7aba91a9dd7c401498457349089408f, type: 2}
+  - {fileID: 11400000, guid: 34df8302d338f4b4eb26c1f1eceb0538, type: 2}
+  - {fileID: 11400000, guid: 3e40121c1a9ea483494ba6895feb9ff0, type: 2}
+  - {fileID: 11400000, guid: 6c2004821e76d41a69cc2ead1fa19c58, type: 2}
+  - {fileID: 11400000, guid: f0dd13f724a5c43be91c9c7643a08fa0, type: 2}
+  - {fileID: 11400000, guid: 0e1bec39a4b8d445094f7bc2fd9c40b1, type: 2}
+  - {fileID: 11400000, guid: fb070559238c54a418ef83e80aa55287, type: 2}
+  - {fileID: 11400000, guid: f8dce05448337462bb6aef71042a7843, type: 2}
+  - {fileID: 11400000, guid: d11031459d8334659b1f0f2a45e12d9c, type: 2}
+  - {fileID: 11400000, guid: 3e7df576ef6874f5c823e95af4c7d853, type: 2}

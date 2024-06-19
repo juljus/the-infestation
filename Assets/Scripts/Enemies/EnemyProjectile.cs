@@ -53,9 +53,9 @@ public class EnemyProjectile : MonoBehaviour
             //deal damage to player
             player.GetComponent<PlayerHealth>().TakeDamage(damage);
             //apply status effect 1
-            player.GetComponent<EffectSystem>().TakeStatusEffect(projectileEffectType1, projectileEffectValue1, projectileEffectDuration1, projectileEffectIcon1);
+            player.GetComponent<EffectSystem>().TakeStatusEffect("ac,do upo,IHPF,HHJIFAUldfhgl", projectileEffectType1, projectileEffectValue1, projectileEffectDuration1, projectileEffectIcon1);
             //apply status effect 2
-            player.GetComponent<EffectSystem>().TakeStatusEffect(projectileEffectType2, projectileEffectValue2, projectileEffectDuration2, projectileEffectIcon2);
+            player.GetComponent<EffectSystem>().TakeStatusEffect("öadlginoÄPOJÄPEGIHAighaioUHRG", projectileEffectType2, projectileEffectValue2, projectileEffectDuration2, projectileEffectIcon2);
             //destroy projectile
             Destroy(gameObject);
         }

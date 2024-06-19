@@ -7,7 +7,7 @@ using Unity.VisualScripting;
 public class DataPersistanceManager : MonoBehaviour
 {
     [Header("File Storage Config")]
-    private string fileName = "GameData.json";
+    private string fileName = "GameData.yaml";
     private GameData gameData;
     private List<IDataPersistance> dataPersistanceObjects;
     private FileDataHandler dataHandler;

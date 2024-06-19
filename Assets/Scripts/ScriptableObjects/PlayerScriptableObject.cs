@@ -9,6 +9,6 @@ public class PlayerScriptableObject : ScriptableObject
     public float speed;
     public float maxHealth;
     public GameObject playerSprite;
-    public SkillScriptableObject[] skills;
+    public Skill[] skills;
     
 }

@@ -37,7 +37,7 @@ public class PlayerHealth : MonoBehaviour
         // when x is pressed apply a slow effect to enemy
         if (Input.GetKeyDown(KeyCode.X))
         {
-            GameObject.Find("Enemy").GetComponent<EffectSystem>().TakeStatusEffect("healthMod", -5, 10f);
+            GameObject.Find("Enemy").GetComponent<EffectSystem>().TakeStatusEffect("dslIPDAGNJOIioiganhouinhIRHGU0ÜA.,os", "healthMod", -5, 10f);
         }
 
     }

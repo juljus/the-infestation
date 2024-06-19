@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System;
+using YamlDotNet;
 
 public class FileDataHandler
 {
     private string dataDirPath = "";
     private string dataFileName = "";
+
+    private YamlDotNet.Serialization.Serializer yamlSerializer = new YamlDotNet.Serialization.Serializer();
+    private YamlDotNet.Serialization.Deserializer yamlDeserializer = new YamlDotNet.Serialization.Deserializer();
 
     public FileDataHandler(string dataDirPath, string dataFileName)
     {
@@ -35,7 +39,8 @@ public class FileDataHandler
                 
                 Debug.Log(dataToLoad);
                 // deserialize the JSON string to a C# object
-                loadedData = JsonUtility.FromJson<GameData>(dataToLoad);
+                // loadedData = JsonUtility.FromJson<GameData>(dataToLoad);
+                loadedData = yamlDeserializer.Deserialize<GameData>(dataToLoad);
             }
             catch (Exception e)
             {
@@ -54,7 +59,8 @@ public class FileDataHandler
             Directory.CreateDirectory(Path.GetDirectoryName(fullPath));
 
             // serialize the C# game data object to a JSON string
-            string dataToStore = JsonUtility.ToJson(data, true);
+            // string dataToStore = JsonUtility.ToJson(data, true);
+            string dataToStore = yamlSerializer.Serialize(data);
 
             // write the serialized data to the file
             using(FileStream stream = new FileStream(fullPath, FileMode.Create))

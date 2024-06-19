@@ -7,6 +7,7 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private GameObject pauseBtn;
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject skillMenu;
+    
     public void PauseGame()
     {
         Time.timeScale = 0;
@@ -29,6 +30,7 @@ public class PauseMenu : MonoBehaviour
 
     public void SkillMenu()
     {
+        transform.GetComponent<SkillMenuManager>().AvailableSkillList();
         skillMenu.SetActive(true);
     }
 }

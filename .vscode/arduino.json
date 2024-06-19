@@ -1,0 +1,7 @@
+{
+    "board": "arduino:avr:uno",
+    "programmer": "arduinoisp",
+    "port": "/dev/tty.Bluetooth-Incoming-Port",
+    "sketch": "sketch.ino",
+    "output": "build"
+}

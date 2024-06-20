@@ -120,7 +120,6 @@ public class EffectSystem : MonoBehaviour
                         if (statusEffectList[i] != null && statusEffectList[i].id == id)
                         {
                             statusEffectList[i].EndStatusEffect(statusEffectList);
-                            print("EndStatusEffect");
                         }
                     }
                 }
@@ -142,7 +141,6 @@ public class EffectSystem : MonoBehaviour
                         if (statusEffectList[i] != null && statusEffectList[i].id == id)
                         {
                             statusEffectList[i].EndStatusEffect(statusEffectList);
-                            print("EndStatusEffect");
                         }
                     }
                 }

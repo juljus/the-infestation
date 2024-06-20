@@ -3844,13 +3844,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 2789007d6ac0848bc8626d1f2b02eada, type: 3}
-  m_Type: 0
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
   m_FillClockwise: 1
-  m_FillOrigin: 0
+  m_FillOrigin: 2
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
 --- !u!222 &956293204
@@ -3962,12 +3962,12 @@ RectTransform:
   - {fileID: 1795650638}
   - {fileID: 784939425}
   - {fileID: 1744551796}
-  - {fileID: 798183082}
-  - {fileID: 1068380971}
   - {fileID: 1049250575}
   - {fileID: 528371022}
   - {fileID: 1684388895}
   - {fileID: 956293201}
+  - {fileID: 798183082}
+  - {fileID: 1068380971}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -6294,13 +6294,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 2789007d6ac0848bc8626d1f2b02eada, type: 3}
-  m_Type: 0
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
   m_FillClockwise: 1
-  m_FillOrigin: 0
+  m_FillOrigin: 2
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
 --- !u!222 &1684388898

@@ -13,17 +13,17 @@ MonoBehaviour:
   m_Name: ArcherCharacter
   m_EditorClassIdentifier: 
   speed: 5
-  maxHealth: 100
+  maxHealth: 1000
   playerSprite: {fileID: 4125137125113311479, guid: 08555ebeb13bd426e81c1ea6f30d48f7, type: 3}
   skills:
   - {fileID: 11400000, guid: a8d4e0cffe5734cafb4c20927369f235, type: 2}
   - {fileID: 11400000, guid: 9933e99b347554ca598bcd919e226a46, type: 2}
   - {fileID: 11400000, guid: 6bfc1cd98f4a04afbaf0dda9b347d6cc, type: 2}
+  - {fileID: 11400000, guid: a8d4e0cffe5734cafb4c20927369f235, type: 2}
   - {fileID: 11400000, guid: 6bfc1cd98f4a04afbaf0dda9b347d6cc, type: 2}
   - {fileID: 11400000, guid: 6bfc1cd98f4a04afbaf0dda9b347d6cc, type: 2}
   - {fileID: 11400000, guid: 6bfc1cd98f4a04afbaf0dda9b347d6cc, type: 2}
-  - {fileID: 11400000, guid: 6bfc1cd98f4a04afbaf0dda9b347d6cc, type: 2}
-  - {fileID: 11400000, guid: 6bfc1cd98f4a04afbaf0dda9b347d6cc, type: 2}
+  - {fileID: 11400000, guid: a8d4e0cffe5734cafb4c20927369f235, type: 2}
   - {fileID: 11400000, guid: 6bfc1cd98f4a04afbaf0dda9b347d6cc, type: 2}
   - {fileID: 11400000, guid: 6bfc1cd98f4a04afbaf0dda9b347d6cc, type: 2}
   - {fileID: 11400000, guid: 6bfc1cd98f4a04afbaf0dda9b347d6cc, type: 2}

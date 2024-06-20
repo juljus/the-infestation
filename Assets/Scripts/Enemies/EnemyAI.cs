@@ -140,6 +140,5 @@ public class EnemyAI : MonoBehaviour
     // Setters
     public void SetSpeed(float newSpeed) {
         speed = newSpeed;
-        // print("enemy speed set: " + newSpeed);
     }
 }

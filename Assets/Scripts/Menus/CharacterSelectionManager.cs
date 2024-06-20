@@ -30,15 +30,12 @@ public class CharacterSelectionManager : MonoBehaviour, IDataPersistance
             {
                 case 0:
                     characterIcons[i].SetActive(false);
-                    print("Character 0");
                     break;
                 case 1:
                     characterIcons[i].transform.GetChild(1).gameObject.SetActive(false);
-                    print("Character 1");
                     break;
                 case 2:
                     characterIcons[i].transform.GetChild(0).gameObject.SetActive(false);
-                    print("Character 2");
                     break;
                 default:
                     Debug.LogError("Invalid character type");

@@ -108,6 +108,8 @@ public class SkillMenuManager : MonoBehaviour, IDataPersistance
         // update skills availability
         transform.GetComponent<SkillUnlockManager>().ApplyPassiveSkills();
         transform.GetComponent<SkillUnlockManager>().ShowUnlockedButtons();
+        transform.GetComponent<PlayerManager>().GetPlayer.GetComponent<PlayerSkillHolder>().LearnSkills();
+        
     }
 
     public void ClosePreview()
@@ -232,6 +234,7 @@ public class SkillMenuManager : MonoBehaviour, IDataPersistance
         transform.GetComponent<SkillUnlockManager>().ApplyPassiveSkills();
         transform.GetComponent<SkillUnlockManager>().ShowUnlockedButtons();
 
+        transform.GetComponent<PlayerManager>().GetPlayer.GetComponent<PlayerSkillHolder>().UnlearnAllSkills();
     }
 
     // getter for selectedcharacterlearnedskills

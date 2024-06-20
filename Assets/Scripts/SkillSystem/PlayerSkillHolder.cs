@@ -12,6 +12,22 @@ public class PlayerSkillHolder : MonoBehaviour
     
     [SerializeField] private Skill skill2;
     [SerializeField] private GameObject skill2Button;
+
+    public Skill GetSkill0
+    {
+        get { return skill0; }
+    }
+
+    public Skill GetSkill1
+    {
+        get { return skill1; }
+    }
+
+    public Skill GetSkill2
+    {
+        get { return skill2; }
+    }
+
     
     // 0 = ready, 1 = active, 2 = cooldown
     private List<int> skillStates = new List<int> {0, 0, 0};
@@ -21,12 +37,12 @@ public class PlayerSkillHolder : MonoBehaviour
 
     private void Start()
     {
-        unlockedActiveSkills = GameObject.Find("GameManager").transform.GetComponent<SkillUnlockManager>().GetUnlockedActiveSkills;
+        LearnSkills();
+    }
 
-        for (int i = 0; i < unlockedActiveSkills.Length; i++)
-        {
-            print("Unlocked skill " + i + ": " + unlockedActiveSkills[i]);
-        }
+    public void LearnSkills()
+    {
+        unlockedActiveSkills = GameObject.Find("GameManager").transform.GetComponent<SkillUnlockManager>().GetUnlockedActiveSkills;
 
         if (unlockedActiveSkills[0] != -1)
         {
@@ -47,6 +63,7 @@ public class PlayerSkillHolder : MonoBehaviour
     {
         int skillIndex = 0;
 
+        // ends function if skill is not ready
         if (skillStates[skillIndex] != 0) { return; }
 
         UnityEngine.UI.Image skill0ButtonOverlay = skill0Button.transform.GetChild(0).GetComponent<UnityEngine.UI.Image>();
@@ -103,11 +120,28 @@ public class PlayerSkillHolder : MonoBehaviour
         while (cooldownCurrent > 0)
         {
             cooldownCurrent -= Time.deltaTime;
-            buttonOverlay.fillAmount = cooldownCurrent / cooldown;
+            if (buttonOverlay != null)
+            {
+                if (skillIndex == 0)
+                {
+                }
+                buttonOverlay.fillAmount = cooldownCurrent / cooldown;
+            }
             yield return null;
         }
 
         skill0Button.transform.GetChild(0).GetComponent<UnityEngine.UI.Image>().fillAmount = 0;
         skillStates[skillIndex] = 0;
+    }
+
+    public void UnlearnAllSkills()
+    {
+        skill0 = null;
+        skill1 = null;
+        skill2 = null;
+
+        StopAllCoroutines();
+
+        skillStates = new List<int> {0, 0, 0};
     }
 }

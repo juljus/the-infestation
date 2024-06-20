@@ -22,7 +22,6 @@ public class PlayerStatusEffectManager : MonoBehaviour
 
         // move all the null elements to the end of the list
         statusEffectList = statusEffectList.ToList().OrderBy(x => x != null).ToArray();
-        // print status effect list
 
         // set player stats according to status effects
         SetPlayerStats();

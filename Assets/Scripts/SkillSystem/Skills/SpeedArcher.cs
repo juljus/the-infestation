@@ -10,7 +10,6 @@ public class SpeedArcher : Skill
 
     public override void Activate(GameObject player)
     {   
-        Debug.Log("Speed Archer activated");
         // get parent effect system
         EffectSystem effectSystem = player.GetComponent<EffectSystem>();
 
@@ -20,8 +19,6 @@ public class SpeedArcher : Skill
 
     public override void Deactivate(GameObject player)
     {
-        Debug.Log("Speed Archer deactivated");
-
         // get parent effect system
         EffectSystem effectSystem = player.GetComponent<EffectSystem>();
 

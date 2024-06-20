@@ -29,6 +29,5 @@ public class PlayerMovement : MonoBehaviour
     // Setters
     public void SetSpeed(float newSpeed) {
         speed = newSpeed;
-        // print("player peed set: " + speed);
     }
 }

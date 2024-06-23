@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Skills/Speed Archer")]
 public class SpeedArcher : Skill
 {
     public float speedMod;

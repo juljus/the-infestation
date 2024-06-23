@@ -53,7 +53,10 @@ public class SkillUnlockManager : MonoBehaviour
                 buttonsUnlocked++;
                 try
                 {
+                    print("buttonsUnlocked: " + buttonsUnlocked);
+                    print("asjdgno: " + i);
                     unlockedActiveSkills[buttonsUnlocked - 1] = i;
+                    print(unlockedActiveSkills[buttonsUnlocked - 1]);
                 }
                 catch (System.IndexOutOfRangeException)
                 {
@@ -67,55 +70,18 @@ public class SkillUnlockManager : MonoBehaviour
                         {
                             StartCoroutine(SkillButtonOperations(skill0Button, i));
                         }
-
-                        // skill0Button.GetComponent<UnityEngine.UI.Image>().sprite = playerScriptableObject.skills[i].skillIcon;
-
-                        // if (skill0Button.transform.childCount > 0)
-                        // {
-                        //     Destroy(skill0Button.transform.GetChild(0).gameObject);
-                        // }
-
-                        // Instantiate(skill0Button, skill0Button.transform.position, skill0Button.transform.rotation, skill0Button.transform);
-                        
-                        // skill0Button.transform.GetChild(0).GetComponent<UnityEngine.UI.Image>().color = new Color(0.5f, 0.5f, 0.5f, 1f);
-                        // skill0Button.transform.GetChild(0).gameObject.SetActive(true);
-                        // skill0Button.transform.GetChild(0).GetComponent<UnityEngine.UI.Image>().fillAmount = 0;
                         break;
                     case 2:
                         if (transform.GetComponent<PlayerManager>().GetPlayer.GetComponent<PlayerSkillHolder>().GetSkill1 == null)
                         {
                             StartCoroutine(SkillButtonOperations(skill1Button, i));
                         }
-                        // skill1Button.GetComponent<UnityEngine.UI.Image>().sprite = playerScriptableObject.skills[i].skillIcon;
-
-                        // if (skill1Button.transform.childCount > 0)
-                        // {
-                        //     DestroyImmediate(skill1Button.transform.GetChild(0).gameObject);
-                        // }
-
-                        // Instantiate(skill1Button, skill1Button.transform.position, skill1Button.transform.rotation, skill1Button.transform);
-                        
-                        // skill1Button.transform.GetChild(0).GetComponent<UnityEngine.UI.Image>().color = new Color(0.5f, 0.5f, 0.5f, 1f);
-                        // skill1Button.transform.GetChild(0).gameObject.SetActive(true);
-                        // skill1Button.transform.GetChild(0).GetComponent<UnityEngine.UI.Image>().fillAmount = 0;
                         break;
                     case 3:
                         if (transform.GetComponent<PlayerManager>().GetPlayer.GetComponent<PlayerSkillHolder>().GetSkill2 == null)
                         {
                             StartCoroutine(SkillButtonOperations(skill2Button, i));
                         }
-                        // skill2Button.GetComponent<UnityEngine.UI.Image>().sprite = playerScriptableObject.skills[i].skillIcon;
-                        
-                        // if (skill2Button.transform.childCount > 0)
-                        // {
-                        //     DestroyImmediate(skill2Button.transform.GetChild(0).gameObject);
-                        // }
-                        
-                        // Instantiate(skill2Button, skill2Button.transform.position, skill2Button.transform.rotation, skill2Button.transform);
-                        
-                        // skill2Button.transform.GetChild(0).GetComponent<UnityEngine.UI.Image>().color = new Color(0.5f, 0.5f, 0.5f, 1f);
-                        // skill2Button.transform.GetChild(0).gameObject.SetActive(true);
-                        // skill2Button.transform.GetChild(0).GetComponent<UnityEngine.UI.Image>().fillAmount = 0;
                         break;
                 }
             }
@@ -144,6 +110,8 @@ public class SkillUnlockManager : MonoBehaviour
                 skill2Button.SetActive(true);
                 break;
         }
+
+        transform.GetComponent<PlayerManager>().GetPlayer.GetComponent<PlayerSkillHolder>().LearnSkills();
     }
 
     private IEnumerator SkillButtonOperations(GameObject button, int i) 

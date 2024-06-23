@@ -19,23 +19,24 @@ public class EnemyProjectile : MonoBehaviour
     void Start()
     {        
         // get from parent object
-        EnemyAI enemyAI = transform.parent.GetComponent<EnemyAI>();
-        projectileSpeed = enemyAI.GetProjectileSpeed;
-        damage = enemyAI.GetDamage;
+        EnemyBrain enemyBrain = transform.parent.GetComponent<EnemyBrain>();
+        EnemyAttackBase enemyAttack = enemyBrain.GetEnemyAttack;
+
+        projectileSpeed = enemyAttack.GetProjectileSpeed;
+        damage = enemyAttack.GetDamage;
         // effect 1
-        projectileEffectValue1 = enemyAI.GetProjectileEffectValue1;
-        projectileEffectType1 = enemyAI.GetProjectileEffectType1;
-        projectileEffectDuration1 = enemyAI.GetProjectileEffectDuration1;
-        projectileEffectIcon1 = enemyAI.GetProjectileEffectIcon1;
+        projectileEffectValue1 = enemyAttack.GetAttackEffectValue1;
+        projectileEffectType1 = enemyAttack.GetAttackEffectType1;
+        projectileEffectDuration1 = enemyAttack.GetAttackEffectDuration1;
+        projectileEffectIcon1 = enemyAttack.GetAttackEffectIcon1;
         // effect 2
-        projectileEffectValue2 = enemyAI.GetProjectileEffectValue2;
-        projectileEffectType2 = enemyAI.GetProjectileEffectType2;
-        projectileEffectDuration2 = enemyAI.GetProjectileEffectDuration2;
-        projectileEffectIcon2 = enemyAI.GetProjectileEffectIcon2;
+        projectileEffectValue2 = enemyAttack.GetAttackEffectValue2;
+        projectileEffectType2 = enemyAttack.GetAttackEffectType2;
+        projectileEffectDuration2 = enemyAttack.GetAttackEffectDuration2;
+        projectileEffectIcon2 = enemyAttack.GetAttackEffectIcon2;
 
         //get player object
         player = GameObject.Find("GameManager").GetComponent<PlayerManager>().GetPlayer;
-
     }
 
     void Update()

@@ -16,6 +16,6 @@ MonoBehaviour:
   skillDescription: asdfASDFasdfASDFasdfASDFasdfASDFasdfASDF
   skillIcon: {fileID: 21300000, guid: 2789007d6ac0848bc8626d1f2b02eada, type: 3}
   id: "\xE4oapjgOGANUO.,A\xE4mkjaJPH\xC4OANjf"
-  cooldownTime: 0
+  cooldownTime: 10
   activeTime: 0
   isPassive: 0

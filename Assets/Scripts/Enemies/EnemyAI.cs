@@ -61,42 +61,11 @@ public class EnemyAI : MonoBehaviour
 
     void Update()
     {
-        attackCooldownRemaining -= Time.deltaTime;
-        distance = Vector2.Distance(target.position, transform.position);
-        
-        if (distance <= aggroRange) {
-            isAggroed = true;
-        }
-
-        if (distance >= deaggroRange) {
-            isAggroed = false;
-        }
-
-        if (isAggroed) {
-            ChasePlayer();
-        }
     }
 
     void OnDrawGizmosSelected() {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, aggroRange);
-    }
-
-    private void ChasePlayer() {
-        if (distance > stoppingDistance) {
-            transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
-        }
-        else if (attackCooldownRemaining <= 0) {
-            AttackPlayer();
-        }
-    }
-
-    private void AttackPlayer() {
-        // Start attack animation
-
-        GameObject projectileClone = Instantiate(projectile, transform.position, Quaternion.identity);
-        projectileClone.transform.parent = transform;
-        attackCooldownRemaining = attackCooldown;
     }
 
     // Getters 

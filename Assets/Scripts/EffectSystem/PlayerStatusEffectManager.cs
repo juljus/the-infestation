@@ -5,14 +5,14 @@ using UnityEngine;
 
 public class PlayerStatusEffectManager : MonoBehaviour
 {
-    private Vector2 canvasStartPosition;
-    private float statusEffectIconStep = 60f;
+    private Vector2 effectCanvasStartPosition;
+    private float statusEffectIconStep = 110f;
     private EffectSystem.StatusEffect[] statusEffectList;
 
     void Start()
     {
         // set the canvas start position
-        canvasStartPosition = new Vector2(-500f, 225f);
+        effectCanvasStartPosition = new Vector2(-900f, 524f);
     }
 
     void Update()
@@ -60,7 +60,7 @@ public class PlayerStatusEffectManager : MonoBehaviour
         {
             if (statusEffectList[i] != null && statusEffectList[i].icon != null)
             {
-                statusEffectList[i].icon.GetComponent<RectTransform>().anchoredPosition =  new Vector2(canvasStartPosition.x + (statusEffectIconStep * j), canvasStartPosition.y);
+                statusEffectList[i].icon.GetComponent<RectTransform>().anchoredPosition =  new Vector2(effectCanvasStartPosition.x + (statusEffectIconStep * j), effectCanvasStartPosition.y);
                 j += 1;
             }
         }

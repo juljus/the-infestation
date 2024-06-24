@@ -7,7 +7,7 @@ public class StartMenuButtons : MonoBehaviour
 
     public void Play()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("CharSelector");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("CharacterSelection");
     }
 
     public void Quit()

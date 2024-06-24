@@ -16,19 +16,18 @@ public class EnemyHealth : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    void Update()
-    {
-        healthBar.fillAmount = currentHealth / maxHealth;
-
-        if (currentHealth <= 0)
-        {
-            Destroy(gameObject);
-        }
-    }
 
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
+
+        healthBar.fillAmount = currentHealth / maxHealth;
+
+        if (currentHealth <= 0)
+        {
+            Death();
+        }
+
     }
 
     public void Heal(float heal)
@@ -39,6 +38,15 @@ public class EnemyHealth : MonoBehaviour
         {
             currentHealth = maxHealth;
         }
+
+        healthBar.fillAmount = currentHealth / maxHealth;        
+    }
+
+    private void Death()
+    {
+        Destroy(gameObject);
+
+        GameObject.Find("GameManager").GetComponent<MapCompletion>().AddKill();
     }
 
     // Getters

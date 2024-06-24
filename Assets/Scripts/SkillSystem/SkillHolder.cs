@@ -5,56 +5,55 @@ using UnityEngine;
 
 public class SkillHolder : MonoBehaviour
 {
-    public Skill ability;
+    public Skill skill;
 
     float cooldownTime;
     float activeTime;
 
-    enum AbilityState {
+    enum SkillState {
         ready,
         active,
         cooldown
     }
 
-    AbilityState state = AbilityState.ready;
+    SkillState state = SkillState.ready;
 
     public KeyCode key;
 
 
-    // Update is called once per frame
     void Update()
     {
         switch (state)
         {
-            case AbilityState.ready:
+            case SkillState.ready:
                 if (Input.GetKeyDown(key))
                 {
-                    ability.Activate(gameObject);
-                    state = AbilityState.active;
-                    activeTime = ability.activeTime;
+                    skill.Activate(gameObject);
+                    state = SkillState.active;
+                    activeTime = skill.activeTime;
                 }
                 break;
 
-            case AbilityState.active:
+            case SkillState.active:
                 if (activeTime > 0)
                 {
                     activeTime -= Time.deltaTime;
                 }
                 else
                 {
-                    state = AbilityState.cooldown;
-                    cooldownTime = ability.cooldownTime;
+                    state = SkillState.cooldown;
+                    cooldownTime = skill.cooldownTime;
                 }
                 break;
 
-            case AbilityState.cooldown:
+            case SkillState.cooldown:
                 if (cooldownTime > 0)
                 {
                     cooldownTime -= Time.deltaTime;
                 }
                 else
                 {
-                    state = AbilityState.ready;
+                    state = SkillState.ready;
                 }
                 break;
         }

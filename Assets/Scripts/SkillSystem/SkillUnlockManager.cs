@@ -52,10 +52,7 @@ public class SkillUnlockManager : MonoBehaviour
                 buttonsUnlocked++;
                 try
                 {
-                    print("buttonsUnlocked: " + buttonsUnlocked);
-                    print("asjdgno: " + i);
                     unlockedActiveSkills[buttonsUnlocked - 1] = i;
-                    print(unlockedActiveSkills[buttonsUnlocked - 1]);
                 }
                 catch (System.IndexOutOfRangeException)
                 {

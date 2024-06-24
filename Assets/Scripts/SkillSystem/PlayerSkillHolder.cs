@@ -37,10 +37,8 @@ public class PlayerSkillHolder : MonoBehaviour
 
     public void LearnSkills()
     {
-        print("asdghpohvnp9aeij,vopia");
         unlockedActiveSkills = GameObject.Find("GameManager").transform.GetComponent<SkillUnlockManager>().GetUnlockedActiveSkills;
 
-        print("unlockedActiveSkills: " + unlockedActiveSkills[0] + " " + unlockedActiveSkills[1] + " " + unlockedActiveSkills[2]);
 
         if (unlockedActiveSkills[0] != -1)
         {

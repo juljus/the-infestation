@@ -9,10 +9,10 @@ public class EnemyStatusEffectManager : MonoBehaviour
     void Update()
     {
         // set enemy stats according to status effects
-        SetEnemySpeed();
+        SetEnemyStats();
     }
 
-    private void SetEnemySpeed()
+    private void SetEnemyStats()
     {
         // get the status effect array from effect system script
         statusEffectList = transform.GetComponent<EffectSystem>().GetStatusEffectList;

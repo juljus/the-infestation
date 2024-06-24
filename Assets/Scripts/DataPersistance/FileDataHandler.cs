@@ -37,7 +37,6 @@ public class FileDataHandler
                     }
                 }
                 
-                Debug.Log(dataToLoad);
                 // deserialize the JSON string to a C# object
                 // loadedData = JsonUtility.FromJson<GameData>(dataToLoad);
                 loadedData = yamlDeserializer.Deserialize<GameData>(dataToLoad);

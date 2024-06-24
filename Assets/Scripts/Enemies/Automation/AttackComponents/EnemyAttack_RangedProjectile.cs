@@ -15,7 +15,6 @@ public class EnemyAttack_RangedProjectile : EnemyAttackBase
     {
         if (playerDistance <= attackDistance)
         {
-            Debug.Log("RangedProjectile TryAttack");
             enemyBrain.StartAttackCoroutine(target, rigidBody, playerDistance, enemyBrain);
         }
     }
@@ -32,7 +31,6 @@ public class EnemyAttack_RangedProjectile : EnemyAttackBase
 
     public override IEnumerator AttackCoroutine(Transform target, Rigidbody2D rigidBody, EnemyBrain enemyBrain)
     {
-        Debug.Log("RangedProjectile AttackCoroutine started");
         attackInProgress = true;
         
         attackTimeRemaining = attackTime;
@@ -42,7 +40,6 @@ public class EnemyAttack_RangedProjectile : EnemyAttackBase
             if (playerDistance > attackRange)
             {
                 attackInProgress = false;
-                Debug.Log("RangedProjectile AttackCoroutine ended");
                 yield break;
             }
 
@@ -50,7 +47,6 @@ public class EnemyAttack_RangedProjectile : EnemyAttackBase
             yield return null;
         }
 
-        Debug.Log("attacked");
         Attack(target, rigidBody, enemyBrain);
         attackInProgress = false;
     }

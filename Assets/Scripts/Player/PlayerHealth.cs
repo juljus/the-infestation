@@ -17,8 +17,17 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    void Update()
+
+    private void Death()
     {
+        Destroy(gameObject);
+    }
+
+
+    public void TakeDamage(float damage)
+    {
+        currentHealth -= damage;
+
         // update health bar
         healthBar.fillAmount = currentHealth / maxHealth;
         
@@ -27,6 +36,12 @@ public class PlayerHealth : MonoBehaviour
         {
             Death();
         }
+    }
+
+
+    public void Heal(float heal)
+    {
+        currentHealth += heal;
 
         // if health is above max health, set it to max health
         if (currentHealth > maxHealth)
@@ -34,34 +49,17 @@ public class PlayerHealth : MonoBehaviour
             currentHealth = maxHealth;
         }
 
-        // when x is pressed apply a slow effect to enemy
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            GameObject.Find("Enemy").GetComponent<EffectSystem>().TakeStatusEffect("dslIPDAGNJOIioiganhouinhIRHGU0ÜA.,os", "healthMod", -5, 10f);
-        }
-
+        // update health bar
+        healthBar.fillAmount = currentHealth / maxHealth;
     }
 
-    private void Death()
-    {
-        // destroy the player
-        Destroy(gameObject);
-    }
-    public void TakeDamage(float damage)
-    {
-        currentHealth -= damage;
-    }
-
-    public void Heal(float heal)
-    {
-        currentHealth += heal;
-    }
 
     // Getters
     public float GetCurrentHealth()
     {
         return currentHealth;
     }
+
 
     // Setters
     public void SetCurrentHealth(float newHealth)

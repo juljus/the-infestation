@@ -10,7 +10,8 @@ public class EffectSystem : MonoBehaviour
 
     void Update()
     {
-        // when space is pressed, remove all slow effects
+        // FOR EDITOR
+        // when D is pressed, remove all slow effects
         if (Input.GetKeyDown(KeyCode.D))
         {
             print("Remove all slow effects");

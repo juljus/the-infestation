@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   maxHealth: 1000
+  attackDamage: 10
   playerSprite: {fileID: 4125137125113311479, guid: 08555ebeb13bd426e81c1ea6f30d48f7, type: 3}
   skills:
   - {fileID: 11400000, guid: a8d4e0cffe5734cafb4c20927369f235, type: 2}

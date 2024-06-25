@@ -1306,6 +1306,19 @@ MonoBehaviour:
   skill1Button: {fileID: 1684388894}
   skill2: {fileID: 0}
   skill2Button: {fileID: 956293200}
+--- !u!114 &452928834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 452928813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ac559512a35c4fa2b194e6494a970ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackDamage: 10
 --- !u!1 &495931338
 GameObject:
   m_ObjectHideFlags: 0
@@ -5339,7 +5352,10 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2416486116978143486, guid: 92ed39723218c4926aa54d08365a81e6, type: 3}
-      insertIndex: 6
+      insertIndex: 1
+      addedObject: {fileID: 452928834}
+    - targetCorrespondingSourceObject: {fileID: 2416486116978143486, guid: 92ed39723218c4926aa54d08365a81e6, type: 3}
+      insertIndex: 7
       addedObject: {fileID: 452928824}
   m_SourcePrefab: {fileID: 100100000, guid: 92ed39723218c4926aa54d08365a81e6, type: 3}
 --- !u!1 &1203805487

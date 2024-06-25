@@ -21,12 +21,13 @@ MonoBehaviour:
   attackEffectValue1: 0.6
   attackEffectDuration1: 4.5
   attackEffectIcon1: {fileID: 6105795678443708983, guid: e1cd8ec275ca7490d967cd1c55caff71, type: 3}
-  attackEffectType2: 
-  attackEffectValue2: 0
-  attackEffectDuration2: 0
-  attackEffectIcon2: {fileID: 0}
+  attackEffectType2: damageMod
+  attackEffectValue2: 0.7
+  attackEffectDuration2: 9
+  attackEffectIcon2: {fileID: 1888989378498572931, guid: ae47331325ec1466ba6a8e7b247cf581, type: 3}
+  currentDamage: 5
   attackOnCooldown: 0
-  attackTimeRemaining: 0.5674561
+  attackTimeRemaining: 0.39031798
   attackInProgress: 1
   projectile: {fileID: 9085602268992797658, guid: db4ba7359709a46a3b7d967fa6b6e9b5, type: 3}
   projectileSpeed: 10

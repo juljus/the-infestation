@@ -44,14 +44,13 @@ public class EnemyBrain : MonoBehaviour
 
     // -------- PUBLIC FUNCTIONS ------------
 
-    // private float movementPauseTimeRemaining;
-    // public void PauseMovement(float time)
-    // {
-    //     if (time > movementPauseTimeRemaining)
-    //     {
-    //         movementPauseTimeRemaining = time;
-    //     }
-    // }
+    public void Death()
+    {
+        gameManager.GetComponent<MapCompletion>().AddKill();
+        gameManager.GetComponent<MapCompletion>().AddStructure();
+        
+        Destroy(gameObject);
+    }
 
     public void StartAttackCoroutine(Transform target, Rigidbody2D rigidBody, float playerDistance, EnemyBrain enemyBrain)
     {

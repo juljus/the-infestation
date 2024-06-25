@@ -20,4 +20,8 @@ public class GameData
     // map completion
     public int currentMap = 0;
     public int currentKills = 0;
+    public int currentStructures = 0;
+
+    // boss
+    public int lastBossId = 0;
 }

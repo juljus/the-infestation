@@ -25,7 +25,7 @@ public class EnemyHealth : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            Death();
+            GetComponent<EnemyBrain>().Death();
         }
 
     }
@@ -40,13 +40,6 @@ public class EnemyHealth : MonoBehaviour
         }
 
         healthBar.fillAmount = currentHealth / maxHealth;        
-    }
-
-    private void Death()
-    {
-        Destroy(gameObject);
-
-        GameObject.Find("GameManager").GetComponent<MapCompletion>().AddKill();
     }
 
     // Getters

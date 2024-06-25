@@ -18,21 +18,24 @@ public class EnemyStatusEffectManager : MonoBehaviour
         statusEffectList = transform.GetComponent<EffectSystem>().GetStatusEffectList;
 
         // get scripts
-        EnemyAI enemyAI = transform.GetComponent<EnemyAI>();
+        EnemyMovementBase enemyMovementBase = transform.GetComponent<EnemyBrain>().GetEnemyMovement;
         EnemyHealth enemyHealth = transform.GetComponent<EnemyHealth>();
+        EnemyAttackBase enemyAttackBase = transform.GetComponent<EnemyBrain>().GetEnemyAttack;
 
         // get current stats
-        float maxSpeed = enemyAI.GetMaxSpeed();
-        float currentHealth = enemyHealth.GetCurrentHealth();
+        float maxSpeed = enemyMovementBase.GetSpeed;
+        float currentHealth = enemyHealth.GetCurrentHealth;
+        float maxAttackDamage = enemyAttackBase.GetMaxAttackDamage;
 
         // get new values
         float[] recieveValues = new float[2];
         UsedFunctions usedFunctions = new UsedFunctions();
-        recieveValues = usedFunctions.SetStatsAccordingToStatusEffects(statusEffectList, maxSpeed, currentHealth);
+        recieveValues = usedFunctions.SetStatsAccordingToStatusEffects(statusEffectList, maxSpeed, currentHealth, maxAttackDamage);
 
         // set new values
-        enemyAI.SetSpeed(recieveValues[0]);
+        enemyMovementBase.SetSpeed(recieveValues[0]);
         enemyHealth.SetCurrentHealth(recieveValues[1]);
+        enemyAttackBase.SetAttackDamage(recieveValues[2]);
 
 
 

@@ -23,7 +23,7 @@ public class EnemyProjectile : MonoBehaviour
         EnemyAttackBase enemyAttack = enemyBrain.GetEnemyAttack;
 
         projectileSpeed = enemyAttack.GetProjectileSpeed;
-        damage = enemyAttack.GetDamage;
+        damage = enemyAttack.GetCurrentAttackDamage;
         // effect 1
         projectileEffectValue1 = enemyAttack.GetAttackEffectValue1;
         projectileEffectType1 = enemyAttack.GetAttackEffectType1;

@@ -22,8 +22,9 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Getters
-    public float GetMaxSpeed() {
-        return maxSpeed;
+    public float GetMaxSpeed
+    {
+        get{ return maxSpeed; }
     }
 
     // Setters

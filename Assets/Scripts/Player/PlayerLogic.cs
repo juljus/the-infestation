@@ -19,11 +19,21 @@ public class PlayerLogic : MonoBehaviour
 
     void Update()
     {
+        // FOR EDITOR
         if (Input.GetKeyDown(KeyCode.Space))
         {
             // deal damage to enemy
             GameObject enemy = GameObject.Find("Enemy");
             enemy.GetComponent<EnemyHealth>().TakeDamage(10);
         }
+
+        // FOR EDITOR
+        // when D is pressed, remove all slow effects
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            print("Remove all slow effects");
+            GetComponent<EffectSystem>().RemoveStatusEffectByTypeAndValue("speedMod", false);
+        }
+
     }
 }

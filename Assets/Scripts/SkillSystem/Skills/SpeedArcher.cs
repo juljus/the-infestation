@@ -23,6 +23,6 @@ public class SpeedArcher : Skill
         EffectSystem effectSystem = player.GetComponent<EffectSystem>();
 
         // remove dash effect
-        effectSystem.RemoveStatusEffect("id");
+        effectSystem.RemoveStatusEffectById("id");
     }
 }

@@ -67,4 +67,5 @@ public class EnemyBrain : MonoBehaviour
     public float GetPlayerDistance { get { return playerDistance; } }
 
     public EnemyAttackBase GetEnemyAttack { get { return attack; } }
+    public EnemyMovementBase GetEnemyMovement { get { return movement; } }
 }

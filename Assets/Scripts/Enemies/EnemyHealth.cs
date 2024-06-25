@@ -43,9 +43,9 @@ public class EnemyHealth : MonoBehaviour
     }
 
     // Getters
-    public float GetCurrentHealth()
+    public float GetCurrentHealth
     {
-        return currentHealth;
+        get{ return currentHealth; }
     }
 
     // Setters

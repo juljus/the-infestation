@@ -25,14 +25,16 @@ public class EnemyAttackBase : ScriptableObject
 
 
     // -------- VARIABLES --------
-    // [HideInInspector] public float attackCooldownRemaining;
+    [HideInInspector] public float currentDamage;
+
     [HideInInspector] public bool attackOnCooldown = false;
     [HideInInspector] public float attackTimeRemaining;
     [HideInInspector] public bool attackInProgress = false;
 
 
     // -------- GETTERS ----------
-    public float GetDamage { get { return damage; } }
+    public float GetMaxAttackDamage { get { return damage; } }
+    public float GetCurrentAttackDamage { get { return currentDamage; } }
 
     public string GetAttackEffectType1 { get { return attackEffectType1; } }
     public float GetAttackEffectValue1 { get { return attackEffectValue1; } }
@@ -45,12 +47,15 @@ public class EnemyAttackBase : ScriptableObject
     public UnityEngine.UI.Image GetAttackEffectIcon2 { get { return attackEffectIcon2; } }
 
 
+    // --------- SETTERS ---------
+    public void SetAttackDamage(float newDamage) { currentDamage = newDamage; }
+
+
     // --------- VIRTUAL GETTERS ------------
     public virtual float GetProjectileSpeed { get { return 0; } }
 
 
-
-    // -------- PUBLIC FUNCTIONS --------
+    // -------- VIRTUAL FUNCTIONS --------
     public virtual void TryAttack(Transform target, Rigidbody2D rigidBody, float playerDistance, EnemyBrain enemyBrain) {}
 
     public virtual IEnumerator AttackCoroutine(Transform target, Rigidbody2D rigidBody, EnemyBrain enemyBrain) { yield return null; }

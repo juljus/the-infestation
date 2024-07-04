@@ -56,7 +56,7 @@ public class PullSkill : Skill
         {
             if (enemy != null && enemy.tag == "Enemy")
             {
-                enemy.GetComponent<EffectSystem>().TakeStatusEffect(id, "DamageMod", WeaknessMod, WeaknessDuration);
+                enemy.GetComponent<EffectSystem>().TakeStatusEffect(id, "damageMod", WeaknessMod, WeaknessDuration);
             }
         }
 

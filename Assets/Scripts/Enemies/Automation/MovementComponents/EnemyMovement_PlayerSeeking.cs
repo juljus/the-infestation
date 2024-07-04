@@ -9,6 +9,8 @@ public class EnemyMovement_PlayerSeeking : EnemyMovementBase
 
     public override void Move(Transform target, Rigidbody2D rigidBody, float playerDistance)
     {
+        Debug.Log("aggroed:" + isAggroed);
+
         if (playerDistance <= aggroRange)
         {
             isAggroed = true;
@@ -22,5 +24,18 @@ public class EnemyMovement_PlayerSeeking : EnemyMovementBase
         {
             rigidBody.position = Vector2.MoveTowards(rigidBody.position, target.position, speed * Time.deltaTime);
         }
+    }
+
+    public override EnemyMovementBase Clone()
+    {
+        var clone = ScriptableObject.CreateInstance<EnemyMovement_PlayerSeeking>();
+
+        // copy over editor stats
+        clone.aggroRange = aggroRange;
+        clone.deaggroRange = deaggroRange;
+        clone.stoppingDistance = stoppingDistance;
+        clone.speed = speed;
+
+        return clone;
     }
 }

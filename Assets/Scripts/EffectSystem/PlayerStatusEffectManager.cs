@@ -12,7 +12,7 @@ public class PlayerStatusEffectManager : MonoBehaviour
     void Start()
     {
         // set the canvas start position
-        effectCanvasStartPosition = new Vector2(-1031f, 409f);
+        effectCanvasStartPosition = new Vector2(-1199f, 370f);
     }
 
     void Update()

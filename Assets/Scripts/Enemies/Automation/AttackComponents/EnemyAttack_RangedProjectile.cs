@@ -10,13 +10,40 @@ public class EnemyAttack_RangedProjectile : EnemyAttackBase
     public GameObject projectile;
     public float projectileSpeed;
 
-
     public override void TryAttack(Transform target, Rigidbody2D rigidBody, float playerDistance, EnemyBrain enemyBrain)
     {
         if (playerDistance <= attackDistance)
         {
             enemyBrain.StartCoroutine(AttackCoroutine(target, rigidBody, enemyBrain));
         }
+    }
+
+
+    public override EnemyAttackBase Clone()
+    {
+        var clone = ScriptableObject.CreateInstance<EnemyAttack_RangedProjectile>();
+
+        // copy over editor stats
+        clone.damage = damage;
+        clone.attackDistance = attackDistance;
+        clone.attackRange = attackRange;
+        clone.attackTime = attackTime;
+        clone.attackCooldown = attackCooldown;
+
+        clone.attackEffectType1 = attackEffectType1;
+        clone.attackEffectValue1 = attackEffectValue1;
+        clone.attackEffectDuration1 = attackEffectDuration1;
+        clone.attackEffectIcon1 = attackEffectIcon1;
+
+        clone.attackEffectType2 = attackEffectType2;
+        clone.attackEffectValue2 = attackEffectValue2;
+        clone.attackEffectDuration2 = attackEffectDuration2;
+        clone.attackEffectIcon2 = attackEffectIcon2;
+
+        clone.projectile = projectile;
+        clone.projectileSpeed = projectileSpeed;
+
+        return clone;
     }
 
 

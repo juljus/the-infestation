@@ -58,6 +58,8 @@ public class EnemyAttackBase : ScriptableObject
     // -------- VIRTUAL FUNCTIONS --------
     public virtual void TryAttack(Transform target, Rigidbody2D rigidBody, float playerDistance, EnemyBrain enemyBrain) {}
 
+    public virtual EnemyAttackBase Clone() { return null; }
+
     public virtual IEnumerator AttackCoroutine(Transform target, Rigidbody2D rigidBody, EnemyBrain enemyBrain) { yield return null; }
     public virtual IEnumerator AttackCooldownCoroutine() { yield return null; }
 }

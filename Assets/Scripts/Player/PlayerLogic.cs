@@ -22,9 +22,10 @@ public class PlayerLogic : MonoBehaviour
         // FOR EDITOR
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            // deal damage to enemy
             GameObject enemy = GameObject.Find("Enemy");
-            enemy.GetComponent<EnemyHealth>().TakeDamage(10);
+            print(enemy.name);
+            enemy.GetComponent<EffectSystem>().TakeStatusEffect("odagfpjplo3", "speedMod", 0.2f, 10f);
+            print("Enemy slowed by to 20% for 10 seconds");
         }
 
         // FOR EDITOR

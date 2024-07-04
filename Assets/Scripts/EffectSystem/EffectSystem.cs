@@ -125,6 +125,7 @@ public class EffectSystem : MonoBehaviour
                 TakeStatusEffectExtraBefore(id, isStackable);
                 StatusEffect.SpeedModEffect speedModEffect = new StatusEffect.SpeedModEffect(id, value, duration, icon, isRemovable, statusEffectList);
                 TakeStatusEffectExtraAfter(speedModEffect, hasDuration);
+                print("iasghonökverip.jlc< äpwmö");
                 break;
 
             case "damageMod":

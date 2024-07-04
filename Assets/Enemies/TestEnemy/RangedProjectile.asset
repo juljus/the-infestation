@@ -15,8 +15,8 @@ MonoBehaviour:
   damage: 5
   attackDistance: 4
   attackRange: 5
-  attackTime: 1
-  attackCooldown: 0
+  attackTime: 1.5
+  attackCooldown: 2.5
   attackEffectType1: speedMod
   attackEffectValue1: 0.6
   attackEffectDuration1: 4.5
@@ -27,7 +27,7 @@ MonoBehaviour:
   attackEffectIcon2: {fileID: 1888989378498572931, guid: ae47331325ec1466ba6a8e7b247cf581, type: 3}
   currentDamage: 5
   attackOnCooldown: 0
-  attackTimeRemaining: 0.39031798
+  attackTimeRemaining: 0.13519049
   attackInProgress: 1
   projectile: {fileID: 9085602268992797658, guid: db4ba7359709a46a3b7d967fa6b6e9b5, type: 3}
   projectileSpeed: 10

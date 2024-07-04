@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0086ae407e1343c288f6e5b6f862b56, type: 3}
   m_Name: Movement
   m_EditorClassIdentifier: 
-  aggroRange: 7
+  aggroRange: 9
   deaggroRange: 20
   stoppingDistance: 4
   speed: 2
+  currentSpeed: 2

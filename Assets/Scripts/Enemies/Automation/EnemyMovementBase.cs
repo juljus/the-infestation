@@ -26,4 +26,6 @@ public class EnemyMovementBase : ScriptableObject
 
     // ---------- VIRTUAL FUNCTIONS ----------
     public virtual void Move(Transform target, Rigidbody2D rigidBody, float playerDistance) {}
+    
+    public virtual EnemyMovementBase Clone() { return null; }
 }

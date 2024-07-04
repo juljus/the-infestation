@@ -34,6 +34,12 @@ public class PlayerSkillHolder : MonoBehaviour
 
     private int[] unlockedActiveSkills = new int[3];
 
+    private SkillHelper skillHelper;
+
+    void Start()
+    {
+        skillHelper = GameObject.Find("GameManager").GetComponent<SkillHelper>();
+    }
 
     public void LearnSkills()
     {
@@ -66,9 +72,10 @@ public class PlayerSkillHolder : MonoBehaviour
 
         skill0ButtonOverlay.fillAmount = 1;
         
-        skill0.Activate(gameObject);
+        skill0.Activate(gameObject, skillHelper);
         skillStates[skillIndex] = 1;
         StartCoroutine(ActiveDuration(skill0.activeTime, skill0.cooldownTime, skill0ButtonOverlay, skillIndex));
+        print("Skill 0 activated");
     }
 
     public void ActivateSkill1()
@@ -81,7 +88,7 @@ public class PlayerSkillHolder : MonoBehaviour
 
         skill1ButtonOverlay.fillAmount = 1;
         
-        skill1.Activate(gameObject);
+        skill1.Activate(gameObject, skillHelper);
         skillStates[skillIndex] = 1;
         StartCoroutine(ActiveDuration(skill1.activeTime, skill1.cooldownTime, skill1ButtonOverlay, skillIndex));
     }
@@ -96,7 +103,7 @@ public class PlayerSkillHolder : MonoBehaviour
 
         skill2ButtonOverlay.fillAmount = 1;
         
-        skill2.Activate(gameObject);
+        skill2.Activate(gameObject, skillHelper);
         skillStates[skillIndex] = 1;
         StartCoroutine(ActiveDuration(skill2.activeTime, skill2.cooldownTime, skill2ButtonOverlay, skillIndex));
     }
@@ -108,6 +115,7 @@ public class PlayerSkillHolder : MonoBehaviour
 
         skillStates[skillIndex] = 2;
         StartCoroutine(CooldownDuration(cooldown, buttonOverlay, skillIndex));
+        print("Skill " + skillIndex + " on cooldown");
     }
 
     private IEnumerator CooldownDuration(float cooldown, UnityEngine.UI.Image buttonOverlay, int skillIndex)

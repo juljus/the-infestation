@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Skill : ScriptableObject
 {
+    // editor variables
     public new string name;
     public string skillDescription;
     public Sprite skillIcon;
@@ -13,7 +14,8 @@ public class Skill : ScriptableObject
     public float activeTime;
     public bool isPassive;
 
-    public virtual void Activate(GameObject player) {}
+
+    public virtual void Activate(GameObject player, SkillHelper skillHelper = null) {}
 
     public virtual void Deactivate(GameObject player) {}
 }

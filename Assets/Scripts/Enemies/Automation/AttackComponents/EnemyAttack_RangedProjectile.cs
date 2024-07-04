@@ -15,7 +15,7 @@ public class EnemyAttack_RangedProjectile : EnemyAttackBase
     {
         if (playerDistance <= attackDistance)
         {
-            enemyBrain.StartAttackCoroutine(target, rigidBody, playerDistance, enemyBrain);
+            enemyBrain.StartCoroutine(AttackCoroutine(target, rigidBody, enemyBrain));
         }
     }
 
@@ -25,7 +25,7 @@ public class EnemyAttack_RangedProjectile : EnemyAttackBase
         GameObject projectileClone = Instantiate(projectile, rigidBody.position, Quaternion.identity);
         projectileClone.transform.parent = rigidBody.transform;
 
-        enemyBrain.StartAttackCooldownCoroutine();
+        enemyBrain.StartCoroutine(AttackCooldownCoroutine());
     }
 
 

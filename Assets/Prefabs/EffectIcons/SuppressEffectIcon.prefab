@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1684291987282478306}
   - component: {fileID: 6232111295544094163}
   m_Layer: 0
-  m_Name: DashEffectIcon
+  m_Name: SuppressEffectIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

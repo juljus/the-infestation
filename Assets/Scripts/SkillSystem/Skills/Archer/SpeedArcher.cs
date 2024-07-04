@@ -8,7 +8,7 @@ public class SpeedArcher : Skill
     public float speedMod;
     public UnityEngine.UI.Image effectIcon;
 
-    public override void Activate(GameObject player)
+    public override void Activate(GameObject player, SkillHelper skillHelper)
     {   
         // get parent effect system
         EffectSystem effectSystem = player.GetComponent<EffectSystem>();

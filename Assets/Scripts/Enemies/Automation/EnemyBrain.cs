@@ -52,17 +52,6 @@ public class EnemyBrain : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void StartAttackCoroutine(Transform target, Rigidbody2D rigidBody, float playerDistance, EnemyBrain enemyBrain)
-    {
-        StartCoroutine(attack.AttackCoroutine(target, rigidBody, enemyBrain));
-    }
-
-    public void StartAttackCooldownCoroutine()
-    {
-        StartCoroutine(attack.AttackCooldownCoroutine());
-    }
-
-
     //--------- GETTERS ---------
     public float GetPlayerDistance { get { return playerDistance; } }
 

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8278ba7cec464e3cb3767369a0b7610, type: 3}
+  m_Name: (1) Pull
+  m_EditorClassIdentifier: 
+  name: Pull
+  skillDescription: Pulls all enemies nearby towards you
+  skillIcon: {fileID: 21300000, guid: ccc93abeb359b4120b75c1aee1888c27, type: 3}
+  id: "\xF6hf\xF6aoi3w4hp9f8hvu947q39gb"
+  cooldownTime: 7
+  activeTime: 0.55
+  isPassive: 0
+  range: 6

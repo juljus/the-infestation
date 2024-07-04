@@ -1,0 +1,83 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.InputSystem.Interactions;
+
+[CreateAssetMenu(menuName = "Skills/Warrior/Syphon")]
+public class SyphonSkill : Skill
+{
+    public float radius;
+    public float hpPerUnit;
+    public float range;
+    public float maxNumTargets;
+
+    private Collider2D[] hitEnemies;
+    private float timeLeft;
+    private Vector2 playerLastPos;
+
+    // applies a syphon to enemies in target radius and drains hp based on your movement
+
+    public override void Activate(GameObject player, SkillHelper skillHelper)
+    {   
+        hitEnemies = new Collider2D[(int)maxNumTargets];
+
+        GameObject target = GameObject.Find("GameManager").GetComponent<TargetManager>().GetTarget;
+        
+        if (target == null)
+        {
+            return;
+        }
+
+        if (Vector2.Distance(player.transform.position, new Vector2(target.transform.position.x, target.transform.position.y)) > range)
+        {
+            return;
+        }
+
+        Collider2D[] targetEnemies = Physics2D.OverlapCircleAll(target.transform.position, radius);
+        timeLeft = activeTime;
+
+        int counter = 0;
+        foreach (Collider2D enemy in targetEnemies)
+        {
+            if (enemy.tag == "Enemy" && counter < maxNumTargets)
+            {
+                hitEnemies[counter] = enemy;
+                Debug.Log("Enemy added to hitEnemies:  " + enemy.name);
+                counter++;
+            }
+        }
+
+        timeLeft = activeTime;
+        playerLastPos = player.transform.position;
+
+        skillHelper.StartCoroutine(AbilityCoroutine(player));
+    }
+
+    private IEnumerator AbilityCoroutine(GameObject player)
+    {
+        // draw a red circle around the player
+        Debug.DrawLine(player.transform.position, new Vector3(player.transform.position.x + range, player.transform.position.y, player.transform.position.z), Color.red, activeTime);
+
+        while (timeLeft > 0)
+        {
+            timeLeft -= Time.deltaTime;
+
+            float distanceDelta = Vector2.Distance(playerLastPos, player.transform.position);
+            float dealDamage = distanceDelta * hpPerUnit;
+            
+            foreach (Collider2D enemy in hitEnemies)
+            {
+                if (enemy != null)
+                {                    
+                    enemy.GetComponent<EnemyHealth>().TakeDamage(dealDamage);
+                }
+            }
+
+            yield return null;
+        }
+
+        // delete the circle
+        Debug.DrawLine(player.transform.position, new Vector3(player.transform.position.x + range, player.transform.position.y, player.transform.position.z), Color.clear, 0);
+    }
+}

@@ -14,4 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   maxHealth: 200
-  playerSprite: {fileID: 5529389401082830777, guid: ec771a8ff58b8484b97e7d7da308b7a6, type: 3}
+  attackDamage: 10
+  playerSprite: {fileID: 8192642738864673608, guid: 3318e0b36768a4e7d8beaa9a0352626d, type: 3}
+  skills:
+  - {fileID: 11400000, guid: edba172011ddc4e518247ea18a73793e, type: 2}
+  - {fileID: 11400000, guid: b5157172e52934bcab9c7ac854ff2285, type: 2}
+  - {fileID: 11400000, guid: 6bfc1cd98f4a04afbaf0dda9b347d6cc, type: 2}
+  - {fileID: 11400000, guid: 9933e99b347554ca598bcd919e226a46, type: 2}
+  - {fileID: 11400000, guid: a264071e529fb43058a963a2757e14e3, type: 2}
+  - {fileID: 11400000, guid: 6bfc1cd98f4a04afbaf0dda9b347d6cc, type: 2}
+  - {fileID: 11400000, guid: 6bfc1cd98f4a04afbaf0dda9b347d6cc, type: 2}
+  - {fileID: 11400000, guid: 6bfc1cd98f4a04afbaf0dda9b347d6cc, type: 2}
+  - {fileID: 11400000, guid: 6bfc1cd98f4a04afbaf0dda9b347d6cc, type: 2}
+  - {fileID: 11400000, guid: 6bfc1cd98f4a04afbaf0dda9b347d6cc, type: 2}
+  - {fileID: 11400000, guid: 6bfc1cd98f4a04afbaf0dda9b347d6cc, type: 2}
+  - {fileID: 11400000, guid: 6bfc1cd98f4a04afbaf0dda9b347d6cc, type: 2}
+  - {fileID: 11400000, guid: 6bfc1cd98f4a04afbaf0dda9b347d6cc, type: 2}
+  - {fileID: 11400000, guid: 6bfc1cd98f4a04afbaf0dda9b347d6cc, type: 2}
+  - {fileID: 11400000, guid: 6bfc1cd98f4a04afbaf0dda9b347d6cc, type: 2}

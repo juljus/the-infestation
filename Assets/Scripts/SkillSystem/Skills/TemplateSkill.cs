@@ -6,7 +6,7 @@ using UnityEngine;
 public class TemplateSkill : Skill
 {
 
-    public override void Activate(GameObject parent)
+    public override void Activate(GameObject parent, SkillHelper skillHelper)
     {
 
     }

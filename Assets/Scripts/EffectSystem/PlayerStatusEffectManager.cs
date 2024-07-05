@@ -73,7 +73,7 @@ public class PlayerStatusEffectManager : MonoBehaviour
     {
         for (int i = 0; i < statusEffectList.Length; i++)
         {
-            if (statusEffectList[i] != null && statusEffectList[i].icon != null)
+            if (statusEffectList[i] != null && statusEffectList[i].icon != null && statusEffectList[i].duration > 0)
             {
                 statusEffectList[i].icon.transform.GetChild(0).GetComponent<UnityEngine.UI.Image>().fillAmount = 1 - ((Time.time - statusEffectList[i].startTime) / statusEffectList[i].duration);
             }

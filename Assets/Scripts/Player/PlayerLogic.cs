@@ -23,7 +23,6 @@ public class PlayerLogic : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             GameObject enemy = GameObject.Find("Enemy");
-            print(enemy.name);
             enemy.GetComponent<EffectSystem>().TakeStatusEffect("odagfpjplo3", "speedMod", 0.2f, 10f);
             print("Enemy slowed by to 20% for 10 seconds");
         }

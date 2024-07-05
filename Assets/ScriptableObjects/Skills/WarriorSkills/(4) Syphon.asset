@@ -20,7 +20,7 @@ MonoBehaviour:
   cooldownTime: 10
   activeTime: 5
   isPassive: 0
+  castRange: 4
   radius: 3
-  hpPerUnit: 0.005
-  range: 4
+  hpPerUnit: 0.05
   maxNumTargets: 3

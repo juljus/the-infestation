@@ -64,58 +64,109 @@ public class PlayerSkillHolder : MonoBehaviour
     public void ActivateSkill0()
     {
         int skillIndex = 0;
-
-        // ends function if skill is not ready
         if (skillStates[skillIndex] != 0) { return; }
 
-        UnityEngine.UI.Image skill0ButtonOverlay = skill0Button.transform.GetChild(0).GetComponent<UnityEngine.UI.Image>();
 
+        TargetManager targetManager = GameObject.Find("GameManager").GetComponent<TargetManager>();
+        GameObject target = targetManager.GetTarget;
+        if (target == null)
+        {
+            targetManager.TargetClosestEnemy();
+            target = targetManager.GetTarget;
+        }
+        if (skill0.castRange == 0)
+        {
+            targetManager.ClearTarget();
+        }
+        else if (Vector2.Distance(transform.position, target.transform.position) > skill0.castRange)
+        {
+            targetManager.ClearTarget();
+            skillStates[skillIndex] = 0;
+            return;
+        }
+
+
+        UnityEngine.UI.Image skill0ButtonOverlay = skill0Button.transform.GetChild(0).GetComponent<UnityEngine.UI.Image>();
         skill0ButtonOverlay.fillAmount = 1;
         
         skill0.Activate(gameObject, skillHelper);
         skillStates[skillIndex] = 1;
-        StartCoroutine(ActiveDuration(skill0.activeTime, skill0.cooldownTime, skill0ButtonOverlay, skillIndex));
-        print("Skill 0 activated");
+        StartCoroutine(ActiveDuration(skill0.activeTime, skill0.cooldownTime, skill0.castRange, skill0ButtonOverlay, skillIndex));
     }
 
     public void ActivateSkill1()
     {
         int skillIndex = 1;
-
         if (skillStates[skillIndex] != 0) { return; }
 
-        UnityEngine.UI.Image skill1ButtonOverlay = skill1Button.transform.GetChild(0).GetComponent<UnityEngine.UI.Image>();
 
+        TargetManager targetManager = GameObject.Find("GameManager").GetComponent<TargetManager>();
+        GameObject target = targetManager.GetTarget;
+        if (target == null)
+        {
+            targetManager.TargetClosestEnemy();
+            target = targetManager.GetTarget;
+        }
+        if (skill1.castRange == 0)
+        {
+            targetManager.ClearTarget();
+        }
+        else if (Vector2.Distance(transform.position, target.transform.position) > skill1.castRange)
+        {
+            targetManager.ClearTarget();
+            skillStates[skillIndex] = 0;
+            return;
+        }
+
+
+        UnityEngine.UI.Image skill1ButtonOverlay = skill1Button.transform.GetChild(0).GetComponent<UnityEngine.UI.Image>();
         skill1ButtonOverlay.fillAmount = 1;
         
         skill1.Activate(gameObject, skillHelper);
         skillStates[skillIndex] = 1;
-        StartCoroutine(ActiveDuration(skill1.activeTime, skill1.cooldownTime, skill1ButtonOverlay, skillIndex));
+        StartCoroutine(ActiveDuration(skill1.activeTime, skill1.cooldownTime, skill1.castRange, skill1ButtonOverlay, skillIndex));
     }
 
     public void ActivateSkill2()
     {
         int skillIndex = 2;
-
         if (skillStates[skillIndex] != 0) { return; }
 
-        UnityEngine.UI.Image skill2ButtonOverlay = skill2Button.transform.GetChild(0).GetComponent<UnityEngine.UI.Image>();
 
+        TargetManager targetManager = GameObject.Find("GameManager").GetComponent<TargetManager>();
+        GameObject target = targetManager.GetTarget;
+        if (target == null)
+        {
+            targetManager.TargetClosestEnemy();
+            target = targetManager.GetTarget;
+        }
+        if (skill2.castRange == 0)
+        {
+            targetManager.ClearTarget();
+        }
+        else if (Vector2.Distance(transform.position, target.transform.position) > skill2.castRange)
+        {
+            targetManager.ClearTarget();
+            skillStates[skillIndex] = 0;
+            return;
+        }
+
+
+        UnityEngine.UI.Image skill2ButtonOverlay = skill2Button.transform.GetChild(0).GetComponent<UnityEngine.UI.Image>();
         skill2ButtonOverlay.fillAmount = 1;
         
         skill2.Activate(gameObject, skillHelper);
         skillStates[skillIndex] = 1;
-        StartCoroutine(ActiveDuration(skill2.activeTime, skill2.cooldownTime, skill2ButtonOverlay, skillIndex));
+        StartCoroutine(ActiveDuration(skill2.activeTime, skill2.cooldownTime, skill2.castRange, skill2ButtonOverlay, skillIndex));
     }
 
 
-    private IEnumerator ActiveDuration(float activeDuration, float cooldown, UnityEngine.UI.Image buttonOverlay, int skillIndex)
+    private IEnumerator ActiveDuration(float activeDuration, float cooldown, float castRange, UnityEngine.UI.Image buttonOverlay, int skillIndex)
     {
         yield return new WaitForSeconds(activeDuration);
 
         skillStates[skillIndex] = 2;
         StartCoroutine(CooldownDuration(cooldown, buttonOverlay, skillIndex));
-        print("Skill " + skillIndex + " on cooldown");
     }
 
     private IEnumerator CooldownDuration(float cooldown, UnityEngine.UI.Image buttonOverlay, int skillIndex)
@@ -126,9 +177,6 @@ public class PlayerSkillHolder : MonoBehaviour
             cooldownCurrent -= Time.deltaTime;
             if (buttonOverlay != null)
             {
-                if (skillIndex == 0)
-                {
-                }
                 buttonOverlay.fillAmount = cooldownCurrent / cooldown;
             }
             yield return null;
@@ -147,5 +195,10 @@ public class PlayerSkillHolder : MonoBehaviour
         StopAllCoroutines();
 
         skillStates = new List<int> {0, 0, 0};
+    }
+
+    public GameObject GetSkill2Button
+    {
+        get { return skill2Button; }
     }
 }

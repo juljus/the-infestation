@@ -13,6 +13,7 @@ public class Skill : ScriptableObject
     public float cooldownTime;
     public float activeTime;
     public bool isPassive;
+    public float castRange;
 
 
     public virtual void Activate(GameObject player, SkillHelper skillHelper = null) {}

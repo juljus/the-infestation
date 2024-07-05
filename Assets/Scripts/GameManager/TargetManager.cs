@@ -15,4 +15,24 @@ public class TargetManager : MonoBehaviour
         target = newTarget;
     }
 
+    public void ClearTarget() {
+        target = null;
+    }
+
+    public void TargetClosestEnemy() {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        float minDistance = Mathf.Infinity;
+        GameObject closestEnemy = null;
+
+        foreach (GameObject enemy in enemies) {
+            float distance = Vector2.Distance(transform.position, enemy.transform.position);
+            if (distance < minDistance) {
+                minDistance = distance;
+                closestEnemy = enemy;
+            }
+        }
+
+        target = closestEnemy;
+    }
+
 }

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f8069c58b5bb48edbef1e3335b97aa4, type: 3}
+  m_Name: (5) Backstab
+  m_EditorClassIdentifier: 
+  name: Backstab
+  skillDescription: Teleport to the back of target enemy enhancing your next attacks
+  skillIcon: {fileID: 21300000, guid: 48f2f43bb4a304299ab2abb0c2b8421a, type: 3}
+  id: dsahf94p8fh907gcb jiaog64af
+  cooldownTime: 4
+  activeTime: 5
+  isPassive: 0
+  castRange: 6
+  damageMod: 2
+  numOfHits: 4
+  effectIcon: {fileID: 6280444325833525280, guid: b86e80624b81e4ce0b9db0150ce96a26, type: 3}

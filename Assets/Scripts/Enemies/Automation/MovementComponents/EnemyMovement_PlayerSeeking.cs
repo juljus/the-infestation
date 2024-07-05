@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Enemy/Movement/Player Seeking")]
@@ -8,7 +9,7 @@ public class EnemyMovement_PlayerSeeking : EnemyMovementBase
     private bool isAggroed = false;
 
     public override void Move(Transform target, Rigidbody2D rigidBody, float playerDistance)
-    {
+    {   
         if (playerDistance <= aggroRange)
         {
             isAggroed = true;

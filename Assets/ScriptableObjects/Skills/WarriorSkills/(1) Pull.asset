@@ -19,4 +19,7 @@ MonoBehaviour:
   cooldownTime: 7
   activeTime: 0.55
   isPassive: 0
+  castRange: 0
   range: 6
+  WeaknessMod: 0.7
+  WeaknessDuration: 5

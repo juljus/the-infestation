@@ -9,7 +9,6 @@ public class SyphonSkill : Skill
 {
     public float radius;
     public float hpPerUnit;
-    public float range;
     public float maxNumTargets;
 
     private Collider2D[] hitEnemies;
@@ -24,16 +23,6 @@ public class SyphonSkill : Skill
 
         GameObject target = GameObject.Find("GameManager").GetComponent<TargetManager>().GetTarget;
         
-        if (target == null)
-        {
-            return;
-        }
-
-        if (Vector2.Distance(player.transform.position, new Vector2(target.transform.position.x, target.transform.position.y)) > range)
-        {
-            return;
-        }
-
         Collider2D[] targetEnemies = Physics2D.OverlapCircleAll(target.transform.position, radius);
         timeLeft = activeTime;
 
@@ -43,7 +32,6 @@ public class SyphonSkill : Skill
             if (enemy.tag == "Enemy" && counter < maxNumTargets)
             {
                 hitEnemies[counter] = enemy;
-                Debug.Log("Enemy added to hitEnemies:  " + enemy.name);
                 counter++;
             }
         }
@@ -57,7 +45,7 @@ public class SyphonSkill : Skill
     private IEnumerator AbilityCoroutine(GameObject player)
     {
         // draw a red circle around the player
-        Debug.DrawLine(player.transform.position, new Vector3(player.transform.position.x + range, player.transform.position.y, player.transform.position.z), Color.red, activeTime);
+        Debug.DrawLine(player.transform.position, new Vector3(player.transform.position.x + castRange, player.transform.position.y, player.transform.position.z), Color.red, activeTime);
 
         while (timeLeft > 0)
         {
@@ -78,6 +66,6 @@ public class SyphonSkill : Skill
         }
 
         // delete the circle
-        Debug.DrawLine(player.transform.position, new Vector3(player.transform.position.x + range, player.transform.position.y, player.transform.position.z), Color.clear, 0);
+        Debug.DrawLine(player.transform.position, new Vector3(player.transform.position.x + castRange, player.transform.position.y, player.transform.position.z), Color.clear, 0);
     }
 }

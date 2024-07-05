@@ -19,5 +19,6 @@ MonoBehaviour:
   cooldownTime: 20
   activeTime: 3
   isPassive: 0
+  castRange: 0
   speedMod: 1.75
   effectIcon: {fileID: 6232111295544094163, guid: 94944f19bb1ff4183b44dd0415bf4c31, type: 3}

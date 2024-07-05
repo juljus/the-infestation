@@ -25,6 +25,9 @@ public class PauseMenu : MonoBehaviour
     public void BackToPreGame()
     {
         Time.timeScale = 1;
+
+        GetComponent<DataPersistanceManager>().SaveGame();
+
         UnityEngine.SceneManagement.SceneManager.LoadScene("PreGame");
     }
 

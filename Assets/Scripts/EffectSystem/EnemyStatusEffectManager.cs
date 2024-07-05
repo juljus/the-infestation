@@ -32,6 +32,8 @@ public class EnemyStatusEffectManager : MonoBehaviour
         UsedFunctions usedFunctions = new UsedFunctions();
         recieveValues = usedFunctions.SetStatsAccordingToStatusEffects(statusEffectList, maxSpeed, currentHealth, maxAttackDamage);
 
+        print("speed: " + recieveValues[0]);
+
         // set new values
         enemyMovementBase.SetSpeed(recieveValues[0]);
         enemyHealth.SetCurrentHealth(recieveValues[1]);

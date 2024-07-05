@@ -9,8 +9,6 @@ public class EnemyMovement_PlayerSeeking : EnemyMovementBase
 
     public override void Move(Transform target, Rigidbody2D rigidBody, float playerDistance)
     {
-        Debug.Log("aggroed:" + isAggroed);
-
         if (playerDistance <= aggroRange)
         {
             isAggroed = true;
@@ -22,7 +20,7 @@ public class EnemyMovement_PlayerSeeking : EnemyMovementBase
 
         if (isAggroed && playerDistance > stoppingDistance)
         {
-            rigidBody.position = Vector2.MoveTowards(rigidBody.position, target.position, speed * Time.deltaTime);
+            rigidBody.position = Vector2.MoveTowards(rigidBody.position, target.position, currentSpeed * Time.deltaTime);
         }
     }
 
@@ -35,6 +33,8 @@ public class EnemyMovement_PlayerSeeking : EnemyMovementBase
         clone.deaggroRange = deaggroRange;
         clone.stoppingDistance = stoppingDistance;
         clone.speed = speed;
+
+        clone.currentSpeed = speed;
 
         return clone;
     }

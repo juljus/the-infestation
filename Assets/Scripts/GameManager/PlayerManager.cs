@@ -39,7 +39,14 @@ public class PlayerManager : MonoBehaviour, IDataPersistance
             {
                 Debug.LogError("character type not selected");
             }
+
+            // save player stats
+            if (data.isFirstBoot[selectedCharacter])
+            {
+                GameObject.Find("GameManager").GetComponent<DataPersistanceManager>().SavePlayerStats(playerScriptableObject);
+            }
         }
+
         public void SaveData(ref GameData data) {
             data.slotCharacterTypes = this.slotCharacterTypes;
             data.selectedCharacter = this.selectedCharacter;

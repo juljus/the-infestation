@@ -28,6 +28,23 @@ public class DataPersistanceManager : MonoBehaviour
         print("Game Loaded");
     }
 
+    public void SavePlayerStats(PlayerScriptableObject playerScriptableObject)
+    {
+        this.gameData.playerAttackDamage[this.gameData.selectedCharacter] = playerScriptableObject.attackDamage;
+        this.gameData.playerAttackTime[this.gameData.selectedCharacter] = playerScriptableObject.attackTime;
+        this.gameData.playerMovementSpeed[this.gameData.selectedCharacter] = playerScriptableObject.movementSpeed;
+        this.gameData.playerHealth[this.gameData.selectedCharacter] = playerScriptableObject.health;
+
+        print("Player Stats Saved");
+
+        // no longer first boot
+        this.gameData.isFirstBoot[this.gameData.selectedCharacter] = false;
+
+        dataHandler.Save(gameData);
+
+        LoadGame();
+    }
+
     public void NewGame()
     {
         this.gameData = new GameData();

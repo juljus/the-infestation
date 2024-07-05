@@ -2,19 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerHealth : MonoBehaviour
+public class PlayerHealth : MonoBehaviour, IDataPersistance
 {
-    private PlayerScriptableObject playerScriptableObject;
     [SerializeField] private UnityEngine.UI.Image healthBar;
-    private float maxHealth;
+
+    private float health;
     private float currentHealth;
 
     void Start()
     {
-        playerScriptableObject = GameObject.Find("GameManager").GetComponent<PlayerManager>().GetPlayerScriptableObject;
-
-        maxHealth = playerScriptableObject.maxHealth;
-        currentHealth = maxHealth;
+        currentHealth = health;
     }
 
 
@@ -29,7 +26,7 @@ public class PlayerHealth : MonoBehaviour
         currentHealth -= damage;
 
         // update health bar
-        healthBar.fillAmount = currentHealth / maxHealth;
+        healthBar.fillAmount = currentHealth / health;
         
         // death
         if (currentHealth <= 0)
@@ -44,13 +41,13 @@ public class PlayerHealth : MonoBehaviour
         currentHealth += heal;
 
         // if health is above max health, set it to max health
-        if (currentHealth > maxHealth)
+        if (currentHealth > health)
         {
-            currentHealth = maxHealth;
+            currentHealth = health;
         }
 
         // update health bar
-        healthBar.fillAmount = currentHealth / maxHealth;
+        healthBar.fillAmount = currentHealth / health;
     }
 
 
@@ -65,5 +62,21 @@ public class PlayerHealth : MonoBehaviour
     public void SetCurrentHealth(float newHealth)
     {
         currentHealth = newHealth;
+    }
+
+    // IDataPersistance
+
+    public void LoadData(GameData data)
+    {
+        int selectedCharacter = data.selectedCharacter;
+
+        this.health = data.playerHealth[selectedCharacter];
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        int selectedCharacter = data.selectedCharacter;
+
+        data.playerHealth[selectedCharacter] = this.health;
     }
 }

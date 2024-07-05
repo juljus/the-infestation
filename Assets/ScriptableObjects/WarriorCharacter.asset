@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae079ff879e464e18a5de367c187f564, type: 3}
   m_Name: WarriorCharacter
   m_EditorClassIdentifier: 
-  speed: 5
-  maxHealth: 200
+  movementSpeed: 6
+  health: 200
   attackDamage: 10
+  attackTime: 1
   playerSprite: {fileID: 8192642738864673608, guid: 3318e0b36768a4e7d8beaa9a0352626d, type: 3}
   skills:
   - {fileID: 11400000, guid: edba172011ddc4e518247ea18a73793e, type: 2}

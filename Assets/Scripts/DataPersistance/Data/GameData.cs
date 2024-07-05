@@ -8,6 +8,7 @@ public class GameData
 {
     // characters   
     public int[] slotCharacterTypes = new int[4];
+    public bool[] isFirstBoot = new bool[4];
     public int selectedCharacter = 0;
     
     // levels
@@ -18,10 +19,16 @@ public class GameData
     public bool[][] learnedSkills = new bool[4][] { new bool[15], new bool[15], new bool[15], new bool[15] };
 
     // map completion
-    public int currentMap = 0;
-    public int currentKills = 0;
-    public int currentStructures = 0;
+    public int[] currentMap = new int[4];
+    public int[] currentKills = new int[4];
+    public int[] currentStructures = new int[4];
 
     // boss
     public int lastBossId = 0;
+
+    // player stats
+    public float[] playerAttackDamage = new float[4];
+    public float[] playerAttackTime = new float[4];
+    public float[] playerMovementSpeed = new float[4];
+    public float[] playerHealth = new float[4];
 }

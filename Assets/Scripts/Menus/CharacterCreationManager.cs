@@ -7,6 +7,7 @@ public class CharacterCreationManager : MonoBehaviour, IDataPersistance
     private int slectedCharacter;
 
     private int[] slotCharacterTypes = new int[4];
+    private bool[] isFirstBoot = new bool[4];
     public void CreateCharacter(int charType)
     {
         // set the character type
@@ -14,15 +15,19 @@ public class CharacterCreationManager : MonoBehaviour, IDataPersistance
         {
             case 0:
                 slotCharacterTypes[slectedCharacter] = charType;
+                isFirstBoot[slectedCharacter] = true;
                 break;
             case 1:
                 slotCharacterTypes[slectedCharacter] = charType;
+                isFirstBoot[slectedCharacter] = true;
                 break;
             case 2:
                 slotCharacterTypes[slectedCharacter] = charType;
+                isFirstBoot[slectedCharacter] = true;
                 break;
             case 3:
                 slotCharacterTypes[slectedCharacter] = charType;
+                isFirstBoot[slectedCharacter] = true;
                 break;
             default:
                 Debug.LogError("Invalid character number");
@@ -41,10 +46,12 @@ public class CharacterCreationManager : MonoBehaviour, IDataPersistance
     {
         this.slotCharacterTypes = data.slotCharacterTypes;
         this.slectedCharacter = data.selectedCharacter;
+        this.isFirstBoot = data.isFirstBoot;
     }
     public void SaveData(ref GameData data)
     {
         data.slotCharacterTypes = this.slotCharacterTypes;
         data.selectedCharacter = this.slectedCharacter;
+        data.isFirstBoot = this.isFirstBoot;
     }
 }

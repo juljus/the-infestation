@@ -5,30 +5,49 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour, IDataPersistance
 {
-    [SerializeField] private float speed;
-    [SerializeField] private float maxSpeed;
     [SerializeField] private Rigidbody2D rigidBody;
+
+    [SerializeField] private float currentSpeed;
+
+    private float speed;
 
     void Start()
     {
-        speed = maxSpeed;
+        currentSpeed = speed;
     }
 
     public void Movement(InputAction.CallbackContext callbackContext) {
         Vector2 movementInput = callbackContext.ReadValue<Vector2>();
-        rigidBody.velocity = new Vector2(movementInput.x * speed, movementInput.y * speed);
+        rigidBody.velocity = new Vector2(movementInput.x * currentSpeed, movementInput.y * currentSpeed);
     }
 
     // Getters
-    public float GetMaxSpeed
+    public float GetSpeed
     {
-        get{ return maxSpeed; }
+        get{ return speed; }
     }
 
     // Setters
-    public void SetSpeed(float newSpeed) {
-        speed = newSpeed;
+    public void SetCurrentSpeed(float newSpeed)
+    {
+        currentSpeed = newSpeed;
+    }
+
+    // IDataPersistance
+
+    public void LoadData(GameData data)
+    {
+        int selectedCharacter = data.selectedCharacter;
+
+        this.speed = data.playerMovementSpeed[selectedCharacter];
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        int selectedCharacter = data.selectedCharacter;
+
+        data.playerMovementSpeed[selectedCharacter] = this.speed;
     }
 }

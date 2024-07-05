@@ -18,7 +18,7 @@ public class BladeSpinSkill : Skill
     {   
         PlayerAttack playerAttackScript = player.GetComponent<PlayerAttack>();
 
-        dealDamage = playerAttackScript.GetAttackDamage * attackDamageModifier + bonusDamage;
+        dealDamage = playerAttackScript.GetCurrentAttackDamage * attackDamageModifier + bonusDamage;
 
         skillHelper.StartCoroutine(HitEnemies(player));
     }

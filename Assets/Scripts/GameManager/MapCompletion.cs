@@ -106,15 +106,19 @@ public class MapCompletion : MonoBehaviour, IDataPersistance
     
     public void LoadData(GameData data)
     {
-        this.currentKills = data.currentKills;
-        this.currentMapId = data.currentMap;
-        this.currentStructures = data.currentStructures;
+        int selectedCharacter = data.selectedCharacter;
+
+        this.currentKills = data.currentKills[selectedCharacter];
+        this.currentMapId = data.currentMap[selectedCharacter];
+        this.currentStructures = data.currentStructures[selectedCharacter];
     }
 
     public void SaveData(ref GameData data)
     {
-        data.currentKills = this.currentKills;
-        data.currentMap = this.currentMapId;
-        data.currentStructures = this.currentStructures;
+        int selectedCharacter = data.selectedCharacter;
+
+        data.currentKills[selectedCharacter] = this.currentKills;
+        data.currentMap[selectedCharacter] = this.currentMapId;
+        data.currentStructures[selectedCharacter] = this.currentStructures;
     }
 }

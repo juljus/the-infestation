@@ -9,18 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41efbfc2515944809bc1bed0065a35fc, type: 3}
-  m_Name: (9) Fervor
+  m_Script: {fileID: 11500000, guid: b08833544bb464e12a77f3d9a814e788, type: 3}
+  m_Name: (10) Backhand
   m_EditorClassIdentifier: 
-  name: Fervor
-  skillDescription: 'Passive: gain speed and attack speed on each attack'
+  name: Backhand
+  skillDescription: 'Passive: converts attackTime to attack cooldown.'
   skillIcon: {fileID: 21300000, guid: d4eccd6dfe0b24798b910b063fa2394b, type: 3}
-  id: aklnsfggq597v8obcyI7679AGCLHN
+  id: lksdf8wy983fy8qygchqno287gf
   cooldownTime: 0
   activeTime: 0
   isPassive: 1
   castRange: 0
-  attackTimeMod: 0.7
-  speedMod: 1.2
-  buffDuration: 10
   effectIcon: {fileID: 4120460849218955196, guid: a164314f8a5fe44b29520350293af418, type: 3}

@@ -45,11 +45,11 @@ public class PlayerStatusEffectManager : MonoBehaviour
         float currentHealth = playerHealth.GetCurrentHealth;
         float maxAttackDamage = playerAttack.GetAttackDamage;
         float attackTime = playerAttack.GetAttackTime;
+        print("attack time: " + attackTime);
 
         // get new values
-        float[] recieveValues = new float[4];
         UsedFunctions usedFunctions = new UsedFunctions();
-        recieveValues = usedFunctions.SetStatsAccordingToStatusEffects(statusEffectList, maxSpeed, currentHealth, maxAttackDamage, attackTime);
+        float[] recieveValues = usedFunctions.SetStatsAccordingToStatusEffects(statusEffectList, maxSpeed, currentHealth, maxAttackDamage, attackTime);
 
         // set new values
         playerMovement.SetCurrentSpeed(recieveValues[0]);

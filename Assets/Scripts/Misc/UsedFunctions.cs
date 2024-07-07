@@ -33,7 +33,7 @@ public class UsedFunctions
                         newAttackDamage *= statusEffect.value;
                         break;
                     case "attackTimeMod":
-                        newAttackDamage *= statusEffect.value;
+                        newAttackTime *= statusEffect.value;
                         break;
                 }
             }

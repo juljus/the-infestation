@@ -15,8 +15,9 @@ MonoBehaviour:
   movementSpeed: 6
   health: 200
   attackDamage: 10
-  attackTime: 1
-  attackRange: 1.5
+  attackTime: 1.5
+  attackRange: 2
+  attackCooldown: 0.5
   playerSprite: {fileID: 8192642738864673608, guid: 3318e0b36768a4e7d8beaa9a0352626d, type: 3}
   skills:
   - {fileID: 11400000, guid: edba172011ddc4e518247ea18a73793e, type: 2}
@@ -29,7 +30,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6bfc1cd98f4a04afbaf0dda9b347d6cc, type: 2}
   - {fileID: 11400000, guid: 6bfc1cd98f4a04afbaf0dda9b347d6cc, type: 2}
   - {fileID: 11400000, guid: 0f98c180d1f68415c999473228334217, type: 2}
-  - {fileID: 11400000, guid: 6bfc1cd98f4a04afbaf0dda9b347d6cc, type: 2}
+  - {fileID: 11400000, guid: f900c80ee908b4567a5a76494aa82327, type: 2}
   - {fileID: 11400000, guid: 6bfc1cd98f4a04afbaf0dda9b347d6cc, type: 2}
   - {fileID: 11400000, guid: 6bfc1cd98f4a04afbaf0dda9b347d6cc, type: 2}
   - {fileID: 11400000, guid: 6bfc1cd98f4a04afbaf0dda9b347d6cc, type: 2}

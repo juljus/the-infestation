@@ -11,6 +11,7 @@ public class PlayerScriptableObject : ScriptableObject
     public float attackDamage;
     public float attackTime;
     public float attackRange;
+    public float attackCooldown;
     public GameObject playerSprite;
     public Skill[] skills;
     

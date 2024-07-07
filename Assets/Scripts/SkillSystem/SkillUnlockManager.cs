@@ -28,7 +28,7 @@ public class SkillUnlockManager : MonoBehaviour
         {
             if (playerScriptableObject.skills[i].isPassive && selectedCharacterLearnedSkills[i])
             {
-                playerScriptableObject.skills[i].Activate(transform.GetComponent<PlayerManager>().GetPlayer);
+                playerScriptableObject.skills[i].Activate(transform.GetComponent<PlayerManager>().GetPlayer, GetComponent<SkillHelper>());
             }
             else if (playerScriptableObject.skills[i].isPassive && !selectedCharacterLearnedSkills[i])
             {

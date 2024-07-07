@@ -107,6 +107,20 @@ public class EffectSystem : MonoBehaviour
                 MakeStatusEffect(statusEffectList, icon);
             }
         }
+
+        public class AttackTimeModEffect : StatusEffect
+        {
+            public AttackTimeModEffect(string id, float value, float duration, UnityEngine.UI.Image icon, bool isRemovable, StatusEffect[] statusEffectList)
+            {
+                this.id = id;
+                this.type = "attackTimeMod";
+                this.value = value;
+                this.duration = duration;
+                this.isRemovable = isRemovable;
+
+                MakeStatusEffect(statusEffectList, icon);
+            }
+        }
     }
 
 
@@ -131,6 +145,12 @@ public class EffectSystem : MonoBehaviour
                 TakeStatusEffectExtraBefore(id, isStackable);
                 StatusEffect.DamageModEffect damageModEffect = new StatusEffect.DamageModEffect(id, value, duration, icon, isRemovable, statusEffectList);
                 TakeStatusEffectExtraAfter(damageModEffect, hasDuration);
+                break;
+            
+            case "attackTimeMod":
+                TakeStatusEffectExtraBefore(id, isStackable);
+                StatusEffect.AttackTimeModEffect attackTimeModEffect = new StatusEffect.AttackTimeModEffect(id, value, duration, icon, isRemovable, statusEffectList);
+                TakeStatusEffectExtraAfter(attackTimeModEffect, hasDuration);
                 break;
 
             default:

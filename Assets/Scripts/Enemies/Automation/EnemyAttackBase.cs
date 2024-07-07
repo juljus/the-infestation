@@ -26,6 +26,7 @@ public class EnemyAttackBase : ScriptableObject
 
     // -------- VARIABLES --------
     [HideInInspector] public float currentDamage;
+    [HideInInspector] public float currentAttackTime;
 
     [HideInInspector] public bool attackOnCooldown = false;
     [HideInInspector] public float attackTimeRemaining;
@@ -35,6 +36,7 @@ public class EnemyAttackBase : ScriptableObject
     // -------- GETTERS ----------
     public float GetMaxAttackDamage { get { return damage; } }
     public float GetCurrentAttackDamage { get { return currentDamage; } }
+    public float GetAttackTime { get { return attackTime; } }
 
     public string GetAttackEffectType1 { get { return attackEffectType1; } }
     public float GetAttackEffectValue1 { get { return attackEffectValue1; } }
@@ -49,6 +51,7 @@ public class EnemyAttackBase : ScriptableObject
 
     // --------- SETTERS ---------
     public void SetAttackDamage(float newDamage) { currentDamage = newDamage; }
+    public void SetCurrentAttackTime(float newCurrentAttackTime) { currentAttackTime = newCurrentAttackTime; }
 
 
     // --------- VIRTUAL GETTERS ------------

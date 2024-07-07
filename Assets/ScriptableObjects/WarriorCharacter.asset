@@ -16,6 +16,7 @@ MonoBehaviour:
   health: 200
   attackDamage: 10
   attackTime: 1
+  attackRange: 1.5
   playerSprite: {fileID: 8192642738864673608, guid: 3318e0b36768a4e7d8beaa9a0352626d, type: 3}
   skills:
   - {fileID: 11400000, guid: edba172011ddc4e518247ea18a73793e, type: 2}
@@ -24,10 +25,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9933e99b347554ca598bcd919e226a46, type: 2}
   - {fileID: 11400000, guid: a264071e529fb43058a963a2757e14e3, type: 2}
   - {fileID: 11400000, guid: c20764a6671c54b2cb9f3cc25cdc0569, type: 2}
+  - {fileID: 11400000, guid: 1f44fa6958fcf433aa38cd642d0a3f34, type: 2}
   - {fileID: 11400000, guid: 6bfc1cd98f4a04afbaf0dda9b347d6cc, type: 2}
   - {fileID: 11400000, guid: 6bfc1cd98f4a04afbaf0dda9b347d6cc, type: 2}
-  - {fileID: 11400000, guid: 6bfc1cd98f4a04afbaf0dda9b347d6cc, type: 2}
-  - {fileID: 11400000, guid: 6bfc1cd98f4a04afbaf0dda9b347d6cc, type: 2}
+  - {fileID: 11400000, guid: 0f98c180d1f68415c999473228334217, type: 2}
   - {fileID: 11400000, guid: 6bfc1cd98f4a04afbaf0dda9b347d6cc, type: 2}
   - {fileID: 11400000, guid: 6bfc1cd98f4a04afbaf0dda9b347d6cc, type: 2}
   - {fileID: 11400000, guid: 6bfc1cd98f4a04afbaf0dda9b347d6cc, type: 2}

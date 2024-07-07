@@ -53,6 +53,7 @@ public class EnemyProjectile : MonoBehaviour
         if (other.gameObject == player) {
             //deal damage to player
             player.GetComponent<PlayerHealth>().TakeDamage(damage);
+            print("Player took " + damage + " damage");
             //apply status effect 1
             player.GetComponent<EffectSystem>().TakeStatusEffect("ac,do upo,IHPF,HHJIFAUldfhgl", projectileEffectType1, projectileEffectValue1, projectileEffectDuration1, projectileEffectIcon1);
             //apply status effect 2

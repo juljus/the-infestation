@@ -32,6 +32,7 @@ public class DataPersistanceManager : MonoBehaviour
     {
         this.gameData.playerAttackDamage[this.gameData.selectedCharacter] = playerScriptableObject.attackDamage;
         this.gameData.playerAttackTime[this.gameData.selectedCharacter] = playerScriptableObject.attackTime;
+        this.gameData.playerAttackRange[this.gameData.selectedCharacter] = playerScriptableObject.attackRange;
         this.gameData.playerMovementSpeed[this.gameData.selectedCharacter] = playerScriptableObject.movementSpeed;
         this.gameData.playerHealth[this.gameData.selectedCharacter] = playerScriptableObject.health;
 

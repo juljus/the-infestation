@@ -13,6 +13,43 @@ public class PlayerSkillHolder : MonoBehaviour
     [SerializeField] private Skill skill2;
     [SerializeField] private GameObject skill2Button;
 
+    private Coroutine skill0ActiveCoroutine;
+    private Coroutine skill1ActiveCoroutine;
+    private Coroutine skill2ActiveCoroutine;
+
+    public void SkipSkill0ActiveDuration()
+    {
+        if (skill0ActiveCoroutine != null)
+        {
+            StopCoroutine(skill0ActiveCoroutine);
+            skill0Button.transform.GetChild(0).GetComponent<UnityEngine.UI.Image>().fillAmount = 0;
+            skillStates[0] = 2;
+            StartCoroutine(CooldownDuration(skill0.cooldownTime, skill0Button.transform.GetChild(0).GetComponent<UnityEngine.UI.Image>(), 0));
+        }
+    }
+
+    public void SkipSkill1ActiveDuration()
+    {
+        if (skill1ActiveCoroutine != null)
+        {
+            StopCoroutine(skill1ActiveCoroutine);
+            skill1Button.transform.GetChild(0).GetComponent<UnityEngine.UI.Image>().fillAmount = 0;
+            skillStates[1] = 2;
+            StartCoroutine(CooldownDuration(skill1.cooldownTime, skill1Button.transform.GetChild(0).GetComponent<UnityEngine.UI.Image>(), 1));
+        }
+    }
+
+    public void SkipSkill2ActiveDuration()
+    {
+        if (skill2ActiveCoroutine != null)
+        {
+            StopCoroutine(skill2ActiveCoroutine);
+            skill2Button.transform.GetChild(0).GetComponent<UnityEngine.UI.Image>().fillAmount = 0;
+            skillStates[2] = 2;
+            StartCoroutine(CooldownDuration(skill2.cooldownTime, skill2Button.transform.GetChild(0).GetComponent<UnityEngine.UI.Image>(), 2));
+        }
+    }
+
     public Skill GetSkill0
     {
         get { return skill0; }
@@ -91,7 +128,7 @@ public class PlayerSkillHolder : MonoBehaviour
         
         skill0.Activate(gameObject, skillHelper);
         skillStates[skillIndex] = 1;
-        StartCoroutine(ActiveDuration(skill0.activeTime, skill0.cooldownTime, skill0.castRange, skill0ButtonOverlay, skillIndex));
+        skill0ActiveCoroutine = StartCoroutine(ActiveDuration(skill0.activeTime, skill0.cooldownTime, skill0.castRange, skill0ButtonOverlay, skillIndex));
     }
 
     public void ActivateSkill1()
@@ -124,7 +161,7 @@ public class PlayerSkillHolder : MonoBehaviour
         
         skill1.Activate(gameObject, skillHelper);
         skillStates[skillIndex] = 1;
-        StartCoroutine(ActiveDuration(skill1.activeTime, skill1.cooldownTime, skill1.castRange, skill1ButtonOverlay, skillIndex));
+        skill1ActiveCoroutine = StartCoroutine(ActiveDuration(skill1.activeTime, skill1.cooldownTime, skill1.castRange, skill1ButtonOverlay, skillIndex));
     }
 
     public void ActivateSkill2()
@@ -157,7 +194,7 @@ public class PlayerSkillHolder : MonoBehaviour
         
         skill2.Activate(gameObject, skillHelper);
         skillStates[skillIndex] = 1;
-        StartCoroutine(ActiveDuration(skill2.activeTime, skill2.cooldownTime, skill2.castRange, skill2ButtonOverlay, skillIndex));
+        skill2ActiveCoroutine = StartCoroutine(ActiveDuration(skill2.activeTime, skill2.cooldownTime, skill2.castRange, skill2ButtonOverlay, skillIndex));
     }
 
 

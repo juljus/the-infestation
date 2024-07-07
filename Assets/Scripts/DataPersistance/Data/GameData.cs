@@ -29,6 +29,7 @@ public class GameData
     // player stats
     public float[] playerAttackDamage = new float[4];
     public float[] playerAttackTime = new float[4];
+    public float[] playerAttackRange = new float[4];
     public float[] playerMovementSpeed = new float[4];
     public float[] playerHealth = new float[4];
 }

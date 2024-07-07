@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Tracing;
 using UnityEngine;
 using UnityEngine.InputSystem.Interactions;
 
@@ -15,7 +16,7 @@ public class BackstabSkill : Skill
     private float timeLeft;
     private float hitsLeft;
 
-    // applies a syphon to enemies in target radius and drains hp based on your movement
+    // teleports behind the target enemy and deals increased damage for a limited number of attacks
 
     public override void Activate(GameObject player, SkillHelper skillHelper)
     {   
@@ -28,6 +29,9 @@ public class BackstabSkill : Skill
         Vector2 targetDirection = (targetPos - (Vector2)player.transform.position).normalized;
         Vector2 teleportPos = targetPos + targetDirection;
         player.transform.position = teleportPos;
+
+        // player attack event listener
+        player.GetComponent<PlayerAttack>().playerAttackEvent.AddListener(SubstractBackstabHit);
 
         skillHelper.StartCoroutine(AbilityCoroutine(player));
     }
@@ -62,29 +66,18 @@ public class BackstabSkill : Skill
         hitsLeftText.gameObject.SetActive(false);
 
         player.GetComponent<EffectSystem>().RemoveStatusEffectById(id);
-        
-        // // draw a red circle around the player
-        // Debug.DrawLine(player.transform.position, new Vector3(player.transform.position.x + castRange, player.transform.position.y, player.transform.position.z), Color.red, activeTime);
 
-        // while (timeLeft > 0)
-        // {
-        //     timeLeft -= Time.deltaTime;
+        // destroy the eventlistener
+        player.GetComponent<PlayerAttack>().playerAttackEvent.RemoveListener(SubstractBackstabHit);
 
-        //     float distanceDelta = Vector2.Distance(playerLastPos, player.transform.position);
-        //     float dealDamage = distanceDelta * hpPerUnit;
-            
-        //     foreach (Collider2D enemy in hitEnemies)
-        //     {
-        //         if (enemy != null)
-        //         {                    
-        //             enemy.GetComponent<EnemyHealth>().TakeDamage(dealDamage);
-        //         }
-        //     }
+        if (timeLeft > 0)
+        {
+            player.GetComponent<PlayerSkillHolder>().SkipSkill2ActiveDuration();
+        }
+    }
 
-        //     yield return null;
-        // }
-
-        // // delete the circle
-        // Debug.DrawLine(player.transform.position, new Vector3(player.transform.position.x + castRange, player.transform.position.y, player.transform.position.z), Color.clear, 0);
+    private void SubstractBackstabHit()
+    {
+        hitsLeft--;
     }
 }

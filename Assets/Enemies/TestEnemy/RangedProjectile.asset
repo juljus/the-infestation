@@ -15,7 +15,7 @@ MonoBehaviour:
   damage: 5
   attackDistance: 4
   attackRange: 5
-  attackTime: 0.1
+  attackTime: 2
   attackCooldown: 0
   attackEffectType1: speedMod
   attackEffectValue1: 0.6

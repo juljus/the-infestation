@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Skills/Warrior/Retaliate")]
+[CreateAssetMenu(menuName = "Skills/Warrior/(8)Retaliate")]
 public class RetaliateSkill : Skill
 {
     public float damageToTrigger;

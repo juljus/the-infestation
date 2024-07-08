@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Skills/Warrior/Dispersion")]
-public class DispersionSkill : Skill
+[CreateAssetMenu(menuName = "Skills/Warrior/(7)Disperse")]
+public class DisperseSkill : Skill
 {
     public float damageReflection;
     public float reflectionRadius;
@@ -20,7 +20,7 @@ public class DispersionSkill : Skill
         this.player = player;
 
         // set incoming damage mod
-        player.GetComponent<PlayerHealth>().SetIncomingDamageModForDispersion(1 - damageReflection);
+        player.GetComponent<PlayerHealth>().SetIncomingDamageModForTier4Skills(1 - damageReflection);
 
         // add a listener
         player.GetComponent<PlayerHealth>().takeDamageEvent.AddListener(ReflectDamage);
@@ -32,7 +32,7 @@ public class DispersionSkill : Skill
     public override void Deactivate(GameObject player)
     {
         // reset incoming damage mod
-        player.GetComponent<PlayerHealth>().SetIncomingDamageModForDispersion(1);
+        player.GetComponent<PlayerHealth>().SetIncomingDamageModForTier4Skills(1);
 
         // remove the listener
         player.GetComponent<PlayerHealth>().takeDamageEvent.RemoveListener(ReflectDamage);

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class TargetManager : MonoBehaviour
 {
-
     [SerializeField] private GameObject target;
 
     public GameObject GetTarget {
@@ -25,7 +24,7 @@ public class TargetManager : MonoBehaviour
         GameObject closestEnemy = null;
 
         foreach (GameObject enemy in enemies) {
-            float distance = Vector2.Distance(transform.position, enemy.transform.position);
+            float distance = Vector2.Distance(GetComponent<PlayerManager>().GetPlayerTransform.position, enemy.transform.position);
             if (distance < minDistance) {
                 minDistance = distance;
                 closestEnemy = enemy;

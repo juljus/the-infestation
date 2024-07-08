@@ -5,7 +5,7 @@ using System.Diagnostics.Tracing;
 using UnityEngine;
 using UnityEngine.InputSystem.Interactions;
 
-[CreateAssetMenu(menuName = "Skills/Warrior/Backstab")]
+[CreateAssetMenu(menuName = "Skills/Warrior/(5)Backstab")]
 public class BackstabSkill : Skill
 {
     public float damageMod;

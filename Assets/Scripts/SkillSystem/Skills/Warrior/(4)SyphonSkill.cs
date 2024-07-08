@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem.Interactions;
 
-[CreateAssetMenu(menuName = "Skills/Warrior/Syphon")]
+[CreateAssetMenu(menuName = "Skills/Warrior/(4)Syphon")]
 public class SyphonSkill : Skill
 {
     public float radius;

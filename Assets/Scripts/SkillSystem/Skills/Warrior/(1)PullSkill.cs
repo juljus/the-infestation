@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Skills/Warrior/Pull")]
+[CreateAssetMenu(menuName = "Skills/Warrior/(1)Pull")]
 public class PullSkill : Skill
 {
     public float range;

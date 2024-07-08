@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Skills/Warrior/Fervor")]
+[CreateAssetMenu(menuName = "Skills/Warrior/(9)Fervor")]
 public class FervorSkill : Skill
 {
     public float attackTimeMod;

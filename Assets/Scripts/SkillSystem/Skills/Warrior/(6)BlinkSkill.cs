@@ -5,7 +5,7 @@ using System.Diagnostics.Tracing;
 using UnityEngine;
 using UnityEngine.InputSystem.Interactions;
 
-[CreateAssetMenu(menuName = "Skills/Warrior/Blink")]
+[CreateAssetMenu(menuName = "Skills/Warrior/(6)Blink")]
 public class BlinkSkill : Skill
 {
     public float weaknessDuration;

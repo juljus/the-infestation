@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Skills/Warrior/Backhand")]
+[CreateAssetMenu(menuName = "Skills/Warrior/(10)Backhand")]
 public class BackhandSkill : Skill
 {
     public UnityEngine.UI.Image effectIcon;

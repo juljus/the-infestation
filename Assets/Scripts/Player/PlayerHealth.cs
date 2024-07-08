@@ -8,9 +8,9 @@ public class PlayerHealth : MonoBehaviour, IDataPersistance
     [SerializeField] private UnityEngine.UI.Image healthBar;
 
     private float health;
-    private float currentHealth;
+    [SerializeField] private float currentHealth;
 
-    private float incomingDamageModForDispersion;
+    private float incomingDamageModForTier4Skills;
 
     private float lastDamageRecieved;
 
@@ -28,13 +28,18 @@ public class PlayerHealth : MonoBehaviour, IDataPersistance
     }
 
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, bool byPass = false)
     {
-        currentHealth -= damage * incomingDamageModForDispersion;
-
-        lastDamageRecieved = damage;
-
-        takeDamageEvent.Invoke();
+        if (byPass)
+        {
+            currentHealth -= damage;
+        }
+        else
+        {
+            currentHealth -= damage * incomingDamageModForTier4Skills;
+            lastDamageRecieved = damage;
+            takeDamageEvent.Invoke();
+        }
 
         // update health bar
         healthBar.fillAmount = currentHealth / health;
@@ -45,6 +50,8 @@ public class PlayerHealth : MonoBehaviour, IDataPersistance
             Death();
         }
     }
+
+    
 
 
     public void Heal(float heal)
@@ -80,9 +87,9 @@ public class PlayerHealth : MonoBehaviour, IDataPersistance
         currentHealth = newHealth;
     }
 
-    public void SetIncomingDamageModForDispersion(float mod)
+    public void SetIncomingDamageModForTier4Skills(float mod)
     {
-        incomingDamageModForDispersion = mod;
+        incomingDamageModForTier4Skills = mod;
     }
 
     // IDataPersistance

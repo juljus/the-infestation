@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EnemyBrain : MonoBehaviour
 {
@@ -11,8 +12,7 @@ public class EnemyBrain : MonoBehaviour
     private GameObject player;
 
     private float playerDistance;
-    
-    
+        
     void Start()
     {
         gameManager = GameObject.Find("GameManager");
@@ -41,7 +41,9 @@ public class EnemyBrain : MonoBehaviour
     // -------- PUBLIC FUNCTIONS ------------
 
     public void Death()
-    {
+    {   
+        GameObject.Find("GameManager").GetComponent<EnemyLogicManager>().enemyDeathEvent.Invoke();
+
         gameManager.GetComponent<MapCompletion>().AddKill();
         gameManager.GetComponent<MapCompletion>().AddStructure();
         

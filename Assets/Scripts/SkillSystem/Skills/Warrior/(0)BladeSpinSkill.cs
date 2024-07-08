@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Skills/Warrior/BladeSpin")]
+[CreateAssetMenu(menuName = "Skills/Warrior/(0)BladeSpin")]
 public class BladeSpinSkill : Skill
 {
     public float range;

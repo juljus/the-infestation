@@ -19,6 +19,7 @@ MonoBehaviour:
   cooldownTime: 3
   activeTime: 1
   isPassive: 0
-  range: 6
-  bonusDamage: 30
+  castRange: 0
+  range: 2
+  bonusDamage: 60
   attackDamageModifier: 2

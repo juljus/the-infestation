@@ -17,14 +17,14 @@ MonoBehaviour:
   attackRange: 5
   attackTime: 2
   attackCooldown: 0
-  attackEffectType1: speedMod
-  attackEffectValue1: 0.6
-  attackEffectDuration1: 4.5
-  attackEffectIcon1: {fileID: 6105795678443708983, guid: e1cd8ec275ca7490d967cd1c55caff71, type: 3}
-  attackEffectType2: damageMod
-  attackEffectValue2: 0.7
-  attackEffectDuration2: 9
-  attackEffectIcon2: {fileID: 1888989378498572931, guid: ae47331325ec1466ba6a8e7b247cf581, type: 3}
+  attackEffectType1: 
+  attackEffectValue1: 0
+  attackEffectDuration1: 0
+  attackEffectIcon1: {fileID: 0}
+  attackEffectType2: 
+  attackEffectValue2: 0
+  attackEffectDuration2: 0
+  attackEffectIcon2: {fileID: 0}
   currentDamage: 5
   currentAttackTime: 0
   attackOnCooldown: 0

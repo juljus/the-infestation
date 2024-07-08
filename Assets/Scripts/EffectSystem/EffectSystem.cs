@@ -8,6 +8,7 @@ public class EffectSystem : MonoBehaviour
 {
     public StatusEffect[] statusEffectList = new StatusEffect[100];
 
+    private bool isInvulnerable = false;
 
     public class StatusEffect
     {
@@ -127,6 +128,8 @@ public class EffectSystem : MonoBehaviour
     // PUBLIC FUNCTIONS
     public void TakeStatusEffect(string id, string type, float value, float duration, UnityEngine.UI.Image icon = null, bool isStackable = true, bool isRemovable = true, bool hasDuration = true)
     {
+        if (isInvulnerable) { return; }
+
         switch (type)
         {
             case "healthMod":
@@ -220,5 +223,11 @@ public class EffectSystem : MonoBehaviour
     public StatusEffect[] GetStatusEffectList
     {
         get { return statusEffectList; }
+    }
+
+    // SETTERS
+    public void SetIfInvulnerable(bool isInvulnerable)
+    {
+        this.isInvulnerable = isInvulnerable;
     }
 }

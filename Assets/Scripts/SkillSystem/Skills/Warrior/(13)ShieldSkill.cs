@@ -35,6 +35,9 @@ public class ShieldSkill : Skill
 
         // make player take damage
         player.GetComponent<PlayerHealth>().SetIncomingDamageModForTier4Skills(1);
+
+        // remove icon
+        player.GetComponent<EffectSystem>().RemoveStatusEffectById(id);
     }
 
     private void AddShield()

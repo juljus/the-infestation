@@ -14,24 +14,18 @@ public class FervorSkill : Skill
 
     public override void Activate(GameObject player, SkillHelper skillHelper)
     {
-        Debug.Log("Fervor activated");
-
         // add player attack event listener
         player.GetComponent<PlayerAttack>().playerAttackEvent.AddListener(BuffPlayerFervor);
     }
 
     public override void Deactivate(GameObject player)
     {
-        Debug.Log("Fervor deactivated");
-
         // remove player attack event listener
         player.GetComponent<PlayerAttack>().playerAttackEvent.RemoveListener(BuffPlayerFervor);
     }
 
     private void BuffPlayerFervor()
     {
-        Debug.Log("Fervor buffed player");
-
         GameObject player = GameObject.Find("GameManager").GetComponent<PlayerManager>().GetPlayer;
 
         // get parent effect system

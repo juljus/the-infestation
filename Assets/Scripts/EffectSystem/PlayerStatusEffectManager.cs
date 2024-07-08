@@ -45,7 +45,6 @@ public class PlayerStatusEffectManager : MonoBehaviour
         float currentHealth = playerHealth.GetCurrentHealth;
         float maxAttackDamage = playerAttack.GetAttackDamage;
         float attackTime = playerAttack.GetAttackTime;
-        print("attack time: " + attackTime);
 
         // get new values
         UsedFunctions usedFunctions = new UsedFunctions();

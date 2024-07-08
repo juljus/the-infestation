@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerHealth : MonoBehaviour, IDataPersistance
 {
@@ -8,6 +9,12 @@ public class PlayerHealth : MonoBehaviour, IDataPersistance
 
     private float health;
     private float currentHealth;
+
+    private float incomingDamageModForDispersion;
+
+    private float lastDamageRecieved;
+
+    public UnityEvent takeDamageEvent;
 
     void Start()
     {
@@ -23,7 +30,11 @@ public class PlayerHealth : MonoBehaviour, IDataPersistance
 
     public void TakeDamage(float damage)
     {
-        currentHealth -= damage;
+        currentHealth -= damage * incomingDamageModForDispersion;
+
+        lastDamageRecieved = damage;
+
+        takeDamageEvent.Invoke();
 
         // update health bar
         healthBar.fillAmount = currentHealth / health;
@@ -57,11 +68,21 @@ public class PlayerHealth : MonoBehaviour, IDataPersistance
         get{ return currentHealth; }
     }
 
+    public float GetLastDamageRecieved
+    {
+        get{ return lastDamageRecieved; }
+    }
+
 
     // Setters
     public void SetCurrentHealth(float newHealth)
     {
         currentHealth = newHealth;
+    }
+
+    public void SetIncomingDamageModForDispersion(float mod)
+    {
+        incomingDamageModForDispersion = mod;
     }
 
     // IDataPersistance

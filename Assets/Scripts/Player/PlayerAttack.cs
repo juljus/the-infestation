@@ -73,7 +73,6 @@ public class PlayerAttack : MonoBehaviour, IDataPersistance
     // --------- COROUTINES ---------
     private IEnumerator AttackTime(UnityEngine.UI.Image attackButtonOverlay)
     {
-        print("AttackTime");
         float time = 0;
 
         while (time < currentAttackTime && !animationToCooldown)

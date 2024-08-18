@@ -105,6 +105,7 @@ public class PlayerAttack : MonoBehaviour, IDataPersistance
         }
 
         attackButtonOverlay.fillAmount = 0;
+        gameManager.GetComponent<TargetManager>().ClearTarget();
         isAttacking = false;
     }
 

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de6320a2db3c541ee9912b4bf01924b1, type: 3}
+  m_Name: (12) Teleport refresh
+  m_EditorClassIdentifier: 
+  name: Teleport refresh
+  skillDescription: 'Passive: after killing an enemy refreshes the cooldown of your
+    teleport skill.'
+  skillIcon: {fileID: 21300000, guid: 48f2f43bb4a304299ab2abb0c2b8421a, type: 3}
+  id: kanv8coc73w9can8n8mnkbdcnawiuhO78B8yg87
+  cooldownTime: 0
+  activeTime: 0
+  isPassive: 1
+  castRange: 0
+  effectIcon: {fileID: 6280444325833525280, guid: b86e80624b81e4ce0b9db0150ce96a26, type: 3}

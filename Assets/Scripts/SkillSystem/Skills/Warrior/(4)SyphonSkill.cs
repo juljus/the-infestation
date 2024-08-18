@@ -44,9 +44,6 @@ public class SyphonSkill : Skill
 
     private IEnumerator AbilityCoroutine(GameObject player)
     {
-        // draw a red circle around the player
-        Debug.DrawLine(player.transform.position, new Vector3(player.transform.position.x + castRange, player.transform.position.y, player.transform.position.z), Color.red, activeTime);
-
         while (timeLeft > 0)
         {
             timeLeft -= Time.deltaTime;
@@ -62,10 +59,9 @@ public class SyphonSkill : Skill
                 }
             }
 
+            player.GetComponent<PlayerHealth>().Heal(dealDamage);
+
             yield return null;
         }
-
-        // delete the circle
-        Debug.DrawLine(player.transform.position, new Vector3(player.transform.position.x + castRange, player.transform.position.y, player.transform.position.z), Color.clear, 0);
     }
 }

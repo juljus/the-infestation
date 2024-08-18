@@ -17,6 +17,10 @@ public class PlayerSkillHolder : MonoBehaviour
     private Coroutine skill1ActiveCoroutine;
     private Coroutine skill2ActiveCoroutine;
 
+    private Coroutine skill0CooldownCoroutine;
+    private Coroutine skill1CooldownCoroutine;
+    private Coroutine skill2CooldownCoroutine;
+
     public void SkipSkill0ActiveDuration()
     {
         if (skill0ActiveCoroutine != null)
@@ -63,6 +67,42 @@ public class PlayerSkillHolder : MonoBehaviour
     public Skill GetSkill2
     {
         get { return skill2; }
+    }
+
+    public void SkipSkill0Cooldown()
+    {
+        if (skillStates[0] == 2)
+        {
+            skill0Button.transform.GetChild(0).GetComponent<UnityEngine.UI.Image>().fillAmount = 0;
+            skillStates[0] = 0;
+
+            // stop the cooldown coroutine
+            StopCoroutine(skill0CooldownCoroutine);
+        }
+    }
+
+    public void SkipSkill1Cooldown()
+    {
+        if (skillStates[1] == 2)
+        {
+            skill1Button.transform.GetChild(0).GetComponent<UnityEngine.UI.Image>().fillAmount = 0;
+            skillStates[1] = 0;
+
+            // stop the cooldown coroutine
+            StopCoroutine(skill1CooldownCoroutine);
+        }
+    }
+
+    public void SkipSkill2Cooldown()
+    {
+        if (skillStates[2] == 2)
+        {
+            skill2Button.transform.GetChild(0).GetComponent<UnityEngine.UI.Image>().fillAmount = 0;
+            skillStates[2] = 0;
+
+            // stop the cooldown coroutine
+            StopCoroutine(skill2CooldownCoroutine);
+        }
     }
 
     
@@ -203,7 +243,19 @@ public class PlayerSkillHolder : MonoBehaviour
         yield return new WaitForSeconds(activeDuration);
 
         skillStates[skillIndex] = 2;
-        StartCoroutine(CooldownDuration(cooldown, buttonOverlay, skillIndex));
+
+        switch (skillIndex)
+        {
+            case 0:
+                skill0CooldownCoroutine = StartCoroutine(CooldownDuration(cooldown, buttonOverlay, skillIndex));
+                break;
+            case 1:
+                skill1CooldownCoroutine = StartCoroutine(CooldownDuration(cooldown, buttonOverlay, skillIndex));
+                break;
+            case 2:
+                skill2CooldownCoroutine = StartCoroutine(CooldownDuration(cooldown, buttonOverlay, skillIndex));
+                break;
+        }
     }
 
     private IEnumerator CooldownDuration(float cooldown, UnityEngine.UI.Image buttonOverlay, int skillIndex)
@@ -219,7 +271,7 @@ public class PlayerSkillHolder : MonoBehaviour
             yield return null;
         }
 
-        skill0Button.transform.GetChild(0).GetComponent<UnityEngine.UI.Image>().fillAmount = 0;
+        buttonOverlay.fillAmount = 0;
         skillStates[skillIndex] = 0;
     }
 

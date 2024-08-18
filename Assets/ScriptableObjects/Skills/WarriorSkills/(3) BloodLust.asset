@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85dc5c4fb922a4704ac42b4e88172798, type: 3}
+  m_Name: (3) BloodLust
+  m_EditorClassIdentifier: 
+  name: Bloodlust
+  skillDescription: Heals player based on how many enemies are nearby
+  skillIcon: {fileID: 21300000, guid: 7eb5a6cb138f64497a216f78f9160d5f, type: 3}
+  id: alknfo87H98Y987Gb896gbsdfwp9
+  cooldownTime: 6
+  activeTime: 0
+  isPassive: 0
+  castRange: 0
+  radius: 2
+  missingHealthHealPerEnemy: 0.1
+  maxHeal: 0.5

@@ -75,6 +75,11 @@ public class PlayerHealth : MonoBehaviour, IDataPersistance
         get{ return currentHealth; }
     }
 
+    public float GetMaxHealth
+    {
+        get{ return health; }
+    }
+
     public float GetLastDamageRecieved
     {
         get{ return lastDamageRecieved; }

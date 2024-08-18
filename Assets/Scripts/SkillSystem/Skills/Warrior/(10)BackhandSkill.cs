@@ -13,7 +13,6 @@ public class BackhandSkill : Skill
     public override void Activate(GameObject player, SkillHelper skillHelper)
     {
         player.GetComponent<PlayerAttack>().SetAnimationToCooldown(true);
-
         // add icon
         player.GetComponent<EffectSystem>().TakeStatusEffect(id, "speedMod", 1, 0, effectIcon, false, false, false);
     }
@@ -21,7 +20,6 @@ public class BackhandSkill : Skill
     public override void Deactivate(GameObject player)
     {
         player.GetComponent<PlayerAttack>().SetAnimationToCooldown(false);
-
         // remove icon
         player.GetComponent<EffectSystem>().RemoveStatusEffectById(id);
     }

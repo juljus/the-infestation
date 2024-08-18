@@ -9,14 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 849f53e26c3b647bea1d17736c626dfa, type: 3}
-  m_Name: RangedProjectile
+  m_Script: {fileID: 11500000, guid: 98c88c7972e3f4005a464c9e868f55ee, type: 3}
+  m_Name: Attack
   m_EditorClassIdentifier: 
-  damage: 5
-  attackDistance: 4
-  attackRange: 5
-  attackTime: 2
-  attackCooldown: 0
+  damage: 20
+  attackDistance: 1
+  attackRange: 1.5
+  attackTime: 1
+  attackCooldown: 1.5
   attackEffectType1: 
   attackEffectValue1: 0
   attackEffectDuration1: 0
@@ -25,10 +25,8 @@ MonoBehaviour:
   attackEffectValue2: 0
   attackEffectDuration2: 0
   attackEffectIcon2: {fileID: 0}
-  currentDamage: 5
+  currentDamage: 0
   currentAttackTime: 0
   attackOnCooldown: 0
-  attackTimeRemaining: 0.13519049
-  attackInProgress: 1
-  projectile: {fileID: 9085602268992797658, guid: db4ba7359709a46a3b7d967fa6b6e9b5, type: 3}
-  projectileSpeed: 10
+  attackTimeRemaining: 0
+  attackInProgress: 0

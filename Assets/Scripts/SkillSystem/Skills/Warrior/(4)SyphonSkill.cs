@@ -55,7 +55,7 @@ public class SyphonSkill : Skill
             {
                 if (enemy != null)
                 {                    
-                    enemy.GetComponent<EnemyHealth>().TakeDamage(dealDamage);
+                    enemy.GetComponent<EnemyBrain>().TakeDamage(dealDamage);
                 }
             }
 

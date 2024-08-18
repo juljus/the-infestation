@@ -76,7 +76,7 @@ public class DisperseSkill : Skill
         {
             if (hitColliders[i] != null)
             {
-                hitColliders[i].GetComponent<EnemyHealth>().TakeDamage(reflectDamage);
+                hitColliders[i].GetComponent<EnemyBrain>().TakeDamage(reflectDamage);
             }
         }
     }

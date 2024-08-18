@@ -3,13 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Enemy/Attack/RangedProjectile")]
-public class EnemyAttack_RangedProjectile : EnemyAttackBase
+[CreateAssetMenu(menuName = "Enemy/Attack/Melee")]
+public class EnemyAttack_Melee : EnemyAttackBase
 {
-    [Header("RangedProjectile")]
-    public GameObject projectile;
-    public float projectileSpeed;
-
     public override void TryAttack(Transform target, Rigidbody2D rigidBody, float playerDistance, EnemyBrain enemyBrain)
     {
         if (playerDistance <= attackDistance)
@@ -21,7 +17,7 @@ public class EnemyAttack_RangedProjectile : EnemyAttackBase
 
     public override EnemyAttackBase Clone()
     {
-        var clone = ScriptableObject.CreateInstance<EnemyAttack_RangedProjectile>();
+        var clone = ScriptableObject.CreateInstance<EnemyAttack_Melee>();
 
         // copy over editor stats
         clone.damage = damage;
@@ -34,14 +30,15 @@ public class EnemyAttack_RangedProjectile : EnemyAttackBase
         clone.attackEffectValue1 = attackEffectValue1;
         clone.attackEffectDuration1 = attackEffectDuration1;
         clone.attackEffectIcon1 = attackEffectIcon1;
+        clone.attackEffectIsStackable1 = attackEffectIsStackable1;
+        clone.attackEffectIsRemovable1 = attackEffectIsRemovable1;
 
         clone.attackEffectType2 = attackEffectType2;
         clone.attackEffectValue2 = attackEffectValue2;
         clone.attackEffectDuration2 = attackEffectDuration2;
         clone.attackEffectIcon2 = attackEffectIcon2;
-
-        clone.projectile = projectile;
-        clone.projectileSpeed = projectileSpeed;
+        clone.attackEffectIsStackable2 = attackEffectIsStackable2;
+        clone.attackEffectIsRemovable2 = attackEffectIsRemovable2;
 
         return clone;
     }
@@ -49,8 +46,14 @@ public class EnemyAttack_RangedProjectile : EnemyAttackBase
 
     private void Attack(Transform target, Rigidbody2D rigidBody, EnemyBrain enemyBrain)
     {
-        GameObject projectileClone = Instantiate(projectile, rigidBody.position, Quaternion.identity);
-        projectileClone.transform.parent = rigidBody.transform;
+        GameObject player = GameObject.Find("GameManager").GetComponent<PlayerManager>().GetPlayer;
+
+        //deal damage to player
+        player.GetComponent<PlayerHealth>().TakeDamage(damage);
+        //apply status effect 1
+        player.GetComponent<EffectSystem>().TakeStatusEffect("wöofjcaöow09ujp0dson<jon ", attackEffectType1, attackEffectValue1, attackEffectDuration1, attackEffectIcon1, attackEffectIsStackable1, attackEffectIsRemovable1);
+        //apply status effect 2
+        player.GetComponent<EffectSystem>().TakeStatusEffect("öCJ Ü90I+ D9 uoh  osoiv0ew8husv", attackEffectType2, attackEffectValue2, attackEffectDuration2, attackEffectIcon2, attackEffectIsStackable2, attackEffectIsRemovable2);
 
         enemyBrain.StartCoroutine(AttackCooldownCoroutine());
     }
@@ -87,5 +90,4 @@ public class EnemyAttack_RangedProjectile : EnemyAttackBase
 
 
     // ---------- GETTERS -----------
-    public override float GetProjectileSpeed { get { return projectileSpeed; } }
 }

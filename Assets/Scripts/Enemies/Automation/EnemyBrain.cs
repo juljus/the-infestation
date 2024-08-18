@@ -7,6 +7,10 @@ public class EnemyBrain : MonoBehaviour
 {
     [SerializeField] private EnemyMovementBase movement;
     [SerializeField] private EnemyAttackBase attack;
+    [SerializeField] private float maxHealth;
+    [SerializeField] private UnityEngine.UI.Image healthBar;
+    
+    private float currentHealth;
 
     private GameObject gameManager;
     private GameObject player;
@@ -15,6 +19,8 @@ public class EnemyBrain : MonoBehaviour
         
     void Start()
     {
+        currentHealth = maxHealth;
+
         gameManager = GameObject.Find("GameManager");
         player = gameManager.GetComponent<PlayerManager>().GetPlayer;
 
@@ -50,9 +56,39 @@ public class EnemyBrain : MonoBehaviour
         Destroy(gameObject);
     }
 
+    public void TakeDamage(float damage)
+    {
+        currentHealth -= damage;
+
+        healthBar.fillAmount = currentHealth / maxHealth;
+
+        if (currentHealth <= 0)
+        {
+            GetComponent<EnemyBrain>().Death();
+        }
+
+    }
+
+    public void Heal(float heal)
+    {
+        currentHealth += heal;
+
+        if (currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+
+        healthBar.fillAmount = currentHealth / maxHealth;        
+    }
+
     //--------- GETTERS ---------
     public float GetPlayerDistance { get { return playerDistance; } }
 
+    public float GetCurrentHealth { get{ return currentHealth; } }
+
     public EnemyAttackBase GetEnemyAttack { get { return attack; } }
     public EnemyMovementBase GetEnemyMovement { get { return movement; } }
+
+    //--------- SETTERS ---------
+    public void SetCurrentHealth(float newHealth) { currentHealth = newHealth; }
 }

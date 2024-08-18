@@ -18,13 +18,13 @@ public class EnemyStatusEffectManager : MonoBehaviour
         statusEffectList = transform.GetComponent<EffectSystem>().GetStatusEffectList;
 
         // get scripts
-        EnemyMovementBase enemyMovementBase = transform.GetComponent<EnemyBrain>().GetEnemyMovement;
-        EnemyHealth enemyHealth = transform.GetComponent<EnemyHealth>();
-        EnemyAttackBase enemyAttackBase = transform.GetComponent<EnemyBrain>().GetEnemyAttack;
+        EnemyBrain enemyBrain = transform.GetComponent<EnemyBrain>();
+        EnemyMovementBase enemyMovementBase = enemyBrain.GetEnemyMovement;
+        EnemyAttackBase enemyAttackBase = enemyBrain.GetEnemyAttack;
 
         // get current stats
         float maxSpeed = enemyMovementBase.GetSpeed;
-        float currentHealth = enemyHealth.GetCurrentHealth;
+        float currentHealth = enemyBrain.GetCurrentHealth;
         float attackDamage = enemyAttackBase.GetMaxAttackDamage;
         float attackTime = enemyAttackBase.GetAttackTime;
 
@@ -35,7 +35,7 @@ public class EnemyStatusEffectManager : MonoBehaviour
 
         // set new values
         enemyMovementBase.SetSpeed(recieveValues[0]);
-        enemyHealth.SetCurrentHealth(recieveValues[1]);
+        enemyBrain.SetCurrentHealth(recieveValues[1]);
         enemyAttackBase.SetAttackDamage(recieveValues[2]);
         enemyAttackBase.SetCurrentAttackTime(recieveValues[3]);
     }

@@ -34,11 +34,15 @@ public class EnemyAttack_RangedProjectile : EnemyAttackBase
         clone.attackEffectValue1 = attackEffectValue1;
         clone.attackEffectDuration1 = attackEffectDuration1;
         clone.attackEffectIcon1 = attackEffectIcon1;
+        clone.attackEffectIsStackable1 = attackEffectIsStackable1;
+        clone.attackEffectIsRemovable1 = attackEffectIsRemovable1;
 
         clone.attackEffectType2 = attackEffectType2;
         clone.attackEffectValue2 = attackEffectValue2;
         clone.attackEffectDuration2 = attackEffectDuration2;
         clone.attackEffectIcon2 = attackEffectIcon2;
+        clone.attackEffectIsStackable2 = attackEffectIsStackable2;
+        clone.attackEffectIsRemovable2 = attackEffectIsRemovable2;
 
         clone.projectile = projectile;
         clone.projectileSpeed = projectileSpeed;

@@ -61,7 +61,7 @@ public class SleightOfFistSkill : Skill
         yield return new WaitForSeconds(activeTime / 2);
 
         // attack enemy
-        target.GetComponent<EnemyHealth>().TakeDamage(player.GetComponent<PlayerAttack>().GetCurrentAttackDamage * damageMod);
+        target.GetComponent<EnemyBrain>().TakeDamage(player.GetComponent<PlayerAttack>().GetCurrentAttackDamage * damageMod);
 
         yield return new WaitForSeconds(activeTime / 2);
 

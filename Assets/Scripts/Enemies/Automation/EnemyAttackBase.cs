@@ -16,12 +16,16 @@ public class EnemyAttackBase : ScriptableObject
     public float attackEffectValue1;
     public float attackEffectDuration1;
     public UnityEngine.UI.Image attackEffectIcon1;
+    public bool attackEffectIsStackable1;
+    public bool attackEffectIsRemovable1;
     
     [Header("Attack Effect 2")]
     public string attackEffectType2;
     public float attackEffectValue2;
     public float attackEffectDuration2;
     public UnityEngine.UI.Image attackEffectIcon2;
+    public bool attackEffectIsStackable2;
+    public bool attackEffectIsRemovable2;
 
 
     // -------- VARIABLES --------
@@ -42,11 +46,15 @@ public class EnemyAttackBase : ScriptableObject
     public float GetAttackEffectValue1 { get { return attackEffectValue1; } }
     public float GetAttackEffectDuration1 { get { return attackEffectDuration1; } }
     public UnityEngine.UI.Image GetAttackEffectIcon1 { get { return attackEffectIcon1; } }
+    public bool GetAttackEffectIsStackable1 { get { return attackEffectIsStackable1; } }
+    public bool GetAttackEffectIsRemovable1 { get { return attackEffectIsRemovable1; } }
 
     public string GetAttackEffectType2 { get { return attackEffectType2; } }
     public float GetAttackEffectValue2 { get { return attackEffectValue2; } }
     public float GetAttackEffectDuration2 { get { return attackEffectDuration2; } }
     public UnityEngine.UI.Image GetAttackEffectIcon2 { get { return attackEffectIcon2; } }
+    public bool GetAttackEffectIsStackable2 { get { return attackEffectIsStackable2; } }
+    public bool GetAttackEffectIsRemovable2 { get { return attackEffectIsRemovable2; } }
 
 
     // --------- SETTERS ---------

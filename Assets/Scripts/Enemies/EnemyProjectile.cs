@@ -5,14 +5,21 @@ using UnityEngine;
 public class EnemyProjectile : MonoBehaviour
 {
     private float projectileSpeed;
+
     private float projectileEffectValue1;
     private string projectileEffectType1;
     private float projectileEffectDuration1;
     private UnityEngine.UI.Image projectileEffectIcon1;
+    private bool projectileEffectIsStackable1;
+    private bool projectileEffectIsRemovable1;
+
     private float projectileEffectValue2;
     private string projectileEffectType2;
     private float projectileEffectDuration2;
     private UnityEngine.UI.Image projectileEffectIcon2;
+    private bool projectileEffectIsStackable2;
+    private bool projectileEffectIsRemovable2;
+
     private float damage;
     private GameObject player;
 
@@ -29,11 +36,15 @@ public class EnemyProjectile : MonoBehaviour
         projectileEffectType1 = enemyAttack.GetAttackEffectType1;
         projectileEffectDuration1 = enemyAttack.GetAttackEffectDuration1;
         projectileEffectIcon1 = enemyAttack.GetAttackEffectIcon1;
+        projectileEffectIsStackable1 = enemyAttack.GetAttackEffectIsStackable1;
+        projectileEffectIsRemovable1 = enemyAttack.GetAttackEffectIsRemovable1;
         // effect 2
         projectileEffectValue2 = enemyAttack.GetAttackEffectValue2;
         projectileEffectType2 = enemyAttack.GetAttackEffectType2;
         projectileEffectDuration2 = enemyAttack.GetAttackEffectDuration2;
         projectileEffectIcon2 = enemyAttack.GetAttackEffectIcon2;
+        projectileEffectIsStackable2 = enemyAttack.GetAttackEffectIsStackable2;
+        projectileEffectIsRemovable2 = enemyAttack.GetAttackEffectIsRemovable2;
 
         //get player object
         player = GameObject.Find("GameManager").GetComponent<PlayerManager>().GetPlayer;
@@ -54,9 +65,9 @@ public class EnemyProjectile : MonoBehaviour
             //deal damage to player
             player.GetComponent<PlayerHealth>().TakeDamage(damage);
             //apply status effect 1
-            player.GetComponent<EffectSystem>().TakeStatusEffect("ac,do upo,IHPF,HHJIFAUldfhgl", projectileEffectType1, projectileEffectValue1, projectileEffectDuration1, projectileEffectIcon1);
+            player.GetComponent<EffectSystem>().TakeStatusEffect("ac,do upo,IHPF,HHJIFAUldfhgl", projectileEffectType1, projectileEffectValue1, projectileEffectDuration1, projectileEffectIcon1, projectileEffectIsStackable1, projectileEffectIsRemovable1);
             //apply status effect 2
-            player.GetComponent<EffectSystem>().TakeStatusEffect("öadlginoÄPOJÄPEGIHAighaioUHRG", projectileEffectType2, projectileEffectValue2, projectileEffectDuration2, projectileEffectIcon2);
+            player.GetComponent<EffectSystem>().TakeStatusEffect("öadlginoÄPOJÄPEGIHAighaioUHRG", projectileEffectType2, projectileEffectValue2, projectileEffectDuration2, projectileEffectIcon2, projectileEffectIsStackable2, projectileEffectIsRemovable2);
             //destroy projectile
             Destroy(gameObject);
         }

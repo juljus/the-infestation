@@ -7,7 +7,6 @@ using UnityEngine;
 public class EnemyMovement_EnemySeekingHealer : EnemyMovementBase
 {
     private bool isAggroed = false;
-    private GameObject target;
 
     public override void Move(Transform player, Rigidbody2D rigidBody, float playerDistance)
     {

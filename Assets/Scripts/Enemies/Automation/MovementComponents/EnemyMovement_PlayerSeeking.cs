@@ -8,8 +8,10 @@ public class EnemyMovement_PlayerSeeking : EnemyMovementBase
 {
     private bool isAggroed = false;
 
-    public override void Move(Transform target, Rigidbody2D rigidBody, float playerDistance)
+    public override void Move(Transform player, Rigidbody2D rigidBody, float playerDistance)
     {   
+        target = player.gameObject;
+
         if (playerDistance <= aggroRange)
         {
             isAggroed = true;
@@ -21,7 +23,7 @@ public class EnemyMovement_PlayerSeeking : EnemyMovementBase
 
         if (isAggroed && playerDistance > stoppingDistance)
         {
-            rigidBody.position = Vector2.MoveTowards(rigidBody.position, target.position, currentSpeed * Time.deltaTime);
+            rigidBody.position = Vector2.MoveTowards(rigidBody.position, target.transform.position, currentSpeed * Time.deltaTime);
         }
     }
 

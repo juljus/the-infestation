@@ -14,6 +14,8 @@ public class EnemyMovementBase : ScriptableObject
     // ---------- VARIABLES ----------
     [HideInInspector] public float currentSpeed;
 
+    [HideInInspector] public GameObject target;
+
 
     // ---------- GETTERS ----------
     public float GetSpeed { get { return speed; } }

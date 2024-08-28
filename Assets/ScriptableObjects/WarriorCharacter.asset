@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae079ff879e464e18a5de367c187f564, type: 3}
   m_Name: WarriorCharacter
   m_EditorClassIdentifier: 
-  movementSpeed: 6
-  health: 200
+  movementSpeed: 10
+  health: 1000
   attackDamage: 10
   attackTime: 1.5
   attackRange: 2

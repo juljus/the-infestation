@@ -10,25 +10,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 849f53e26c3b647bea1d17736c626dfa, type: 3}
-  m_Name: RangedProjectile
+  m_Name: Attack
   m_EditorClassIdentifier: 
   damage: 5
   attackDistance: 4
   attackRange: 5
   attackTime: 1
   attackCooldown: 2
-  attackEffectType1: 
-  attackEffectValue1: 0
-  attackEffectDuration1: 0
-  attackEffectIcon1: {fileID: 0}
+  attackEffectType1: speedMod
+  attackEffectValue1: 0.8
+  attackEffectDuration1: 5
+  attackEffectIcon1: {fileID: 6105795678443708983, guid: e1cd8ec275ca7490d967cd1c55caff71, type: 3}
+  attackEffectIsStackable1: 0
+  attackEffectIsRemovable1: 1
   attackEffectType2: 
   attackEffectValue2: 0
   attackEffectDuration2: 0
   attackEffectIcon2: {fileID: 0}
+  attackEffectIsStackable2: 0
+  attackEffectIsRemovable2: 0
   currentDamage: 5
   currentAttackTime: 0
   attackOnCooldown: 0
   attackTimeRemaining: 0.13519049
   attackInProgress: 1
+  target: {fileID: 0}
   projectile: {fileID: 9085602268992797658, guid: db4ba7359709a46a3b7d967fa6b6e9b5, type: 3}
   projectileSpeed: 10

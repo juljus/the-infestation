@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyProjectile : MonoBehaviour
+public class EnemyProjectile_Heal : MonoBehaviour
 {
     [SerializeField] private float projectileSpeed;
 
@@ -54,10 +54,10 @@ public class EnemyProjectile : MonoBehaviour
 
     void Update()
     {
-        //move projectile towards target
+        //move projectile towards player
         transform.position = Vector2.MoveTowards(transform.position, target.transform.position, projectileSpeed * Time.deltaTime);
 
-        // rotate based on target direction
+        // rotate based on move direction
         Vector3 moveDirection = target.transform.position - transform.position;
         gameObject.transform.rotation = Quaternion.LookRotation(Vector3.forward, moveDirection);
     }
@@ -65,11 +65,7 @@ public class EnemyProjectile : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject == target) {
             //deal damage to player
-            target.GetComponent<PlayerHealth>().TakeDamage(damage);
-            //apply status effect 1
-            target.GetComponent<EffectSystem>().TakeStatusEffect("ac,do upo,IHPF,HHJIFAUldfhgl", projectileEffectType1, projectileEffectValue1, projectileEffectDuration1, projectileEffectIcon1, projectileEffectIsStackable1, projectileEffectIsRemovable1);
-            //apply status effect 2
-            target.GetComponent<EffectSystem>().TakeStatusEffect("öadlginoÄPOJÄPEGIHAighaioUHRG", projectileEffectType2, projectileEffectValue2, projectileEffectDuration2, projectileEffectIcon2, projectileEffectIsStackable2, projectileEffectIsRemovable2);
+            target.GetComponent<EnemyBrain>().Heal(damage);
             //destroy projectile
             Destroy(gameObject);
         }

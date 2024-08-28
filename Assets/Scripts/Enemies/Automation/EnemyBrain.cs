@@ -85,6 +85,7 @@ public class EnemyBrain : MonoBehaviour
     public float GetPlayerDistance { get { return playerDistance; } }
 
     public float GetCurrentHealth { get{ return currentHealth; } }
+    public float GetMaxHealth { get { return maxHealth; } }
 
     public EnemyAttackBase GetEnemyAttack { get { return attack; } }
     public EnemyMovementBase GetEnemyMovement { get { return movement; } }

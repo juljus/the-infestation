@@ -36,6 +36,8 @@ public class EnemyAttackBase : ScriptableObject
     [HideInInspector] public float attackTimeRemaining;
     [HideInInspector] public bool attackInProgress = false;
 
+    [HideInInspector] public GameObject target;
+
 
     // -------- GETTERS ----------
     public float GetMaxAttackDamage { get { return damage; } }
@@ -55,6 +57,8 @@ public class EnemyAttackBase : ScriptableObject
     public UnityEngine.UI.Image GetAttackEffectIcon2 { get { return attackEffectIcon2; } }
     public bool GetAttackEffectIsStackable2 { get { return attackEffectIsStackable2; } }
     public bool GetAttackEffectIsRemovable2 { get { return attackEffectIsRemovable2; } }
+
+    public GameObject GetTarget { get { return target; } }
 
 
     // --------- SETTERS ---------

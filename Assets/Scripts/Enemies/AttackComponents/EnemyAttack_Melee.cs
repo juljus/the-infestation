@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Enemy/Attack/Melee")]
+[CreateAssetMenu(fileName = "Attack", menuName = "Enemy/Attack/Melee")]
 public class EnemyAttack_Melee : EnemyAttackBase
 {
     public override void TryAttack(Transform target, Rigidbody2D rigidBody, float playerDistance, EnemyBrain enemyBrain)

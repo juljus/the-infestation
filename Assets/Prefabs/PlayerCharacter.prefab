@@ -266,14 +266,13 @@ GameObject:
   - component: {fileID: 4347389475251710116}
   - component: {fileID: 12590781615762167}
   - component: {fileID: 6726712073817339066}
-  - component: {fileID: 3973890662610877889}
   - component: {fileID: 5859907706964566665}
   - component: {fileID: 4925150071071005360}
   - component: {fileID: 2614520305712616096}
   - component: {fileID: 3023109184993729181}
   m_Layer: 0
   m_Name: PlayerCharacter
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -306,9 +305,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fd69d4bf72ab4795a68c50d55a0d6e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
-  maxSpeed: 10
   rigidBody: {fileID: 2614520305712616096}
+  currentSpeed: 0
 --- !u!114 &4347389475251710116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -321,8 +319,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90e1050b3aa5c4af48dbed55a1344d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scriptableObject: {fileID: 11400000, guid: 317fb97f907f64f2e931e12fa4b96947, type: 2}
   healthBar: {fileID: 7243361495411068902}
+  currentHealth: 0
+  takeDamageEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &12590781615762167
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -345,18 +346,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bf546f7fc70d84a0198be5cf91160523, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &3973890662610877889
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2416486116978143486}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f499aa2644b484c4e94848a62973ce02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &5859907706964566665
@@ -478,4 +467,4 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 4.7

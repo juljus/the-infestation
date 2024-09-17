@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "Movement")]
 public class EnemyMovementBase : ScriptableObject
 {
     // ---------- EDITOR STATS ----------

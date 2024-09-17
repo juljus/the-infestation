@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Enemy/Movement/EnemySeekingHealer")]
+[CreateAssetMenu(fileName = "Movement", menuName = "Enemy/Movement/EnemySeekingHealer")]
 public class EnemyMovement_EnemySeekingHealer : EnemyMovementBase
 {
     private bool isAggroed = false;

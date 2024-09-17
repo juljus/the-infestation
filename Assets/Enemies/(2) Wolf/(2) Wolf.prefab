@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 656221980571824589}
   - component: {fileID: 5484579742989409645}
   m_Layer: 0
-  m_Name: EnemyBase
+  m_Name: (2) Wolf
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -127,9 +127,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45f47dcceb34d4cd7877d8dd5edd21e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movement: {fileID: 11400000, guid: 6f28e2ae141a14b4ca461a07e18ed744, type: 2}
-  attack: {fileID: 11400000, guid: e1a001431b29341f28956a667f28fa36, type: 2}
-  maxHealth: 100
+  movement: {fileID: 11400000, guid: b85526028d49b4929a2a2483f653208f, type: 2}
+  attack: {fileID: 11400000, guid: 05e89f021430447a38492930f94a76ba, type: 2}
+  healthScriptableObject: {fileID: 11400000, guid: 94e6398a5f4b1450f82de5db4956d167, type: 2}
   healthBar: {fileID: 5730936789821164550}
 --- !u!114 &4567524268145860807
 MonoBehaviour:
@@ -256,7 +256,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.14999999, y: 0.14999999, z: 0.14999999}
+  m_LocalScale: {x: 0.48, y: 0.48, z: 0.48}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 5759696996413894154}
@@ -302,12 +302,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b1198238eabb74d6fa14a941877a5446, type: 3}
+  m_Sprite: {fileID: -9095717837082945937, guid: c6afe3d565c2946228c675460f7511dd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 10.8, y: 10.8}
+  m_Size: {x: 1, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

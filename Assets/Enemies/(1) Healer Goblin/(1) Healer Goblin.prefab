@@ -129,7 +129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movement: {fileID: 11400000, guid: 9f6c6068d2126452382050c0259afa57, type: 2}
   attack: {fileID: 11400000, guid: 8870ad2b58c34435b9ca15d15c2a85bf, type: 2}
-  maxHealth: 100
+  healthScriptableObject: {fileID: 11400000, guid: e8b09eec04be74e0987ee07239ab97f2, type: 2}
   healthBar: {fileID: 5730936789821164550}
 --- !u!114 &4567524268145860807
 MonoBehaviour:
@@ -256,7 +256,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.14999999, y: 0.14999999, z: 0.14999999}
+  m_LocalScale: {x: 0.84, y: 0.84000003, z: 0.84000003}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 5759696996413894154}
@@ -302,7 +302,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 712252fae6ad547b993532b62a6cabab, type: 3}
+  m_Sprite: {fileID: -2135585597343286014, guid: 41aea03fbd84b417289015883b793721, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

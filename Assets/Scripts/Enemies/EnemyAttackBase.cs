@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "Attack")]
 public class EnemyAttackBase : ScriptableObject
 {
     // -------- EDITOR STATS --------
@@ -43,6 +44,7 @@ public class EnemyAttackBase : ScriptableObject
     public float GetMaxAttackDamage { get { return damage; } }
     public float GetCurrentAttackDamage { get { return currentDamage; } }
     public float GetAttackTime { get { return attackTime; } }
+    public float GetAttackCooldown { get { return attackCooldown; } }
 
     public string GetAttackEffectType1 { get { return attackEffectType1; } }
     public float GetAttackEffectValue1 { get { return attackEffectValue1; } }

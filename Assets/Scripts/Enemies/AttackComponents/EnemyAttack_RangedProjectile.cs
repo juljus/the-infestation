@@ -3,57 +3,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Enemy/Attack/RangedHeal")]
-public class EnemyAttack_RangedHeal : EnemyAttackBase
+[CreateAssetMenu(fileName = "Attack", menuName = "Enemy/Attack/RangedProjectile")]
+public class EnemyAttack_RangedProjectile : EnemyAttackBase
 {
     [Header("RangedProjectile")]
     public GameObject projectile;
     public float projectileSpeed;
-    
-    public override void TryAttack(Transform player, Rigidbody2D rigidBody, float playerDistance, EnemyBrain enemyBrain)
+
+    public override void TryAttack(Transform target, Rigidbody2D rigidBody, float playerDistance, EnemyBrain enemyBrain)
     {
-        // select closest enemy with missing health but not self
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        target = null;
-        float closestDistance = Mathf.Infinity;
-        foreach (GameObject enemy in enemies)
+        if (playerDistance <= attackDistance)
         {
-            float distance = Vector2.Distance(enemy.transform.position, rigidBody.position);
-            if (distance < closestDistance && enemy.GetComponent<EnemyBrain>().GetCurrentHealth < enemy.GetComponent<EnemyBrain>().GetMaxHealth && enemy != rigidBody.gameObject)
-            {
-                closestDistance = distance;
-                target = enemy;
-            }
+            enemyBrain.StartCoroutine(AttackCoroutine(target, rigidBody, enemyBrain));
         }
 
-        // if no enemy with missing health select the closest but not self
-        if (target == null)
-        {
-            closestDistance = Mathf.Infinity;
-            foreach (GameObject enemy in enemies)
-            {
-                float distance = Vector2.Distance(enemy.transform.position, rigidBody.position);
-                if (distance < closestDistance && enemy != rigidBody.gameObject)
-                {
-                    closestDistance = distance;
-                    target = enemy;
-                }
-            }
-        }
-
-        // calculate target distance
-        float targetDistance = Vector2.Distance(target.transform.position, rigidBody.position);
-
-        if (targetDistance <= attackDistance)
-        {
-            enemyBrain.StartCoroutine(AttackCoroutine(target.transform, rigidBody, enemyBrain));
-        }
+        this.target = target.gameObject;
     }
 
 
     public override EnemyAttackBase Clone()
     {
-        var clone = ScriptableObject.CreateInstance<EnemyAttack_RangedHeal>();
+        var clone = ScriptableObject.CreateInstance<EnemyAttack_RangedProjectile>();
 
         // copy over editor stats
         clone.damage = damage;
@@ -83,6 +53,15 @@ public class EnemyAttack_RangedHeal : EnemyAttackBase
     }
 
 
+    private void Attack(Transform target, Rigidbody2D rigidBody, EnemyBrain enemyBrain)
+    {
+        GameObject projectileClone = Instantiate(projectile, rigidBody.position, Quaternion.identity);
+        projectileClone.transform.parent = rigidBody.transform;
+
+        enemyBrain.StartCoroutine(AttackCooldownCoroutine());
+    }
+
+
     public override IEnumerator AttackCoroutine(Transform target, Rigidbody2D rigidBody, EnemyBrain enemyBrain)
     {
         attackInProgress = true;
@@ -104,16 +83,6 @@ public class EnemyAttack_RangedHeal : EnemyAttackBase
         Attack(target, rigidBody, enemyBrain);
         attackInProgress = false;
     }
-
-
-    private void Attack(Transform target, Rigidbody2D rigidBody, EnemyBrain enemyBrain)
-    {
-        GameObject projectileClone = Instantiate(projectile, rigidBody.position, Quaternion.identity);
-        projectileClone.transform.parent = rigidBody.transform;
-
-        enemyBrain.StartCoroutine(AttackCooldownCoroutine());
-    }
-
 
     public override IEnumerator AttackCooldownCoroutine()
     {

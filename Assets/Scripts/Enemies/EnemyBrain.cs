@@ -7,18 +7,22 @@ public class EnemyBrain : MonoBehaviour
 {
     [SerializeField] private EnemyMovementBase movement;
     [SerializeField] private EnemyAttackBase attack;
-    [SerializeField] private float maxHealth;
+    [SerializeField] private EnemyHealthScriptableObject healthScriptableObject;
     [SerializeField] private UnityEngine.UI.Image healthBar;
+
     
+    private float maxHealth;
     private float currentHealth;
 
     private GameObject gameManager;
     private GameObject player;
 
     private float playerDistance;
-        
+    
     void Start()
     {
+        maxHealth = healthScriptableObject.maxHealth;
+
         currentHealth = maxHealth;
 
         gameManager = GameObject.Find("GameManager");

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Attack", menuName = "Enemy/Attack/Melee")]
@@ -55,13 +56,17 @@ public class EnemyAttack_Melee : EnemyAttackBase
         //apply status effect 2
         player.GetComponent<EffectSystem>().TakeStatusEffect("öCJ Ü90I+ D9 uoh  osoiv0ew8husv", attackEffectType2, attackEffectValue2, attackEffectDuration2, attackEffectIcon2, attackEffectIsStackable2, attackEffectIsRemovable2);
 
-        enemyBrain.StartCoroutine(AttackCooldownCoroutine());
+        attackInProgress = false;
+        Debug.Log("Attacked player");
+        
+        GameObject.Find("GameManager").GetComponent<SkillHelper>().StartCoroutine(AttackCooldownCoroutine());
     }
 
 
     public override IEnumerator AttackCoroutine(Transform target, Rigidbody2D rigidBody, EnemyBrain enemyBrain)
     {
         attackInProgress = true;
+        Debug.Log("Attacking");
         
         attackTimeRemaining = attackTime;
         while (attackTimeRemaining > 0)
@@ -74,18 +79,18 @@ public class EnemyAttack_Melee : EnemyAttackBase
             }
 
             attackTimeRemaining -= Time.deltaTime;
-            yield return null;
         }
 
         Attack(target, rigidBody, enemyBrain);
-        attackInProgress = false;
     }
 
     public override IEnumerator AttackCooldownCoroutine()
     {
         attackOnCooldown = true;
+        Debug.Log("Attack on cooldown for " + attackCooldown + " seconds");
         yield return new WaitForSeconds(attackCooldown);
         attackOnCooldown = false;
+        Debug.Log("Attack off cooldown");
     }
 
 

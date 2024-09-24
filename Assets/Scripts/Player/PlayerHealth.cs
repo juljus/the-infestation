@@ -27,6 +27,25 @@ public class PlayerHealth : MonoBehaviour, IDataPersistance
         Destroy(gameObject);
     }
 
+    private void AfterHealthChange()
+    {
+        if (currentHealth <= 0)
+        {
+            currentHealth = 0;
+            healthBar.fillAmount = 0;
+            Death();
+        }
+
+        if (currentHealth >= health)
+        {
+            currentHealth = health;
+            healthBar.fillAmount = 1;
+        }
+
+        // update health bar
+        healthBar.fillAmount = currentHealth / health;
+    }
+
 
     public void TakeDamage(float damage, bool byPass = false)
     {
@@ -41,14 +60,7 @@ public class PlayerHealth : MonoBehaviour, IDataPersistance
             takeDamageEvent.Invoke();
         }
 
-        // update health bar
-        healthBar.fillAmount = currentHealth / health;
-        
-        // death
-        if (currentHealth <= 0)
-        {
-            Death();
-        }
+        AfterHealthChange();
     }
 
     
@@ -58,14 +70,7 @@ public class PlayerHealth : MonoBehaviour, IDataPersistance
     {
         currentHealth += heal;
 
-        // if health is above max health, set it to max health
-        if (currentHealth > health)
-        {
-            currentHealth = health;
-        }
-
-        // update health bar
-        healthBar.fillAmount = currentHealth / health;
+        AfterHealthChange();
     }
 
 
@@ -90,6 +95,8 @@ public class PlayerHealth : MonoBehaviour, IDataPersistance
     public void SetCurrentHealth(float newHealth)
     {
         currentHealth = newHealth;
+
+        AfterHealthChange();
     }
 
     public void SetIncomingDamageModForTier4Skills(float mod)

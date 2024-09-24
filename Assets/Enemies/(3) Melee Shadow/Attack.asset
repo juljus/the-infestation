@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98c88c7972e3f4005a464c9e868f55ee, type: 3}
+  m_Name: Attack
+  m_EditorClassIdentifier: 
+  damage: 15
+  attackDistance: 0.75
+  attackRange: 1.25
+  attackTime: 0.2
+  attackCooldown: 0.8
+  attackEffectType1: speedMod
+  attackEffectValue1: 0.4
+  attackEffectDuration1: 1
+  attackEffectIcon1: {fileID: 6105795678443708983, guid: e1cd8ec275ca7490d967cd1c55caff71, type: 3}
+  attackEffectIsStackable1: 0
+  attackEffectIsRemovable1: 1
+  attackEffectType2: 
+  attackEffectValue2: 0
+  attackEffectDuration2: 0
+  attackEffectIcon2: {fileID: 0}
+  attackEffectIsStackable2: 0
+  attackEffectIsRemovable2: 0
+  currentDamage: 0
+  currentAttackTime: 0
+  attackOnCooldown: 0
+  attackTimeRemaining: 0
+  attackInProgress: 0
+  target: {fileID: 0}

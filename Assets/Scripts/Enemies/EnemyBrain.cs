@@ -10,7 +10,7 @@ public class EnemyBrain : MonoBehaviour
     [SerializeField] private EnemyHealthScriptableObject healthScriptableObject;
     [SerializeField] private UnityEngine.UI.Image healthBar;
 
-    
+
     private float maxHealth;
     private float currentHealth;
 
@@ -18,7 +18,7 @@ public class EnemyBrain : MonoBehaviour
     private GameObject player;
 
     private float playerDistance;
-    
+
     void Start()
     {
         maxHealth = healthScriptableObject.maxHealth;
@@ -36,12 +36,14 @@ public class EnemyBrain : MonoBehaviour
     {
         if (attack.attackInProgress == false)
         {
+            print("Moving");
             playerDistance = Vector2.Distance(player.transform.position, transform.position);
             movement.Move(player.transform, GetComponent<Rigidbody2D>(), playerDistance);
         }
 
         if (attack.attackOnCooldown == false && attack.attackInProgress == false)
         {
+            print("Attacking");
             playerDistance = Vector2.Distance(player.transform.position, transform.position);
             attack.TryAttack(player.transform, GetComponent<Rigidbody2D>(), playerDistance, this);
         }

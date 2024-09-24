@@ -3,9 +3,14 @@ using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Movement", menuName = "Enemy/Movement/PlayerSeeking")]
-public class EnemyMovement_PlayerSeeking : EnemyMovementBase
+[CreateAssetMenu(fileName = "Movement", menuName = "Enemy/Movement/PlayerDistanceKeeping")]
+public class EnemyMovement_PlayerDistanceKeeping : EnemyMovementBase
 {
+    // NB: This one can NOT be edited in the editor
+    private float runDistance = 3f;
+    // --------------------------------------------
+
+
     private bool isAggroed = false;
 
     public override void Move(Transform player, Rigidbody2D rigidBody, float playerDistance)
@@ -25,11 +30,16 @@ public class EnemyMovement_PlayerSeeking : EnemyMovementBase
         {
             rigidBody.position = Vector2.MoveTowards(rigidBody.position, target.transform.position, currentSpeed * Time.deltaTime);
         }
+
+        if (playerDistance <= runDistance)
+        {
+            rigidBody.position = Vector2.MoveTowards(rigidBody.position, target.transform.position, -currentSpeed * Time.deltaTime);
+        }
     }
 
     public override EnemyMovementBase Clone()
     {
-        var clone = ScriptableObject.CreateInstance<EnemyMovement_PlayerSeeking>();
+        var clone = ScriptableObject.CreateInstance<EnemyMovement_PlayerDistanceKeeping>();
 
         // copy over editor stats
         clone.aggroRange = aggroRange;

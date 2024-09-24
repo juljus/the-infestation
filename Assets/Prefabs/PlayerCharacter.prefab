@@ -264,6 +264,8 @@ GameObject:
   - component: {fileID: 5883217786451213188}
   - component: {fileID: 1181520342239279695}
   - component: {fileID: 4347389475251710116}
+  - component: {fileID: 80173113743840278}
+  - component: {fileID: 2133419073390975505}
   - component: {fileID: 12590781615762167}
   - component: {fileID: 6726712073817339066}
   - component: {fileID: 5859907706964566665}
@@ -324,6 +326,43 @@ MonoBehaviour:
   takeDamageEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &80173113743840278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2416486116978143486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ac559512a35c4fa2b194e6494a970ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackBtn: {fileID: 0}
+  currentAttackDamage: 0
+  currentAttackTime: 0
+  currentAttackCooldown: 0
+  playerAttackEvent:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &2133419073390975505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2416486116978143486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74823905ea73c43dfb1a0ddaefcce166, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skill0: {fileID: 0}
+  skill0Button: {fileID: 0}
+  skill1: {fileID: 0}
+  skill1Button: {fileID: 0}
+  skill2: {fileID: 0}
+  skill2Button: {fileID: 0}
 --- !u!114 &12590781615762167
 MonoBehaviour:
   m_ObjectHideFlags: 0

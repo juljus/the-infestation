@@ -72,7 +72,6 @@ public class EnemyBrain : MonoBehaviour
         {
             GetComponent<EnemyBrain>().Death();
         }
-
     }
 
     public void Heal(float heal)

@@ -30,12 +30,26 @@ public class BossScript : MonoBehaviour, IDataPersistance
         }
     }
 
+    public void ResetBossId()
+    {
+        lastBossId = 0;
+
+        GetComponent<MapCompletion>().ResetToFistMap();
+    }
+
 
     public void BossKilled()
     {
         lastBossId++;
 
         GetComponent<MapCompletion>().ProgressToNextMap();
+    }
+
+
+    // getters
+    public int GetLastBossId
+    {
+        get { return lastBossId; }
     }
 
 

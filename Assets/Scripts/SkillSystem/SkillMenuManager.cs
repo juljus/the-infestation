@@ -14,14 +14,14 @@ public class SkillMenuManager : MonoBehaviour, IDataPersistance
     [SerializeField] private string[] skillIDs;
     private PlayerScriptableObject playerScriptableObject;
     private bool[][] learnedSkills;
-    private int[] skillTierUnlockLevels = {1, 2, 4, 7};
+    private int[] skillTierUnlockLastBossId = {0, 1, 2, 3};
 
     private bool[] availableSkills = new bool[15];
     private bool[] selectedCharacterLearnedSkills;
 
     private int currentSkillIndex;
 
-    private int playerLevel;
+    private int lastBossId = 0;
     private int selectedCharacter;
 
     [Header("SkillPreview")]
@@ -119,6 +119,9 @@ public class SkillMenuManager : MonoBehaviour, IDataPersistance
 
     public void AvailableSkillList()
     {
+        // get last boss id
+        lastBossId = transform.GetComponent<BossScript>().GetLastBossId;
+
         // find the last learned skill
         int lastLearnedSkill = -1;
         string lastLearnedSkillID = "";
@@ -134,9 +137,6 @@ public class SkillMenuManager : MonoBehaviour, IDataPersistance
         {
             // get the last learned skill ID
             lastLearnedSkillID = skillIDs[lastLearnedSkill];
-
-            // get player level
-            playerLevel = transform.GetComponent<LevelManager>().GetPlayerLevel;
 
             // set all skills to unavailable
             for (int i = 0; i < skillButtons.Length; i++)
@@ -159,19 +159,19 @@ public class SkillMenuManager : MonoBehaviour, IDataPersistance
                 }
 
                 // check if the player can learn tier 1 skills
-                if (skillIDs[i].Length == 3 && playerLevel < skillTierUnlockLevels[1])
+                if (skillIDs[i].Length == 3 && lastBossId < skillTierUnlockLastBossId[1])
                 {
                     availableSkills[i] = false;
                 }
 
                 // check if the player can learn tier 2 skills
-                if (skillIDs[i].Length == 5 && playerLevel < skillTierUnlockLevels[2])
+                if (skillIDs[i].Length == 5 && lastBossId < skillTierUnlockLastBossId[2])
                 {
                     availableSkills[i] = false;
                 }
 
                 // check if the player can learn tier 3 skills
-                if (skillIDs[i].Length == 7 && playerLevel < skillTierUnlockLevels[3])
+                if (skillIDs[i].Length == 7 && lastBossId < skillTierUnlockLastBossId[3])
                 {
                     availableSkills[i] = false;
                 }
@@ -179,9 +179,6 @@ public class SkillMenuManager : MonoBehaviour, IDataPersistance
         }
         else
         {
-            // get player level
-            playerLevel = transform.GetComponent<LevelManager>().GetPlayerLevel;
-
             // set all skills to unavailable
             for (int i = 0; i < skillButtons.Length; i++)
             {
@@ -189,7 +186,7 @@ public class SkillMenuManager : MonoBehaviour, IDataPersistance
             }
 
             // check if the player can learn tier 0 skills
-            if (playerLevel >= skillTierUnlockLevels[0])
+            if (lastBossId >= skillTierUnlockLastBossId[0])
             {
                 availableSkills[0] = true;
             }

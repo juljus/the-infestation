@@ -103,6 +103,19 @@ public class MapCompletion : MonoBehaviour, IDataPersistance
         }
     }
 
+    public void ResetToFistMap()
+    {
+        currentMapId = 0;
+        currentKills = 0;
+        currentStructures = 0;
+
+        mapText.text = "Map " + (currentMapId) + "/" + numOfMaps;
+        killCompletionCounter.text = currentKills + "/" + killsToComplete;
+        killCompletionBar.transform.GetChild(0).GetComponent<UnityEngine.UI.Image>().fillAmount = (float)currentKills / killsToComplete;
+        structureCompletionBar.transform.GetChild(0).GetChild(0).gameObject.SetActive(false);
+        structureCompletionBar.transform.GetChild(1).GetChild(0).gameObject.SetActive(false);
+    }
+
     
     public void LoadData(GameData data)
     {

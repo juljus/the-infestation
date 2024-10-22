@@ -86,6 +86,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5759696996413894154}
   - component: {fileID: -607941942895923935}
+  - component: {fileID: -7866999227324241770}
   - component: {fileID: 4567524268145860807}
   - component: {fileID: 6173074278540482812}
   - component: {fileID: 4584052061497083260}
@@ -134,8 +135,36 @@ MonoBehaviour:
   attackCooldown: 1
   attackDuration: 0.5
   attackDamage: 10
+  wolfPrefab: {fileID: 841709866427684504, guid: 9877984e19e1c4d08acc69303d675d73, type: 3}
+  summonCooldown: 10
+  summonDuration: 2
+  summonAmount: 3
+  phase2HealthThreshold: 100
+  phase2MovementSpeed: 6
+  phase2AttackCooldown: 0.8
+  phase2AttackDuration: 0.4
+  phase2AttackDamage: 12
+  phase2AttackRange: 1
+  phase2StoppingDistance: 0.4
+  phase2AttackDistance: 0.4
+  phase2SummonCooldown: 8
+  phase2SummonDuration: 1
+  phase2SummonAmount: 6
+  phase2WolfPrefab: {fileID: 841709866427684504, guid: 8841217bc080f407c9e0e15b1961d757, type: 3}
   maxHealth: 200
   healthBar: {fileID: 5730936789821164550}
+--- !u!114 &-7866999227324241770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 841709866427684504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afa57e0badc3642dda72e5c9c6367112, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &4567524268145860807
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -244,6 +273,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5283948590465915951}
   - component: {fileID: 2916467970458146187}
+  - component: {fileID: 3454285839157831516}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -318,6 +348,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &3454285839157831516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5072910361956812392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c33f92c767a0480fb0da16717ff4e2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7535696922062188458
 GameObject:
   m_ObjectHideFlags: 0

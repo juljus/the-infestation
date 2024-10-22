@@ -4,33 +4,60 @@ using UnityEngine;
 
 public class Boss1Script : MonoBehaviour
 {
-    [SerializeField] private float movementSpeed;
-
-    [SerializeField] private float stoppingDistance;
-
-    [SerializeField] private float attackDistance;
-    [SerializeField] private float attackRange;
-
-    [SerializeField] private float attackCooldown;
-    [SerializeField] private float attackDuration;
-
-    [SerializeField] private float attackDamage;
-
-    private bool attackOnCooldown;
-    private bool attackInProgress;
-
+    // general
     private GameObject player;
+    private GameObject gameManager;
+
+    // movement
+    [SerializeField] private float movementSpeed;
+    [SerializeField] private float stoppingDistance;
     private float playerDistance;
 
+    // attack
+    [SerializeField] private float attackDistance;
+    [SerializeField] private float attackRange;
+    [SerializeField] private float attackCooldown;
+    [SerializeField] private float attackDuration;
+    [SerializeField] private float attackDamage;
+    private bool attackOnCooldown;
+    private bool attackInProgress;
     private float attackDurationTimer;
 
-    private GameObject gameManager;
+    // ability 1: summon wolves
+    [SerializeField] private GameObject wolfPrefab;
+    [SerializeField] private float summonCooldown;
+    [SerializeField] private float summonDuration;
+    [SerializeField] private float summonAmount;
+    private bool summonOnCooldown;
+    private bool summonInProgress;
+
+    // phase 2
+    [SerializeField] private float phase2HealthThreshold;
+    [SerializeField] private float phase2MovementSpeed;
+    [SerializeField] private float phase2AttackCooldown;
+    [SerializeField] private float phase2AttackDuration;
+    [SerializeField] private float phase2AttackDamage;
+    [SerializeField] private float phase2AttackRange;
+    [SerializeField] private float phase2StoppingDistance;
+    [SerializeField] private float phase2AttackDistance;
+    [SerializeField] private float phase2SummonCooldown;
+    [SerializeField] private float phase2SummonDuration;
+    [SerializeField] private float phase2SummonAmount;
+    [SerializeField] private GameObject phase2WolfPrefab;
+    private bool phase2;
+
 
     // Start is called before the first frame update
     void Start()
     {
         gameManager = GameObject.Find("GameManager");
         player = GameObject.FindGameObjectWithTag("Player");
+
+        // HEALTH STUFF ---------------
+        currentHealth = maxHealth;
+        // ----------------------------
+        
+        StartCoroutine(SummonCooldown());
     }
 
     // Update is called once per frame
@@ -38,7 +65,31 @@ public class Boss1Script : MonoBehaviour
     {
         playerDistance = Vector2.Distance(player.transform.position, transform.position);
 
-        if (playerDistance <= attackDistance && attackOnCooldown == false && attackInProgress == false)
+        if (currentHealth <= phase2HealthThreshold && phase2 == false)
+        {
+            phase2 = true;
+            movementSpeed = phase2MovementSpeed;
+            attackCooldown = phase2AttackCooldown;
+            attackDuration = phase2AttackDuration;
+            attackDamage = phase2AttackDamage;
+            attackRange = phase2AttackRange;
+            summonCooldown = phase2SummonCooldown;
+            summonDuration = phase2SummonDuration;
+            summonAmount = phase2SummonAmount;
+            wolfPrefab = phase2WolfPrefab;
+
+        }
+
+        if (attackInProgress == true || summonInProgress == true)
+        {
+            return;
+        }
+
+        if (summonOnCooldown == false)
+        {
+            StartCoroutine(Summon());
+        }
+        else if (playerDistance <= attackDistance && attackOnCooldown == false && attackInProgress == false)
         {
             Attack();
         }
@@ -86,6 +137,31 @@ public class Boss1Script : MonoBehaviour
         }
     }
 
+    private IEnumerator Summon()
+    {
+        summonInProgress = true;
+
+        for (int i = 0; i < summonAmount; i++)
+        {
+            yield return new WaitForSeconds(summonDuration);
+            Instantiate(wolfPrefab, transform.position, Quaternion.identity);
+        }
+
+        summonOnCooldown = true;
+        summonInProgress = false;
+        StartCoroutine(SummonCooldown());
+    }
+
+    private IEnumerator SummonCooldown()
+    {
+        summonOnCooldown = true;
+
+        yield return new WaitForSeconds(summonCooldown);
+
+        summonOnCooldown = false;
+    }
+
+    // COROUTINES ---------------------
     private IEnumerator AttackCooldown()
     {
         attackOnCooldown = true;

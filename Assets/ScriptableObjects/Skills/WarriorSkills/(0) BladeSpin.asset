@@ -20,6 +20,6 @@ MonoBehaviour:
   activeTime: 1
   isPassive: 0
   castRange: 0
-  range: 2
-  bonusDamage: 60
-  attackDamageModifier: 2
+  range: 3
+  bonusDamage: 120
+  attackDamageModifier: 0

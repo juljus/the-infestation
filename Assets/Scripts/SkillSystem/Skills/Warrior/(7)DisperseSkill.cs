@@ -76,7 +76,10 @@ public class DisperseSkill : Skill
         {
             if (hitColliders[i] != null)
             {
-                hitColliders[i].GetComponent<EnemyBrain>().TakeDamage(reflectDamage);
+                try { hitColliders[i].GetComponent<EnemyBrain>().TakeDamage(reflectDamage); }
+                catch {}
+                try { hitColliders[i].GetComponent<BossDamageCatcher>().TakeDamage(reflectDamage); }
+                catch{}
             }
         }
     }

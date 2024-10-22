@@ -36,7 +36,10 @@ public class BladeSpinSkill : Skill
         {
             if (enemy.tag == "Enemy")
             {
-                enemy.GetComponent<EnemyBrain>().TakeDamage(dealDamage);
+                try { enemy.GetComponent<EnemyBrain>().TakeDamage(dealDamage); }
+                catch {}
+                try { enemy.GetComponent<BossDamageCatcher>().TakeDamage(dealDamage); }
+                catch{}
             }
         }
 

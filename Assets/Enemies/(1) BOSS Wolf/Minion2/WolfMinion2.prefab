@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 656221980571824589}
   - component: {fileID: 5484579742989409645}
   m_Layer: 0
-  m_Name: (3) Melee Skeleton
+  m_Name: WolfMinion2
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -127,9 +127,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45f47dcceb34d4cd7877d8dd5edd21e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movement: {fileID: 11400000, guid: f360d2aefa8294722a31bb918bd2a255, type: 2}
-  attack: {fileID: 11400000, guid: ca0023ab2813a42a795834c6ad34ddc7, type: 2}
-  healthScriptableObject: {fileID: 11400000, guid: 69eeb5c7ca94141afb196d5b9d4255b0, type: 2}
+  movement: {fileID: 11400000, guid: 6c49552f3b12340a094ef87cef1926c1, type: 2}
+  attack: {fileID: 11400000, guid: adaf6070ee9344581a424e626675dbfa, type: 2}
+  healthScriptableObject: {fileID: 11400000, guid: f60d915e7d2a845679f6062b1ed17d78, type: 2}
   healthBar: {fileID: 5730936789821164550}
 --- !u!114 &4567524268145860807
 MonoBehaviour:
@@ -239,7 +239,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5283948590465915951}
   - component: {fileID: 2916467970458146187}
-  - component: {fileID: 5290783702510419645}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -257,7 +256,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.9, y: 0.9, z: 0.9}
+  m_LocalScale: {x: 0.48, y: 0.48, z: 0.48}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 5759696996413894154}
@@ -303,7 +302,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: 850f4a585d7e84aa5a67c874d3488e10, type: 3}
+  m_Sprite: {fileID: -9095717837082945937, guid: c6afe3d565c2946228c675460f7511dd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -314,18 +313,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5290783702510419645
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5072910361956812392}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c33f92c767a0480fb0da16717ff4e2d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7535696922062188458
 GameObject:
   m_ObjectHideFlags: 0

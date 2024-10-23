@@ -6,15 +6,21 @@ public class BossDamageCatcher : MonoBehaviour
 {
     public void TakeDamage(float damage)
     {
-        transform.GetComponent<Boss1Script>().TakeDamage(damage);
-        // transform.GetComponent<Boss2Script>().TakeDamage(damage);
-        // transform.GetComponent<Boss3Script>().TakeDamage(damage);
+        try { transform.GetComponent<Boss1Script>().TakeDamage(damage); }
+        catch {}
+        try { transform.GetComponent<Boss2Script>().TakeDamage(damage); }
+        catch {}
+        try { transform.GetComponent<Boss3Script>().TakeDamage(damage); }
+        catch {}
     }
 
     public void Heal(float heal)
     {
-        transform.GetComponent<Boss1Script>().Heal(heal);
-        // transform.GetComponent<Boss2Script>().Heal(heal);
-        // transform.GetComponent<Boss3Script>().Heal(heal);
+        try { transform.GetComponent<Boss1Script>().Heal(heal); }
+        catch {}
+        try { transform.GetComponent<Boss2Script>().Heal(heal); }
+        catch {}
+        try { transform.GetComponent<Boss3Script>().Heal(heal); }
+        catch {}
     }
 }

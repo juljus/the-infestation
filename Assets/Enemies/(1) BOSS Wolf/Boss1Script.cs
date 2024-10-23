@@ -152,6 +152,7 @@ public class Boss1Script : MonoBehaviour
         StartCoroutine(SummonCooldown());
     }
 
+    // COROUTINES ---------------------
     private IEnumerator SummonCooldown()
     {
         summonOnCooldown = true;
@@ -161,7 +162,6 @@ public class Boss1Script : MonoBehaviour
         summonOnCooldown = false;
     }
 
-    // COROUTINES ---------------------
     private IEnumerator AttackCooldown()
     {
         attackOnCooldown = true;

@@ -15,6 +15,6 @@ MonoBehaviour:
   aggroRange: 9999
   deaggroRange: 9999
   stoppingDistance: 0.5
-  speed: 4
+  speed: 6
   currentSpeed: 0
   target: {fileID: 0}

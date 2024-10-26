@@ -25,6 +25,7 @@ public class EnemyMovementBase : ScriptableObject
 
     // ---------- SETTERS ----------
     public void SetSpeed(float newSpeed) { currentSpeed = newSpeed; }
+    public void SetMaxSpeed(float newMaxSpeed) { speed = newMaxSpeed; }
 
 
     // ---------- VIRTUAL FUNCTIONS ----------

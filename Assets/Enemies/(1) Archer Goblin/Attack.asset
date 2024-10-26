@@ -37,3 +37,4 @@ MonoBehaviour:
   target: {fileID: 0}
   projectile: {fileID: 9085602268992797658, guid: db4ba7359709a46a3b7d967fa6b6e9b5, type: 3}
   projectileSpeed: 10
+  projectileArcHeight: 1.5

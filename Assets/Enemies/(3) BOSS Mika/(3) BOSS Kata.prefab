@@ -85,7 +85,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5759696996413894154}
-  - component: {fileID: 5778050328786064090}
+  - component: {fileID: -7180478512919081167}
   - component: {fileID: -7866999227324241770}
   - component: {fileID: 4567524268145860807}
   - component: {fileID: 6173074278540482812}
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 656221980571824589}
   - component: {fileID: 5484579742989409645}
   m_Layer: 0
-  m_Name: (2) BOSS Skeleton
+  m_Name: (3) BOSS Kata
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -116,7 +116,7 @@ Transform:
   - {fileID: 5283948590465915951}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5778050328786064090
+--- !u!114 &-7180478512919081167
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -125,32 +125,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 841709866427684504}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1146217d84e543af845ca182049efd4, type: 3}
+  m_Script: {fileID: 11500000, guid: cf621ebb13f9b48c18f9ed188623f1c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 3
-  stoppingRangeMin: 5
-  stoppingRangeMax: 6
-  attackDistance: 5
-  attackRange: 7
-  attackCooldown: 2
-  attackDuration: 0.8
+  movementSpeed: 4
+  stoppingDistance: 0.5
+  attackDistance: 0.5
+  attackRange: 1
+  attackCooldown: 3
+  attackDuration: 1
   attackDamage: 10
-  projectileSpeed: 0
-  arrowPrefab: {fileID: 9085602268992797658, guid: e62affeedce214bbab4b0bacea48810d, type: 3}
-  arrowRainArrowPrefab: {fileID: 9085602268992797658, guid: 12298a16b563542a3947c97302af6df8, type: 3}
-  arrowRainCooldown: 10
-  arrowRainDuration: 3
-  arrowRainAmount: 120
-  arrowRainArea: 8
-  arrowRainArrowSpeed: 2
-  arrowRainArrowDamage: 15
-  arrowRainArrowArea: 2.5
-  arrowRainTriggerDistance: 5
-  rootCooldown: 8
-  rootDuration: 3
-  rootCastTime: 1
-  rootIcon: {fileID: 6105795678443708983, guid: e1cd8ec275ca7490d967cd1c55caff71, type: 3}
+  smashCooldown: 6
+  smashCastTime: 1
+  smashDistance: 0.5
+  smashDamage: 40
+  smashRange: 2
+  smashEffectDuration: 5
+  smashEffectValue: 0.4
+  smashEffectIcon: {fileID: 1888989378498572931, guid: ae47331325ec1466ba6a8e7b247cf581, type: 3}
   maxHealth: 300
   healthBar: {fileID: 5730936789821164550}
 --- !u!114 &-7866999227324241770

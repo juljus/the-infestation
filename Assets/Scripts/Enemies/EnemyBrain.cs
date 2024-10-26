@@ -19,6 +19,8 @@ public class EnemyBrain : MonoBehaviour
 
     private float playerDistance;
 
+    private bool isStunned;
+
     void Start()
     {
         maxHealth = healthScriptableObject.maxHealth;
@@ -34,6 +36,11 @@ public class EnemyBrain : MonoBehaviour
 
     void Update()
     {
+        if (isStunned)
+        {
+            return;
+        }
+
         if (attack.attackInProgress == false)
         {
             print("Moving");
@@ -97,4 +104,6 @@ public class EnemyBrain : MonoBehaviour
 
     //--------- SETTERS ---------
     public void SetCurrentHealth(float newHealth) { currentHealth = newHealth; }
+
+    public bool SetIfStunned { set { isStunned = value; } }
 }

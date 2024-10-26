@@ -12,7 +12,8 @@ public class Boss2Script : MonoBehaviour
 
     // movement
     [SerializeField] private float movementSpeed;
-    [SerializeField] private float stoppingDistance;
+    [SerializeField] private float stoppingRangeMin;
+    [SerializeField] private float stoppingRangeMax;
     private float playerDistance;
 
     // attack
@@ -23,6 +24,7 @@ public class Boss2Script : MonoBehaviour
     [SerializeField] private float attackDamage;
     [SerializeField] private float projectileSpeed;
     [SerializeField] private GameObject arrowPrefab;
+    [SerializeField] private float projectileArcHeight;
     private bool attackOnCooldown;
     private bool attackInProgress;
     private float attackDurationTimer;
@@ -43,7 +45,6 @@ public class Boss2Script : MonoBehaviour
     // ability 2: root
     [SerializeField] private float rootCooldown;
     [SerializeField] private float rootDuration;
-    [SerializeField] private float rootRange;
     [SerializeField] private float rootCastTime;
     [SerializeField] private UnityEngine.UI.Image rootIcon;
     private bool rootOnCooldown;
@@ -53,6 +54,9 @@ public class Boss2Script : MonoBehaviour
     {
         gameManager = GameObject.Find("GameManager");
         player = gameManager.GetComponent<PlayerManager>().GetPlayer;
+
+        StartCoroutine(RootCooldown());
+        StartCoroutine(ArrowRainCooldown());
 
         // HEALTH STUFF ---------------
         currentHealth = maxHealth;
@@ -166,13 +170,23 @@ public class Boss2Script : MonoBehaviour
 
     private void Move()
     {
-        if (playerDistance > stoppingDistance)
+        if (playerDistance > stoppingRangeMax)
         {
+            // move towards player
+            print("move towards player");
             transform.position = Vector2.MoveTowards(transform.position, player.transform.position, movementSpeed * Time.deltaTime);
+        }
+        else if (playerDistance < stoppingRangeMin)
+        {
+            // move away from player
+            print("move away from player");
+            transform.position = Vector2.MoveTowards(transform.position, player.transform.position, -movementSpeed * Time.deltaTime);
         }
         else 
         {
-            // do nothing
+            // // move sideways
+            // print("move sideways");
+            // transform.position = Vector2.MoveTowards(transform.position, new Vector2(player.transform.position.x, transform.position.y), movementSpeed * Time.deltaTime);
         }
     }
 
@@ -250,5 +264,10 @@ public class Boss2Script : MonoBehaviour
     public float GetAttackDamage
     {
         get { return attackDamage; }
+    }
+
+    public float GetProjectileArcHeight
+    {
+        get { return projectileArcHeight; }
     }
 }

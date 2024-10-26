@@ -58,8 +58,6 @@ public class Boss2ArrowRainProjectile : MonoBehaviour
         {
             Terminate();
         }
-        
-        
     }
 
     private void Terminate()

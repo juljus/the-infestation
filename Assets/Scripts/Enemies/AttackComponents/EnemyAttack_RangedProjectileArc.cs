@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Attack", menuName = "Enemy/Attack/RangedProjectile")]
-public class EnemyAttack_RangedProjectile : EnemyAttackBase
+public class EnemyAttack_RangedProjectileArc : EnemyAttackBase
 {
     [Header("RangedProjectile")]
     public GameObject projectile;
     public float projectileSpeed;
+    public float projectileArcHeight;
 
     public override void TryAttack(Transform target, Rigidbody2D rigidBody, float playerDistance, EnemyBrain enemyBrain)
     {
@@ -23,7 +24,7 @@ public class EnemyAttack_RangedProjectile : EnemyAttackBase
 
     public override EnemyAttackBase Clone()
     {
-        var clone = ScriptableObject.CreateInstance<EnemyAttack_RangedProjectile>();
+        var clone = ScriptableObject.CreateInstance<EnemyAttack_RangedProjectileArc>();
 
         // copy over editor stats
         clone.damage = damage;
@@ -94,4 +95,5 @@ public class EnemyAttack_RangedProjectile : EnemyAttackBase
 
     // ---------- GETTERS -----------
     public override float GetProjectileSpeed { get { return projectileSpeed; } }
+    public override float GetProjectileArcHeight { get { return projectileArcHeight; } }
 }

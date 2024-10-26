@@ -85,7 +85,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5759696996413894154}
-  - component: {fileID: -607941942895923935}
+  - component: {fileID: 1031156625035509534}
   - component: {fileID: -7866999227324241770}
   - component: {fileID: 4567524268145860807}
   - component: {fileID: 6173074278540482812}
@@ -116,7 +116,7 @@ Transform:
   - {fileID: 5283948590465915951}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-607941942895923935
+--- !u!114 &1031156625035509534
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -125,33 +125,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 841709866427684504}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efcc33f0adfcf40999e4ba7bde394685, type: 3}
+  m_Script: {fileID: 11500000, guid: 45f47dcceb34d4cd7877d8dd5edd21e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 4
-  stoppingDistance: 0.5
-  attackDistance: 0.5
-  attackRange: 1
-  attackCooldown: 1
-  attackDuration: 0.5
-  attackDamage: 10
-  wolfPrefab: {fileID: 841709866427684504, guid: 9877984e19e1c4d08acc69303d675d73, type: 3}
-  summonCooldown: 10
-  summonDuration: 2
-  summonAmount: 3
-  phase2HealthThreshold: 100
-  phase2MovementSpeed: 6
-  phase2AttackCooldown: 0.8
-  phase2AttackDuration: 0.4
-  phase2AttackDamage: 12
-  phase2AttackRange: 1
-  phase2StoppingDistance: 0.4
-  phase2AttackDistance: 0.4
-  phase2SummonCooldown: 8
-  phase2SummonDuration: 1
-  phase2SummonAmount: 6
-  phase2WolfPrefab: {fileID: 841709866427684504, guid: 8841217bc080f407c9e0e15b1961d757, type: 3}
-  maxHealth: 200
+  movement: {fileID: 11400000, guid: 95b771a815e0943f8bf93421416c5275, type: 2}
+  attack: {fileID: 11400000, guid: cd12751f532ff4d8b9a4df1f4ff54c0b, type: 2}
+  healthScriptableObject: {fileID: 11400000, guid: afbbaea8143af490b917bce0d07e913e, type: 2}
   healthBar: {fileID: 5730936789821164550}
 --- !u!114 &-7866999227324241770
 MonoBehaviour:

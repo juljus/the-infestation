@@ -70,6 +70,7 @@ public class EnemyAttackBase : ScriptableObject
 
     // --------- VIRTUAL GETTERS ------------
     public virtual float GetProjectileSpeed { get { return 0; } }
+    public virtual float GetProjectileArcHeight { get { return 0; } }
 
 
     // -------- VIRTUAL FUNCTIONS --------

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Boss3Script : MonoBehaviour
+public class Boss3Script_Mia : MonoBehaviour
 {
     // general
     private GameObject player;

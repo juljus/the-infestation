@@ -7,38 +7,39 @@ using UnityEngine;
 public class Boss2Attack : EnemyAttackBase
 {
     [Header("Boss 2 Extra Stats")]
+
     // general
     [HideInInspector] private GameObject player;
     [HideInInspector] private GameObject gameManager;
     [HideInInspector] private bool justStarted = true;
 
     // attack
+    public float projectileSpeed;
+    public GameObject arrowPrefab;
+    public float projectileArcHeight;
+
     [HideInInspector] private float attackDurationTimer;
 
-    // ability 1: summon wolves
-    public GameObject wolfPrefab;
-    public float summonCooldown;
-    public float summonDuration;
-    public float summonAmount;
+    // ability 1: arrow rain
+    public GameObject arrowRainArrowPrefab;
+    public float arrowRainCooldown;
+    public float arrowRainDuration;
+    public int arrowRainAmount;
+    public float arrowRainArea;
+    public float arrowRainArrowSpeed;
+    public float arrowRainArrowDamage;
+    public float arrowRainArrowArea;
+    public float arrowRainTriggerDistance;
+    [HideInInspector] private bool arrowRainOnCooldown;
+    [HideInInspector] private bool arrowRainInProgress;
 
-    [HideInInspector] private bool summonOnCooldown;
-    [HideInInspector] private bool summonInProgress;
-
-    // phase 2
-    public float phase2HealthThreshold;
-    public float phase2MovementSpeed;
-    public float phase2AttackCooldown;
-    public float phase2AttackDuration;
-    public float phase2AttackDamage;
-    public float phase2AttackRange;
-    public float phase2StoppingDistance;
-    public float phase2AttackDistance;
-    public float phase2SummonCooldown;
-    public float phase2SummonDuration;
-    public float phase2SummonAmount;
-    public GameObject phase2WolfPrefab;
-
-    [HideInInspector] private bool phase2;
+    // ability 2: root
+    public float rootCooldown;
+    public float rootDuration;
+    public float rootCastTime;
+    public UnityEngine.UI.Image rootIcon;
+    [HideInInspector] private bool rootOnCooldown;
+    [HideInInspector] private bool rootInProgress;
 
 
     public override EnemyAttackBase Clone()
@@ -67,23 +68,20 @@ public class Boss2Attack : EnemyAttackBase
         clone.attackEffectIsRemovable2 = attackEffectIsRemovable2;
 
         // extra ones
-        clone.wolfPrefab = wolfPrefab;
-        clone.summonCooldown = summonCooldown;
-        clone.summonAmount = summonAmount;
-        clone.summonDuration = summonDuration;
+        clone.arrowRainArrowPrefab = arrowRainArrowPrefab;
+        clone.arrowRainCooldown = arrowRainCooldown;
+        clone.arrowRainDuration = arrowRainDuration;
+        clone.arrowRainAmount = arrowRainAmount;
+        clone.arrowRainArea = arrowRainArea;
+        clone.arrowRainArrowSpeed = arrowRainArrowSpeed;
+        clone.arrowRainArrowDamage = arrowRainArrowDamage;
+        clone.arrowRainArrowArea = arrowRainArrowArea;
+        clone.arrowRainTriggerDistance = arrowRainTriggerDistance;
 
-        clone.phase2HealthThreshold = phase2HealthThreshold;
-        clone.phase2MovementSpeed = phase2MovementSpeed;
-        clone.phase2AttackCooldown = phase2AttackCooldown;
-        clone.phase2AttackDuration = phase2AttackDuration;
-        clone.phase2AttackDamage = phase2AttackDamage;
-        clone.phase2AttackRange = phase2AttackRange;
-        clone.phase2StoppingDistance = phase2StoppingDistance;
-        clone.phase2AttackDistance = phase2AttackDistance;
-        clone.phase2SummonCooldown = phase2SummonCooldown;
-        clone.phase2SummonDuration = phase2SummonDuration;
-        clone.phase2SummonAmount = phase2SummonAmount;
-        clone.phase2WolfPrefab = phase2WolfPrefab;
+        clone.rootCooldown = rootCooldown;
+        clone.rootDuration = rootDuration;
+        clone.rootCastTime = rootCastTime;
+        clone.rootIcon = rootIcon;
 
         return clone;
     }
@@ -95,29 +93,19 @@ public class Boss2Attack : EnemyAttackBase
             JustStarted(enemyBrain);
         }
 
-        if (enemyBrain.GetCurrentHealth <= phase2HealthThreshold && phase2 == false)
-        {
-            phase2 = true;
-            enemyBrain.GetEnemyMovement.SetMaxSpeed(phase2MovementSpeed);
-            attackCooldown = phase2AttackCooldown;
-            attackTime = phase2AttackDuration;
-            damage = phase2AttackDamage;
-            attackRange = phase2AttackRange;
-            summonCooldown = phase2SummonCooldown;
-            summonDuration = phase2SummonDuration;
-            summonAmount = phase2SummonAmount;
-            wolfPrefab = phase2WolfPrefab;
 
-        }
-
-        if (attackInProgress == true || summonInProgress == true)
+        if (attackInProgress == true || arrowRainInProgress == true || rootInProgress == true)
         {
             return;
         }
 
-        if (summonOnCooldown == false)
+        if (rootOnCooldown == false)
         {
-            enemyBrain.StartCoroutine(Summon(rigidBody, enemyBrain));
+            enemyBrain.StartCoroutine(Root(enemyBrain));
+        }
+        else if (arrowRainOnCooldown == false && playerDistance <= arrowRainTriggerDistance)
+        {
+            enemyBrain.StartCoroutine(ArrowRain(enemyBrain, rigidBody));
         }
         else if (playerDistance <= attackDistance && attackOnCooldown == false && attackInProgress == false)
         {
@@ -130,7 +118,8 @@ public class Boss2Attack : EnemyAttackBase
         gameManager = GameObject.Find("GameManager");
         player = GameObject.FindGameObjectWithTag("Player");
         
-        enemyBrain.StartCoroutine(SummonCooldown());
+        enemyBrain.StartCoroutine(RootCooldown());
+        enemyBrain.StartCoroutine(ArrowRainCooldown());
 
         justStarted = false;
     }
@@ -154,14 +143,16 @@ public class Boss2Attack : EnemyAttackBase
             attackTimeRemaining -= Time.deltaTime;
         }
 
-        Attack(target, rigidBody, enemyBrain);
+        Attack(rigidBody, enemyBrain);
     }
 
 
-    private void Attack(Transform target, Rigidbody2D rigidbody, EnemyBrain enemyBrain)
+    private void Attack(Rigidbody2D rigidbody, EnemyBrain enemyBrain)
     {
-        // deal damage
-        player.GetComponent<PlayerHealth>().TakeDamage(damage);
+        // spawn projectile
+        Debug.Log("Spawning projectile");
+        GameObject projectile = Instantiate(arrowPrefab, rigidbody.transform.position, rigidbody.transform.rotation, rigidbody.transform);
+        Debug.Log("Projectile spawned");
 
         // start cooldown
         attackInProgress = false;
@@ -178,29 +169,60 @@ public class Boss2Attack : EnemyAttackBase
         attackOnCooldown = false;
     }
 
-    private IEnumerator Summon(Rigidbody2D rigidbody, EnemyBrain enemyBrain)
+    private IEnumerator Root(EnemyBrain enemyBrain)
     {
-        summonInProgress = true;
-        attackInProgress = true;
+        rootInProgress = true;
 
-        for (int i = 0; i < summonAmount; i++)
+        yield return new WaitForSeconds(rootCastTime);
+        
+        // root player
+        player.GetComponent<EffectSystem>().TakeStatusEffect("lksajf938hcbo8yaG2378D", "speedMod", 0, rootDuration, rootIcon, false, true, true);
+
+        rootInProgress = false;
+        rootOnCooldown = true;
+        enemyBrain.StartCoroutine(RootCooldown());
+    }
+
+    private IEnumerator RootCooldown()
+    {
+        rootOnCooldown = true;
+
+        yield return new WaitForSeconds(rootCooldown);
+
+        rootOnCooldown = false;
+    }
+
+    private IEnumerator ArrowRain(EnemyBrain enemyBrain, Rigidbody2D rigidbody)
+    {
+        arrowRainInProgress = true;
+
+        for (int i = 0; i < arrowRainAmount; i++)
         {
-            yield return new WaitForSeconds(summonDuration);
-            Instantiate(wolfPrefab, rigidbody.transform.position, Quaternion.identity);
+            Debug.Log("spawn arrow: " + i);
+            Vector2 randomPosition = new Vector2(Random.Range(rigidbody.transform.position.x - arrowRainArea, rigidbody.transform.position.x +arrowRainArea), Random.Range(rigidbody.transform.position.y - arrowRainArea, rigidbody.transform.position.y + arrowRainArea));
+            GameObject arrow = Instantiate(arrowRainArrowPrefab, rigidbody.transform.position, rigidbody.transform.rotation, rigidbody.transform);
+            arrow.GetComponent<Boss2ArrowRainProjectile>().SetTargetPos(randomPosition);
+            arrow.GetComponent<Boss2ArrowRainProjectile>().SetProjectileArea(arrowRainArrowArea);
+            arrow.GetComponent<Boss2ArrowRainProjectile>().SetProjectileSpeed(arrowRainArrowSpeed);
+
+            yield return new WaitForSeconds(arrowRainDuration/arrowRainAmount);
         }
 
-        summonInProgress = false;
-        attackInProgress = false;
-        summonOnCooldown = true;
-        enemyBrain.StartCoroutine(SummonCooldown());
+        arrowRainInProgress = false;
+        arrowRainOnCooldown = true;
+        enemyBrain.StartCoroutine(ArrowRainCooldown());
     }
 
-    private IEnumerator SummonCooldown()
+    private IEnumerator ArrowRainCooldown()
     {
-        summonOnCooldown = true;
+        arrowRainOnCooldown = true;
 
-        yield return new WaitForSeconds(summonCooldown);
+        yield return new WaitForSeconds(arrowRainCooldown);
 
-        summonOnCooldown = false;
+        arrowRainOnCooldown = false;
     }
+
+    // GETTERS
+    public override float GetProjectileSpeed { get { return projectileSpeed; } }
+    public override float GetProjectileArcHeight { get { return projectileArcHeight; } }
 }

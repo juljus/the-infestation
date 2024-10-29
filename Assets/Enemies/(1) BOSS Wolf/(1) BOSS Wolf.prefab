@@ -86,7 +86,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5759696996413894154}
   - component: {fileID: 1031156625035509534}
-  - component: {fileID: -7866999227324241770}
   - component: {fileID: 4567524268145860807}
   - component: {fileID: 6173074278540482812}
   - component: {fileID: 4584052061497083260}
@@ -132,18 +131,6 @@ MonoBehaviour:
   attack: {fileID: 11400000, guid: cd12751f532ff4d8b9a4df1f4ff54c0b, type: 2}
   healthScriptableObject: {fileID: 11400000, guid: afbbaea8143af490b917bce0d07e913e, type: 2}
   healthBar: {fileID: 5730936789821164550}
---- !u!114 &-7866999227324241770
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 841709866427684504}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afa57e0badc3642dda72e5c9c6367112, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &4567524268145860807
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -85,8 +85,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5759696996413894154}
-  - component: {fileID: 5778050328786064090}
-  - component: {fileID: -7866999227324241770}
+  - component: {fileID: -8469954698539993979}
   - component: {fileID: 4567524268145860807}
   - component: {fileID: 6173074278540482812}
   - component: {fileID: 4584052061497083260}
@@ -116,7 +115,7 @@ Transform:
   - {fileID: 5283948590465915951}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5778050328786064090
+--- !u!114 &-8469954698539993979
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -125,46 +124,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 841709866427684504}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1146217d84e543af845ca182049efd4, type: 3}
+  m_Script: {fileID: 11500000, guid: 45f47dcceb34d4cd7877d8dd5edd21e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 3
-  stoppingRangeMin: 5
-  stoppingRangeMax: 6
-  attackDistance: 5
-  attackRange: 7
-  attackCooldown: 2
-  attackDuration: 0.8
-  attackDamage: 10
-  projectileSpeed: 0
-  arrowPrefab: {fileID: 9085602268992797658, guid: e62affeedce214bbab4b0bacea48810d, type: 3}
-  arrowRainArrowPrefab: {fileID: 9085602268992797658, guid: 12298a16b563542a3947c97302af6df8, type: 3}
-  arrowRainCooldown: 10
-  arrowRainDuration: 3
-  arrowRainAmount: 120
-  arrowRainArea: 8
-  arrowRainArrowSpeed: 2
-  arrowRainArrowDamage: 15
-  arrowRainArrowArea: 2.5
-  arrowRainTriggerDistance: 5
-  rootCooldown: 8
-  rootDuration: 3
-  rootCastTime: 1
-  rootIcon: {fileID: 6105795678443708983, guid: e1cd8ec275ca7490d967cd1c55caff71, type: 3}
-  maxHealth: 300
+  movement: {fileID: 11400000, guid: 793a1a31e9b594024868f26bfa0ddca6, type: 2}
+  attack: {fileID: 11400000, guid: 5178e6c71f4c1449786dd276f54abbf0, type: 2}
+  healthScriptableObject: {fileID: 11400000, guid: e6243aecdd45a4caf9e44b801074a8ac, type: 2}
   healthBar: {fileID: 5730936789821164550}
---- !u!114 &-7866999227324241770
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 841709866427684504}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afa57e0badc3642dda72e5c9c6367112, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &4567524268145860807
 MonoBehaviour:
   m_ObjectHideFlags: 0

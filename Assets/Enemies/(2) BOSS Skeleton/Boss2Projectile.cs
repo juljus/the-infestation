@@ -18,9 +18,9 @@ public class Boss2Projectile : MonoBehaviour
         gameManager = GameObject.Find("GameManager");
         player = gameManager.GetComponent<PlayerManager>().GetPlayer;
 
-        projectileSpeed = transform.parent.GetComponent<Boss2Script>().GetProjectileSpeed;
-        attackDamage = transform.parent.GetComponent<Boss2Script>().GetAttackDamage;
-        projectileArcHeight = transform.parent.GetComponent<Boss2Script>().GetProjectileArcHeight;
+        projectileSpeed = transform.parent.GetComponent<EnemyBrain>().GetEnemyAttack.GetProjectileSpeed;
+        attackDamage = transform.parent.GetComponent<EnemyBrain>().GetEnemyAttack.GetCurrentAttackDamage;
+        projectileArcHeight = transform.parent.GetComponent<EnemyBrain>().GetEnemyAttack.GetProjectileArcHeight;
 
         startPos = transform.position;
     }

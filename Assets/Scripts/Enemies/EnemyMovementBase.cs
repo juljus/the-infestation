@@ -11,7 +11,6 @@ public class EnemyMovementBase : ScriptableObject
     public float stoppingDistance;
     public float speed;
 
-
     // ---------- VARIABLES ----------
     [HideInInspector] public float currentSpeed;
 

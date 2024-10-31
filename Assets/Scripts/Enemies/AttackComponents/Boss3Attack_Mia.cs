@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Attack", menuName = "Enemy/Attack/Boss2")]
-public class Boss2Attack : EnemyAttackBase
+[CreateAssetMenu(fileName = "Attack", menuName = "Enemy/Attack/Boss3_Mia")]
+public class Boss3Attack_Mia : EnemyAttackBase
 {
     [Header("Boss 2 Extra Stats")]
 
@@ -44,7 +44,7 @@ public class Boss2Attack : EnemyAttackBase
 
     public override EnemyAttackBase Clone()
     {
-        var clone = ScriptableObject.CreateInstance<Boss2Attack>();
+        var clone = ScriptableObject.CreateInstance<Boss3Attack_Mia>();
 
         // copy over editor stats
         clone.damage = damage;

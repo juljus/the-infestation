@@ -139,7 +139,6 @@ public class Boss1Attack : EnemyAttackBase
     public override IEnumerator AttackCoroutine(Transform target, Rigidbody2D rigidBody, EnemyBrain enemyBrain)
     {
         attackInProgress = true;
-        Debug.Log("Attacking");
         
         attackTimeRemaining = attackTime;
         while (attackTimeRemaining > 0)
@@ -152,6 +151,7 @@ public class Boss1Attack : EnemyAttackBase
             }
 
             attackTimeRemaining -= Time.deltaTime;
+            yield return null;
         }
 
         Attack(target, rigidBody, enemyBrain);

@@ -79,6 +79,7 @@ public class EnemyAttack_Melee : EnemyAttackBase
             }
 
             attackTimeRemaining -= Time.deltaTime;
+            yield return null;
         }
 
         Attack(target, rigidBody, enemyBrain);

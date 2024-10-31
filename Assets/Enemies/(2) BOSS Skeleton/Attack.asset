@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 391ce96e8fdcc443882b25673efcdbe0, type: 3}
   m_Name: Attack
   m_EditorClassIdentifier: 
-  damage: 15
+  damage: 3
   attackDistance: 4
   attackRange: 6
   attackTime: 1
@@ -40,11 +40,11 @@ MonoBehaviour:
   projectileArcHeight: 2
   arrowRainArrowPrefab: {fileID: 9085602268992797658, guid: 12298a16b563542a3947c97302af6df8, type: 3}
   arrowRainCooldown: 10
-  arrowRainDuration: 3
+  arrowRainDuration: 0.5
   arrowRainAmount: 120
   arrowRainArea: 5
   arrowRainArrowSpeed: 3
-  arrowRainArrowDamage: 20
+  arrowRainArrowDamage: 5
   arrowRainArrowArea: 1
   arrowRainTriggerDistance: 4
   rootCooldown: 40

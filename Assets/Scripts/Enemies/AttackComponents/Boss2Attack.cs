@@ -18,8 +18,6 @@ public class Boss2Attack : EnemyAttackBase
     public GameObject arrowPrefab;
     public float projectileArcHeight;
 
-    [HideInInspector] private float attackDurationTimer;
-
     // ability 1: arrow rain
     public GameObject arrowRainArrowPrefab;
     public float arrowRainCooldown;

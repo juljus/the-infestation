@@ -43,6 +43,7 @@ public class PlayerAttack : MonoBehaviour, IDataPersistance
     // --------- PUBLIC FUNCTIONS --------- 
     public void Attack()
     {
+        if (transform.GetComponent<PlayerLogic>().GetIsStunned > 0) { return; }
         if (isAttacking) { return; }
 
         isAttacking = true;

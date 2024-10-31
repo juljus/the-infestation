@@ -9,14 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 391ce96e8fdcc443882b25673efcdbe0, type: 3}
-  m_Name: Attack
+  m_Script: {fileID: 11500000, guid: 69131208be9af43e9b49ec86484cf9d6, type: 3}
+  m_Name: Attack_Kata
   m_EditorClassIdentifier: 
-  damage: 3
-  attackDistance: 4
-  attackRange: 6
+  damage: 10
+  attackDistance: 0.5
+  attackRange: 2
   attackTime: 1
-  attackCooldown: 2
+  attackCooldown: 3
   attackEffectType1: 
   attackEffectValue1: 0
   attackEffectDuration1: 0
@@ -35,19 +35,11 @@ MonoBehaviour:
   attackTimeRemaining: 0
   attackInProgress: 0
   target: {fileID: 0}
-  projectileSpeed: 7
-  arrowPrefab: {fileID: 9085602268992797658, guid: e62affeedce214bbab4b0bacea48810d, type: 3}
-  projectileArcHeight: 2
-  arrowRainArrowPrefab: {fileID: 9085602268992797658, guid: 12298a16b563542a3947c97302af6df8, type: 3}
-  arrowRainCooldown: 10
-  arrowRainDuration: 0.5
-  arrowRainAmount: 120
-  arrowRainArea: 5
-  arrowRainArrowSpeed: 3
-  arrowRainArrowDamage: 5
-  arrowRainArrowArea: 1
-  arrowRainTriggerDistance: 4
-  rootCooldown: 10
-  rootDuration: 2
-  rootCastTime: 1
-  rootIcon: {fileID: 6105795678443708983, guid: e1cd8ec275ca7490d967cd1c55caff71, type: 3}
+  smashCooldown: 10
+  smashCastTime: 2
+  smashDistance: 1
+  smashDamage: 40
+  smashRange: 3
+  smashEffectId: dlksjavo0siem049jkv03
+  smashEffectDuration: 4
+  smashEffectIcon: {fileID: 0}

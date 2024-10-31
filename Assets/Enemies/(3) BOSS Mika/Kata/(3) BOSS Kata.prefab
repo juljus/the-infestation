@@ -85,8 +85,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5759696996413894154}
-  - component: {fileID: -7180478512919081167}
-  - component: {fileID: -7866999227324241770}
+  - component: {fileID: 5420175097786427444}
   - component: {fileID: 4567524268145860807}
   - component: {fileID: 6173074278540482812}
   - component: {fileID: 4584052061497083260}
@@ -116,7 +115,7 @@ Transform:
   - {fileID: 5283948590465915951}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-7180478512919081167
+--- !u!114 &5420175097786427444
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -125,38 +124,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 841709866427684504}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf621ebb13f9b48c18f9ed188623f1c8, type: 3}
+  m_Script: {fileID: 11500000, guid: 45f47dcceb34d4cd7877d8dd5edd21e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 4
-  stoppingDistance: 0.5
-  attackDistance: 0.5
-  attackRange: 1
-  attackCooldown: 3
-  attackDuration: 1
-  attackDamage: 10
-  smashCooldown: 6
-  smashCastTime: 1
-  smashDistance: 0.5
-  smashDamage: 40
-  smashRange: 2
-  smashEffectDuration: 5
-  smashEffectValue: 0.4
-  smashEffectIcon: {fileID: 1888989378498572931, guid: ae47331325ec1466ba6a8e7b247cf581, type: 3}
-  maxHealth: 300
+  movement: {fileID: 11400000, guid: c87d01b21e88f406dbb3d8da24d8c88a, type: 2}
+  attack: {fileID: 11400000, guid: fa2658dd50f8243a3a4c51ad6c17f230, type: 2}
+  healthScriptableObject: {fileID: 11400000, guid: 51b1c60756a914afcbe508abe1bec5ea, type: 2}
   healthBar: {fileID: 5730936789821164550}
---- !u!114 &-7866999227324241770
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 841709866427684504}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afa57e0badc3642dda72e5c9c6367112, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &4567524268145860807
 MonoBehaviour:
   m_ObjectHideFlags: 0

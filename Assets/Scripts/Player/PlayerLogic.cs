@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerLogic : MonoBehaviour
 {
     private PlayerScriptableObject playerScriptableObject;
+
+    private int isStunned;
     
     void Start()
     {
@@ -36,4 +38,11 @@ public class PlayerLogic : MonoBehaviour
         }
 
     }
+
+    // GETTERS
+    public int GetIsStunned { get { return isStunned; } }
+
+    // SETTERS
+    public void Stun() { isStunned ++; }
+    public void UnStun() { isStunned --; }
 }

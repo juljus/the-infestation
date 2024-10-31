@@ -3,43 +3,28 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Attack", menuName = "Enemy/Attack/Boss3_Kata")]
+[CreateAssetMenu(fileName = "Attack_Kata", menuName = "Enemy/Attack/Boss3_Kata")]
 public class Boss3Attack_Kata : EnemyAttackBase
 {
-    [Header("Boss 2 Extra Stats")]
+    [Header("Boss 3 Kata Extra Stats")]
 
     // general
     [HideInInspector] private GameObject player;
     [HideInInspector] private GameObject gameManager;
     [HideInInspector] private bool justStarted = true;
 
-    // attack
-    public float projectileSpeed;
-    public GameObject arrowPrefab;
-    public float projectileArcHeight;
+    // ability 1: smash
+    public float smashCooldown;
+    public float smashCastTime;
+    public float smashDistance;
+    public float smashDamage;
+    public float smashRange;
+    public string smashEffectId;
+    public float smashEffectDuration;
+    public UnityEngine.UI.Image smashEffectIcon;
 
-    [HideInInspector] private float attackDurationTimer;
-
-    // ability 1: arrow rain
-    public GameObject arrowRainArrowPrefab;
-    public float arrowRainCooldown;
-    public float arrowRainDuration;
-    public int arrowRainAmount;
-    public float arrowRainArea;
-    public float arrowRainArrowSpeed;
-    public float arrowRainArrowDamage;
-    public float arrowRainArrowArea;
-    public float arrowRainTriggerDistance;
-    [HideInInspector] private bool arrowRainOnCooldown;
-    [HideInInspector] private bool arrowRainInProgress;
-
-    // ability 2: root
-    public float rootCooldown;
-    public float rootDuration;
-    public float rootCastTime;
-    public UnityEngine.UI.Image rootIcon;
-    [HideInInspector] private bool rootOnCooldown;
-    [HideInInspector] private bool rootInProgress;
+    [HideInInspector] private bool smashInProgress;
+    [HideInInspector] private bool smashOnCooldown;
 
 
     public override EnemyAttackBase Clone()
@@ -68,24 +53,14 @@ public class Boss3Attack_Kata : EnemyAttackBase
         clone.attackEffectIsRemovable2 = attackEffectIsRemovable2;
 
         // extra ones
-        clone.projectileSpeed = projectileSpeed;
-        clone.arrowPrefab = arrowPrefab;
-        clone.projectileArcHeight = projectileArcHeight;
-
-        clone.arrowRainArrowPrefab = arrowRainArrowPrefab;
-        clone.arrowRainCooldown = arrowRainCooldown;
-        clone.arrowRainDuration = arrowRainDuration;
-        clone.arrowRainAmount = arrowRainAmount;
-        clone.arrowRainArea = arrowRainArea;
-        clone.arrowRainArrowSpeed = arrowRainArrowSpeed;
-        clone.arrowRainArrowDamage = arrowRainArrowDamage;
-        clone.arrowRainArrowArea = arrowRainArrowArea;
-        clone.arrowRainTriggerDistance = arrowRainTriggerDistance;
-
-        clone.rootCooldown = rootCooldown;
-        clone.rootDuration = rootDuration;
-        clone.rootCastTime = rootCastTime;
-        clone.rootIcon = rootIcon;
+        clone.smashCooldown = smashCooldown;
+        clone.smashCastTime = smashCastTime;
+        clone.smashDistance = smashDistance;
+        clone.smashDamage = smashDamage;
+        clone.smashRange = smashRange;
+        clone.smashEffectDuration = smashEffectDuration;
+        clone.smashEffectIcon = smashEffectIcon;
+        clone.smashEffectId = smashEffectId;
 
         return clone;
     }
@@ -98,18 +73,15 @@ public class Boss3Attack_Kata : EnemyAttackBase
         }
 
 
-        if (attackInProgress == true || arrowRainInProgress == true || rootInProgress == true)
+        if (attackInProgress == true || smashInProgress == true)
         {
             return;
         }
 
-        if (rootOnCooldown == false)
+
+        if (smashOnCooldown == false && playerDistance <= smashDistance)
         {
-            enemyBrain.StartCoroutine(Root(enemyBrain));
-        }
-        else if (arrowRainOnCooldown == false && playerDistance <= arrowRainTriggerDistance)
-        {
-            enemyBrain.StartCoroutine(ArrowRain(enemyBrain, rigidBody));
+            enemyBrain.StartCoroutine(Smash(enemyBrain, rigidBody));
         }
         else if (playerDistance <= attackDistance && attackOnCooldown == false && attackInProgress == false)
         {
@@ -122,8 +94,7 @@ public class Boss3Attack_Kata : EnemyAttackBase
         gameManager = GameObject.Find("GameManager");
         player = GameObject.FindGameObjectWithTag("Player");
         
-        enemyBrain.StartCoroutine(RootCooldown());
-        enemyBrain.StartCoroutine(ArrowRainCooldown());
+        enemyBrain.StartCoroutine(SmashCooldown());
 
         justStarted = false;
     }
@@ -153,8 +124,8 @@ public class Boss3Attack_Kata : EnemyAttackBase
 
     private void Attack(Rigidbody2D rigidbody, EnemyBrain enemyBrain)
     {
-        // spawn projectile
-        Instantiate(arrowPrefab, rigidbody.transform.position, rigidbody.transform.rotation, rigidbody.transform);
+        // deal damage
+        player.GetComponent<PlayerHealth>().TakeDamage(damage);
 
         // start cooldown
         attackInProgress = false;
@@ -171,59 +142,43 @@ public class Boss3Attack_Kata : EnemyAttackBase
         attackOnCooldown = false;
     }
 
-    private IEnumerator Root(EnemyBrain enemyBrain)
+    private IEnumerator Smash(EnemyBrain enemyBrain, Rigidbody2D rigidbody)
     {
-        rootInProgress = true;
+        smashInProgress = true;
 
-        yield return new WaitForSeconds(rootCastTime);
-        
-        // root player
-        player.GetComponent<EffectSystem>().TakeStatusEffect("lksajf938hcbo8yaG2378D", "speedMod", 0, rootDuration, rootIcon, false, true, true);
+        yield return new WaitForSeconds(smashCastTime);
 
-        rootInProgress = false;
-        rootOnCooldown = true;
-        enemyBrain.StartCoroutine(RootCooldown());
-    }
-
-    private IEnumerator RootCooldown()
-    {
-        rootOnCooldown = true;
-
-        yield return new WaitForSeconds(rootCooldown);
-
-        rootOnCooldown = false;
-    }
-
-    private IEnumerator ArrowRain(EnemyBrain enemyBrain, Rigidbody2D rigidbody)
-    {
-        arrowRainInProgress = true;
-
-        for (int i = 0; i < arrowRainAmount; i++)
+        // if player in smash radius deal damage and effects
+        if (Vector2.Distance(player.transform.position, rigidbody.position) <= smashRange)
         {
-            Vector2 randomPosition = new Vector2(Random.Range(rigidbody.transform.position.x - arrowRainArea, rigidbody.transform.position.x +arrowRainArea), Random.Range(rigidbody.transform.position.y - arrowRainArea, rigidbody.transform.position.y + arrowRainArea));
-            GameObject arrow = Instantiate(arrowRainArrowPrefab, rigidbody.transform.position, rigidbody.transform.rotation, rigidbody.transform);
-            arrow.GetComponent<Boss2ArrowRainProjectile>().SetTargetPos(randomPosition);
-            arrow.GetComponent<Boss2ArrowRainProjectile>().SetProjectileArea(arrowRainArrowArea);
-            arrow.GetComponent<Boss2ArrowRainProjectile>().SetProjectileSpeed(arrowRainArrowSpeed);
-
-            yield return new WaitForSeconds(arrowRainDuration/arrowRainAmount);
+            player.GetComponent<PlayerHealth>().TakeDamage(smashDamage);
+            enemyBrain.StartCoroutine(Stun());
         }
 
-        arrowRainInProgress = false;
-        arrowRainOnCooldown = true;
-        enemyBrain.StartCoroutine(ArrowRainCooldown());
+        smashInProgress = false;
+        smashOnCooldown = true;
+        enemyBrain.StartCoroutine(SmashCooldown());
     }
 
-    private IEnumerator ArrowRainCooldown()
+    private IEnumerator SmashCooldown()
     {
-        arrowRainOnCooldown = true;
+        smashOnCooldown = true;
 
-        yield return new WaitForSeconds(arrowRainCooldown);
+        yield return new WaitForSeconds(smashCooldown);
 
-        arrowRainOnCooldown = false;
+        smashOnCooldown = false;
+    }
+
+    private IEnumerator Stun()
+    {
+        player.GetComponent<PlayerLogic>().Stun();
+        Debug.Log("stun");
+
+        yield return new WaitForSeconds(smashCooldown);
+
+        Debug.Log("unstun");
+        player.GetComponent<PlayerLogic>().UnStun();
     }
 
     // GETTERS
-    public override float GetProjectileSpeed { get { return projectileSpeed; } }
-    public override float GetProjectileArcHeight { get { return projectileArcHeight; } }
 }

@@ -18,7 +18,10 @@ public class PlayerMovement : MonoBehaviour, IDataPersistance
         currentSpeed = speed;
     }
 
-    public void Movement(InputAction.CallbackContext callbackContext) {
+    public void Movement(InputAction.CallbackContext callbackContext)
+    {
+        if (transform.GetComponent<PlayerLogic>().GetIsStunned > 0) { return; }
+
         Vector2 movementInput = callbackContext.ReadValue<Vector2>();
         rigidBody.velocity = new Vector2(movementInput.x * currentSpeed, movementInput.y * currentSpeed);
     }

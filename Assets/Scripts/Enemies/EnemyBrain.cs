@@ -19,7 +19,7 @@ public class EnemyBrain : MonoBehaviour
 
     private float playerDistance;
 
-    private bool isStunned;
+    private int isStunned;
 
     void Start()
     {
@@ -36,7 +36,7 @@ public class EnemyBrain : MonoBehaviour
 
     void Update()
     {
-        if (isStunned)
+        if (isStunned > 0)
         {
             return;
         }
@@ -105,5 +105,6 @@ public class EnemyBrain : MonoBehaviour
     //--------- SETTERS ---------
     public void SetCurrentHealth(float newHealth) { currentHealth = newHealth; }
 
-    public bool SetIfStunned { set { isStunned = value; } }
+    public void Stun() { isStunned ++; }
+    public void UnStun() { isStunned --; }
 }

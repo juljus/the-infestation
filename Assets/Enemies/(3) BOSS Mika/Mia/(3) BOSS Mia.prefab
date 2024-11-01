@@ -127,9 +127,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45f47dcceb34d4cd7877d8dd5edd21e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movement: {fileID: 11400000, guid: c87d01b21e88f406dbb3d8da24d8c88a, type: 2}
-  attack: {fileID: 11400000, guid: fa2658dd50f8243a3a4c51ad6c17f230, type: 2}
-  healthScriptableObject: {fileID: 11400000, guid: 51b1c60756a914afcbe508abe1bec5ea, type: 2}
+  movement: {fileID: 11400000, guid: c0883da057149442f89eac06647d91e7, type: 2}
+  attack: {fileID: 11400000, guid: 1e7f90c3ff85e4fad960d167b363106e, type: 2}
+  healthScriptableObject: {fileID: 11400000, guid: 896a40a93437442968dc6678010f18f4, type: 2}
   healthBar: {fileID: 5730936789821164550}
 --- !u!114 &4567524268145860807
 MonoBehaviour:

@@ -6,40 +6,30 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Attack", menuName = "Enemy/Attack/Boss3_Mia")]
 public class Boss3Attack_Mia : EnemyAttackBase
 {
-    [Header("Boss 2 Extra Stats")]
+    // The second half of the 3rd boss. More agile and tactical, but still melee focused.
+
+    [Header("Boss 3 Mia Extra Stats")]
 
     // general
     [HideInInspector] private GameObject player;
     [HideInInspector] private GameObject gameManager;
     [HideInInspector] private bool justStarted = true;
 
-    // attack
-    public float projectileSpeed;
-    public GameObject arrowPrefab;
-    public float projectileArcHeight;
+    // ability 1: strike (run through the player while dealing damage and applying an effect)
+    public float strikeCooldown;
+    public float strikeCastTime;
+    public float strikeDistance;
+    public float strikeDamage;
+    public float strikeRange;
+    public float strikeSpeed;
+    public float strikeRunThroughDistance;
+    public float strikeDamageRadius;
+    public string strikeEffectId;
+    public float strikeEffectDuration;
+    public UnityEngine.UI.Image strikeEffectIcon;
 
-    [HideInInspector] private float attackDurationTimer;
+    [HideInInspector] private bool strikeOnCooldown;
 
-    // ability 1: arrow rain
-    public GameObject arrowRainArrowPrefab;
-    public float arrowRainCooldown;
-    public float arrowRainDuration;
-    public int arrowRainAmount;
-    public float arrowRainArea;
-    public float arrowRainArrowSpeed;
-    public float arrowRainArrowDamage;
-    public float arrowRainArrowArea;
-    public float arrowRainTriggerDistance;
-    [HideInInspector] private bool arrowRainOnCooldown;
-    [HideInInspector] private bool arrowRainInProgress;
-
-    // ability 2: root
-    public float rootCooldown;
-    public float rootDuration;
-    public float rootCastTime;
-    public UnityEngine.UI.Image rootIcon;
-    [HideInInspector] private bool rootOnCooldown;
-    [HideInInspector] private bool rootInProgress;
 
 
     public override EnemyAttackBase Clone()
@@ -68,24 +58,17 @@ public class Boss3Attack_Mia : EnemyAttackBase
         clone.attackEffectIsRemovable2 = attackEffectIsRemovable2;
 
         // extra ones
-        clone.projectileSpeed = projectileSpeed;
-        clone.arrowPrefab = arrowPrefab;
-        clone.projectileArcHeight = projectileArcHeight;
-
-        clone.arrowRainArrowPrefab = arrowRainArrowPrefab;
-        clone.arrowRainCooldown = arrowRainCooldown;
-        clone.arrowRainDuration = arrowRainDuration;
-        clone.arrowRainAmount = arrowRainAmount;
-        clone.arrowRainArea = arrowRainArea;
-        clone.arrowRainArrowSpeed = arrowRainArrowSpeed;
-        clone.arrowRainArrowDamage = arrowRainArrowDamage;
-        clone.arrowRainArrowArea = arrowRainArrowArea;
-        clone.arrowRainTriggerDistance = arrowRainTriggerDistance;
-
-        clone.rootCooldown = rootCooldown;
-        clone.rootDuration = rootDuration;
-        clone.rootCastTime = rootCastTime;
-        clone.rootIcon = rootIcon;
+        clone.strikeCooldown = strikeCooldown;
+        clone.strikeCastTime = strikeCastTime;
+        clone.strikeDistance = strikeDistance;
+        clone.strikeDamage = strikeDamage;
+        clone.strikeRange = strikeRange;
+        clone.strikeSpeed = strikeSpeed;
+        clone.strikeRunThroughDistance = strikeRunThroughDistance;
+        clone.strikeDamageRadius = strikeDamageRadius;
+        clone.strikeEffectId = strikeEffectId;
+        clone.strikeEffectDuration = strikeEffectDuration;
+        clone.strikeEffectIcon = strikeEffectIcon;
 
         return clone;
     }
@@ -98,18 +81,14 @@ public class Boss3Attack_Mia : EnemyAttackBase
         }
 
 
-        if (attackInProgress == true || arrowRainInProgress == true || rootInProgress == true)
+        if (attackInProgress == true)
         {
             return;
         }
 
-        if (rootOnCooldown == false)
+        if (strikeOnCooldown == false && playerDistance <= strikeDistance)
         {
-            enemyBrain.StartCoroutine(Root(enemyBrain));
-        }
-        else if (arrowRainOnCooldown == false && playerDistance <= arrowRainTriggerDistance)
-        {
-            enemyBrain.StartCoroutine(ArrowRain(enemyBrain, rigidBody));
+            enemyBrain.StartCoroutine(Strike(enemyBrain, rigidBody));
         }
         else if (playerDistance <= attackDistance && attackOnCooldown == false && attackInProgress == false)
         {
@@ -122,8 +101,7 @@ public class Boss3Attack_Mia : EnemyAttackBase
         gameManager = GameObject.Find("GameManager");
         player = GameObject.FindGameObjectWithTag("Player");
         
-        enemyBrain.StartCoroutine(RootCooldown());
-        enemyBrain.StartCoroutine(ArrowRainCooldown());
+        enemyBrain.StartCoroutine(StrikeCooldown());
 
         justStarted = false;
     }
@@ -153,8 +131,6 @@ public class Boss3Attack_Mia : EnemyAttackBase
 
     private void Attack(Rigidbody2D rigidbody, EnemyBrain enemyBrain)
     {
-        // spawn projectile
-        Instantiate(arrowPrefab, rigidbody.transform.position, rigidbody.transform.rotation, rigidbody.transform);
 
         // start cooldown
         attackInProgress = false;
@@ -171,59 +147,41 @@ public class Boss3Attack_Mia : EnemyAttackBase
         attackOnCooldown = false;
     }
 
-    private IEnumerator Root(EnemyBrain enemyBrain)
+    private IEnumerator Strike(EnemyBrain enemyBrain, Rigidbody2D rigidbody)
     {
-        rootInProgress = true;
+        attackInProgress = true;
 
-        yield return new WaitForSeconds(rootCastTime);
-        
-        // root player
-        player.GetComponent<EffectSystem>().TakeStatusEffect("lksajf938hcbo8yaG2378D", "speedMod", 0, rootDuration, rootIcon, false, true, true);
+        yield return new WaitForSeconds(strikeCastTime);
 
-        rootInProgress = false;
-        rootOnCooldown = true;
-        enemyBrain.StartCoroutine(RootCooldown());
-    }
+        // establish the endpoint
+        Vector2 playerPosition = player.transform.position;
+        Vector2 enemyPosition = rigidbody.position;
+        Vector2 direction = playerPosition - enemyPosition;
+        Vector2 playerDistance = direction;
+        direction.Normalize();
 
-    private IEnumerator RootCooldown()
-    {
-        rootOnCooldown = true;
+        Vector2 endPoint = enemyPosition + direction * strikeRunThroughDistance + playerDistance;
 
-        yield return new WaitForSeconds(rootCooldown);
-
-        rootOnCooldown = false;
-    }
-
-    private IEnumerator ArrowRain(EnemyBrain enemyBrain, Rigidbody2D rigidbody)
-    {
-        arrowRainInProgress = true;
-
-        for (int i = 0; i < arrowRainAmount; i++)
+        // move towards the endpoint at strikeSpeed
+        while (Vector2.Distance(rigidbody.position, endPoint) > 0.1f)
         {
-            Vector2 randomPosition = new Vector2(Random.Range(rigidbody.transform.position.x - arrowRainArea, rigidbody.transform.position.x +arrowRainArea), Random.Range(rigidbody.transform.position.y - arrowRainArea, rigidbody.transform.position.y + arrowRainArea));
-            GameObject arrow = Instantiate(arrowRainArrowPrefab, rigidbody.transform.position, rigidbody.transform.rotation, rigidbody.transform);
-            arrow.GetComponent<Boss2ArrowRainProjectile>().SetTargetPos(randomPosition);
-            arrow.GetComponent<Boss2ArrowRainProjectile>().SetProjectileArea(arrowRainArrowArea);
-            arrow.GetComponent<Boss2ArrowRainProjectile>().SetProjectileSpeed(arrowRainArrowSpeed);
-
-            yield return new WaitForSeconds(arrowRainDuration/arrowRainAmount);
+            rigidbody.MovePosition(Vector2.MoveTowards(rigidbody.position, endPoint, strikeSpeed * Time.deltaTime));
+            yield return null;
         }
 
-        arrowRainInProgress = false;
-        arrowRainOnCooldown = true;
-        enemyBrain.StartCoroutine(ArrowRainCooldown());
+        attackInProgress = false;
+        strikeOnCooldown = true;
+        enemyBrain.StartCoroutine(StrikeCooldown());
     }
 
-    private IEnumerator ArrowRainCooldown()
+    private IEnumerator StrikeCooldown()
     {
-        arrowRainOnCooldown = true;
+        strikeOnCooldown = true;
 
-        yield return new WaitForSeconds(arrowRainCooldown);
+        yield return new WaitForSeconds(strikeCooldown);
 
-        arrowRainOnCooldown = false;
+        strikeOnCooldown = false;
     }
 
     // GETTERS
-    public override float GetProjectileSpeed { get { return projectileSpeed; } }
-    public override float GetProjectileArcHeight { get { return projectileArcHeight; } }
 }

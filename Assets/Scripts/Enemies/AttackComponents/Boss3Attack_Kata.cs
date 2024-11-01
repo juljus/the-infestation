@@ -22,8 +22,8 @@ public class Boss3Attack_Kata : EnemyAttackBase
     public string smashEffectId;
     public float smashEffectDuration;
     public UnityEngine.UI.Image smashEffectIcon;
+    public GameObject smashAreaIndicator;
 
-    [HideInInspector] private bool smashInProgress;
     [HideInInspector] private bool smashOnCooldown;
 
 
@@ -61,6 +61,7 @@ public class Boss3Attack_Kata : EnemyAttackBase
         clone.smashEffectDuration = smashEffectDuration;
         clone.smashEffectIcon = smashEffectIcon;
         clone.smashEffectId = smashEffectId;
+        clone.smashAreaIndicator = smashAreaIndicator;
 
         return clone;
     }
@@ -73,7 +74,7 @@ public class Boss3Attack_Kata : EnemyAttackBase
         }
 
 
-        if (attackInProgress == true || smashInProgress == true)
+        if (attackInProgress == true)
         {
             return;
         }
@@ -144,18 +145,29 @@ public class Boss3Attack_Kata : EnemyAttackBase
 
     private IEnumerator Smash(EnemyBrain enemyBrain, Rigidbody2D rigidbody)
     {
-        smashInProgress = true;
+        attackInProgress = true;
 
-        yield return new WaitForSeconds(smashCastTime);
+        float smashTimeRemaining = smashCastTime;
+        GameObject areaIndicator = Instantiate(smashAreaIndicator, rigidbody.position, Quaternion.identity);
+
+        while (smashTimeRemaining > 0)
+        {
+            areaIndicator.transform.localScale = new Vector3((1 - smashTimeRemaining / smashCastTime) * 2 * smashRange, (1 - smashTimeRemaining / smashCastTime) * 2 * smashRange, 1);
+            
+            smashTimeRemaining -= Time.deltaTime;
+            yield return null;
+        }
+
+        Destroy(areaIndicator);
 
         // if player in smash radius deal damage and effects
-        if (Vector2.Distance(player.transform.position, rigidbody.position) <= smashRange)
+        if (Vector2.Distance(player.transform.position, areaIndicator.transform.position) <= smashRange)
         {
             player.GetComponent<PlayerHealth>().TakeDamage(smashDamage);
             enemyBrain.StartCoroutine(Stun());
         }
 
-        smashInProgress = false;
+        attackInProgress = false;
         smashOnCooldown = true;
         enemyBrain.StartCoroutine(SmashCooldown());
     }
@@ -174,7 +186,7 @@ public class Boss3Attack_Kata : EnemyAttackBase
         player.GetComponent<PlayerLogic>().Stun();
         Debug.Log("stun");
 
-        yield return new WaitForSeconds(smashCooldown);
+        yield return new WaitForSeconds(smashEffectDuration);
 
         Debug.Log("unstun");
         player.GetComponent<PlayerLogic>().UnStun();

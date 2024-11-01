@@ -35,11 +35,12 @@ MonoBehaviour:
   attackTimeRemaining: 0
   attackInProgress: 0
   target: {fileID: 0}
-  smashCooldown: 10
-  smashCastTime: 2
+  smashCooldown: 1
+  smashCastTime: 5
   smashDistance: 1
   smashDamage: 40
   smashRange: 3
   smashEffectId: dlksjavo0siem049jkv03
   smashEffectDuration: 4
   smashEffectIcon: {fileID: 0}
+  smashAreaIndicator: {fileID: 6665476947542720273, guid: 52c14543a13ab400589dc6434dd49c94, type: 3}

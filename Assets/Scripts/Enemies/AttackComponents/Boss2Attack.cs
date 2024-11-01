@@ -29,7 +29,6 @@ public class Boss2Attack : EnemyAttackBase
     public float arrowRainArrowArea;
     public float arrowRainTriggerDistance;
     [HideInInspector] private bool arrowRainOnCooldown;
-    [HideInInspector] private bool arrowRainInProgress;
 
     // ability 2: root
     public float rootCooldown;
@@ -37,7 +36,6 @@ public class Boss2Attack : EnemyAttackBase
     public float rootCastTime;
     public UnityEngine.UI.Image rootIcon;
     [HideInInspector] private bool rootOnCooldown;
-    [HideInInspector] private bool rootInProgress;
 
 
     public override EnemyAttackBase Clone()
@@ -96,7 +94,7 @@ public class Boss2Attack : EnemyAttackBase
         }
 
 
-        if (attackInProgress == true || arrowRainInProgress == true || rootInProgress == true)
+        if (attackInProgress == true)
         {
             return;
         }
@@ -171,14 +169,14 @@ public class Boss2Attack : EnemyAttackBase
 
     private IEnumerator Root(EnemyBrain enemyBrain)
     {
-        rootInProgress = true;
+        attackInProgress = true;
 
         yield return new WaitForSeconds(rootCastTime);
         
         // root player
         player.GetComponent<EffectSystem>().TakeStatusEffect("lksajf938hcbo8yaG2378D", "speedMod", 0, rootDuration, rootIcon, false, true, true);
 
-        rootInProgress = false;
+        attackInProgress = false;
         rootOnCooldown = true;
         enemyBrain.StartCoroutine(RootCooldown());
     }
@@ -194,7 +192,7 @@ public class Boss2Attack : EnemyAttackBase
 
     private IEnumerator ArrowRain(EnemyBrain enemyBrain, Rigidbody2D rigidbody)
     {
-        arrowRainInProgress = true;
+        attackInProgress = true;
 
         for (int i = 0; i < arrowRainAmount; i++)
         {
@@ -207,7 +205,7 @@ public class Boss2Attack : EnemyAttackBase
             yield return new WaitForSeconds(arrowRainDuration/arrowRainAmount);
         }
 
-        arrowRainInProgress = false;
+        attackInProgress = false;
         arrowRainOnCooldown = true;
         enemyBrain.StartCoroutine(ArrowRainCooldown());
     }

@@ -22,7 +22,6 @@ public class Boss1Attack : EnemyAttackBase
     public float summonAmount;
 
     [HideInInspector] private bool summonOnCooldown;
-    [HideInInspector] private bool summonInProgress;
 
     // phase 2
     public float phase2HealthThreshold;
@@ -110,7 +109,7 @@ public class Boss1Attack : EnemyAttackBase
 
         }
 
-        if (attackInProgress == true || summonInProgress == true)
+        if (attackInProgress == true)
         {
             return;
         }
@@ -180,7 +179,6 @@ public class Boss1Attack : EnemyAttackBase
 
     private IEnumerator Summon(Rigidbody2D rigidbody, EnemyBrain enemyBrain)
     {
-        summonInProgress = true;
         attackInProgress = true;
 
         for (int i = 0; i < summonAmount; i++)
@@ -189,7 +187,6 @@ public class Boss1Attack : EnemyAttackBase
             Instantiate(wolfPrefab, rigidbody.transform.position, Quaternion.identity);
         }
 
-        summonInProgress = false;
         attackInProgress = false;
         summonOnCooldown = true;
         enemyBrain.StartCoroutine(SummonCooldown());

@@ -11,9 +11,12 @@ public class Boss3Attack_Mia : EnemyAttackBase
     [Header("Boss 3 Mia Extra Stats")]
 
     // general
-    [HideInInspector] private GameObject player;
     [HideInInspector] private GameObject gameManager;
     [HideInInspector] private bool justStarted = true;
+
+    // attack
+    public GameObject projectile;
+    public float projectileSpeed;
 
     // ability 1: strike (run through the player while dealing damage and applying an effect)
     public float strikeCooldown;
@@ -29,6 +32,7 @@ public class Boss3Attack_Mia : EnemyAttackBase
     public UnityEngine.UI.Image strikeEffectIcon;
 
     [HideInInspector] private bool strikeOnCooldown;
+    [HideInInspector] private bool hasStricken = false;
 
 
 
@@ -58,6 +62,9 @@ public class Boss3Attack_Mia : EnemyAttackBase
         clone.attackEffectIsRemovable2 = attackEffectIsRemovable2;
 
         // extra ones
+        clone.projectile = projectile;
+        clone.projectileSpeed = projectileSpeed;
+
         clone.strikeCooldown = strikeCooldown;
         clone.strikeCastTime = strikeCastTime;
         clone.strikeDistance = strikeDistance;
@@ -99,7 +106,7 @@ public class Boss3Attack_Mia : EnemyAttackBase
     private void JustStarted(EnemyBrain enemyBrain)
     {
         gameManager = GameObject.Find("GameManager");
-        player = GameObject.FindGameObjectWithTag("Player");
+        target = GameObject.FindGameObjectWithTag("Player");
         
         enemyBrain.StartCoroutine(StrikeCooldown());
 
@@ -131,6 +138,8 @@ public class Boss3Attack_Mia : EnemyAttackBase
 
     private void Attack(Rigidbody2D rigidbody, EnemyBrain enemyBrain)
     {
+        // spawn the projectile
+        GameObject newProjectile = Instantiate(projectile, rigidbody.transform.position, rigidbody.transform.rotation, rigidbody.transform);
 
         // start cooldown
         attackInProgress = false;
@@ -154,7 +163,7 @@ public class Boss3Attack_Mia : EnemyAttackBase
         yield return new WaitForSeconds(strikeCastTime);
 
         // establish the endpoint
-        Vector2 playerPosition = player.transform.position;
+        Vector2 playerPosition = target.transform.position;
         Vector2 enemyPosition = rigidbody.position;
         Vector2 direction = playerPosition - enemyPosition;
         Vector2 playerDistance = direction;
@@ -165,12 +174,20 @@ public class Boss3Attack_Mia : EnemyAttackBase
         // move towards the endpoint at strikeSpeed
         while (Vector2.Distance(rigidbody.position, endPoint) > 0.1f)
         {
+            // if close to player, deal damage and apply effect
+            if (Vector2.Distance(rigidbody.position, playerPosition) <= strikeDamageRadius && hasStricken == false)
+            {
+                target.GetComponent<PlayerHealth>().TakeDamage(strikeDamage);
+                hasStricken = true;
+            }
+
             rigidbody.MovePosition(Vector2.MoveTowards(rigidbody.position, endPoint, strikeSpeed * Time.deltaTime));
             yield return null;
         }
 
         attackInProgress = false;
         strikeOnCooldown = true;
+        hasStricken = false;
         enemyBrain.StartCoroutine(StrikeCooldown());
     }
 
@@ -184,4 +201,5 @@ public class Boss3Attack_Mia : EnemyAttackBase
     }
 
     // GETTERS
+    public override float GetProjectileSpeed { get { return projectileSpeed; } }
 }

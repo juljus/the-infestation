@@ -59,6 +59,7 @@ public class EnemyProjectile_Arc : MonoBehaviour
 
     void Update()
     {
+        print("projectile speed: " + projectileSpeed);
         targetPos = target.transform.position;
 
         // compute the next position, without arc added in

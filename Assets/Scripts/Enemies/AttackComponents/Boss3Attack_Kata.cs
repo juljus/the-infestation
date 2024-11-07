@@ -164,7 +164,8 @@ public class Boss3Attack_Kata : EnemyAttackBase
         if (Vector2.Distance(player.transform.position, areaIndicator.transform.position) <= smashRange)
         {
             player.GetComponent<PlayerHealth>().TakeDamage(smashDamage);
-            enemyBrain.StartCoroutine(Stun());
+            enemyBrain.StartCoroutine(Stun(smashEffectDuration));
+            player.GetComponent<EffectSystem>().TakeStatusEffect("aosfijofocmw930cqj290j", "speedMod", 1, smashEffectDuration, smashEffectIcon, false, true, true);
         }
 
         attackInProgress = false;
@@ -181,12 +182,12 @@ public class Boss3Attack_Kata : EnemyAttackBase
         smashOnCooldown = false;
     }
 
-    private IEnumerator Stun()
+    private IEnumerator Stun(float duration)
     {
         player.GetComponent<PlayerLogic>().Stun();
         Debug.Log("stun");
 
-        yield return new WaitForSeconds(smashEffectDuration);
+        yield return new WaitForSeconds(duration);
 
         Debug.Log("unstun");
         player.GetComponent<PlayerLogic>().UnStun();

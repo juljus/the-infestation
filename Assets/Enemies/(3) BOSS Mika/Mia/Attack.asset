@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Attack
   m_EditorClassIdentifier: 
   damage: 20
-  attackDistance: 0.5
-  attackRange: 1.5
+  attackDistance: 4
+  attackRange: 5
   attackTime: 0.4
   attackCooldown: 2
   attackEffectType1: 
@@ -35,12 +35,14 @@ MonoBehaviour:
   attackTimeRemaining: 0
   attackInProgress: 0
   target: {fileID: 0}
+  projectile: {fileID: 9085602268992797658, guid: a7fb3947a319b4d95a05c0c90443e94d, type: 3}
+  projectileSpeed: 40
   strikeCooldown: 3
   strikeCastTime: 1
   strikeDistance: 5
   strikeDamage: 45
   strikeRange: 8
-  strikeSpeed: 400
+  strikeSpeed: 300
   strikeRunThroughDistance: 5
   strikeDamageRadius: 0.5
   strikeEffectId: sakd0923jmaq0m3d9qjmpml

@@ -42,5 +42,5 @@ MonoBehaviour:
   smashRange: 3
   smashEffectId: dlksjavo0siem049jkv03
   smashEffectDuration: 4
-  smashEffectIcon: {fileID: 0}
+  smashEffectIcon: {fileID: 4120460849218955196, guid: a164314f8a5fe44b29520350293af418, type: 3}
   smashAreaIndicator: {fileID: 6665476947542720273, guid: 52c14543a13ab400589dc6434dd49c94, type: 3}

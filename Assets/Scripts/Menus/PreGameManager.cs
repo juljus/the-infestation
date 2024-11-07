@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PreGameManager : MonoBehaviour, IDataPersistance
 {
     [SerializeField] private GameObject characterIcon;
+    [SerializeField] private TMPro.TMP_Text characterLevelText;
+
     private int selectedCharacter;
     private int[] slotCharacterTypes;
     private int[] characterLevels;
@@ -23,6 +26,9 @@ public class PreGameManager : MonoBehaviour, IDataPersistance
         {
             Debug.LogError("Invalid character type");
         }
+
+        // display character level
+        characterLevelText.text = "Level: " + characterLevels[selectedCharacter];
     }
 
     public void StartGame()

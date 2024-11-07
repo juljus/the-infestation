@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69131208be9af43e9b49ec86484cf9d6, type: 3}
   m_Name: Attack_Kata
   m_EditorClassIdentifier: 
-  damage: 10
+  damage: 5
   attackDistance: 0.5
   attackRange: 2
   attackTime: 1
@@ -38,7 +38,7 @@ MonoBehaviour:
   smashCooldown: 1
   smashCastTime: 5
   smashDistance: 1
-  smashDamage: 40
+  smashDamage: 25
   smashRange: 3
   smashEffectId: dlksjavo0siem049jkv03
   smashEffectDuration: 4

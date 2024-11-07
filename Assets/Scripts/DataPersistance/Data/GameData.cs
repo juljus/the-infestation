@@ -33,4 +33,8 @@ public class GameData
     public float[] playerAttackCooldown = new float[4];
     public float[] playerMovementSpeed = new float[4];
     public float[] playerHealth = new float[4];
+
+    // settings
+    public float musicVolume;
+    public float sfxVolume;
 }

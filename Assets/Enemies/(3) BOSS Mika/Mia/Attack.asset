@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c795ef87698d4740996f8e933cc3d05, type: 3}
   m_Name: Attack
   m_EditorClassIdentifier: 
-  damage: 20
+  damage: 5
   attackDistance: 4
   attackRange: 5
   attackTime: 0.4
@@ -40,7 +40,7 @@ MonoBehaviour:
   strikeCooldown: 3
   strikeCastTime: 1
   strikeDistance: 5
-  strikeDamage: 45
+  strikeDamage: 25
   strikeRange: 8
   strikeSpeed: 300
   strikeRunThroughDistance: 5

@@ -37,4 +37,9 @@ public class GameData
     // settings
     public float musicVolume;
     public float sfxVolume;
+
+    // enemy placement
+    public List<float> enemyPositionsX = new List<float>();
+    public List<float> enemyPositionsY = new List<float>();
+    public List<int> enemyIDs = new List<int>();
 }

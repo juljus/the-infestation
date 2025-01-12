@@ -51,15 +51,11 @@ public class EnemyMovement_PlayerCircleAndDive : EnemyMovementBase
         float targetAngle = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg - 90f;
 
         // not diving
-        Debug.Log(targetDistance + " " + stoppingDistance + " " + isCooldown + " " + isDiving);
         if ((isCooldown || (targetDistance > stoppingDistance + 0.5f || targetDistance < stoppingDistance - 0.5f)) && isDiving == false)
         {
-            Debug.Log("NOT DIVING");
-            Debug.Log(diveCooldownRemaining);
             // circle around player
             if (targetDistance < stoppingDistance + 0.5f && targetDistance > stoppingDistance - 0.5f)
             {
-                Debug.Log("circle");
                 // change angle perpendicular to player
                 float circleAngle = targetAngle + 90f;
 
@@ -71,7 +67,6 @@ public class EnemyMovement_PlayerCircleAndDive : EnemyMovementBase
             else if (targetDistance < stoppingDistance)
             {
                 // move away from player diagonally
-                Debug.Log("moving away");
                 float moveAwayAngle = targetAngle - 60f;
 
                 Vector2 moveDirection = Quaternion.Euler(0, 0, moveAwayAngle + 180f) * Vector2.up;
@@ -81,7 +76,6 @@ public class EnemyMovement_PlayerCircleAndDive : EnemyMovementBase
             else
             {            
                 // move towards player diagonally
-                Debug.Log("moving towards");
                 float movingTowardsAngle = targetAngle + 60f;
 
                 Vector2 moveDirection = Quaternion.Euler(0, 0, movingTowardsAngle) * Vector2.up;
@@ -91,13 +85,11 @@ public class EnemyMovement_PlayerCircleAndDive : EnemyMovementBase
         // start diving
         else if (isCooldown == false && isDiving == false && targetDistance <= stoppingDistance + 0.5f && targetDistance >= stoppingDistance - 0.5f)
         {
-            Debug.Log("start diving");
             isDiving = true;
         }
         // diving
         else if (isDiving)
         {
-            Debug.Log("DIVING");
             // move towards player
             Vector2 moveDirection = Quaternion.Euler(0, 0, targetAngle) * Vector2.up;
             rigidBody.MovePosition(rigidBody.position + moveDirection * currentSpeed * Time.fixedDeltaTime);
@@ -105,7 +97,6 @@ public class EnemyMovement_PlayerCircleAndDive : EnemyMovementBase
         // stop diving
         if (isDiving && targetDistance < 0.2)
         {
-            Debug.Log("stop diving");
             isDiving = false;
             diveCooldown = rigidBody.gameObject.GetComponent<EnemyBrain>().GetEnemyAttack.GetAttackCooldown;
             diveCooldownRemaining = diveCooldown;

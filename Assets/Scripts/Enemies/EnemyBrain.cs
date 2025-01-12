@@ -43,14 +43,12 @@ public class EnemyBrain : MonoBehaviour
 
         if (attack.attackInProgress == false)
         {
-            print("Moving");
             playerDistance = Vector2.Distance(player.transform.position, transform.position);
             movement.Move(player.transform, GetComponent<Rigidbody2D>(), playerDistance);
         }
 
         if (attack.attackOnCooldown == false && attack.attackInProgress == false)
         {
-            print("Attacking");
             playerDistance = Vector2.Distance(player.transform.position, transform.position);
             attack.TryAttack(player.transform, GetComponent<Rigidbody2D>(), playerDistance, this);
         }

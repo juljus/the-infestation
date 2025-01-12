@@ -23,7 +23,7 @@ public class PlayerAttack : MonoBehaviour, IDataPersistance
 
     private bool isAttacking = false;
     private bool animationToCooldown = false;
-
+    
     
     void Start()
     {
@@ -43,12 +43,14 @@ public class PlayerAttack : MonoBehaviour, IDataPersistance
     // --------- PUBLIC FUNCTIONS --------- 
     public void Attack()
     {
+        print("grrrrr");
+        print("is attacking: " + isAttacking);
         if (transform.GetComponent<PlayerLogic>().GetIsStunned > 0) { return; }
         if (isAttacking) { return; }
 
         isAttacking = true;
 
-        GameObject target = gameManager.GetComponent<TargetManager>().GetTarget;
+        GameObject target = gameManager.GetComponent<TargetManager>().GetTargetSmart();
 
         if (target == null)
         {
@@ -64,23 +66,36 @@ public class PlayerAttack : MonoBehaviour, IDataPersistance
 
         // start attack animation
         UnityEngine.UI.Image attackBtnOverlay = attackBtn.transform.GetChild(0).GetComponent<UnityEngine.UI.Image>();
-        StartCoroutine(AttackTime(attackBtnOverlay));
-
-        // attack
-        playerAttackEvent.Invoke();
+        StartCoroutine(AttackTime(attackBtnOverlay, target));
     }
 
 
     // --------- COROUTINES ---------
-    private IEnumerator AttackTime(UnityEngine.UI.Image attackButtonOverlay)
+    private IEnumerator AttackTime(UnityEngine.UI.Image attackButtonOverlay, GameObject target)
     {
         float time = 0;
 
         while (time < currentAttackTime && !animationToCooldown)
         {
+            if (Vector2.Distance(transform.position, target.transform.position) > attackRange)
+            {
+                attackButtonOverlay.fillAmount = 0;
+                isAttacking = false;
+                yield break;
+            }
+
             time += Time.deltaTime;
             attackButtonOverlay.fillAmount = time / currentAttackTime;
             yield return null;
+        }
+
+        // apply damage
+        if (Vector2.Distance(transform.position, target.transform.position) <= attackRange)
+        {
+            target.GetComponent<EnemyBrain>().TakeDamage(currentAttackDamage);
+
+            // invoke event
+            playerAttackEvent.Invoke();
         }
 
         attackButtonOverlay.GetComponent<UnityEngine.UI.Image>().fillAmount = 1;

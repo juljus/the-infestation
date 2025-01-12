@@ -33,7 +33,7 @@ public class PauseMenu : MonoBehaviour
 
     public void SkillMenu()
     {
-        transform.GetComponent<SkillMenuManager>().AvailableSkillList();
         skillMenu.SetActive(true);
+        transform.GetComponent<SkillMenuManager>().AvailableSkillList();
     }
 }

@@ -12,7 +12,7 @@ public class ShacklesSkill : Skill
     private Collider2D[] hitEnemies;
     private float timeLeft;
 
-    // binds together the target enemy with the closest other enemy, stunning them both.
+    // ABOUT: binds together the target enemy with the closest other enemy, stunning them both.
 
     public override void Activate(GameObject player, SkillHelper skillHelper)
     {   
@@ -67,7 +67,14 @@ public class ShacklesSkill : Skill
         {
             yield break;
         }
-        target.GetComponent<EffectSystem>().TakeStatusEffect(id, "stun", 0, stunDuration);
-        closestEnemy.GetComponent<EffectSystem>().TakeStatusEffect(id, "stun", 0, stunDuration);        
+
+        target.GetComponent<EnemyBrain>().Stun();
+        closestEnemy.GetComponent<EnemyBrain>().Stun();
+
+        yield return new WaitForSeconds(stunDuration);
+
+        target.GetComponent<EnemyBrain>().UnStun();
+        closestEnemy.GetComponent<EnemyBrain>().UnStun();
+
     }
 }

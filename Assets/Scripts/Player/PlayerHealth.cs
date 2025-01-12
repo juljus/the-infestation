@@ -10,8 +10,6 @@ public class PlayerHealth : MonoBehaviour, IDataPersistance
     private float health;
     [SerializeField] private float currentHealth;
 
-    private float incomingDamageModForTier4Skills;
-
     private float lastDamageRecieved;
 
     public UnityEvent takeDamageEvent;
@@ -47,18 +45,11 @@ public class PlayerHealth : MonoBehaviour, IDataPersistance
     }
 
 
-    public void TakeDamage(float damage, bool byPass = false)
+    public void TakeDamage(float damage)
     {
-        if (byPass)
-        {
-            currentHealth -= damage;
-        }
-        else
-        {
-            currentHealth -= damage * incomingDamageModForTier4Skills;
-            lastDamageRecieved = damage;
-            takeDamageEvent.Invoke();
-        }
+        currentHealth -= damage;
+        lastDamageRecieved = damage;
+        takeDamageEvent.Invoke();
 
         AfterHealthChange();
     }
@@ -97,11 +88,6 @@ public class PlayerHealth : MonoBehaviour, IDataPersistance
         currentHealth = newHealth;
 
         AfterHealthChange();
-    }
-
-    public void SetIncomingDamageModForTier4Skills(float mod)
-    {
-        incomingDamageModForTier4Skills = mod;
     }
 
     // IDataPersistance

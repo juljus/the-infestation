@@ -16,7 +16,7 @@ public class GameData
     public long[] characterExperience = new long[4];
 
     // skills
-    public bool[][] learnedSkills = new bool[4][] { new bool[15], new bool[15], new bool[15], new bool[15] };
+    public bool[][] learnedSkills = new bool[4][] { new bool[8], new bool[8], new bool[8], new bool[8] };
 
     // map completion
     public int[] currentMap = new int[4];

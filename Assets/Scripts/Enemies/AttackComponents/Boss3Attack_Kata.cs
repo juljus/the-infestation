@@ -185,11 +185,9 @@ public class Boss3Attack_Kata : EnemyAttackBase
     private IEnumerator Stun(float duration)
     {
         player.GetComponent<PlayerLogic>().Stun();
-        Debug.Log("stun");
 
         yield return new WaitForSeconds(duration);
 
-        Debug.Log("unstun");
         player.GetComponent<PlayerLogic>().UnStun();
     }
 

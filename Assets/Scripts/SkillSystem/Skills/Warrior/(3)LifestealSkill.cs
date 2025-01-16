@@ -7,7 +7,7 @@ using UnityEngine.InputSystem.Interactions;
 [CreateAssetMenu(menuName = "Skills/Warrior/(3)Lifesteal")]
 public class LifestealSkill : Skill
 {
-    // ABOUT: Steals HP from target enemy
+    // *ABOUT: Steals HP from target enemy
 
     public float lifestealAmount;
 

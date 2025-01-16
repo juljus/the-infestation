@@ -12,7 +12,7 @@ public class ShacklesSkill : Skill
     private Collider2D[] hitEnemies;
     private float timeLeft;
 
-    // ABOUT: binds together the target enemy with the closest other enemy, stunning them both.
+    // *ABOUT: binds together the target enemy with the closest other enemy, stunning them both.
 
     public override void Activate(GameObject player, SkillHelper skillHelper)
     {   

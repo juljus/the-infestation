@@ -20,9 +20,9 @@ MonoBehaviour:
   activeTime: 2
   isPassive: 0
   castRange: 7
-  daggerSpeed: 6
+  daggerSpeed: 18
   daggerDamage: 20
-  daggerEffectValue: -20
+  daggerEffectValue: 60
   daggerEffectDuration: 4
   daggerEffectIsStackable: 1
   daggerPrefab: {fileID: 8899282203420938269, guid: 8bdef54ba945d4da6b20ab0f53c96c76, type: 3}

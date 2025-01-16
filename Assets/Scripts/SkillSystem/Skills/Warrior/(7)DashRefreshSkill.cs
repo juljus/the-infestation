@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-// ABOUT: passive - after killing an enemy refreshes the cooldown of your dash skill.
+// *ABOUT: upgrade dash - dashing gives a small damage blocking shield and the cooldown of dash is refreshed when an enemy is killed.
+
 [CreateAssetMenu(menuName = "Skills/Warrior/(12)DashRefresh")]
 public class DashRefreshSkill : Skill
 {
     public UnityEngine.UI.Image effectIcon;
+    public float shieldAmount;
 
     private GameObject player;
 

@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistance
 
     private float speed;
 
-    private Vector2 lastPosition;
+    private Vector2 facingDirection;
 
     void Start()
     {
@@ -26,30 +26,23 @@ public class PlayerMovement : MonoBehaviour, IDataPersistance
 
         Vector2 movementInput = callbackContext.ReadValue<Vector2>();
 
-        lastPosition = rigidBody.position;
+        if (movementInput != Vector2.zero)
+        {
+            facingDirection = movementInput;
+        }
+
         rigidBody.velocity = new Vector2(movementInput.x * currentSpeed, movementInput.y * currentSpeed);
     }
 
     // Getters
     public float GetSpeed
     {
-        get{ return speed; }
+        get { return speed; }
     }
 
-    // FIX: facing direction is always 0,0
-    public Vector2 GetFacingDirection()
+    public Vector2 GetFacingDirection
     {
-        print(rigidBody.position);
-        print(lastPosition);
-
-        Vector2 direction = rigidBody.position - lastPosition;
-
-        if (direction != Vector2.zero)
-        {
-            direction.Normalize();
-        }
-
-        return direction;
+        get { return facingDirection; }
     }
 
     // Setters

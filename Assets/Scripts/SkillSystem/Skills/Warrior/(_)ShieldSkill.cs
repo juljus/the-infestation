@@ -23,7 +23,7 @@ public class ShieldSkill : Skill
         GameObject.Find("GameManager").GetComponent<EnemyLogicManager>().enemyDeathEvent.AddListener(AddShield);
         player.GetComponent<PlayerHealth>().takeDamageEvent.AddListener(AbsorbDamage);
 
-        // FIX: player does not have this attribute
+        // FIXME: player does not have this attribute
         // make player not take damage
         // player.GetComponent<PlayerHealth>().SetIncomingDamageModForTier4Skills(0);
     }
@@ -34,7 +34,7 @@ public class ShieldSkill : Skill
         GameObject.Find("GameManager").GetComponent<EnemyLogicManager>().enemyDeathEvent.RemoveListener(AddShield);
         player.GetComponent<PlayerHealth>().takeDamageEvent.RemoveListener(AbsorbDamage);
 
-        // FIX: player does not have this attribute
+        // FIXME: player does not have this attribute
         // make player take damage
         // player.GetComponent<PlayerHealth>().SetIncomingDamageModForTier4Skills(1);
 

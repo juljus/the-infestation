@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-// ABOUT: passive - applies poison on hit, slowing and damaging the enemy.
+// *ABOUT: passive - applies poison on hit, slowing and damaging the enemy.
 [CreateAssetMenu(menuName = "Skills/Warrior/(11)AttackPoison")]
 public class AttackPoisonSkill : Skill
 {

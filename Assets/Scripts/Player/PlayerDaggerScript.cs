@@ -10,7 +10,6 @@ public class PlayerDaggerScript : MonoBehaviour
     private float daggerEffectValue;
     private float daggerEffectDuration;
     private bool daggerEffectIsStackable;
-    private bool daggerEffectIsRemovable;
 
     // Update is called once per frame
     void Update()
@@ -33,11 +32,14 @@ public class PlayerDaggerScript : MonoBehaviour
         if (other.gameObject == target)
         {
             print("Dagger hit target");
+
             // apply damage
             target.GetComponent<EnemyBrain>().TakeDamage(daggerDamage);
+            print("Dagger dealt " + daggerDamage + " damage");
 
             // apply effect
-            target.GetComponent<EffectSystem>().TakeStatusEffect("kjsbfowfnöwpenäfwapojf0m", "healthMod", daggerEffectValue, daggerEffectDuration, null, daggerEffectIsStackable);
+            target.GetComponent<EffectSystem>().TakeStatusEffect("kjsbfowfnöwpenäfwapojf0m", "healthMod", -daggerEffectValue, daggerEffectDuration, null, daggerEffectIsStackable);
+            print("Dagger applied effect");
 
             Destroy(gameObject);
         }

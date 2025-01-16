@@ -13,7 +13,7 @@ public class EnemyPlacementScript : MonoBehaviour, IDataPersistance
 
     void Start()
     {
-        // FIX: if all enemies are killed, they are all placed again... bad!!
+        // BUG: if all enemies are killed, they are all placed again... bad!!
         if (enemyIDs.Count > 0)
         {
             print("PLACED ENEMIES");

@@ -8,7 +8,7 @@ using UnityEngine.InputSystem.Interactions;
 [CreateAssetMenu(menuName = "Skills/Warrior/(1)DaggerThrow")]
 public class DaggerThrowSkill : Skill
 {
-    // ABOUT: Throws a dagger at the target enemy
+    // *ABOUT: Throws a dagger at the target enemy
 
     public float daggerSpeed;
     public float daggerDamage;
@@ -36,7 +36,6 @@ public class DaggerThrowSkill : Skill
         daggerScript.SetDaggerDamage(daggerDamage);
         daggerScript.SetTarget(target);
 
-        // FIX: dagger effect is not applied
         // set the dagger's effects
         daggerScript.SetDaggerEffectValue(daggerEffectValue);
         daggerScript.SetDaggerEffectDuration(daggerEffectDuration);

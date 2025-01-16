@@ -19,7 +19,7 @@ public class DisperseSkill : Skill
     {
         this.player = player;
 
-        // FIX: player does not have this attribute
+        // BROKEN: player does not have this attribute
         // set incoming damage mod
         // player.GetComponent<PlayerHealth>().SetIncomingDamageModForTier4Skills(1 - damageReflection);
 
@@ -32,7 +32,7 @@ public class DisperseSkill : Skill
 
     public override void Deactivate(GameObject player)
     {
-        // FIX: player does not have this attribute
+        // BROKEN: player does not have this attribute
         // reset incoming damage mod
         // player.GetComponent<PlayerHealth>().SetIncomingDamageModForTier4Skills(1);
 

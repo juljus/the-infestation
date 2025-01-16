@@ -5,7 +5,7 @@ using System.Diagnostics.Tracing;
 using UnityEngine;
 using UnityEngine.InputSystem.Interactions;
 
-// ABOUT: passive - has a chance on each attack to dissapear and launch another attack while invulnerable.
+// *ABOUT: passive - has a chance on each attack to dissapear and launch another attack while invulnerable.
 [CreateAssetMenu(menuName = "Skills/Warrior/(14)SleightOfFist")]
 public class SleightOfFistSkill : Skill
 {

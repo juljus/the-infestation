@@ -58,9 +58,10 @@
     },
     "dotnet.defaultSolution": "praktiline-too.sln",
     "better-comments.tags": [
+
         {
             "tag": "!",
-            "color": "#ffc62c",
+            "color": "#2ce9ff",
             "strikethrough": false,
             "underline": false,
             "backgroundColor": "transparent",

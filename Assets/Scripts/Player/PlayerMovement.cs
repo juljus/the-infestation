@@ -11,9 +11,14 @@ public class PlayerMovement : MonoBehaviour, IDataPersistance
 
     [SerializeField] private float currentSpeed;
 
+    [SerializeField] private Animator animator;
+    [SerializeField] private GameObject sprite;
+
     private float speed;
 
     private Vector2 facingDirection;
+    private bool directionRight;
+    private bool isMoving;
 
     void Start()
     {
@@ -29,9 +34,31 @@ public class PlayerMovement : MonoBehaviour, IDataPersistance
         if (movementInput != Vector2.zero)
         {
             facingDirection = movementInput;
+
+            if (movementInput.x > 0)
+            {
+                directionRight = true;
+                // x rotation to 0
+                sprite.transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
+            else
+            {
+                directionRight = false;
+                // x rotation to 180
+                sprite.transform.rotation = Quaternion.Euler(0, 180, 0);
+            }
+
+            isMoving = true;
+        }
+        else
+        {
+            isMoving = false;
         }
 
         rigidBody.velocity = new Vector2(movementInput.x * currentSpeed, movementInput.y * currentSpeed);
+
+        animator.SetBool("isMoving", isMoving);
+        animator.SetBool("directionRight", directionRight);
     }
 
     // Getters

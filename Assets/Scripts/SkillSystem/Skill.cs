@@ -19,4 +19,6 @@ public class Skill : ScriptableObject
     public virtual void Activate(GameObject player, SkillHelper skillHelper = null) {}
 
     public virtual void Deactivate(GameObject player) {}
+
+    public virtual void SetIsUpgraded(bool val) {}
 }

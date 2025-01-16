@@ -14,9 +14,9 @@ public class PlayerLogic : MonoBehaviour
         GameObject gameManager = GameObject.Find("GameManager");
         playerScriptableObject = gameManager.GetComponent<PlayerManager>().GetPlayerScriptableObject;
 
-        // instantiate player sprite
-        GameObject playerSprite = Instantiate(playerScriptableObject.playerSprite, gameObject.transform, true);
-        playerSprite.transform.localScale = new Vector3(1, 1, 1);
+        // // instantiate player sprite
+        // GameObject playerSprite = Instantiate(playerScriptableObject.playerSprite, gameObject.transform, true);
+        // playerSprite.transform.localScale = new Vector3(1, 1, 1);
     }
 
     void Update()

@@ -12,6 +12,7 @@ public class DashSkill : Skill
     // *ABOUT: Moves the player quickly forward in the current facing direction
 
     public float dashRange;
+    public float shieldAmount;
 
     private bool isUpgraded = false;
 
@@ -24,10 +25,10 @@ public class DashSkill : Skill
         PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
 
         // start the dash
-        skillHelper.StartCoroutine(AbilityCoroutine(rb, playerMovement, skillHelper));
+        skillHelper.StartCoroutine(AbilityCoroutine(rb, playerMovement, player));
     }
 
-    private IEnumerator AbilityCoroutine(Rigidbody2D rb, PlayerMovement playerMovement, SkillHelper skillHelper)
+    private IEnumerator AbilityCoroutine(Rigidbody2D rb, PlayerMovement playerMovement, GameObject player)
     {
         float timeElapsed = 0;
         
@@ -45,21 +46,18 @@ public class DashSkill : Skill
         // stop the dash
         rb.velocity = Vector2.zero;
 
+        Debug.Log("trying....");
         // if upgraded give a shield
         if (isUpgraded)
         {
-            skillHelper.StartCoroutine(GiveShield());
+            Debug.Log("giving shield");
+            PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
+            playerHealth.SetShield(shieldAmount);
         }
     }
     
-    // TODO: doesnt do anything yet
-    private IEnumerator GiveShield() 
-    {
-        yield return null;
-    }
-
-    //! SETTERS
-    public void SetIsUpgraded(bool val)
+    //! setters
+    public override void SetIsUpgraded(bool val)
     {
         isUpgraded = val;
     }

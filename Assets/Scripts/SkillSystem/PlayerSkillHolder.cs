@@ -292,4 +292,19 @@ public class PlayerSkillHolder : MonoBehaviour
     {
         get { return skill2Button; }
     }
+
+    public Skill GetSkillById(int id)
+    {
+        switch (id)
+        {
+            case 0:
+                return skill0;
+            case 1:
+                return skill1;
+            case 2:
+                return skill2;
+            default:
+                return null;
+        }
+    }
 }

@@ -8,7 +8,8 @@ public class PlayerHealth : MonoBehaviour, IDataPersistance
     [SerializeField] private UnityEngine.UI.Image healthBar;
 
     private float health;
-    [SerializeField] private float currentHealth;
+    private float currentHealth;
+    [SerializeField] private float currentShield;
 
     private float lastDamageRecieved;
 
@@ -52,6 +53,21 @@ public class PlayerHealth : MonoBehaviour, IDataPersistance
     {
         if (invulnerable) { return; }
 
+        if (currentShield > 0)
+        {
+            if (currentShield >= damage)
+            {
+                currentShield -= damage;
+                // FIXME: update shield bar?
+                return;
+            }
+            else
+            {
+                damage -= currentShield;
+                currentShield = 0;
+            }
+        }
+
         currentHealth -= damage;
         lastDamageRecieved = damage;
         takeDamageEvent.Invoke();
@@ -68,7 +84,7 @@ public class PlayerHealth : MonoBehaviour, IDataPersistance
     }
 
 
-    // Getters
+    //! getters
     public float GetCurrentHealth
     {
         get{ return currentHealth; }
@@ -85,7 +101,17 @@ public class PlayerHealth : MonoBehaviour, IDataPersistance
     }
 
 
-    // Setters
+    //! setters
+    public void SetShield(float shield)
+    {
+        print("noooooo");
+        if (currentShield < shield)
+        {
+            print("yessss");
+            currentShield = shield;
+        }
+    }
+
     public void SetCurrentHealth(float newHealth)
     {
         if (newHealth < currentHealth)

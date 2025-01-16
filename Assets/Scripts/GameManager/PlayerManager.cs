@@ -10,7 +10,7 @@ public class PlayerManager : MonoBehaviour, IDataPersistance
         private int[] slotCharacterTypes;
         private PlayerScriptableObject playerScriptableObject;
 
-        // Getters
+        //! getters
         public Transform GetPlayerTransform {
             get { return player.transform; }
         }

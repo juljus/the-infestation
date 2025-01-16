@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 276bae557fcf94482ba68c5f82c8902f, type: 3}
+  m_Name: (5) SleightOfFist
+  m_EditorClassIdentifier: 
+  name: SleightOfFist
+  skillDescription: 'Passive: has a chance on each attack to dissapear and launch
+    another attack while invulnerable.'
+  skillIcon: {fileID: 21300000, guid: 48f2f43bb4a304299ab2abb0c2b8421a, type: 3}
+  id: agju87o49hfcjim8ygdhsnaoi738go<uciog7
+  cooldownTime: 0
+  activeTime: 1
+  isPassive: 1
+  castRange: 0
+  damageMod: 1.5
+  triggerChance: 0.5
+  effectIcon: {fileID: 6280444325833525280, guid: b86e80624b81e4ce0b9db0150ce96a26, type: 3}

@@ -90,6 +90,7 @@ public class EnemyAttack_RangedHeal : EnemyAttackBase
         attackTimeRemaining = attackTime;
         while (attackTimeRemaining > 0)
         {            
+            // FIXME: throws error when target is destroyed
             float playerDistance = Vector2.Distance(target.position, rigidBody.position);
             if (playerDistance > attackRange)
             {

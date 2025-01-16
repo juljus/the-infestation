@@ -16,7 +16,7 @@ public class SkillMenuManager : MonoBehaviour, IDataPersistance
     private bool[][] learnedSkills;
     private int[] skillTierUnlockLastBossId = {0, 1, 2, 3};
 
-    private bool[] availableSkills = new bool[15];
+    private bool[] availableSkills = new bool[8];
     private bool[] selectedCharacterLearnedSkills;
 
     private int currentSkillIndex;

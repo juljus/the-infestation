@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a08d195b1ada64091a8bb3d62fda640b, type: 3}
+  m_Name: (1) DaggerThrow
+  m_EditorClassIdentifier: 
+  name: Throw
+  skillDescription: Throws a dagger at the target enemy
+  skillIcon: {fileID: 21300000, guid: 480a37f90013d4b679b2caf2757f9786, type: 3}
+  id: snzbrz r6j56 yhtrhj snb
+  cooldownTime: 4
+  activeTime: 2
+  isPassive: 0
+  castRange: 7
+  daggerSpeed: 18
+  daggerDamage: 20
+  daggerEffectValue: 60
+  daggerEffectDuration: 4
+  daggerEffectIsStackable: 1
+  daggerPrefab: {fileID: 8899282203420938269, guid: 8bdef54ba945d4da6b20ab0f53c96c76, type: 3}

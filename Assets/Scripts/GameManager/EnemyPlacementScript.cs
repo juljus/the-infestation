@@ -7,14 +7,16 @@ public class EnemyPlacementScript : MonoBehaviour, IDataPersistance
 {
     [SerializeField] List<GameObject> enemyPrefabs = new List<GameObject>();
 
-    private List<float> enemyPositionsX = new List<float>();
-    private List<float> enemyPositionsY = new List<float>();
-    private List<int> enemyIDs = new List<int>();
+    private List<float> enemyPositionsX;
+    private List<float> enemyPositionsY;
+    private List<int> enemyIDs;
 
     void Start()
     {
+        // BUG: if all enemies are killed, they are all placed again... bad!!
         if (enemyIDs.Count > 0)
         {
+            print("PLACED ENEMIES");
             PlaceEnemies();
         }
     }
@@ -40,6 +42,10 @@ public class EnemyPlacementScript : MonoBehaviour, IDataPersistance
 
     public void LoadData(GameData data)
     {
+        enemyPositionsX = new List<float>();
+        enemyPositionsY = new List<float>();
+        enemyIDs = new List<int>();
+        
         this.enemyIDs = data.enemyIDs;
         this.enemyPositionsX = data.enemyPositionsX;
         this.enemyPositionsY = data.enemyPositionsY;
@@ -51,12 +57,15 @@ public class EnemyPlacementScript : MonoBehaviour, IDataPersistance
 
         GameObject[] enemiesOnMap = GameObject.FindGameObjectsWithTag("Enemy");
 
+        print("Enemies on map: " + enemiesOnMap.Length);
+
         enemyPositionsX.Clear();
         enemyPositionsY.Clear();
         enemyIDs.Clear();
 
         foreach (GameObject enemy in enemiesOnMap)
         {
+            print("asdf+");
             this.enemyPositionsX.Add(enemy.transform.position.x);
             this.enemyPositionsY.Add(enemy.transform.position.y);
 

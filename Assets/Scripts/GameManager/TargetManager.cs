@@ -10,6 +10,14 @@ public class TargetManager : MonoBehaviour
         get { return target; }
     }
 
+    public GameObject GetTargetSmart() {
+        if (target == null) {
+            TargetClosestEnemy();
+        }
+
+        return target;
+    }
+
     public void SetTarget(GameObject newTarget) {
         target = newTarget;
     }

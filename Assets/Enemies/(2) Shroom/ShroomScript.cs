@@ -13,7 +13,6 @@ public class ShroomScript : MonoBehaviour
     // if player touches the enemy, the enemy will attack the player
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("collision");
 
         if (collision.gameObject.tag == "Player")
         {

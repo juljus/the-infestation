@@ -13,6 +13,8 @@ public class PlayerMovement : MonoBehaviour, IDataPersistance
 
     private float speed;
 
+    private Vector2 facingDirection;
+
     void Start()
     {
         currentSpeed = speed;
@@ -23,13 +25,24 @@ public class PlayerMovement : MonoBehaviour, IDataPersistance
         if (transform.GetComponent<PlayerLogic>().GetIsStunned > 0) { return; }
 
         Vector2 movementInput = callbackContext.ReadValue<Vector2>();
+
+        if (movementInput != Vector2.zero)
+        {
+            facingDirection = movementInput;
+        }
+
         rigidBody.velocity = new Vector2(movementInput.x * currentSpeed, movementInput.y * currentSpeed);
     }
 
     // Getters
     public float GetSpeed
     {
-        get{ return speed; }
+        get { return speed; }
+    }
+
+    public Vector2 GetFacingDirection
+    {
+        get { return facingDirection; }
     }
 
     // Setters

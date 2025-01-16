@@ -10,9 +10,9 @@ public class PlayerHealth : MonoBehaviour, IDataPersistance
     private float health;
     [SerializeField] private float currentHealth;
 
-    private float incomingDamageModForTier4Skills;
-
     private float lastDamageRecieved;
+
+    private bool invulnerable = false;
 
     public UnityEvent takeDamageEvent;
 
@@ -26,6 +26,7 @@ public class PlayerHealth : MonoBehaviour, IDataPersistance
     {
         Destroy(gameObject);
     }
+
 
     private void AfterHealthChange()
     {
@@ -47,23 +48,16 @@ public class PlayerHealth : MonoBehaviour, IDataPersistance
     }
 
 
-    public void TakeDamage(float damage, bool byPass = false)
+    public void TakeDamage(float damage)
     {
-        if (byPass)
-        {
-            currentHealth -= damage;
-        }
-        else
-        {
-            currentHealth -= damage * incomingDamageModForTier4Skills;
-            lastDamageRecieved = damage;
-            takeDamageEvent.Invoke();
-        }
+        if (invulnerable) { return; }
+
+        currentHealth -= damage;
+        lastDamageRecieved = damage;
+        takeDamageEvent.Invoke();
 
         AfterHealthChange();
     }
-
-    
 
 
     public void Heal(float heal)
@@ -94,14 +88,26 @@ public class PlayerHealth : MonoBehaviour, IDataPersistance
     // Setters
     public void SetCurrentHealth(float newHealth)
     {
-        currentHealth = newHealth;
-
-        AfterHealthChange();
+        if (newHealth < currentHealth)
+        {
+            TakeDamage(currentHealth - newHealth);
+        }
+        else
+        {
+            Heal(newHealth - currentHealth);
+        }
     }
 
-    public void SetIncomingDamageModForTier4Skills(float mod)
+    public void SetIfInvulnerable(bool val)
     {
-        incomingDamageModForTier4Skills = mod;
+        if (val)
+        {
+            invulnerable = true;
+        }
+        else
+        {
+            invulnerable = false;
+        }
     }
 
     // IDataPersistance

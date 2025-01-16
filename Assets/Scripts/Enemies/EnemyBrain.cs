@@ -59,6 +59,7 @@ public class EnemyBrain : MonoBehaviour
 
     public void Death()
     {   
+        print("Enemy died");
         GameObject.Find("GameManager").GetComponent<EnemyLogicManager>().enemyDeathEvent.Invoke();
 
         gameManager.GetComponent<MapCompletion>().AddKill();
@@ -75,7 +76,7 @@ public class EnemyBrain : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            GetComponent<EnemyBrain>().Death();
+            Death();
         }
     }
 
@@ -101,7 +102,22 @@ public class EnemyBrain : MonoBehaviour
     public EnemyMovementBase GetEnemyMovement { get { return movement; } }
 
     //--------- SETTERS ---------
-    public void SetCurrentHealth(float newHealth) { currentHealth = newHealth; }
+    public void SetCurrentHealth(float newHealth)
+    {
+        currentHealth = newHealth;
+
+        if (currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+
+        if (currentHealth <= 0)
+        {
+            Death();
+        }
+
+        healthBar.fillAmount = currentHealth / maxHealth;
+    }
 
     public void Stun() { isStunned ++; }
     public void UnStun() { isStunned --; }

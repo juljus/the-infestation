@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+// ABOUT: passive - applies poison on hit, slowing and damaging the enemy.
 [CreateAssetMenu(menuName = "Skills/Warrior/(11)AttackPoison")]
 public class AttackPoisonSkill : Skill
 {
     public UnityEngine.UI.Image effectIcon;
-    public float damagePerSecond;
-    public float duration;
+    public float poisonDamage;
     public float speedMod;
-
-    // Passive: applies poison on hit, slowing and damaging the enemy.
+    public float duration;
 
     public override void Activate(GameObject player, SkillHelper skillHelper)
     {
@@ -33,12 +32,14 @@ public class AttackPoisonSkill : Skill
 
     private void ApplyPoison()
     {
+        Debug.Log("applying poison");
+
         GameObject target = GameObject.Find("GameManager").GetComponent<TargetManager>().GetTarget;
 
         if (target != null)
         {
             target.GetComponent<EffectSystem>().TakeStatusEffect(id, "speedMod", speedMod, duration);
-            target.GetComponent<EffectSystem>().TakeStatusEffect(id, "healthMod", damagePerSecond, duration);
+            target.GetComponent<EffectSystem>().TakeStatusEffect(id, "healthMod", -poisonDamage, duration);
         }
     }
 }

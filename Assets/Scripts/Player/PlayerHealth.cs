@@ -12,6 +12,8 @@ public class PlayerHealth : MonoBehaviour, IDataPersistance
 
     private float lastDamageRecieved;
 
+    private bool invulnerable = false;
+
     public UnityEvent takeDamageEvent;
 
     void Start()
@@ -24,6 +26,7 @@ public class PlayerHealth : MonoBehaviour, IDataPersistance
     {
         Destroy(gameObject);
     }
+
 
     private void AfterHealthChange()
     {
@@ -47,14 +50,14 @@ public class PlayerHealth : MonoBehaviour, IDataPersistance
 
     public void TakeDamage(float damage)
     {
+        if (invulnerable) { return; }
+
         currentHealth -= damage;
         lastDamageRecieved = damage;
         takeDamageEvent.Invoke();
 
         AfterHealthChange();
     }
-
-    
 
 
     public void Heal(float heal)
@@ -85,9 +88,26 @@ public class PlayerHealth : MonoBehaviour, IDataPersistance
     // Setters
     public void SetCurrentHealth(float newHealth)
     {
-        currentHealth = newHealth;
+        if (newHealth < currentHealth)
+        {
+            TakeDamage(currentHealth - newHealth);
+        }
+        else
+        {
+            Heal(newHealth - currentHealth);
+        }
+    }
 
-        AfterHealthChange();
+    public void SetIfInvulnerable(bool val)
+    {
+        if (val)
+        {
+            invulnerable = true;
+        }
+        else
+        {
+            invulnerable = false;
+        }
     }
 
     // IDataPersistance

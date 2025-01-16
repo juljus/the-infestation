@@ -39,6 +39,7 @@ public class EnemyMovement_EnemySeekingHealer : EnemyMovementBase
             }
         }
 
+        // FIX: throws error when no enemies are present
         // calculate target distance
         float targetDistance = Vector2.Distance(target.transform.position, rigidBody.position);
 

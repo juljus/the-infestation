@@ -71,8 +71,10 @@ public class PlayerSkillHolder : MonoBehaviour
 
     public void SkipSkill0Cooldown()
     {
+        print("trying!");
         if (skillStates[0] == 2)
         {
+            print("skipping!");
             skill0Button.transform.GetChild(0).GetComponent<UnityEngine.UI.Image>().fillAmount = 0;
             skillStates[0] = 0;
 

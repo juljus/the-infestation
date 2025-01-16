@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Skills/Warrior/(12)TeleportRefresh")]
-public class TeleportRefreshSkill : Skill
+// ABOUT: passive - after killing an enemy refreshes the cooldown of your dash skill.
+[CreateAssetMenu(menuName = "Skills/Warrior/(12)DashRefresh")]
+public class DashRefreshSkill : Skill
 {
     public UnityEngine.UI.Image effectIcon;
 
     private GameObject player;
-
-    // Passive: after killing an enemy refreshes the cooldown of your teleport skill.
 
     public override void Activate(GameObject player, SkillHelper skillHelper)
     {
@@ -34,6 +33,6 @@ public class TeleportRefreshSkill : Skill
 
     private void Refresh()
     {
-        player.GetComponent<PlayerSkillHolder>().SkipSkill2Cooldown();
+        player.GetComponent<PlayerSkillHolder>().SkipSkill0Cooldown();
     }
 }

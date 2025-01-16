@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 10
   health: 100
-  attackDamage: 10
-  attackTime: 1.5
+  attackDamage: 30
+  attackTime: 1
   attackRange: 2
   attackCooldown: 0.5
   playerSprite: {fileID: 8192642738864673608, guid: 3318e0b36768a4e7d8beaa9a0352626d, type: 3}

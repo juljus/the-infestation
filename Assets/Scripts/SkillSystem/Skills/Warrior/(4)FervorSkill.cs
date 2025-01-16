@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+// ABOUT: passive - increases attack speed and movement speed for a short duration after each attack. stacking.
 [CreateAssetMenu(menuName = "Skills/Warrior/(9)Fervor")]
 public class FervorSkill : Skill
 {

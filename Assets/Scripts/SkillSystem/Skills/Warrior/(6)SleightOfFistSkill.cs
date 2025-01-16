@@ -5,6 +5,7 @@ using System.Diagnostics.Tracing;
 using UnityEngine;
 using UnityEngine.InputSystem.Interactions;
 
+// ABOUT: passive - has a chance on each attack to dissapear and launch another attack while invulnerable.
 [CreateAssetMenu(menuName = "Skills/Warrior/(14)SleightOfFist")]
 public class SleightOfFistSkill : Skill
 {
@@ -13,11 +14,8 @@ public class SleightOfFistSkill : Skill
     public UnityEngine.UI.Image effectIcon;
 
     private GameObject target;
-    private float timeLeft;
     private GameObject player;
     private SkillHelper skillHelper;
-
-    // Passive: has a chance on each attack to dissapear and launch another attack while invulnerable.
 
     public override void Activate(GameObject player, SkillHelper skillHelper)
     {
@@ -39,15 +37,11 @@ public class SleightOfFistSkill : Skill
         target = GameObject.Find("GameManager").GetComponent<TargetManager>().GetTarget;
         if (target == null) { return; }
 
-        timeLeft = activeTime;
-
         // effect icon
         player.GetComponent<EffectSystem>().TakeStatusEffect(id, "speedMod", 1, 0, effectIcon, false, false, false);
 
-        // FIX: player does not have this attribute
         // become invulnerable
-        // player.GetComponent<PlayerHealth>().SetIncomingDamageModForTier4Skills(0);
-        
+        player.GetComponent<PlayerHealth>().SetIfInvulnerable(true);
         player.GetComponent<EffectSystem>().SetIfInvulnerable(true);
 
         // fade the player sprite
@@ -63,14 +57,15 @@ public class SleightOfFistSkill : Skill
         yield return new WaitForSeconds(activeTime / 2);
 
         // attack enemy
-        target.GetComponent<EnemyBrain>().TakeDamage(player.GetComponent<PlayerAttack>().GetCurrentAttackDamage * damageMod);
+        if (target != null)
+        {
+            target.GetComponent<EnemyBrain>().TakeDamage(player.GetComponent<PlayerAttack>().GetCurrentAttackDamage * damageMod);
+        }
 
         yield return new WaitForSeconds(activeTime / 2);
 
-        // FIX: player does not have this attribute
         // become vulnerable
-        // player.GetComponent<PlayerHealth>().SetIncomingDamageModForTier4Skills(1);
-
+        player.GetComponent<PlayerHealth>().SetIfInvulnerable(false);
         player.GetComponent<EffectSystem>().SetIfInvulnerable(false);
 
         // unfade the player sprite

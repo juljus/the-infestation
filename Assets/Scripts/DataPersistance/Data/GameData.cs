@@ -7,13 +7,12 @@ using UnityEngine;
 public class GameData
 {
     // characters   
-    public int[] slotCharacterTypes = new int[4];
     public bool[] isFirstBoot = new bool[4];
     public int selectedCharacter = 0;
+    public bool[] charExists = new bool[4];
     
     // levels
     public int[] characterLevels = new int[4];
-    public long[] characterExperience = new long[4];
 
     // skills
     public bool[][] learnedSkills = new bool[4][] { new bool[8], new bool[8], new bool[8], new bool[8] };
@@ -22,9 +21,6 @@ public class GameData
     public int[] currentMap = new int[4];
     public int[] currentKills = new int[4];
     public int[] currentStructures = new int[4];
-
-    // boss
-    public int lastBossId = 0;
 
     // player stats
     public float[] playerAttackDamage = new float[4];

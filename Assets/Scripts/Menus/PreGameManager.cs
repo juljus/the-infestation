@@ -9,24 +9,10 @@ public class PreGameManager : MonoBehaviour, IDataPersistance
     [SerializeField] private TMPro.TMP_Text characterLevelText;
 
     private int selectedCharacter;
-    private int[] slotCharacterTypes;
     private int[] characterLevels;
 
     void Start()
     {
-        if (slotCharacterTypes[selectedCharacter] == 1)
-        {
-            characterIcon.transform.GetChild(1).gameObject.SetActive(false);
-        }
-        else if (slotCharacterTypes[selectedCharacter] == 2)
-        {
-            characterIcon.transform.GetChild(0).gameObject.SetActive(false);
-        }
-        else
-        {
-            Debug.LogError("Invalid character type");
-        }
-
         // display character level
         characterLevelText.text = "Level: " + characterLevels[selectedCharacter];
     }
@@ -45,10 +31,7 @@ public class PreGameManager : MonoBehaviour, IDataPersistance
 
     public void DeleteCharacter()
     {
-        // delete the selected character
-        slotCharacterTypes[selectedCharacter] = 0;
-
-        // delete the selected characters data
+        // TODO: delete the selected characters data??
         characterLevels[selectedCharacter] = 0;
 
         // save the data
@@ -61,12 +44,10 @@ public class PreGameManager : MonoBehaviour, IDataPersistance
     // data persistance
     public void LoadData(GameData data) {
         this.selectedCharacter = data.selectedCharacter;
-        this.slotCharacterTypes = data.slotCharacterTypes;
         this.characterLevels = data.characterLevels;
     }
     public void SaveData(ref GameData data) {
         data.selectedCharacter = this.selectedCharacter;
-        data.slotCharacterTypes = this.slotCharacterTypes;
         data.characterLevels = this.characterLevels;
     }
 }

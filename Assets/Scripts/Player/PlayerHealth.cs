@@ -25,6 +25,7 @@ public class PlayerHealth : MonoBehaviour, IDataPersistance
 
     private void Death()
     {
+        print("Player died");
         Destroy(gameObject);
     }
 
@@ -51,6 +52,7 @@ public class PlayerHealth : MonoBehaviour, IDataPersistance
 
     public void TakeDamage(float damage)
     {
+        print("take damage");
         if (invulnerable) { return; }
 
         if (currentShield > 0)
@@ -78,6 +80,7 @@ public class PlayerHealth : MonoBehaviour, IDataPersistance
 
     public void Heal(float heal)
     {
+        print("heal");
         currentHealth += heal;
 
         AfterHealthChange();

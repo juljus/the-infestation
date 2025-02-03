@@ -6,32 +6,24 @@ public class CharacterCreationManager : MonoBehaviour, IDataPersistance
 {
     private int slectedCharacter;
 
-    private int[] slotCharacterTypes = new int[4];
     private bool[] isFirstBoot = new bool[4];
-    public void CreateCharacter(int charType)
+
+    private bool[] charExists = new bool[4];
+
+    // TODO: new character creation
+    public void CreateCharacter()
     {
-        // set the character type
-        switch (slectedCharacter)
+        // check if character exists
+        if (charExists[slectedCharacter])
         {
-            case 0:
-                slotCharacterTypes[slectedCharacter] = charType;
-                isFirstBoot[slectedCharacter] = true;
-                break;
-            case 1:
-                slotCharacterTypes[slectedCharacter] = charType;
-                isFirstBoot[slectedCharacter] = true;
-                break;
-            case 2:
-                slotCharacterTypes[slectedCharacter] = charType;
-                isFirstBoot[slectedCharacter] = true;
-                break;
-            case 3:
-                slotCharacterTypes[slectedCharacter] = charType;
-                isFirstBoot[slectedCharacter] = true;
-                break;
-            default:
-                Debug.LogError("Invalid character number");
-                break;
+            // TODO: show warning
+            return;
+        }
+        else
+        {
+            // create character
+            charExists[slectedCharacter] = true;
+            isFirstBoot[slectedCharacter] = true;
         }
 
         // save the data
@@ -41,17 +33,22 @@ public class CharacterCreationManager : MonoBehaviour, IDataPersistance
         UnityEngine.SceneManagement.SceneManager.LoadScene("PreGame");
     }
 
+    public void Back()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("CharacterSelection");
+    }
+
     // data persistance
     public void LoadData(GameData data)
     {
-        this.slotCharacterTypes = data.slotCharacterTypes;
         this.slectedCharacter = data.selectedCharacter;
         this.isFirstBoot = data.isFirstBoot;
+        this.charExists = data.charExists;
     }
     public void SaveData(ref GameData data)
     {
-        data.slotCharacterTypes = this.slotCharacterTypes;
         data.selectedCharacter = this.slectedCharacter;
         data.isFirstBoot = this.isFirstBoot;
+        data.charExists = this.charExists;
     }
 }

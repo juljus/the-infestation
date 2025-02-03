@@ -3,45 +3,20 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+// TODO: rework whole scene
+
 public class CharacterSelectionManager : MonoBehaviour, IDataPersistance
 {
     [SerializeField] private GameObject[] characterCreationButtons = new GameObject[4];
     [SerializeField] private GameObject[] characterIcons = new GameObject[4];
 
-    private int[] slotCharTypes = new int[4];
-
     private int selectedCharacter;
 
     void Start()
     {
-        // hide character creation buttons
-        for (int i = 0; i < slotCharTypes.Length; i++)
-        {
-            if (slotCharTypes[i] != 0)
-            {
-                characterCreationButtons[i].SetActive(false);
-            }
-        }
+        // TODO: hide character creation buttons
 
-        // hide character icons
-        for (int i = 0; i < slotCharTypes.Length; i++)
-        {
-            switch (slotCharTypes[i])
-            {
-                case 0:
-                    characterIcons[i].SetActive(false);
-                    break;
-                case 1:
-                    characterIcons[i].transform.GetChild(1).gameObject.SetActive(false);
-                    break;
-                case 2:
-                    characterIcons[i].transform.GetChild(0).gameObject.SetActive(false);
-                    break;
-                default:
-                    Debug.LogError("Invalid character type");
-                    break;
-            }
-        }
+        // TODO: hide character icons
     }
 
     public void StartCharacterCreation(int charNum)
@@ -76,13 +51,11 @@ public class CharacterSelectionManager : MonoBehaviour, IDataPersistance
     // data persistance
     public void LoadData(GameData data)
     {
-        this.slotCharTypes = data.slotCharacterTypes;
         this.selectedCharacter = data.selectedCharacter;
     }
 
     public void SaveData(ref GameData data)
     {
-        data.slotCharacterTypes = this.slotCharTypes;
         data.selectedCharacter = this.selectedCharacter;
     }
 }

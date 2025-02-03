@@ -5,10 +5,8 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour, IDataPersistance
 {
         [SerializeField] private GameObject player;
-        [SerializeField] private PlayerScriptableObject[] playerScriptableObjectList = new PlayerScriptableObject[2];
+        [SerializeField] private PlayerScriptableObject playerScriptableObject;
         private int selectedCharacter;
-        private int[] slotCharacterTypes;
-        private PlayerScriptableObject playerScriptableObject;
 
         //! getters
         public Transform GetPlayerTransform {
@@ -23,22 +21,7 @@ public class PlayerManager : MonoBehaviour, IDataPersistance
 
         // data persistance
         public void LoadData(GameData data) {
-            this.slotCharacterTypes = data.slotCharacterTypes;
             this.selectedCharacter = data.selectedCharacter;
-
-            // get player scriptable object
-            if (slotCharacterTypes[selectedCharacter] == 1)
-            {
-                playerScriptableObject = playerScriptableObjectList[0];
-            }
-            else if (slotCharacterTypes[selectedCharacter] == 2)
-            {
-                playerScriptableObject = playerScriptableObjectList[1];
-            }
-            else
-            {
-                Debug.LogError("character type not selected");
-            }
 
             // save player stats
             if (data.isFirstBoot[selectedCharacter])
@@ -48,7 +31,6 @@ public class PlayerManager : MonoBehaviour, IDataPersistance
         }
 
         public void SaveData(ref GameData data) {
-            data.slotCharacterTypes = this.slotCharacterTypes;
             data.selectedCharacter = this.selectedCharacter;
         }
 }

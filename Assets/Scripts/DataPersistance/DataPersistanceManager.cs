@@ -54,6 +54,7 @@ public class DataPersistanceManager : MonoBehaviour
         this.gameData = new GameData();
     }
 
+    // save that automatically occurs
     public void SaveGame()
     {
         // pass data to other scripts so they can update it
@@ -66,6 +67,21 @@ public class DataPersistanceManager : MonoBehaviour
         dataHandler.Save(gameData);
     }
 
+    // save that occurs only when called
+    // TODO: implement InGameSave in the form of campfires and then move the needed saves to ingamesave instead of save
+    public void InGameSave()
+    {
+        // pass data to other scripts so they can update it
+        foreach (IDataPersistance dataPersistanceObject in this.dataPersistanceObjects)
+        {
+            dataPersistanceObject.InGameSave(ref this.gameData);
+        }
+
+        // save the data to a file using the data handler
+        dataHandler.Save(gameData);
+    }
+
+    // load the game data
     public void LoadGame()
     {
         // load any saved data from a file using the data handler

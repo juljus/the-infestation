@@ -69,7 +69,11 @@ public class CharacterSelectionManager : MonoBehaviour, IDataPersistance
         UnityEngine.SceneManagement.SceneManager.LoadScene("PreGame");
     }
     
-    // data persistance
+    //! data persistance
+    public void InGameSave(ref GameData data)
+    {
+    }
+
     public void LoadData(GameData data)
     {
         this.selectedCharacter = data.selectedChar;

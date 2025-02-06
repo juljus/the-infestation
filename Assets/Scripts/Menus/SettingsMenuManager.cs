@@ -40,7 +40,10 @@ public class SettingsMenuManager : MonoBehaviour, IDataPersistance
         transform.GetComponent<DataPersistanceManager>().SaveGame();
     }
 
-    // data persistance
+    //! data persistance
+    public void InGameSave(ref GameData data) {
+    }
+
     public void LoadData(GameData data) {
         this.musicVolume = data.musicVolume;
         this.sfxVolume = data.sfxVolume;

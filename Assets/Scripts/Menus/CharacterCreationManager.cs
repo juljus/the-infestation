@@ -63,7 +63,11 @@ public class CharacterCreationManager : MonoBehaviour, IDataPersistance
     //     characterNameText.text = "asdf";
     // }
 
-    // data persistance
+    //! data persistance
+    public void InGameSave(ref GameData data)
+    {
+    }
+
     public void LoadData(GameData data)
     {
         this.slectedCharacter = data.selectedChar;

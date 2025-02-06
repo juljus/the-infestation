@@ -240,6 +240,12 @@ public class SkillMenuManager : MonoBehaviour, IDataPersistance
         get { return selectedCharacterLearnedSkills; }
     }
 
+    //! IDataPersistance
+    // TODO: implement InGameSave in the form of campfires and then move the needed saves to ingamesave instead of save
+    public void InGameSave(ref GameData data)
+    {
+    }
+
     public void LoadData(GameData data)
     {
         this.learnedSkills = data.learnedSkills;

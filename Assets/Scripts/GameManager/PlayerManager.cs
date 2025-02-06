@@ -19,12 +19,20 @@ public class PlayerManager : MonoBehaviour, IDataPersistance
             get { return playerScriptableObject; }
         }
 
-        // data persistance
-        public void LoadData(GameData data) {
+        //! data persistance
+        // TODO: implement InGameSave in the form of campfires and then move the needed saves to ingamesave instead of save
+
+        public void InGameSave(ref GameData data)
+        {
+        }
+
+        public void LoadData(GameData data)
+        {
             this.selectedCharacter = data.selectedChar;
         }
 
-        public void SaveData(ref GameData data) {
+        public void SaveData(ref GameData data)
+        {
             data.selectedChar = this.selectedCharacter;
         }
 }

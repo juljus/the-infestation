@@ -210,7 +210,6 @@ public class Boss2Script : MonoBehaviour
     {   
         gameManager.GetComponent<EnemyLogicManager>().enemyDeathEvent.Invoke();
         gameManager.GetComponent<MapCompletion>().AddKill();
-        gameManager.GetComponent<MapCompletion>().AddStructure();
         
         Destroy(gameObject);
     }

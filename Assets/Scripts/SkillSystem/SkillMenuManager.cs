@@ -243,7 +243,7 @@ public class SkillMenuManager : MonoBehaviour, IDataPersistance
     public void LoadData(GameData data)
     {
         this.learnedSkills = data.learnedSkills;
-        this.selectedCharacter = data.selectedCharacter;
+        this.selectedCharacter = data.selectedChar;
 
         this.selectedCharacterLearnedSkills = this.learnedSkills[selectedCharacter];
     }
@@ -251,7 +251,7 @@ public class SkillMenuManager : MonoBehaviour, IDataPersistance
     public void SaveData(ref GameData data)
     {
         data.learnedSkills = this.learnedSkills;
-        data.selectedCharacter = this.selectedCharacter;
+        data.selectedChar = this.selectedCharacter;
 
         this.learnedSkills[selectedCharacter] = this.selectedCharacterLearnedSkills;
     }

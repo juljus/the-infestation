@@ -63,7 +63,6 @@ public class EnemyBrain : MonoBehaviour
         GameObject.Find("GameManager").GetComponent<EnemyLogicManager>().enemyDeathEvent.Invoke();
 
         gameManager.GetComponent<MapCompletion>().AddKill();
-        gameManager.GetComponent<MapCompletion>().AddStructure();
         
         Destroy(gameObject);
     }

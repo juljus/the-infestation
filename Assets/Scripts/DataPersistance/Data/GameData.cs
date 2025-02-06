@@ -6,23 +6,22 @@ using UnityEngine;
 [System.Serializable]
 public class GameData
 {
-    // characters   
-    public bool[] isFirstBoot = new bool[4];
-    public int selectedCharacter = 0;
+    //! characters   
+    public int selectedChar = 0;
     public bool[] charExists = new bool[4];
+    public int[] charKills = new int[4];
+    public int[] charLevels = new int[4];
+    public string[] charNames = new string[4];
     
-    // levels
-    public int[] characterLevels = new int[4];
-
-    // skills
+    //! skills
     public bool[][] learnedSkills = new bool[4][] { new bool[8], new bool[8], new bool[8], new bool[8] };
 
-    // map completion
-    public int[] currentMap = new int[4];
-    public int[] currentKills = new int[4];
-    public int[] currentStructures = new int[4];
+    //! map completion
+    // probably dont need those
+        // public int[] currentMap = new int[4];
+        // public int[] currentStructures = new int[4];
 
-    // player stats
+    //! player stats
     public float[] playerAttackDamage = new float[4];
     public float[] playerAttackTime = new float[4];
     public float[] playerAttackRange = new float[4];
@@ -30,11 +29,11 @@ public class GameData
     public float[] playerMovementSpeed = new float[4];
     public float[] playerHealth = new float[4];
 
-    // settings
+    //! settings
     public float musicVolume;
     public float sfxVolume;
 
-    // enemy placement
+    //! enemy placement
     public List<float> enemyPositionsX = new List<float>();
     public List<float> enemyPositionsY = new List<float>();
     public List<int> enemyIDs = new List<int>();

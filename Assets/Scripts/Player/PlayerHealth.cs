@@ -143,14 +143,14 @@ public class PlayerHealth : MonoBehaviour, IDataPersistance
 
     public void LoadData(GameData data)
     {
-        int selectedCharacter = data.selectedCharacter;
+        int selectedCharacter = data.selectedChar;
 
         this.health = data.playerHealth[selectedCharacter];
     }
 
     public void SaveData(ref GameData data)
     {
-        int selectedCharacter = data.selectedCharacter;
+        int selectedCharacter = data.selectedChar;
 
         data.playerHealth[selectedCharacter] = this.health;
     }

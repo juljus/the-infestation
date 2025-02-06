@@ -36,13 +36,13 @@ public class LevelManager : MonoBehaviour, IDataPersistance
 
     public void LoadData(GameData data)
     {
-        this.characterLevels = data.characterLevels;
-        this.selectedCharacter = data.selectedCharacter;
+        this.characterLevels = data.charLevels;
+        this.selectedCharacter = data.selectedChar;
     }
 
     public void SaveData(ref GameData data)
     {
-        data.characterLevels = this.characterLevels;
-        data.selectedCharacter = this.selectedCharacter;
+        data.charLevels = this.characterLevels;
+        data.selectedChar = this.selectedCharacter;
     }
 }

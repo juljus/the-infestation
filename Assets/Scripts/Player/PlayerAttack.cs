@@ -168,7 +168,7 @@ public class PlayerAttack : MonoBehaviour, IDataPersistance
 
     public void LoadData(GameData data)
     {
-        int selectedCharacter = data.selectedCharacter;
+        int selectedCharacter = data.selectedChar;
 
         this.attackDamage = data.playerAttackDamage[selectedCharacter];
         this.attackTime = data.playerAttackTime[selectedCharacter];
@@ -178,7 +178,7 @@ public class PlayerAttack : MonoBehaviour, IDataPersistance
 
     public void SaveData(ref GameData data)
     {
-        int selectedCharacter = data.selectedCharacter;
+        int selectedCharacter = data.selectedChar;
 
         data.playerAttackDamage[selectedCharacter] = this.attackDamage;
         data.playerAttackTime[selectedCharacter] = this.attackTime;

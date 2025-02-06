@@ -82,14 +82,14 @@ public class PlayerMovement : MonoBehaviour, IDataPersistance
 
     public void LoadData(GameData data)
     {
-        int selectedCharacter = data.selectedCharacter;
+        int selectedCharacter = data.selectedChar;
 
         this.speed = data.playerMovementSpeed[selectedCharacter];
     }
 
     public void SaveData(ref GameData data)
     {
-        int selectedCharacter = data.selectedCharacter;
+        int selectedCharacter = data.selectedChar;
 
         data.playerMovementSpeed[selectedCharacter] = this.speed;
     }

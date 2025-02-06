@@ -21,16 +21,10 @@ public class PlayerManager : MonoBehaviour, IDataPersistance
 
         // data persistance
         public void LoadData(GameData data) {
-            this.selectedCharacter = data.selectedCharacter;
-
-            // save player stats
-            if (data.isFirstBoot[selectedCharacter])
-            {
-                GameObject.Find("GameManager").GetComponent<DataPersistanceManager>().SavePlayerStats(playerScriptableObject);
-            }
+            this.selectedCharacter = data.selectedChar;
         }
 
         public void SaveData(ref GameData data) {
-            data.selectedCharacter = this.selectedCharacter;
+            data.selectedChar = this.selectedCharacter;
         }
 }

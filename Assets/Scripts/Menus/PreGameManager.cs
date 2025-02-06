@@ -7,14 +7,22 @@ public class PreGameManager : MonoBehaviour, IDataPersistance
 {
     [SerializeField] private GameObject characterIcon;
     [SerializeField] private TMPro.TMP_Text characterLevelText;
+    [SerializeField] private TMPro.TMP_Text characterNameText;
+    [SerializeField] private TMPro.TMP_Text characterKillsText;
+    [SerializeField] private GameObject deleteCharacterPopup;
 
     private int selectedCharacter;
     private int[] characterLevels;
+    private bool[] charExists;
+    private string[] charNames;
+    private int[] charKills;
 
     void Start()
     {
-        // display character level
+        // display character level, kills and name
         characterLevelText.text = "Level: " + characterLevels[selectedCharacter];
+        characterNameText.text = charNames[selectedCharacter];
+        characterKillsText.text = "Kills: " + charKills[selectedCharacter];
     }
 
     public void StartGame()
@@ -29,10 +37,21 @@ public class PreGameManager : MonoBehaviour, IDataPersistance
         UnityEngine.SceneManagement.SceneManager.LoadScene("CharacterSelection");
     }
 
+    public void DeleteCharacterPopupOn()
+    {
+        // display the delete character popup
+        deleteCharacterPopup.SetActive(true);
+    }
+
+    public void DeleteCharacterPopupOff()
+    {
+        // hide the delete character popup
+        deleteCharacterPopup.SetActive(false);
+    }
+
     public void DeleteCharacter()
     {
-        // TODO: delete the selected characters data??
-        characterLevels[selectedCharacter] = 0;
+        charExists[selectedCharacter] = false;
 
         // save the data
         transform.GetComponent<DataPersistanceManager>().SaveGame();
@@ -43,11 +62,17 @@ public class PreGameManager : MonoBehaviour, IDataPersistance
 
     // data persistance
     public void LoadData(GameData data) {
-        this.selectedCharacter = data.selectedCharacter;
-        this.characterLevels = data.characterLevels;
+        this.selectedCharacter = data.selectedChar;
+        this.characterLevels = data.charLevels;
+        this.charExists = data.charExists;
+        this.charNames = data.charNames;
+        this.charKills = data.charKills;
     }
     public void SaveData(ref GameData data) {
-        data.selectedCharacter = this.selectedCharacter;
-        data.characterLevels = this.characterLevels;
+        data.selectedChar = this.selectedCharacter;
+        data.charLevels = this.characterLevels;
+        data.charExists = this.charExists;
+        data.charNames = this.charNames;
+        data.charKills = this.charKills;
     }
 }

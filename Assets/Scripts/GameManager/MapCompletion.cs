@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class MapCompletion : MonoBehaviour, IDataPersistance
 {
-    [SerializeField] private TMPro.TMP_Text killCompletionCounter;
-    [SerializeField] private UnityEngine.UI.Image killCompletionBar;
-    [SerializeField] private GameObject structureCompletionBar;
+    // HACK: probably for deletion
+        // [SerializeField] private TMPro.TMP_Text killCompletionCounter;
+        // [SerializeField] private UnityEngine.UI.Image killCompletionBar;
+        // [SerializeField] private GameObject structureCompletionBar;
 
     [SerializeField] private int killsToComplete;
     private int structuresToClear = 2;
@@ -18,24 +19,25 @@ public class MapCompletion : MonoBehaviour, IDataPersistance
 
     private void Start()
     {
-        killCompletionCounter.text = currentKills + "/" + killsToComplete;
-        killCompletionBar.transform.GetChild(0).GetComponent<UnityEngine.UI.Image>().fillAmount = (float)currentKills / killsToComplete;
+        // HACK: probably for deletion
+            // killCompletionCounter.text = currentKills + "/" + killsToComplete;
+            // killCompletionBar.transform.GetChild(0).GetComponent<UnityEngine.UI.Image>().fillAmount = (float)currentKills / killsToComplete;
 
-        if (currentStructures == 0)
-        {
-            structureCompletionBar.transform.GetChild(0).GetChild(0).gameObject.SetActive(false);
-            structureCompletionBar.transform.GetChild(1).GetChild(0).gameObject.SetActive(false);
-        }
-        else if (currentStructures == 1)
-        {
-            structureCompletionBar.transform.GetChild(0).GetChild(0).gameObject.SetActive(true);
-            structureCompletionBar.transform.GetChild(1).GetChild(0).gameObject.SetActive(false);
-        }
-        else if (currentStructures == 2)
-        {
-            structureCompletionBar.transform.GetChild(0).GetChild(0).gameObject.SetActive(true);
-            structureCompletionBar.transform.GetChild(1).GetChild(0).gameObject.SetActive(true);
-        }
+            // if (currentStructures == 0)
+            // {
+            //     structureCompletionBar.transform.GetChild(0).GetChild(0).gameObject.SetActive(false);
+            //     structureCompletionBar.transform.GetChild(1).GetChild(0).gameObject.SetActive(false);
+            // }
+            // else if (currentStructures == 1)
+            // {
+            //     structureCompletionBar.transform.GetChild(0).GetChild(0).gameObject.SetActive(true);
+            //     structureCompletionBar.transform.GetChild(1).GetChild(0).gameObject.SetActive(false);
+            // }
+            // else if (currentStructures == 2)
+            // {
+            //     structureCompletionBar.transform.GetChild(0).GetChild(0).gameObject.SetActive(true);
+            //     structureCompletionBar.transform.GetChild(1).GetChild(0).gameObject.SetActive(true);
+            // }
     }
 
 
@@ -43,40 +45,41 @@ public class MapCompletion : MonoBehaviour, IDataPersistance
     {
         currentKills++;
 
-        if (currentKills > killsToComplete)
-        {
-            currentKills = killsToComplete;
-        }
-        else
-        {
-            killCompletionCounter.text = currentKills + "/" + killsToComplete;
-            killCompletionBar.transform.GetChild(0).GetComponent<UnityEngine.UI.Image>().fillAmount = (float)currentKills / killsToComplete;
-        }
+        // HACK: probably for deletion
+            // if (currentKills > killsToComplete)
+            // {
+            //     currentKills = killsToComplete;
+            // }
+            // else
+            // {
+            //     killCompletionCounter.text = currentKills + "/" + killsToComplete;
+            //     killCompletionBar.transform.GetChild(0).GetComponent<UnityEngine.UI.Image>().fillAmount = (float)currentKills / killsToComplete;
+            // }
     }
     
+    // HACK: probably for deletion
+        // public void AddStructure()
+        // {
+        //     currentStructures++;
 
-    public void AddStructure()
-    {
-        currentStructures++;
-
-        if (currentStructures > structuresToClear)
-        {
-            currentStructures = structuresToClear;
-        }
-        else
-        {
-            if (currentStructures == 1)
-            {
-                structureCompletionBar.transform.GetChild(0).GetChild(0).gameObject.SetActive(true);
-                structureCompletionBar.transform.GetChild(1).GetChild(0).gameObject.SetActive(false);
-            }
-            else if (currentStructures == 2)
-            {
-                structureCompletionBar.transform.GetChild(0).GetChild(0).gameObject.SetActive(true);
-                structureCompletionBar.transform.GetChild(1).GetChild(0).gameObject.SetActive(true);
-            }
-        }
-    }
+        //     if (currentStructures > structuresToClear)
+        //     {
+        //         currentStructures = structuresToClear;
+        //     }
+        //     else
+        //     {
+        //         if (currentStructures == 1)
+        //         {
+        //             structureCompletionBar.transform.GetChild(0).GetChild(0).gameObject.SetActive(true);
+        //             structureCompletionBar.transform.GetChild(1).GetChild(0).gameObject.SetActive(false);
+        //         }
+        //         else if (currentStructures == 2)
+        //         {
+        //             structureCompletionBar.transform.GetChild(0).GetChild(0).gameObject.SetActive(true);
+        //             structureCompletionBar.transform.GetChild(1).GetChild(0).gameObject.SetActive(true);
+        //         }
+        //     }
+        // }
 
 
 
@@ -84,17 +87,15 @@ public class MapCompletion : MonoBehaviour, IDataPersistance
     
     public void LoadData(GameData data)
     {
-        int selectedCharacter = data.selectedCharacter;
+        int selectedCharacter = data.selectedChar;
 
-        this.currentKills = data.currentKills[selectedCharacter];
-        this.currentStructures = data.currentStructures[selectedCharacter];
+        this.currentKills = data.charKills[selectedCharacter];
     }
 
     public void SaveData(ref GameData data)
     {
-        int selectedCharacter = data.selectedCharacter;
+        int selectedCharacter = data.selectedChar;
 
-        data.currentKills[selectedCharacter] = this.currentKills;
-        data.currentStructures[selectedCharacter] = this.currentStructures;
+        data.charKills[selectedCharacter] = this.currentKills;
     }
 }

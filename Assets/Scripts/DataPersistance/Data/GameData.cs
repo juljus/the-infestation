@@ -17,7 +17,7 @@ public class GameData
     public bool[][] learnedSkills = new bool[4][] { new bool[8], new bool[8], new bool[8], new bool[8] };
 
     //! map completion
-    // probably dont need those
+    // HACK: probably dont need those
         // public int[] currentMap = new int[4];
         // public int[] currentStructures = new int[4];
 
@@ -34,7 +34,7 @@ public class GameData
     public float sfxVolume;
 
     //! enemy placement
-    public List<float> enemyPositionsX = new List<float>();
-    public List<float> enemyPositionsY = new List<float>();
-    public List<int> enemyIDs = new List<int>();
+    public List<float>[] enemyPositionsX = new List<float>[4] { new List<float>(), new List<float>(), new List<float>(), new List<float>() };
+    public List<float>[] enemyPositionsY = new List<float>[4] { new List<float>(), new List<float>(), new List<float>(), new List<float>() };
+    public List<int>[] enemyIDs = new List<int>[4] { new List<int>(), new List<int>(), new List<int>(), new List<int>() };
 }

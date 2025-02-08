@@ -85,8 +85,5 @@ public class CharacterSelectionManager : MonoBehaviour, IDataPersistance
     public void SaveData(ref GameData data)
     {
         data.selectedChar = this.selectedCharacter;
-        data.charExists = this.charExists;
-        data.charNames = this.charNames;
-        data.charLevels = this.charLevels;
     }
 }

@@ -76,7 +76,6 @@ public class CharacterCreationManager : MonoBehaviour, IDataPersistance
     }
     public void SaveData(ref GameData data)
     {
-        data.selectedChar = this.slectedCharacter;
         data.charExists = this.charExists;
         data.charNames = this.charNames;
     }

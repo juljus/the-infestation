@@ -57,8 +57,7 @@ public class FileDataHandler
             // create the file if it doesn't exist
             Directory.CreateDirectory(Path.GetDirectoryName(fullPath));
 
-            // serialize the C# game data object to a JSON string
-            // string dataToStore = JsonUtility.ToJson(data, true);
+            // use yaml to serialize the data
             string dataToStore = yamlSerializer.Serialize(data);
 
             // write the serialized data to the file

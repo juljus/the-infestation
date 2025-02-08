@@ -84,10 +84,11 @@ public class MapCompletion : MonoBehaviour, IDataPersistance
 
 
     //! Data Persistance
-    // TODO: implement InGameSave in the form of campfires and then move the needed saves to ingamesave instead of save
-
     public void InGameSave(ref GameData data)
     {
+        int selectedCharacter = data.selectedChar;
+
+        data.charKills[selectedCharacter] = this.currentKills;
     }
     
     public void LoadData(GameData data)
@@ -99,8 +100,5 @@ public class MapCompletion : MonoBehaviour, IDataPersistance
 
     public void SaveData(ref GameData data)
     {
-        int selectedCharacter = data.selectedChar;
-
-        data.charKills[selectedCharacter] = this.currentKills;
     }
 }

@@ -72,10 +72,6 @@ public class PreGameManager : MonoBehaviour, IDataPersistance
         this.charKills = data.charKills;
     }
     public void SaveData(ref GameData data) {
-        data.selectedChar = this.selectedCharacter;
-        data.charLevels = this.characterLevels;
         data.charExists = this.charExists;
-        data.charNames = this.charNames;
-        data.charKills = this.charKills;
     }
 }

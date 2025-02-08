@@ -44,20 +44,7 @@ public class EnemyPlacementScript : MonoBehaviour, IDataPersistance
     }
 
     //! Data Persistance
-    // TODO: implement InGameSave in the form of campfires and then move the needed saves to ingamesave instead of save
     public void InGameSave(ref GameData data)
-    {
-    }
-
-    public void LoadData(GameData data)
-    {        
-        this.enemyIDs = data.enemyIDs;
-        this.enemyPositionsX = data.enemyPositionsX;
-        this.enemyPositionsY = data.enemyPositionsY;
-        this.selectedChar = data.selectedChar;
-    }
-
-    public void SaveData(ref GameData data)
     {
         GameObject[] enemiesOnMap = GameObject.FindGameObjectsWithTag("Enemy");
 
@@ -91,5 +78,17 @@ public class EnemyPlacementScript : MonoBehaviour, IDataPersistance
         data.enemyPositionsX = this.enemyPositionsX;
         data.enemyPositionsY = this.enemyPositionsY;
         data.enemyIDs = this.enemyIDs;
+    }
+
+    public void LoadData(GameData data)
+    {        
+        this.enemyIDs = data.enemyIDs;
+        this.enemyPositionsX = data.enemyPositionsX;
+        this.enemyPositionsY = data.enemyPositionsY;
+        this.selectedChar = data.selectedChar;
+    }
+
+    public void SaveData(ref GameData data)
+    {
     }
 }

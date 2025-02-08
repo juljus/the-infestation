@@ -79,7 +79,6 @@ public class PlayerMovement : MonoBehaviour, IDataPersistance
     }
 
     //! IDataPersistance
-    // TODO: implement InGameSave in the form of campfires and then move the needed saves to ingamesave instead of save
     public void InGameSave(ref GameData data)
     {
     }
@@ -93,8 +92,5 @@ public class PlayerMovement : MonoBehaviour, IDataPersistance
 
     public void SaveData(ref GameData data)
     {
-        int selectedCharacter = data.selectedChar;
-
-        data.playerMovementSpeed[selectedCharacter] = this.speed;
     }
 }

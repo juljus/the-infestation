@@ -50,6 +50,8 @@ public class MapCompletion : MonoBehaviour, IDataPersistance
                 // TODO: extinguish the campfire
             }
         }
+
+        // TODO: light the 0th campfire by default
     }
 
     public void WTF()

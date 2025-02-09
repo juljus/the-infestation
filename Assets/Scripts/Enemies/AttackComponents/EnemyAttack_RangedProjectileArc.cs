@@ -56,7 +56,7 @@ public class EnemyAttack_RangedProjectileArc : EnemyAttackBase
 
     private void Attack(Transform target, Rigidbody2D rigidBody, EnemyBrain enemyBrain)
     {
-        GameObject projectileClone = Instantiate(projectile, rigidBody.position, Quaternion.identity);
+        GameObject projectileClone = Instantiate(projectile, new Vector3(rigidBody.position.x, rigidBody.position.y+0.5f, 0), Quaternion.identity);
         projectileClone.transform.parent = rigidBody.transform;
 
         enemyBrain.StartCoroutine(AttackCooldownCoroutine());
@@ -77,11 +77,18 @@ public class EnemyAttack_RangedProjectileArc : EnemyAttackBase
                 yield break;
             }
 
+            if (attackTimeRemaining < attackTime/2)
+            {
+                Attack(target, rigidBody, enemyBrain);
+                break;
+            }
+
             attackTimeRemaining -= Time.deltaTime;
             yield return null;
         }
 
-        Attack(target, rigidBody, enemyBrain);
+        yield return new WaitForSeconds(attackTime/2);
+
         attackInProgress = false;
     }
 

@@ -11,6 +11,7 @@ public class EnemyBrain : MonoBehaviour
     [SerializeField] private UnityEngine.UI.Image healthBar;
     [SerializeField] private Animator animator;
 
+    // TODO: somewhere here the movement animation should also be triggered
 
     private float maxHealth;
     private float currentHealth;

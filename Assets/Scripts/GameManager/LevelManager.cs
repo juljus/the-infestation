@@ -5,32 +5,31 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour, IDataPersistance
 {
-    private int[] characterLevels = new int[4];
-    private int selectedCharacter;
+    private int thisCharLevel;
     [SerializeField] private TMPro.TMP_Text levelText;
 
     void Start()
     {
-        levelText.text = "Level: " + characterLevels[selectedCharacter];
+        levelText.text = "Level: " + thisCharLevel;
     }
 
     public void GainLevel()
     {
-        characterLevels[selectedCharacter]++;
-        levelText.text = "Level: " + characterLevels[selectedCharacter];
+        thisCharLevel++;
+        levelText.text = "Level: " + thisCharLevel;
     }
 
     public void ResetLevel()
     {
-        characterLevels[selectedCharacter] = 0;
-        levelText.text = "Level: " + characterLevels[selectedCharacter];
+        thisCharLevel = 0;
+        levelText.text = "Level: " + thisCharLevel;
     }
 
     public int GetPlayerLevel
     {
         get
         {
-            return characterLevels[selectedCharacter];
+            return thisCharLevel;
         }
     }
 
@@ -38,14 +37,17 @@ public class LevelManager : MonoBehaviour, IDataPersistance
 
     public void InGameSave(ref GameData data)
     {
-        data.charLevels = this.characterLevels;
-        data.selectedChar = this.selectedCharacter;
+        int selectedCharacter = data.selectedChar;
+
+        data.charLevels[selectedCharacter] = thisCharLevel;
     }
 
     public void LoadData(GameData data)
     {
-        this.characterLevels = data.charLevels;
-        this.selectedCharacter = data.selectedChar;
+        int selectedCharacter = data.selectedChar;
+        int[] charLevels = data.charLevels;
+
+        this.thisCharLevel = charLevels[selectedCharacter];
     }
 
     public void SaveData(ref GameData data)

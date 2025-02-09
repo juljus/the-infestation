@@ -10,10 +10,10 @@ public class GameData
     public int selectedChar = 0;
     public bool[] charExists = new bool[4];
     public int[] charKills = new int[4];
-    public int[] charLevels = new int[4];
     public string[] charNames = new string[4];
     
     //! skills
+    public int[] charLevels = new int[4];
     public bool[][] learnedSkills = new bool[4][] { new bool[8], new bool[8], new bool[8], new bool[8] };
 
     //! map completion

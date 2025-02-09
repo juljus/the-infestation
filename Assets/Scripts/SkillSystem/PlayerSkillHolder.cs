@@ -21,6 +21,11 @@ public class PlayerSkillHolder : MonoBehaviour
     private Coroutine skill1CooldownCoroutine;
     private Coroutine skill2CooldownCoroutine;
 
+    void Start()
+    {
+        skillHelper = GameObject.Find("GameManager").GetComponent<SkillHelper>();
+    }
+
     public void SkipSkill0ActiveDuration()
     {
         if (skill0ActiveCoroutine != null)
@@ -112,11 +117,6 @@ public class PlayerSkillHolder : MonoBehaviour
     private int[] unlockedActiveSkills = new int[3];
 
     private SkillHelper skillHelper;
-
-    void Start()
-    {
-        skillHelper = GameObject.Find("GameManager").GetComponent<SkillHelper>();
-    }
 
     public void LearnSkills()
     {

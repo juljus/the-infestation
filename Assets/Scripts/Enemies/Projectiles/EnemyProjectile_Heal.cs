@@ -54,6 +54,13 @@ public class EnemyProjectile_Heal : MonoBehaviour
 
     void Update()
     {
+        // check if target is null
+        if (target == null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         //move projectile towards player
         transform.position = Vector2.MoveTowards(transform.position, target.transform.position, projectileSpeed * Time.deltaTime);
 

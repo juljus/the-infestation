@@ -18,8 +18,8 @@ public class SkillUnlockManager : MonoBehaviour
         selectedCharacterLearnedSkills = transform.GetComponent<SkillMenuManager>().GetSelectedCharacterLearnedSkills;
         playerScriptableObject = transform.GetComponent<PlayerManager>().GetPlayerScriptableObject;
 
-        ApplyPassiveSkills();
         ShowUnlockedButtons();
+        ApplyPassiveSkills();
     }
 
     public void ApplyPassiveSkills()
@@ -39,6 +39,7 @@ public class SkillUnlockManager : MonoBehaviour
 
     public void ShowUnlockedButtons()
     {
+        print("ShowUnlockedButtons");
         int buttonsUnlocked = 0;
         for (int i = 0; i < unlockedActiveSkills.Length; i++)
         {

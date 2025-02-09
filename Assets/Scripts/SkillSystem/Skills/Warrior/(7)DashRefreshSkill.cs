@@ -5,8 +5,6 @@ using UnityEngine;
 
 // *ABOUT: upgrade dash - dashing gives a small damage blocking shield and the cooldown of dash is refreshed when an enemy is killed.
 
-// BUG: this ability buggs out the game, stops saving.... also some error on line 28 about object not existing
-
 [CreateAssetMenu(menuName = "Skills/Warrior/(12)DashRefresh")]
 public class DashRefreshSkill : Skill
 {

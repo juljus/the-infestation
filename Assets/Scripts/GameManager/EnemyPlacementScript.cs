@@ -16,7 +16,7 @@ public class EnemyPlacementScript : MonoBehaviour, IDataPersistance
 
     void Start()
     {
-        // BUG: if all enemies are killed, they are all placed again... bad!!
+        // HACK: if all enemies are killed, they are all placed again!!
         if (enemyIDs[selectedChar].Count > 0)
         {
             PlaceEnemies();

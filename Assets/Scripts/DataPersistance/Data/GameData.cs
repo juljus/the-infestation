@@ -17,11 +17,6 @@ public class GameData
     public int[] charLevels = new int[4];
     public bool[][] learnedSkills = new bool[4][] { new bool[8], new bool[8], new bool[8], new bool[8] };
 
-    //! map completion
-    // HACK: probably dont need those
-        // public int[] currentMap = new int[4];
-        // public int[] currentStructures = new int[4];
-
     //! player stats
     public float[] playerAttackDamage = new float[4];
     public float[] playerAttackTime = new float[4];

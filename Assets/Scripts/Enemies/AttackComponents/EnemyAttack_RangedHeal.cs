@@ -85,14 +85,20 @@ public class EnemyAttack_RangedHeal : EnemyAttackBase
 
     public override IEnumerator AttackCoroutine(Transform target, Rigidbody2D rigidBody, EnemyBrain enemyBrain)
     {
+            // check if target is null
+            if (target == null)
+            {
+                attackInProgress = false;
+                yield break;
+            }
+        
         attackInProgress = true;
         
         attackTimeRemaining = attackTime;
         while (attackTimeRemaining > 0)
-        {            
-            // FIXME: throws error when target is destroyed
-            float playerDistance = Vector2.Distance(target.position, rigidBody.position);
-            if (playerDistance > attackRange)
+        {
+            float targetDistance = Vector2.Distance(target.position, rigidBody.position);
+            if (targetDistance > attackRange)
             {
                 attackInProgress = false;
                 yield break;

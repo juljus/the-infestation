@@ -19,7 +19,6 @@ public class EnemyPlacementScript : MonoBehaviour, IDataPersistance
         // BUG: if all enemies are killed, they are all placed again... bad!!
         if (enemyIDs[selectedChar].Count > 0)
         {
-            print("PLACED ENEMIES");
             PlaceEnemies();
         }
     }
@@ -34,11 +33,9 @@ public class EnemyPlacementScript : MonoBehaviour, IDataPersistance
         int i = 0;
         foreach (int enemyID in enemyIDs[selectedChar])
         {
-            print("starting enemy placement");
             GameObject enemy = Instantiate(enemyPrefabs[enemyID], new Vector3(enemyPositionsX[selectedChar][i], enemyPositionsY[selectedChar][i], 0), Quaternion.identity);
             enemy.name = enemyPrefabs[enemyID].name;
             enemy.transform.SetParent(GameObject.Find("Enemies").transform);
-            print("Enemy placed: " + enemy.name);
             i++;
         }
     }
@@ -48,7 +45,6 @@ public class EnemyPlacementScript : MonoBehaviour, IDataPersistance
     {
         GameObject[] enemiesOnMap = GameObject.FindGameObjectsWithTag("Enemy");
 
-        print("Enemies on map: " + enemiesOnMap.Length);
 
         enemyPositionsX[selectedChar].Clear();
         enemyPositionsY[selectedChar].Clear();
@@ -56,24 +52,19 @@ public class EnemyPlacementScript : MonoBehaviour, IDataPersistance
 
         foreach (GameObject enemy in enemiesOnMap)
         {
-            print("asdf+");
             this.enemyPositionsX[selectedChar].Add(enemy.transform.position.x);
             this.enemyPositionsY[selectedChar].Add(enemy.transform.position.y);
+            print("Enemy Name: " + enemy.name);
 
             foreach (GameObject enemyPrefab in this.enemyPrefabs)
             {
-                print("Enemy prefab name: " + enemyPrefab.name);
                 if (enemyPrefab.name == enemy.name)
                 {
+                    print("Enemy ID: " + this.enemyPrefabs.IndexOf(enemyPrefab));
                     enemyIDs[selectedChar].Add(this.enemyPrefabs.IndexOf(enemyPrefab));
-                    print("ID added: " + this.enemyPrefabs.IndexOf(enemyPrefab));
                 }
             }
         }
-
-        print("Enemy positions X: " + this.enemyPositionsX[selectedChar].Count);
-        print("Enemy positions Y: " + this.enemyPositionsY[selectedChar].Count);
-        print("Enemy IDs: " + this.enemyIDs[selectedChar].Count);
 
         data.enemyPositionsX = this.enemyPositionsX;
         data.enemyPositionsY = this.enemyPositionsY;

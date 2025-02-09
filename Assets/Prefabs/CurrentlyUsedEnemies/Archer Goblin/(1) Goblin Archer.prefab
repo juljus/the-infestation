@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 656221980571824589}
   - component: {fileID: 5484579742989409645}
   m_Layer: 0
-  m_Name: (2) Wolf
+  m_Name: (1) Goblin Archer
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -127,9 +127,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45f47dcceb34d4cd7877d8dd5edd21e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movement: {fileID: 11400000, guid: b85526028d49b4929a2a2483f653208f, type: 2}
-  attack: {fileID: 11400000, guid: 05e89f021430447a38492930f94a76ba, type: 2}
-  healthScriptableObject: {fileID: 11400000, guid: 94e6398a5f4b1450f82de5db4956d167, type: 2}
+  movement: {fileID: 11400000, guid: eb534692bd8a1402d8e4da2112e9e055, type: 2}
+  attack: {fileID: 11400000, guid: 5d8c8d16bbc80427faa82c2f9fd24427, type: 2}
+  healthScriptableObject: {fileID: 11400000, guid: 8ea94fc0eafd64300ba9db3fbdf57b44, type: 2}
   healthBar: {fileID: 5730936789821164550}
 --- !u!114 &4567524268145860807
 MonoBehaviour:
@@ -239,7 +239,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5283948590465915951}
   - component: {fileID: 2916467970458146187}
-  - component: {fileID: 8033599977258938844}
+  - component: {fileID: 5067913812041190641}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -257,8 +257,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.48, y: 0.48, z: 0.48}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 0.9, y: 1.8, z: 0.9}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5759696996413894154}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -303,18 +303,18 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -9095717837082945937, guid: c6afe3d565c2946228c675460f7511dd, type: 3}
+  m_Sprite: {fileID: 3625043607559282579, guid: b02f3695ddae944c2b989a9599b46355, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 2}
+  m_Size: {x: 8.04, y: 10.24}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8033599977258938844
+--- !u!114 &5067913812041190641
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -13,6 +13,7 @@ public class MapCompletion : MonoBehaviour, IDataPersistance
     [SerializeField] private GameObject campfireMenu;
     [SerializeField] private GameObject campfireMenuButton;
     [SerializeField] private GameObject attackButton;
+    [SerializeField] private int[] campfireKillThresholds = new int[4] { 0, 1, 2, 3 };
 
     private void Start()
     {
@@ -23,7 +24,7 @@ public class MapCompletion : MonoBehaviour, IDataPersistance
     private void Update()
     {
         // check if standing near an unlocked campfire
-        
+
     }
 
     public void AddKill()
@@ -51,19 +52,27 @@ public class MapCompletion : MonoBehaviour, IDataPersistance
         }
     }
 
+    public void WTF()
+    {
+        print("WTF");
+    }
+
     public void campfireMenuButtonPressed()
     {
-        // TODO: check if enemies are nearby, if so then return
-
+        print("campfireMenuButtonPressed");
+        
+        level = levelManager.GetPlayerLevel;
         if (campfireStandingNextTo <= level)
         {
+            print("You can interact with this campfire");
             CampfireMenuOn();
         }
         else if (campfireStandingNextTo == level + 1)
         {
             // check if enough kills
-            if (currentKills >= 1 * campfireStandingNextTo)
+            if (currentKills >= campfireKillThresholds[campfireStandingNextTo])
             {
+                print("You have enough kills to light this campfire");
                 levelManager.GainLevel();
                 LightCampfires();
             }
@@ -81,17 +90,26 @@ public class MapCompletion : MonoBehaviour, IDataPersistance
     public void CampfireMenuOn()
     {
         campfireMenu.SetActive(true);
+
+        // stop time
+        Time.timeScale = 0;
     }
 
     public void CampfireMenuOff()
     {
         campfireMenu.SetActive(false);
+
+        // start time
+        Time.timeScale = 1;
     }
 
     public void RestAtCampfire()
     {
         // trigger InGameSave
         transform.GetComponent<DataPersistanceManager>().InGameSave();
+
+        // reload scene
+        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
 
         // campfire menu off
         CampfireMenuOff();
@@ -108,7 +126,7 @@ public class MapCompletion : MonoBehaviour, IDataPersistance
         campfireMenuButton.SetActive(false);
         attackButton.SetActive(true);
     }
-    
+
 
     //! Data Persistance
     public void InGameSave(ref GameData data)
@@ -117,7 +135,7 @@ public class MapCompletion : MonoBehaviour, IDataPersistance
 
         data.charKills[selectedCharacter] = this.currentKills;
     }
-    
+
     public void LoadData(GameData data)
     {
         int selectedCharacter = data.selectedChar;

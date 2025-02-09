@@ -39,6 +39,7 @@ public class DataPersistanceManager : MonoBehaviour
         this.gameData.playerHealth[this.gameData.selectedChar] = playerScriptableObject.health;
 
         this.gameData.charLevels[this.gameData.selectedChar] = 0;
+        this.gameData.charCoords[this.gameData.selectedChar] = new float[2];
         this.gameData.learnedSkills[this.gameData.selectedChar] = new bool[8];
         this.gameData.charKills[this.gameData.selectedChar] = 0;
         this.gameData.enemyPositionsX[this.gameData.selectedChar] = new List<float>();

@@ -133,3 +133,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7cbe8f3e787a4d47a049c39b7d830a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyCheckRadius: 4

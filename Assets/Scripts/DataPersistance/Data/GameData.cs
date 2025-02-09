@@ -11,6 +11,7 @@ public class GameData
     public bool[] charExists = new bool[4];
     public int[] charKills = new int[4];
     public string[] charNames = new string[4];
+    public float[][] charCoords = new float[4][] { new float[2], new float[2], new float[2], new float[2] };
     
     //! skills
     public int[] charLevels = new int[4];

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3689066094010218151}
   m_Layer: 0
   m_Name: Shroom
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,13 +96,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 815109540014884342}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d9d5dab19ae14f979d647cd164db9d9, type: 3}
+  m_Script: {fileID: 11500000, guid: 5e6d312b4e0c64320be636cb71dc8f5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effectIcon: {fileID: 6105795678443708983, guid: 3cac1f7a6794e497b9614b9481915b5c, type: 3}
-  attackDamage: 40
-  poisonDamage: -80
-  poisonDuration: 4
+  effectIcon: {fileID: 0}
+  attackDamage: 10
+  poisonDamage: 20
+  poisonDuration: 2
 --- !u!58 &-7265305971443503476
 CircleCollider2D:
   m_ObjectHideFlags: 0

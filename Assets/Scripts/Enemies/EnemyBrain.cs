@@ -59,7 +59,6 @@ public class EnemyBrain : MonoBehaviour
 
     public void Death()
     {   
-        print("Enemy died");
         GameObject.Find("GameManager").GetComponent<EnemyLogicManager>().enemyDeathEvent.Invoke();
 
         gameManager.GetComponent<MapCompletion>().AddKill();

@@ -6,6 +6,8 @@ public class CampfireScript : MonoBehaviour
 {
     private GameObject gameManager;
 
+    [SerializeField] private float enemyCheckRadius;
+
     private void Start()
     {
         gameManager = GameObject.Find("GameManager");
@@ -13,6 +15,16 @@ public class CampfireScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        // if enemies nearby, don't show the campfire menu button
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, enemyCheckRadius);
+        foreach (Collider2D collider in colliders)
+        {
+            if (collider.CompareTag("Enemy"))
+            {
+                return;
+            }
+        }
+
         if (collision.CompareTag("Player"))
         {
             gameManager.GetComponent<MapCompletion>().ShowCampfireMenuButton();

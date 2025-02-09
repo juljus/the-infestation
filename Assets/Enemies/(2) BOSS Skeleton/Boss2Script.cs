@@ -173,19 +173,16 @@ public class Boss2Script : MonoBehaviour
         if (playerDistance > stoppingRangeMax)
         {
             // move towards player
-            print("move towards player");
             transform.position = Vector2.MoveTowards(transform.position, player.transform.position, movementSpeed * Time.deltaTime);
         }
         else if (playerDistance < stoppingRangeMin)
         {
             // move away from player
-            print("move away from player");
             transform.position = Vector2.MoveTowards(transform.position, player.transform.position, -movementSpeed * Time.deltaTime);
         }
         else 
         {
             // // move sideways
-            // print("move sideways");
             // transform.position = Vector2.MoveTowards(transform.position, new Vector2(player.transform.position.x, transform.position.y), movementSpeed * Time.deltaTime);
         }
     }

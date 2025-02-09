@@ -1,0 +1,30 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class CampfireScript : MonoBehaviour
+{
+    private GameObject gameManager;
+
+    private void Start()
+    {
+        gameManager = GameObject.Find("GameManager");
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            gameManager.GetComponent<MapCompletion>().ShowCampfireMenuButton();
+            gameManager.GetComponent<MapCompletion>().SetCampfireStandingNextTo(int.Parse(gameObject.name));
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            gameManager.GetComponent<MapCompletion>().HideCampfireMenuButton();
+        }
+    }
+}

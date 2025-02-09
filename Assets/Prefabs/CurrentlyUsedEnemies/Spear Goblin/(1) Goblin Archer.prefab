@@ -35,7 +35,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -0.09}
+  m_AnchoredPosition: {x: 0, y: -0.06}
   m_SizeDelta: {x: 1, y: 0.15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8456886330183401737
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 656221980571824589}
   - component: {fileID: 5484579742989409645}
   m_Layer: 0
-  m_Name: (1) Healer Goblin
+  m_Name: (1) Goblin Archer
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -127,10 +127,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45f47dcceb34d4cd7877d8dd5edd21e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movement: {fileID: 11400000, guid: 9f6c6068d2126452382050c0259afa57, type: 2}
-  attack: {fileID: 11400000, guid: 8870ad2b58c34435b9ca15d15c2a85bf, type: 2}
-  healthScriptableObject: {fileID: 11400000, guid: e8b09eec04be74e0987ee07239ab97f2, type: 2}
+  movement: {fileID: 11400000, guid: eb534692bd8a1402d8e4da2112e9e055, type: 2}
+  attack: {fileID: 11400000, guid: 5d8c8d16bbc80427faa82c2f9fd24427, type: 2}
+  healthScriptableObject: {fileID: 11400000, guid: 8ea94fc0eafd64300ba9db3fbdf57b44, type: 2}
   healthBar: {fileID: 5730936789821164550}
+  animator: {fileID: 7119504321476361770}
 --- !u!114 &4567524268145860807
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -239,8 +240,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5283948590465915951}
   - component: {fileID: 2916467970458146187}
-  - component: {fileID: 5660448623522010806}
-  - component: {fileID: 7485265571039009104}
+  - component: {fileID: 5067913812041190641}
+  - component: {fileID: 7119504321476361770}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -259,7 +260,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 1
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5759696996413894154}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -304,18 +305,18 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1d8ead3acc6ab467ab0d6e7404bb35db, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 26ec74750e294461698325c55e043192, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.74, y: 1.08}
+  m_Size: {x: 0.73, y: 1.04}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5660448623522010806
+--- !u!114 &5067913812041190641
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -327,7 +328,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c33f92c767a0480fb0da16717ff4e2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!95 &7485265571039009104
+--- !u!95 &7119504321476361770
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
@@ -337,7 +338,7 @@ Animator:
   m_GameObject: {fileID: 5072910361956812392}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8d2ff5ff834ed41c4aba06aa015db652, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1cf1ce0505cfb4113a2aeb5caace7ead, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

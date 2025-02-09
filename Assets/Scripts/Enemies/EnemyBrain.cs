@@ -9,6 +9,7 @@ public class EnemyBrain : MonoBehaviour
     [SerializeField] private EnemyAttackBase attack;
     [SerializeField] private EnemyHealthScriptableObject healthScriptableObject;
     [SerializeField] private UnityEngine.UI.Image healthBar;
+    [SerializeField] private Animator animator;
 
 
     private float maxHealth;
@@ -51,6 +52,16 @@ public class EnemyBrain : MonoBehaviour
         {
             playerDistance = Vector2.Distance(player.transform.position, transform.position);
             attack.TryAttack(player.transform, GetComponent<Rigidbody2D>(), playerDistance, this);
+        }
+
+        if (attack.attackInProgress == true)
+        {
+            // attack animation
+            animator.SetBool("isAttacking", true);
+        }
+        else
+        {
+            animator.SetBool("isAttacking", false);
         }
     }
 

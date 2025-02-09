@@ -59,7 +59,6 @@ public class EnemyProjectile_Arc : MonoBehaviour
 
     void Update()
     {
-        print("projectile speed: " + projectileSpeed);
         targetPos = target.transform.position;
 
         // compute the next position, without arc added in
@@ -69,15 +68,10 @@ public class EnemyProjectile_Arc : MonoBehaviour
 		// float x0 = startPos.x;
 		// float x1 = targetPos.x;
 		// float dist = x1 - x0;
-        // print("dist: " + dist);
 		// float nextX = Mathf.MoveTowards(transform.position.x, x1, projectileSpeed * Time.deltaTime);
-        // print("nextX: " + nextX);
 		// float baseY = Mathf.Lerp(startPos.y, targetPos.y, (nextX - x0) / dist);
-        // print("baseY: " + baseY);
 		// float arc = projectileArcHeight * (nextX - x0) * (nextX - x1) / (-0.25f * dist * dist);
-        // print("arc: " + arc);
 		// Vector3 nextPos = new Vector3(nextX, baseY + arc, transform.position.z);
-        // print("nextPos: " + nextPos);
 		
 		// Rotate to face the next position, and then move there
 		transform.rotation = Quaternion.LookRotation(Vector3.forward, nextPos - transform.position);

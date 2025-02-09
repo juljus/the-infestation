@@ -52,7 +52,6 @@ public class PlayerHealth : MonoBehaviour, IDataPersistance
 
     public void TakeDamage(float damage)
     {
-        print("take damage");
         if (invulnerable) { return; }
 
         if (currentShield > 0)
@@ -80,7 +79,6 @@ public class PlayerHealth : MonoBehaviour, IDataPersistance
 
     public void Heal(float heal)
     {
-        print("heal");
         currentHealth += heal;
 
         AfterHealthChange();
@@ -107,10 +105,8 @@ public class PlayerHealth : MonoBehaviour, IDataPersistance
     //! setters
     public void SetShield(float shield)
     {
-        print("noooooo");
         if (currentShield < shield)
         {
-            print("yessss");
             currentShield = shield;
         }
     }
@@ -140,7 +136,6 @@ public class PlayerHealth : MonoBehaviour, IDataPersistance
     }
 
     //! IDataPersistance
-    // TODO: implement InGameSave in the form of campfires and then move the needed saves to ingamesave instead of save
     public void InGameSave(ref GameData data)
     {
     }
@@ -154,8 +149,5 @@ public class PlayerHealth : MonoBehaviour, IDataPersistance
 
     public void SaveData(ref GameData data)
     {
-        int selectedCharacter = data.selectedChar;
-
-        data.playerHealth[selectedCharacter] = this.health;
     }
 }

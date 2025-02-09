@@ -43,8 +43,6 @@ public class PlayerAttack : MonoBehaviour, IDataPersistance
     // --------- PUBLIC FUNCTIONS --------- 
     public void Attack()
     {
-        print("grrrrr");
-        print("is attacking: " + isAttacking);
         if (transform.GetComponent<PlayerLogic>().GetIsStunned > 0) { return; }
         if (isAttacking) { return; }
 
@@ -149,11 +147,6 @@ public class PlayerAttack : MonoBehaviour, IDataPersistance
         currentAttackDamage = newCurrentAttackDamage;
     }
 
-    public void SetAttackDamage(float newAttackDamage)
-    {
-        attackDamage = newAttackDamage;
-    }
-
     public void SetCurrentAttackTime(float newCurrentAttackTime)
     {
         currentAttackTime = newCurrentAttackTime;
@@ -165,7 +158,6 @@ public class PlayerAttack : MonoBehaviour, IDataPersistance
     }
 
     //! IDataPersistance
-    // TODO: implement InGameSave in the form of campfires and then move the needed saves to ingamesave instead of save
     public void InGameSave(ref GameData data)
     {
     }
@@ -182,11 +174,5 @@ public class PlayerAttack : MonoBehaviour, IDataPersistance
 
     public void SaveData(ref GameData data)
     {
-        int selectedCharacter = data.selectedChar;
-
-        data.playerAttackDamage[selectedCharacter] = this.attackDamage;
-        data.playerAttackTime[selectedCharacter] = this.attackTime;
-        data.playerAttackRange[selectedCharacter] = this.attackRange;
-        data.playerAttackCooldown[selectedCharacter] = this.attackCooldown;
     }
 }

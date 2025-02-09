@@ -39,8 +39,12 @@ public class DataPersistanceManager : MonoBehaviour
         this.gameData.playerHealth[this.gameData.selectedChar] = playerScriptableObject.health;
 
         this.gameData.charLevels[this.gameData.selectedChar] = 0;
+        this.gameData.charCoords[this.gameData.selectedChar] = new float[2];
         this.gameData.learnedSkills[this.gameData.selectedChar] = new bool[8];
         this.gameData.charKills[this.gameData.selectedChar] = 0;
+        this.gameData.enemyPositionsX[this.gameData.selectedChar] = new List<float>();
+        this.gameData.enemyPositionsY[this.gameData.selectedChar] = new List<float>();
+        this.gameData.enemyIDs[this.gameData.selectedChar] = new List<int>();
 
         print("Player Stats Saved");
 
@@ -71,6 +75,8 @@ public class DataPersistanceManager : MonoBehaviour
     // TODO: implement InGameSave in the form of campfires and then move the needed saves to ingamesave instead of save
     public void InGameSave()
     {
+        Debug.Log("InGameSave");
+
         // pass data to other scripts so they can update it
         foreach (IDataPersistance dataPersistanceObject in this.dataPersistanceObjects)
         {
@@ -79,6 +85,8 @@ public class DataPersistanceManager : MonoBehaviour
 
         // save the data to a file using the data handler
         dataHandler.Save(gameData);
+
+        Debug.Log("InGameSave Complete");
     }
 
     // load the game data

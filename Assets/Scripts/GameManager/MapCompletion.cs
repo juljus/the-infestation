@@ -4,92 +4,140 @@ using UnityEngine;
 
 public class MapCompletion : MonoBehaviour, IDataPersistance
 {
-    // HACK: probably for deletion
-        // [SerializeField] private TMPro.TMP_Text killCompletionCounter;
-        // [SerializeField] private UnityEngine.UI.Image killCompletionBar;
-        // [SerializeField] private GameObject structureCompletionBar;
-
-    [SerializeField] private int killsToComplete;
-    private int structuresToClear = 2;
-
-
     private int currentKills = 0;
-    private int currentStructures = 0;
+    private LevelManager levelManager;
+    private int level = 0;
+    private int campfireStandingNextTo;
 
+    [SerializeField] private GameObject[] campfires = new GameObject[3];
+    [SerializeField] private GameObject campfireMenu;
+    [SerializeField] private GameObject campfireMenuButton;
+    [SerializeField] private GameObject attackButton;
+    [SerializeField] private int[] campfireKillThresholds = new int[4] { 0, 1, 2, 3 };
 
     private void Start()
     {
-        // HACK: probably for deletion
-            // killCompletionCounter.text = currentKills + "/" + killsToComplete;
-            // killCompletionBar.transform.GetChild(0).GetComponent<UnityEngine.UI.Image>().fillAmount = (float)currentKills / killsToComplete;
-
-            // if (currentStructures == 0)
-            // {
-            //     structureCompletionBar.transform.GetChild(0).GetChild(0).gameObject.SetActive(false);
-            //     structureCompletionBar.transform.GetChild(1).GetChild(0).gameObject.SetActive(false);
-            // }
-            // else if (currentStructures == 1)
-            // {
-            //     structureCompletionBar.transform.GetChild(0).GetChild(0).gameObject.SetActive(true);
-            //     structureCompletionBar.transform.GetChild(1).GetChild(0).gameObject.SetActive(false);
-            // }
-            // else if (currentStructures == 2)
-            // {
-            //     structureCompletionBar.transform.GetChild(0).GetChild(0).gameObject.SetActive(true);
-            //     structureCompletionBar.transform.GetChild(1).GetChild(0).gameObject.SetActive(true);
-            // }
+        levelManager = transform.GetComponent<LevelManager>();
+        level = levelManager.GetPlayerLevel;
     }
 
+    private void Update()
+    {
+        // check if standing near an unlocked campfire
+
+    }
 
     public void AddKill()
     {
         currentKills++;
-
-        // HACK: probably for deletion
-            // if (currentKills > killsToComplete)
-            // {
-            //     currentKills = killsToComplete;
-            // }
-            // else
-            // {
-            //     killCompletionCounter.text = currentKills + "/" + killsToComplete;
-            //     killCompletionBar.transform.GetChild(0).GetComponent<UnityEngine.UI.Image>().fillAmount = (float)currentKills / killsToComplete;
-            // }
     }
-    
-    // HACK: probably for deletion
-        // public void AddStructure()
-        // {
-        //     currentStructures++;
 
-        //     if (currentStructures > structuresToClear)
-        //     {
-        //         currentStructures = structuresToClear;
-        //     }
-        //     else
-        //     {
-        //         if (currentStructures == 1)
-        //         {
-        //             structureCompletionBar.transform.GetChild(0).GetChild(0).gameObject.SetActive(true);
-        //             structureCompletionBar.transform.GetChild(1).GetChild(0).gameObject.SetActive(false);
-        //         }
-        //         else if (currentStructures == 2)
-        //         {
-        //             structureCompletionBar.transform.GetChild(0).GetChild(0).gameObject.SetActive(true);
-        //             structureCompletionBar.transform.GetChild(1).GetChild(0).gameObject.SetActive(true);
-        //         }
-        //     }
-        // }
+    public void SetCampfireStandingNextTo(int campfireNum)
+    {
+        campfireStandingNextTo = campfireNum;
+    }
 
+    private void LightCampfires()
+    {
+        for (int i = 0; i < campfires.Length; i++)
+        {
+            if (i <= level)
+            {
+                // TODO: light the campfire
+            }
+            else
+            {
+                // TODO: extinguish the campfire
+            }
+        }
+
+        // TODO: light the 0th campfire by default
+    }
+
+    public void WTF()
+    {
+        print("WTF");
+    }
+
+    public void campfireMenuButtonPressed()
+    {
+        print("campfireMenuButtonPressed");
+        
+        level = levelManager.GetPlayerLevel;
+        if (campfireStandingNextTo <= level)
+        {
+            print("You can interact with this campfire");
+            CampfireMenuOn();
+        }
+        else if (campfireStandingNextTo == level + 1)
+        {
+            // check if enough kills
+            if (currentKills >= campfireKillThresholds[campfireStandingNextTo])
+            {
+                print("You have enough kills to light this campfire");
+                levelManager.GainLevel();
+                LightCampfires();
+            }
+            else
+            {
+                print("You need more kills to light this campfire");
+            }
+        }
+        else
+        {
+            print("You can't interact with this campfire yet");
+        }
+    }
+
+    public void CampfireMenuOn()
+    {
+        campfireMenu.SetActive(true);
+
+        // stop time
+        Time.timeScale = 0;
+    }
+
+    public void CampfireMenuOff()
+    {
+        campfireMenu.SetActive(false);
+
+        // start time
+        Time.timeScale = 1;
+    }
+
+    public void RestAtCampfire()
+    {
+        // trigger InGameSave
+        transform.GetComponent<DataPersistanceManager>().InGameSave();
+
+        // reload scene
+        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
+
+        // campfire menu off
+        CampfireMenuOff();
+    }
+
+    public void ShowCampfireMenuButton()
+    {
+        campfireMenuButton.SetActive(true);
+        attackButton.SetActive(false);
+    }
+
+    public void HideCampfireMenuButton()
+    {
+        campfireMenuButton.SetActive(false);
+        attackButton.SetActive(true);
+    }
 
 
     //! Data Persistance
-    // TODO: implement InGameSave in the form of campfires and then move the needed saves to ingamesave instead of save
-
     public void InGameSave(ref GameData data)
     {
+        int selectedCharacter = data.selectedChar;
+
+        data.charKills[selectedCharacter] = this.currentKills;
     }
-    
+
     public void LoadData(GameData data)
     {
         int selectedCharacter = data.selectedChar;
@@ -99,8 +147,5 @@ public class MapCompletion : MonoBehaviour, IDataPersistance
 
     public void SaveData(ref GameData data)
     {
-        int selectedCharacter = data.selectedChar;
-
-        data.charKills[selectedCharacter] = this.currentKills;
     }
 }

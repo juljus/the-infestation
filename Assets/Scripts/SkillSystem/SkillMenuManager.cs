@@ -13,7 +13,6 @@ public class SkillMenuManager : MonoBehaviour, IDataPersistance
     [SerializeField] private GameObject[] skillButtons;
     [SerializeField] private string[] skillIDs;
     private PlayerScriptableObject playerScriptableObject;
-    private bool[][] learnedSkills;
     private int[] skillTierUnlockLevel = {0, 1, 2, 3};
 
     private bool[] availableSkills = new bool[8];
@@ -22,7 +21,6 @@ public class SkillMenuManager : MonoBehaviour, IDataPersistance
     private int currentSkillIndex;
 
     private int level = 0;
-    private int selectedCharacter;
 
     [Header("SkillPreview")]
     [SerializeField] private GameObject previewMenu;
@@ -244,21 +242,22 @@ public class SkillMenuManager : MonoBehaviour, IDataPersistance
     // TODO: implement InGameSave in the form of campfires and then move the needed saves to ingamesave instead of save
     public void InGameSave(ref GameData data)
     {
+        int selectedChar = data.selectedChar;
+
+        data.learnedSkills[selectedChar] = this.selectedCharacterLearnedSkills;
     }
 
     public void LoadData(GameData data)
     {
-        this.learnedSkills = data.learnedSkills;
-        this.selectedCharacter = data.selectedChar;
+        bool[][] learnedSkills = data.learnedSkills;
+        int selectedCharacter = data.selectedChar;
 
-        this.selectedCharacterLearnedSkills = this.learnedSkills[selectedCharacter];
+        this.selectedCharacterLearnedSkills = new bool[learnedSkills[selectedCharacter].Length];
+        Array.Copy(learnedSkills[selectedCharacter], this.selectedCharacterLearnedSkills, learnedSkills[selectedCharacter].Length);
     }
 
     public void SaveData(ref GameData data)
     {
-        data.learnedSkills = this.learnedSkills;
-        data.selectedChar = this.selectedCharacter;
-
-        this.learnedSkills[selectedCharacter] = this.selectedCharacterLearnedSkills;
+        // Ensure skills are not saved
     }
 }

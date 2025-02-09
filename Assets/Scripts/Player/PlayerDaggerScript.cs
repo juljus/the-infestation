@@ -31,15 +31,11 @@ public class PlayerDaggerScript : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject == target)
         {
-            print("Dagger hit target");
-
             // apply damage
             target.GetComponent<EnemyBrain>().TakeDamage(daggerDamage);
-            print("Dagger dealt " + daggerDamage + " damage");
 
             // apply effect
             target.GetComponent<EffectSystem>().TakeStatusEffect("kjsbfowfnöwpenäfwapojf0m", "healthMod", -daggerEffectValue, daggerEffectDuration, null, daggerEffectIsStackable);
-            print("Dagger applied effect");
 
             Destroy(gameObject);
         }

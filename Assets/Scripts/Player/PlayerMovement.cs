@@ -20,9 +20,14 @@ public class PlayerMovement : MonoBehaviour, IDataPersistance
     private bool directionRight;
     private bool isMoving;
 
+    private float[] charCoords;
+
     void Start()
     {
         currentSpeed = speed;
+
+        // place player on the map
+        transform.position = new Vector3(charCoords[0], charCoords[1], 0);
     }
 
     public void Movement(InputAction.CallbackContext callbackContext)
@@ -79,9 +84,12 @@ public class PlayerMovement : MonoBehaviour, IDataPersistance
     }
 
     //! IDataPersistance
-    // TODO: implement InGameSave in the form of campfires and then move the needed saves to ingamesave instead of save
     public void InGameSave(ref GameData data)
     {
+        int selectedCharacter = data.selectedChar;
+
+        data.charCoords[selectedCharacter][0] = transform.position.x;
+        data.charCoords[selectedCharacter][1] = transform.position.y;
     }
 
     public void LoadData(GameData data)
@@ -89,12 +97,10 @@ public class PlayerMovement : MonoBehaviour, IDataPersistance
         int selectedCharacter = data.selectedChar;
 
         this.speed = data.playerMovementSpeed[selectedCharacter];
+        this.charCoords = data.charCoords[selectedCharacter];
     }
 
     public void SaveData(ref GameData data)
     {
-        int selectedCharacter = data.selectedChar;
-
-        data.playerMovementSpeed[selectedCharacter] = this.speed;
     }
 }

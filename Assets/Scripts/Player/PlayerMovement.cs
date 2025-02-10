@@ -63,7 +63,6 @@ public class PlayerMovement : MonoBehaviour, IDataPersistance
         rigidBody.velocity = new Vector2(movementInput.x * currentSpeed, movementInput.y * currentSpeed);
 
         animator.SetBool("isMoving", isMoving);
-        animator.SetBool("directionRight", directionRight);
     }
 
     // Getters

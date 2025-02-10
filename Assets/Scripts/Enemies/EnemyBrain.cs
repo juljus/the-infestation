@@ -64,6 +64,16 @@ public class EnemyBrain : MonoBehaviour
         {
             animator.SetBool("isAttacking", false);
         }
+
+        // check if target is to the left or right
+        if (player.transform.position.x < transform.position.x)
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+        }
+        else
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
     }
 
 

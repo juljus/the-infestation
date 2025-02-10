@@ -127,10 +127,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45f47dcceb34d4cd7877d8dd5edd21e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movement: {fileID: 11400000, guid: 9f6c6068d2126452382050c0259afa57, type: 2}
-  attack: {fileID: 11400000, guid: 8870ad2b58c34435b9ca15d15c2a85bf, type: 2}
-  healthScriptableObject: {fileID: 11400000, guid: e8b09eec04be74e0987ee07239ab97f2, type: 2}
+  movement: {fileID: 11400000, guid: c94a914b894f84cfb928962de13f4a2f, type: 2}
+  attack: {fileID: 11400000, guid: d76b6feadae2442ff91b2d9172587e16, type: 2}
+  healthScriptableObject: {fileID: 11400000, guid: 3c143e262987e4232999bcb056887f9b, type: 2}
   healthBar: {fileID: 5730936789821164550}
+  animator: {fileID: 7485265571039009104}
 --- !u!114 &4567524268145860807
 MonoBehaviour:
   m_ObjectHideFlags: 0

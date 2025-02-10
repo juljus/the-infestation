@@ -35,5 +35,5 @@ MonoBehaviour:
   attackTimeRemaining: 0
   attackInProgress: 0
   target: {fileID: 0}
-  projectile: {fileID: 9085602268992797658, guid: 3c8a09f90b8744d7a91ecd3781715982, type: 3}
+  projectile: {fileID: 9085602268992797658, guid: c354ad027ca3941729f14d8de2b12174, type: 3}
   projectileSpeed: 10

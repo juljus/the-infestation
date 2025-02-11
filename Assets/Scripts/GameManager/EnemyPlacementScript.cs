@@ -23,7 +23,7 @@ public class EnemyPlacementScript : MonoBehaviour, IDataPersistance
         }
     }
 
-    private void PlaceEnemies()
+    public void PlaceEnemies()
     {
         foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
         {

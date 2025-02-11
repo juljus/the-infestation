@@ -7,10 +7,25 @@ public class CampfireScript : MonoBehaviour
     private GameObject gameManager;
 
     [SerializeField] private float enemyCheckRadius;
+    [SerializeField] private Animator animator;
 
     private void Start()
     {
         gameManager = GameObject.Find("GameManager");
+    }
+
+    public void SetIfBurning(bool isBurning)
+    {
+        print("Setting if burning: " + isBurning + " for " + gameObject.name);
+
+        if (isBurning)
+        {
+            animator.SetBool("isBurning", true);
+        }
+        else
+        {
+            animator.SetBool("isBurning", false);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

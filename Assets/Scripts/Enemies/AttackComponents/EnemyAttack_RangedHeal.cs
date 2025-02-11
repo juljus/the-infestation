@@ -41,6 +41,12 @@ public class EnemyAttack_RangedHeal : EnemyAttackBase
             }
         }
 
+        // if no enemies, return
+        if (target == null)
+        {
+            return;
+        }
+
         // set facing direction
         if (target.transform.position.x < rigidBody.position.x)
         {
@@ -107,6 +113,12 @@ public class EnemyAttack_RangedHeal : EnemyAttackBase
         attackTimeRemaining = attackTime;
         while (attackTimeRemaining > 0)
         {
+            if (target == null)
+            {
+                attackInProgress = false;
+                yield break;
+            }
+
             float targetDistance = Vector2.Distance(target.position, rigidBody.position);
             if (targetDistance > attackRange)
             {

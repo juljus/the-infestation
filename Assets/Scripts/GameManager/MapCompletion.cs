@@ -8,23 +8,25 @@ public class MapCompletion : MonoBehaviour, IDataPersistance
     private LevelManager levelManager;
     private int level = 0;
     private int campfireStandingNextTo;
+    private GameObject player;
 
     [SerializeField] private GameObject[] campfires = new GameObject[3];
     [SerializeField] private GameObject campfireMenu;
     [SerializeField] private GameObject campfireMenuButton;
     [SerializeField] private GameObject attackButton;
     [SerializeField] private int[] campfireKillThresholds = new int[4] { 0, 1, 2, 3 };
+    [SerializeField] private UnityEngine.UI.Image blackoutImage;
 
     private void Start()
     {
+        player = transform.GetComponent<PlayerManager>().GetPlayer;
+
+        // start blackout animation
+        StartCoroutine(Blackout());
+
         levelManager = transform.GetComponent<LevelManager>();
         level = levelManager.GetPlayerLevel;
-    }
-
-    private void Update()
-    {
-        // check if standing near an unlocked campfire
-
+        LightCampfires();
     }
 
     public void AddKill()
@@ -39,19 +41,19 @@ public class MapCompletion : MonoBehaviour, IDataPersistance
 
     private void LightCampfires()
     {
+        level = levelManager.GetPlayerLevel;
+
         for (int i = 0; i < campfires.Length; i++)
         {
             if (i <= level)
             {
-                // TODO: light the campfire
+                campfires[i].GetComponent<CampfireScript>().SetIfBurning(true);
             }
             else
             {
-                // TODO: extinguish the campfire
+                campfires[i].GetComponent<CampfireScript>().SetIfBurning(false);
             }
         }
-
-        // TODO: light the 0th campfire by default
     }
 
     public void campfireMenuButtonPressed()
@@ -102,11 +104,20 @@ public class MapCompletion : MonoBehaviour, IDataPersistance
 
     public void RestAtCampfire()
     {
+        // start blackout animation
+        StartCoroutine(Blackout());
+
         // trigger InGameSave
         transform.GetComponent<DataPersistanceManager>().InGameSave();
 
-        // reload scene
-        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
+        // replace all enemies
+        transform.GetComponent<EnemyPlacementScript>().PlaceEnemies();
+
+        // reset player health / cooldowns
+        player.GetComponent<PlayerHealth>().ResetHealth();
+
+        PlayerSkillHolder playerSkillHolder = player.transform.GetComponent<PlayerSkillHolder>();
+        playerSkillHolder.ResetAllSkills();
 
         // campfire menu off
         CampfireMenuOff();
@@ -122,6 +133,26 @@ public class MapCompletion : MonoBehaviour, IDataPersistance
     {
         campfireMenuButton.SetActive(false);
         attackButton.SetActive(true);
+    }
+
+    private IEnumerator Blackout()
+    {
+        float alpha = 1;
+
+        blackoutImage.gameObject.SetActive(true);
+        blackoutImage.color = new Color(0, 0, 0, alpha);
+
+        yield return new WaitForSeconds(0.5f);
+
+        // start fade out
+        while (alpha > 0)
+        {
+            alpha -= Time.unscaledDeltaTime;
+            blackoutImage.color = new Color(0, 0, 0, alpha);
+            yield return null;
+        }
+
+        blackoutImage.gameObject.SetActive(false);
     }
 
 

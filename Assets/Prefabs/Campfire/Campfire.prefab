@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8899864874344290044}
   - component: {fileID: 628003472702845609}
   - component: {fileID: -535949525173978546}
+  - component: {fileID: 5347658915679663147}
   m_Layer: 0
   m_Name: Campfire
   m_TagString: Untagged
@@ -134,3 +135,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyCheckRadius: 4
+  animator: {fileID: 5347658915679663147}
+--- !u!95 &5347658915679663147
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7261973259734953936}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 89097efeec27e4079a5d4b61de4acbfa, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

@@ -26,6 +26,17 @@ public class PlayerSkillHolder : MonoBehaviour
         skillHelper = GameObject.Find("GameManager").GetComponent<SkillHelper>();
     }
 
+    public void ResetAllSkills()
+    {
+        SkipSkill0ActiveDuration();
+        SkipSkill1ActiveDuration();
+        SkipSkill2ActiveDuration();
+
+        SkipSkill0Cooldown();
+        SkipSkill1Cooldown();
+        SkipSkill2Cooldown();
+    }
+
     public void SkipSkill0ActiveDuration()
     {
         if (skill0ActiveCoroutine != null)

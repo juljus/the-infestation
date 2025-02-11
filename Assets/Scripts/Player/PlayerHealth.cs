@@ -145,6 +145,13 @@ public class PlayerHealth : MonoBehaviour, IDataPersistance
         }
     }
 
+    public void ResetHealth()
+    {
+        currentHealth = health;
+        currentShield = 0;
+        AfterHealthChange();
+    }
+
     //! IDataPersistance
     public void InGameSave(ref GameData data)
     {

@@ -8,6 +8,8 @@ public class CampfireScript : MonoBehaviour
 
     [SerializeField] private float enemyCheckRadius;
     [SerializeField] private Animator animator;
+    [SerializeField] private UnityEngine.UI.Image bar;
+    [SerializeField] private TMPro.TMP_Text text;
 
     private void Start()
     {
@@ -26,6 +28,22 @@ public class CampfireScript : MonoBehaviour
         {
             animator.SetBool("isBurning", false);
         }
+    }
+
+    public void SetBarFillAndText(float fillAmount, string newText)
+    {
+        bar.fillAmount = fillAmount;
+        text.text = newText;
+    }
+
+    public void HideBar()
+    {
+        bar.transform.parent.gameObject.SetActive(false);
+    }
+
+    public void ShowBar()
+    {
+        bar.transform.parent.gameObject.SetActive(true);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

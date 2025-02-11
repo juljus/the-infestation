@@ -27,11 +27,13 @@ public class MapCompletion : MonoBehaviour, IDataPersistance
         levelManager = transform.GetComponent<LevelManager>();
         level = levelManager.GetPlayerLevel;
         LightCampfires();
+        UpdateCampfireKillCounter();
     }
 
     public void AddKill()
     {
         currentKills++;
+        UpdateCampfireKillCounter();
     }
 
     public void SetCampfireStandingNextTo(int campfireNum)
@@ -47,13 +49,40 @@ public class MapCompletion : MonoBehaviour, IDataPersistance
         {
             if (i <= level)
             {
+                // light campfire
                 campfires[i].GetComponent<CampfireScript>().SetIfBurning(true);
+                campfires[i].GetComponent<CampfireScript>().HideBar();
             }
             else
             {
+                // extinguish campfire
                 campfires[i].GetComponent<CampfireScript>().SetIfBurning(false);
+                campfires[i].GetComponent<CampfireScript>().ShowBar();
             }
         }
+    }
+
+    private void UpdateCampfireKillCounter()
+    {
+        for (int i = 0; i < campfires.Length; i++)
+        {
+            float fillAmount;
+            string text;
+
+            if (currentKills < campfireKillThresholds[i])
+            {
+                fillAmount = (float)currentKills / campfireKillThresholds[i];
+                text = currentKills + "/" + campfireKillThresholds[i];
+            }
+            else
+            {
+                fillAmount = 1;
+                text = campfireKillThresholds[i] + "/" + campfireKillThresholds[i];
+            }
+
+            campfires[i].GetComponent<CampfireScript>().SetBarFillAndText(fillAmount, text);
+        }
+
     }
 
     public void campfireMenuButtonPressed()

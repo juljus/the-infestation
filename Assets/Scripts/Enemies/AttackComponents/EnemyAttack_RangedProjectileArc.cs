@@ -49,6 +49,7 @@ public class EnemyAttack_RangedProjectileArc : EnemyAttackBase
 
         clone.projectile = projectile;
         clone.projectileSpeed = projectileSpeed;
+        clone.projectileArcHeight = projectileArcHeight;
 
         return clone;
     }

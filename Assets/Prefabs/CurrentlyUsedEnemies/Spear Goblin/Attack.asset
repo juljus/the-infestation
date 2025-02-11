@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 849f53e26c3b647bea1d17736c626dfa, type: 3}
   m_Name: Attack
   m_EditorClassIdentifier: 
-  damage: 17
+  damage: 3
   attackDistance: 3
   attackRange: 4
-  attackTime: 1
+  attackTime: 0.8
   attackCooldown: 2
   attackEffectType1: speedMod
   attackEffectValue1: 0.8
@@ -36,5 +36,5 @@ MonoBehaviour:
   attackInProgress: 1
   target: {fileID: 0}
   projectile: {fileID: 9085602268992797658, guid: 222ab98de4da74c409e1444f9b904413, type: 3}
-  projectileSpeed: 10
-  projectileArcHeight: 1.5
+  projectileSpeed: 7
+  projectileArcHeight: 0.4

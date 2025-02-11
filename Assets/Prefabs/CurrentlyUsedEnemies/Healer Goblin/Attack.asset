@@ -15,7 +15,7 @@ MonoBehaviour:
   damage: 5
   attackDistance: 2
   attackRange: 3
-  attackTime: 0.875
+  attackTime: 0.62
   attackCooldown: 1.5
   attackEffectType1: 
   attackEffectValue1: 0

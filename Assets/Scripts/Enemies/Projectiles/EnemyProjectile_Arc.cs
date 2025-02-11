@@ -61,17 +61,17 @@ public class EnemyProjectile_Arc : MonoBehaviour
     {
         targetPos = target.transform.position;
 
-        // compute the next position, without arc added in
-        Vector3 nextPos = Vector3.MoveTowards(transform.position, targetPos, projectileSpeed * Time.deltaTime);
+        // // compute the next position, without arc added in
+        // Vector3 nextPos = Vector3.MoveTowards(transform.position, targetPos, projectileSpeed * Time.deltaTime);
 
-        // // Compute the next position, with arc added in
-		// float x0 = startPos.x;
-		// float x1 = targetPos.x;
-		// float dist = x1 - x0;
-		// float nextX = Mathf.MoveTowards(transform.position.x, x1, projectileSpeed * Time.deltaTime);
-		// float baseY = Mathf.Lerp(startPos.y, targetPos.y, (nextX - x0) / dist);
-		// float arc = projectileArcHeight * (nextX - x0) * (nextX - x1) / (-0.25f * dist * dist);
-		// Vector3 nextPos = new Vector3(nextX, baseY + arc, transform.position.z);
+        // Compute the next position, with arc added in
+		float x0 = startPos.x;
+		float x1 = targetPos.x;
+		float dist = x1 - x0;
+		float nextX = Mathf.MoveTowards(transform.position.x, x1, projectileSpeed * Time.deltaTime);
+		float baseY = Mathf.Lerp(startPos.y, targetPos.y, (nextX - x0) / dist);
+		float arc = projectileArcHeight * (nextX - x0) * (nextX - x1) / (-0.25f * dist * dist);
+		Vector3 nextPos = new Vector3(nextX, baseY + arc, transform.position.z);
 		
 		// Rotate to face the next position, and then move there
 		transform.rotation = Quaternion.LookRotation(Vector3.forward, nextPos - transform.position);

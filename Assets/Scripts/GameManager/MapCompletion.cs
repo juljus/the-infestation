@@ -54,11 +54,6 @@ public class MapCompletion : MonoBehaviour, IDataPersistance
         // TODO: light the 0th campfire by default
     }
 
-    public void WTF()
-    {
-        print("WTF");
-    }
-
     public void campfireMenuButtonPressed()
     {
         print("campfireMenuButtonPressed");

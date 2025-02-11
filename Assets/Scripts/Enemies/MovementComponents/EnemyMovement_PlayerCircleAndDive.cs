@@ -4,6 +4,8 @@ using System.Security.Principal;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
+// BUG: this will not set the moving variable on the enemy animator
+
 [CreateAssetMenu(fileName = "Movement", menuName = "Enemy/Movement/PlayerCircleAndDive")]
 public class EnemyMovement_PlayerCircleAndDive : EnemyMovementBase
 {

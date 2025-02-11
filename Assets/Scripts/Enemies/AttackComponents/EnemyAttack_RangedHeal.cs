@@ -41,6 +41,16 @@ public class EnemyAttack_RangedHeal : EnemyAttackBase
             }
         }
 
+        // set facing direction
+        if (target.transform.position.x < rigidBody.position.x)
+        {
+            rigidBody.transform.localScale = new Vector3(1, 1, 1);
+        }
+        else
+        {
+            rigidBody.transform.localScale = new Vector3(-1, 1, 1);
+        }
+
         // calculate target distance
         float targetDistance = Vector2.Distance(target.transform.position, rigidBody.position);
 
@@ -104,11 +114,18 @@ public class EnemyAttack_RangedHeal : EnemyAttackBase
                 yield break;
             }
 
+            if (attackTimeRemaining < attackTime*0.35f)
+            {
+                Attack(target, rigidBody, enemyBrain);
+                break;
+            }
+
             attackTimeRemaining -= Time.deltaTime;
             yield return null;
         }
 
-        Attack(target, rigidBody, enemyBrain);
+        yield return new WaitForSeconds(attackTime*0.65f);
+        
         attackInProgress = false;
     }
 

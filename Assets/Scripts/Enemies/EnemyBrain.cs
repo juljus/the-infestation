@@ -23,6 +23,10 @@ public class EnemyBrain : MonoBehaviour
 
     private int isStunned;
 
+    // public IEnumerator isMovingCoroutine;
+
+    public Coroutine isMovingCoroutineInstance;
+
     void Start()
     {
         maxHealth = healthScriptableObject.maxHealth;
@@ -34,6 +38,8 @@ public class EnemyBrain : MonoBehaviour
 
         attack = attack.Clone();
         movement = movement.Clone();
+
+        // isMovingCoroutine = IsMovingCoroutine();
     }
 
     void Update()
@@ -65,19 +71,42 @@ public class EnemyBrain : MonoBehaviour
             animator.SetBool("isAttacking", false);
         }
 
-        // check if target is to the left or right
-        if (player.transform.position.x < transform.position.x)
+        // // check if velocity is more than 0
+        // if (GetComponent<Rigidbody2D>().velocity.magnitude > 0)
+        // {
+        //     animator.SetBool("isMoving", true);
+        // }
+        // else
+        // {
+        //     animator.SetBool("isMoving", false);
+        // }
+
+        // check if target is to the left or right ( if not healer )
+        if (attack.GetType() != typeof(EnemyAttack_RangedHeal))
         {
-            transform.localScale = new Vector3(1, 1, 1);
-        }
-        else
-        {
-            transform.localScale = new Vector3(-1, 1, 1);
+            if (player.transform.position.x < transform.position.x)
+            {
+                transform.localScale = new Vector3(1, 1, 1);
+            }
+            else
+            {
+                transform.localScale = new Vector3(-1, 1, 1);
+            }
         }
     }
 
 
     // -------- PUBLIC FUNCTIONS ------------
+
+    // HACK: this is totally not good practice, but i didnt manage to think of a better way to do this
+    public IEnumerator IsMovingCoroutine()
+    {
+        print("isRunning true");
+        animator.SetBool("isRunning", true);
+        yield return new WaitForSeconds(0.1f);
+        print("isRunning false");
+        animator.SetBool("isRunning", false);
+    }
 
     public void Death()
     {   

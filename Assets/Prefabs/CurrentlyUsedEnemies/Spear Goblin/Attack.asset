@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 849f53e26c3b647bea1d17736c626dfa, type: 3}
   m_Name: Attack
   m_EditorClassIdentifier: 
-  damage: 5
-  attackDistance: 4
-  attackRange: 5
+  damage: 17
+  attackDistance: 3
+  attackRange: 4
   attackTime: 1
   attackCooldown: 2
   attackEffectType1: speedMod

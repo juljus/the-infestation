@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
+// BUG: this will not set the moving variable on the enemy animator
+
 [CreateAssetMenu(fileName = "Movement", menuName = "Enemy/Movement/PlayerSeekingAndDissapearing")]
 public class EnemyMovement_PlayerSeekingAndDissapearing : EnemyMovementBase
 {

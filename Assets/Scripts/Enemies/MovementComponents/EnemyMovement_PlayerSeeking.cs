@@ -24,6 +24,17 @@ public class EnemyMovement_PlayerSeeking : EnemyMovementBase
         if (isAggroed && playerDistance > stoppingDistance)
         {
             rigidBody.position = Vector2.MoveTowards(rigidBody.position, target.transform.position, currentSpeed * Time.deltaTime);
+
+            // kill the IsMovingCoroutine
+            if (rigidBody.transform.GetComponent<EnemyBrain>().isMovingCoroutineInstance != null)
+            {
+                rigidBody.transform.GetComponent<EnemyBrain>().StopCoroutine(rigidBody.transform.GetComponent<EnemyBrain>().isMovingCoroutineInstance);
+            }
+
+            Debug.Log("PlayerSeeking: Moving");
+            // start the IsMovingCoroutine
+            rigidBody.transform.GetComponent<EnemyBrain>().isMovingCoroutineInstance = rigidBody.transform.GetComponent<EnemyBrain>().StartCoroutine(rigidBody.transform.GetComponent<EnemyBrain>().IsMovingCoroutine());
+
         }
     }
 

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aggroRange: 7
   deaggroRange: 20
-  stoppingDistance: 4
+  stoppingDistance: 2
   speed: 3
   currentSpeed: 0
+  target: {fileID: 0}

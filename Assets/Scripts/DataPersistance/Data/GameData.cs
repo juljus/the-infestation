@@ -9,6 +9,7 @@ public class GameData
     //! characters   
     public int selectedChar = 0;
     public bool[] charExists = new bool[4];
+    public bool[] charDead = new bool[4];
     public int[] charKills = new int[4];
     public string[] charNames = new string[4];
     public float[][] charCoords = new float[4][] { new float[2], new float[2], new float[2], new float[2] };

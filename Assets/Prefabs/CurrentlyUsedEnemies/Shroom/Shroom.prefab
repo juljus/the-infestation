@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4434039414305079283}
   - component: {fileID: -8463767296128701780}
-  - component: {fileID: -4896583162959227380}
   - component: {fileID: -7265305971443503476}
   - component: {fileID: 3689066094010218151}
+  - component: {fileID: -3917968662650655479}
   m_Layer: 0
   m_Name: Shroom
   m_TagString: Untagged
@@ -76,33 +76,17 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 2cec0ce0e9b074af2891a777bc641bc6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 065cce166c96e489689d869e96eaa6ac, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 10.8, y: 10.8}
+  m_Size: {x: 1.6875, y: 1.6875}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-4896583162959227380
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 815109540014884342}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e6d312b4e0c64320be636cb71dc8f5e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  effectIcon: {fileID: 0}
-  attackDamage: 10
-  poisonDamage: 20
-  poisonDuration: 2
 --- !u!58 &-7265305971443503476
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -150,3 +134,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c33f92c767a0480fb0da16717ff4e2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-3917968662650655479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 815109540014884342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e6d312b4e0c64320be636cb71dc8f5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectIcon: {fileID: 0}
+  attackDamage: 10
+  poisonDamage: -30
+  poisonDuration: 3

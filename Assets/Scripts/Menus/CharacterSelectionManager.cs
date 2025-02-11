@@ -8,11 +8,13 @@ public class CharacterSelectionManager : MonoBehaviour, IDataPersistance
     [SerializeField] private GameObject[] characterIcons = new GameObject[4];
     [SerializeField] private TMPro.TMP_Text[] characterLevelText = new TMPro.TMP_Text[4];
     [SerializeField] private TMPro.TMP_Text[] characterNameText = new TMPro.TMP_Text[4];
+    [SerializeField] private GameObject[] deadText;
 
     private int selectedCharacter;
     private bool[] charExists = new bool[4];
     private string[] charNames = new string[4];
     private int[] charLevels = new int[4];
+    private bool[] charDead = new bool[4];
 
     void Start()
     {
@@ -33,6 +35,15 @@ public class CharacterSelectionManager : MonoBehaviour, IDataPersistance
                 characterIcons[i].SetActive(false);
                 characterNameText[i].gameObject.SetActive(false);
                 characterLevelText[i].gameObject.SetActive(false);
+            }
+        }
+
+        // show dead text
+        for (int i = 0; i < 4; i++)
+        {
+            if (charExists[i] && charDead[i])
+            {
+                deadText[i].SetActive(true);
             }
         }
     }
@@ -80,6 +91,7 @@ public class CharacterSelectionManager : MonoBehaviour, IDataPersistance
         this.charExists = data.charExists;
         this.charNames = data.charNames;
         this.charLevels = data.charLevels;
+        this.charDead = data.charDead;
     }
 
     public void SaveData(ref GameData data)

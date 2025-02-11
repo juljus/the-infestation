@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class PlayerHealth : MonoBehaviour, IDataPersistance
 {
     [SerializeField] private UnityEngine.UI.Image healthBar;
+    [SerializeField] private UnityEngine.UI.Image shieldBar;
 
     private float health;
     private float currentHealth;
@@ -14,19 +15,20 @@ public class PlayerHealth : MonoBehaviour, IDataPersistance
     private float lastDamageRecieved;
 
     private bool invulnerable = false;
+    private GameObject gameManager;
 
     public UnityEvent takeDamageEvent;
 
     void Start()
     {
         currentHealth = health;
+        gameManager = GameObject.Find("GameManager");
     }
 
 
     private void Death()
     {
-        print("Player died");
-        Destroy(gameObject);
+        gameManager.GetComponent<GameOverManager>().GameOver();
     }
 
 
@@ -45,8 +47,16 @@ public class PlayerHealth : MonoBehaviour, IDataPersistance
             healthBar.fillAmount = 1;
         }
 
-        // update health bar
+        // update health and shield bar
         healthBar.fillAmount = currentHealth / health;
+        if (currentShield <= health)
+        {
+            shieldBar.fillAmount = currentShield / health;
+        }
+        else
+        {
+            shieldBar.fillAmount = 1;
+        }
     }
 
 
@@ -59,7 +69,7 @@ public class PlayerHealth : MonoBehaviour, IDataPersistance
             if (currentShield >= damage)
             {
                 currentShield -= damage;
-                // FIXME: update shield bar?
+                AfterHealthChange();
                 return;
             }
             else

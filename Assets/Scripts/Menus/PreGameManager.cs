@@ -10,12 +10,14 @@ public class PreGameManager : MonoBehaviour, IDataPersistance
     [SerializeField] private TMPro.TMP_Text characterNameText;
     [SerializeField] private TMPro.TMP_Text characterKillsText;
     [SerializeField] private GameObject deleteCharacterPopup;
+    [SerializeField] private GameObject deadText;
 
     private int selectedCharacter;
     private int[] characterLevels;
     private bool[] charExists;
     private string[] charNames;
     private int[] charKills;
+    private bool[] charDead;
 
     void Start()
     {
@@ -23,6 +25,12 @@ public class PreGameManager : MonoBehaviour, IDataPersistance
         characterLevelText.text = "Level: " + characterLevels[selectedCharacter];
         characterNameText.text = charNames[selectedCharacter];
         characterKillsText.text = "Kills: " + charKills[selectedCharacter];
+
+        // show dead text
+        if (charDead[selectedCharacter])
+        {
+            deadText.SetActive(true);
+        }
     }
 
     public void StartGame()
@@ -70,6 +78,7 @@ public class PreGameManager : MonoBehaviour, IDataPersistance
         this.charExists = data.charExists;
         this.charNames = data.charNames;
         this.charKills = data.charKills;
+        this.charDead = data.charDead;
     }
     public void SaveData(ref GameData data) {
         data.charExists = this.charExists;

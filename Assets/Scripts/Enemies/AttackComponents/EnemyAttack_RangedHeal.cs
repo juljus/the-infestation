@@ -50,11 +50,11 @@ public class EnemyAttack_RangedHeal : EnemyAttackBase
         // set facing direction
         if (target.transform.position.x < rigidBody.position.x)
         {
-            rigidBody.transform.GetChild(1).localScale = new Vector3(1, 1, 1);
+            rigidBody.transform.GetChild(2).localScale = new Vector3(1, 1, 1);
         }
         else
         {
-            rigidBody.transform.GetChild(1).localScale = new Vector3(-1, 1, 1);
+            rigidBody.transform.GetChild(2).localScale = new Vector3(-1, 1, 1);
         }
 
         // calculate target distance
@@ -144,7 +144,7 @@ public class EnemyAttack_RangedHeal : EnemyAttackBase
 
     private void Attack(Transform target, Rigidbody2D rigidBody, EnemyBrain enemyBrain)
     {
-        GameObject projectileClone = Instantiate(projectile, rigidBody.position, Quaternion.identity);
+        GameObject projectileClone = Instantiate(projectile, new Vector3(rigidBody.position.x, rigidBody.position.y+1.4f, 0), Quaternion.identity);
         projectileClone.transform.parent = rigidBody.transform;
 
         enemyBrain.StartCoroutine(AttackCooldownCoroutine());

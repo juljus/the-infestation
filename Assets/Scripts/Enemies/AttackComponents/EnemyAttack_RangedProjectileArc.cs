@@ -57,7 +57,7 @@ public class EnemyAttack_RangedProjectileArc : EnemyAttackBase
 
     private void Attack(Transform target, Rigidbody2D rigidBody, EnemyBrain enemyBrain)
     {
-        GameObject projectileClone = Instantiate(projectile, new Vector3(rigidBody.position.x, rigidBody.position.y+0.5f, 0), Quaternion.identity);
+        GameObject projectileClone = Instantiate(projectile, new Vector3(rigidBody.position.x, rigidBody.position.y+1.5f, 0), Quaternion.identity);
         projectileClone.transform.parent = rigidBody.transform;
 
         enemyBrain.StartCoroutine(AttackCooldownCoroutine());

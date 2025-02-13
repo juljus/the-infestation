@@ -46,11 +46,11 @@ public class EnemyMovement_EnemySeekingHealer : EnemyMovementBase
         // set facing direction
         if (target.transform.position.x < rigidBody.position.x)
         {
-            rigidBody.transform.GetChild(1).localScale = new Vector3(1, 1, 1);
+            rigidBody.transform.GetChild(2).localScale = new Vector3(1, 1, 1);
         }
         else
         {
-            rigidBody.transform.GetChild(1).localScale = new Vector3(-1, 1, 1);
+            rigidBody.transform.GetChild(2).localScale = new Vector3(-1, 1, 1);
         }
 
         // calculate target distance

@@ -6,6 +6,6 @@ public class SpriteRenderOrder : MonoBehaviour
 {
     void Update()
     {
-        gameObject.GetComponent<SpriteRenderer>().sortingOrder = (int) (transform.position.y * -100);
+        gameObject.GetComponent<SpriteRenderer>().sortingOrder = (int) (transform.parent.position.y * -100);
     }
 }

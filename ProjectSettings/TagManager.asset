@@ -39,8 +39,11 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Tilemap
+  - name: TilemapBG
     uniqueID: 1796773055
+    locked: 0
+  - name: TilemapCollision
+    uniqueID: 3003346173
     locked: 0
   - name: Default
     uniqueID: 0

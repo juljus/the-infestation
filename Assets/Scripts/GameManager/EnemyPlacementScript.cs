@@ -10,6 +10,8 @@ public class EnemyPlacementScript : MonoBehaviour, IDataPersistance
     private List<float>[] enemyPositionsX;
     private List<float>[] enemyPositionsY;
     private List<int>[] enemyIDs;
+    
+    [SerializeField] private GameObject enemyTilemap;
 
     private int selectedChar;
     
@@ -35,7 +37,7 @@ public class EnemyPlacementScript : MonoBehaviour, IDataPersistance
         {
             GameObject enemy = Instantiate(enemyPrefabs[enemyID], new Vector3(enemyPositionsX[selectedChar][i], enemyPositionsY[selectedChar][i], 0), Quaternion.identity);
             enemy.name = enemyPrefabs[enemyID].name;
-            enemy.transform.SetParent(GameObject.Find("Enemies").transform);
+            enemy.transform.SetParent(enemyTilemap.transform);
             i++;
         }
     }

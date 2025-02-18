@@ -167,16 +167,24 @@ public class MapCompletion : MonoBehaviour, IDataPersistance
     private IEnumerator Blackout()
     {
         float alpha = 1;
+        Time.timeScale = 0;
 
         blackoutImage.gameObject.SetActive(true);
         blackoutImage.color = new Color(0, 0, 0, alpha);
 
-        yield return new WaitForSeconds(0.5f);
+        float realTime = Time.realtimeSinceStartup;
+
+        while(realTime + 0.5f > Time.realtimeSinceStartup)
+        {
+            yield return null;
+        }
+
+        Time.timeScale = 1;
 
         // start fade out
         while (alpha > 0)
         {
-            alpha -= Time.unscaledDeltaTime;
+            alpha -= Time.unscaledDeltaTime * 4;
             blackoutImage.color = new Color(0, 0, 0, alpha);
             yield return null;
         }

@@ -45,6 +45,9 @@ TagManager:
   - name: TilemapCollision
     uniqueID: 3003346173
     locked: 0
+  - name: GroundAssets
+    uniqueID: 701211937
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

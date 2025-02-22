@@ -47,10 +47,12 @@ public class EnemyMovement_EnemySeekingHealer : EnemyMovementBase
         if (target.transform.position.x < rigidBody.position.x)
         {
             rigidBody.transform.GetChild(0).localScale = new Vector3(1, 1, 1);
+            rigidBody.transform.GetChild(0).GetChild(0).localScale = new Vector3(1, 1, 1);
         }
         else
         {
             rigidBody.transform.GetChild(0).localScale = new Vector3(-1, 1, 1);
+            rigidBody.transform.GetChild(0).GetChild(0).localScale = new Vector3(-1, 1, 1);
         }
 
         // calculate target distance

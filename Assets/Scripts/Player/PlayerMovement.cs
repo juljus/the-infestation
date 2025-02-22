@@ -43,14 +43,19 @@ public class PlayerMovement : MonoBehaviour, IDataPersistance
             if (movementInput.x > 0)
             {
                 directionRight = true;
+
                 // x rotation to 0
-                sprite.transform.rotation = Quaternion.Euler(0, 0, 0);
+                // sprite.transform.rotation = Quaternion.Euler(0, 0, 0);
+                sprite.transform.localScale = new Vector3(1, 1, 1);
+                sprite.transform.GetChild(0).localScale = new Vector3(1, 1, 1);
             }
             else
             {
                 directionRight = false;
                 // x rotation to 180
-                sprite.transform.rotation = Quaternion.Euler(0, 180, 0);
+                // sprite.transform.rotation = Quaternion.Euler(0, 180, 0);
+                sprite.transform.localScale = new Vector3(-1, 1, 1);
+                sprite.transform.GetChild(0).localScale = new Vector3(-1, 1, 1);
             }
 
             isMoving = true;

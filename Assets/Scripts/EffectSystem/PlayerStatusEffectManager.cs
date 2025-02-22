@@ -6,13 +6,13 @@ using UnityEngine;
 public class PlayerStatusEffectManager : MonoBehaviour
 {
     private Vector2 effectCanvasStartPosition;
-    private float statusEffectIconStep = 110f;
+    private float statusEffectIconStep = 220f;
     private EffectSystem.StatusEffect[] statusEffectList;
 
     void Start()
     {
         // set the canvas start position
-        effectCanvasStartPosition = new Vector2(-1199f, 370f);
+        effectCanvasStartPosition = new Vector2(0f, 0f);
     }
 
     void Update()

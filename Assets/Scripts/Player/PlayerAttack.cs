@@ -46,19 +46,22 @@ public class PlayerAttack : MonoBehaviour, IDataPersistance
         if (transform.GetComponent<PlayerLogic>().GetIsStunned > 0) { return; }
         if (isAttacking) { return; }
 
+        print("attack initiated");
+
         isAttacking = true;
 
         GameObject target = gameManager.GetComponent<TargetManager>().GetTargetSmart();
 
         if (target == null)
         {
-            gameManager.GetComponent<TargetManager>().TargetClosestEnemy();
-            target = gameManager.GetComponent<TargetManager>().GetTarget;
+            // no enemies on map maybe?
+            isAttacking = false;
+            return;
         }
 
         if (Vector2.Distance(transform.position, target.transform.position) > attackRange)
         {
-            gameManager.GetComponent<TargetManager>().ClearTarget();
+            isAttacking = false;
             return;
         }
 
@@ -119,7 +122,6 @@ public class PlayerAttack : MonoBehaviour, IDataPersistance
         }
 
         attackButtonOverlay.fillAmount = 0;
-        gameManager.GetComponent<TargetManager>().ClearTarget();
         isAttacking = false;
     }
 

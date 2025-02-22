@@ -19,10 +19,15 @@ public class TargetManager : MonoBehaviour
     }
 
     public void SetTarget(GameObject newTarget) {
+        if (target != null) {
+            target.GetComponent<Target>().ClearTarget();
+        }
         target = newTarget;
+        target.GetComponent<Target>().SetTarget();
     }
 
     public void ClearTarget() {
+        target.GetComponent<Target>().ClearTarget();
         target = null;
     }
 
@@ -40,6 +45,7 @@ public class TargetManager : MonoBehaviour
         }
 
         target = closestEnemy;
+        target.GetComponent<Target>().SetTarget();
     }
-
+    
 }

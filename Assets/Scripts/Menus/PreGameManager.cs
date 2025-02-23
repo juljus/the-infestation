@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class PreGameManager : MonoBehaviour, IDataPersistance
 {
-    [SerializeField] private GameObject characterIcon;
     [SerializeField] private TMPro.TMP_Text characterLevelText;
     [SerializeField] private TMPro.TMP_Text characterNameText;
     [SerializeField] private TMPro.TMP_Text characterKillsText;

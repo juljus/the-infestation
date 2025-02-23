@@ -81,11 +81,11 @@ public class SkillMenuManager : MonoBehaviour, IDataPersistance
         // check if the skill can be learned
         if (availableSkills[currentSkillIndex] == true)
         {
-            learnButton.SetActive(true);
+            learnButton.transform.GetChild(1).gameObject.SetActive(false);
         }
         else
         {
-            learnButton.SetActive(false);
+            learnButton.transform.GetChild(1).gameObject.SetActive(true);
         }
     }
 

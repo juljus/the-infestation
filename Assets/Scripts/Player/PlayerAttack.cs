@@ -78,6 +78,13 @@ public class PlayerAttack : MonoBehaviour, IDataPersistance
 
         while (time < currentAttackTime && !animationToCooldown)
         {
+            if (target == null)
+            {
+                attackButtonOverlay.fillAmount = 0;
+                isAttacking = false;
+                yield break;
+            }
+
             if (Vector2.Distance(transform.position, target.transform.position) > attackRange)
             {
                 attackButtonOverlay.fillAmount = 0;
@@ -91,6 +98,13 @@ public class PlayerAttack : MonoBehaviour, IDataPersistance
         }
 
         // apply damage
+        if (target == null)
+        {
+            attackButtonOverlay.fillAmount = 0;
+            isAttacking = false;
+            yield break;
+        }
+
         if (Vector2.Distance(transform.position, target.transform.position) <= attackRange)
         {
             target.GetComponent<EnemyBrain>().TakeDamage(currentAttackDamage);

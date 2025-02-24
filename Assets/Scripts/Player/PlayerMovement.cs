@@ -39,7 +39,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistance
 
         if (movementInput != Vector2.zero)
         {
-            facingDirection = movementInput;
+            facingDirection = movementInput.normalized;
 
             if (movementInput.x > 0)
             {

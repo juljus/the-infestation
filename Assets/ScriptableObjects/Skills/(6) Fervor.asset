@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: (6) Fervor
   m_EditorClassIdentifier: 
   name: Fervor
-  skillDescription: 'Passive: gain speed and attack speed on each attack'
+  skillDescription: 'Passive: for each strike you land you become more nimble.'
   skillIcon: {fileID: 21300000, guid: d4eccd6dfe0b24798b910b063fa2394b, type: 3}
   id: aklnsfggq597v8obcyI7679AGCLHN
   cooldownTime: 0

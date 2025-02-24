@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a08d195b1ada64091a8bb3d62fda640b, type: 3}
   m_Name: (1) DaggerThrow
   m_EditorClassIdentifier: 
-  name: Throw
-  skillDescription: Throws a dagger at the target enemy
+  name: Dagger
+  skillDescription: Throw a poisoned dagger at your current target.
   skillIcon: {fileID: 21300000, guid: 480a37f90013d4b679b2caf2757f9786, type: 3}
   id: snzbrz r6j56 yhtrhj snb
   cooldownTime: 4

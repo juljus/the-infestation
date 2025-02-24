@@ -12,13 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de6320a2db3c541ee9912b4bf01924b1, type: 3}
   m_Name: (4) Dash refresh
   m_EditorClassIdentifier: 
-  name: Teleport refresh
-  skillDescription: 'Passive: after killing an enemy refreshes the cooldown of your
-    teleport skill.'
+  name: Dash Upgrade
+  skillDescription: 'Passive: makes your dash ability refresh on kill and applies
+    a small shield on you when used.'
   skillIcon: {fileID: 21300000, guid: 9133f6e55cddd4dddae68e606cb6dce8, type: 3}
   id: kanv8coc73w9can8n8mnkbdcnawiuhO78B8yg87
   cooldownTime: 0
   activeTime: 0
   isPassive: 1
   castRange: 0
-  effectIcon: {fileID: 6280444325833525280, guid: b86e80624b81e4ce0b9db0150ce96a26, type: 3}

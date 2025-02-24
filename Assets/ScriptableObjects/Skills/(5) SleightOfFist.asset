@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 276bae557fcf94482ba68c5f82c8902f, type: 3}
   m_Name: (5) SleightOfFist
   m_EditorClassIdentifier: 
-  name: SleightOfFist
-  skillDescription: 'Passive: has a chance on each attack to dissapear and launch
-    another attack while invulnerable.'
+  name: Sleight of Fist
+  skillDescription: 'Passive: on attack you have a chance to dissapear and launch
+    another strike.'
   skillIcon: {fileID: 21300000, guid: 48f2f43bb4a304299ab2abb0c2b8421a, type: 3}
   id: agju87o49hfcjim8ygdhsnaoi738go<uciog7
   cooldownTime: 0

@@ -5,6 +5,14 @@ using UnityEngine;
 public class TargetManager : MonoBehaviour
 {
     [SerializeField] private GameObject target;
+    [SerializeField] private float targetRange;
+
+    private void Update() {
+        float distance = Vector2.Distance(GetComponent<PlayerManager>().GetPlayerTransform.position, target.transform.position);
+        if (distance > targetRange) {
+            ClearTarget();
+        }
+    }
 
     public GameObject GetTarget {
         get { return target; }

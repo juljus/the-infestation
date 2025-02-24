@@ -35,7 +35,7 @@ public class PreGameManager : MonoBehaviour, IDataPersistance
     public void StartGame()
     {
         // load the game scene
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Game");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("StoryStart");
     }
 
     public void Back()

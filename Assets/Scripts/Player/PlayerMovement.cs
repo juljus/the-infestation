@@ -33,6 +33,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistance
     public void Movement(InputAction.CallbackContext callbackContext)
     {
         if (transform.GetComponent<PlayerLogic>().GetIsStunned > 0) { return; }
+        if (transform.GetComponent<PlayerAttack>().GetIsAttacking) { return; }
 
         Vector2 movementInput = callbackContext.ReadValue<Vector2>();
 

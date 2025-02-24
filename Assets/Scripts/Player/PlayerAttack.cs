@@ -22,7 +22,6 @@ public class PlayerAttack : MonoBehaviour, IDataPersistance
     public UnityEvent playerAttackEvent = new UnityEvent();
 
     private bool isAttacking = false;
-    private bool animationToCooldown = false;
     
     
     void Start()
@@ -76,7 +75,7 @@ public class PlayerAttack : MonoBehaviour, IDataPersistance
     {
         float time = 0;
 
-        while (time < currentAttackTime && !animationToCooldown)
+        while (time < currentAttackTime)
         {
             if (target == null)
             {
@@ -121,17 +120,10 @@ public class PlayerAttack : MonoBehaviour, IDataPersistance
     {
         float time = 0;
 
-        while (time < currentAttackCooldown && !animationToCooldown)
+        while (time < currentAttackCooldown)
         {
             time += Time.deltaTime;
             attackButtonOverlay.fillAmount = 1 - (time / currentAttackCooldown);
-            yield return null;
-        }
-
-        while (animationToCooldown && time < currentAttackCooldown + currentAttackTime)
-        {
-            time += Time.deltaTime;
-            attackButtonOverlay.fillAmount = 1 - (time / (currentAttackCooldown + currentAttackTime));
             yield return null;
         }
 
@@ -156,6 +148,11 @@ public class PlayerAttack : MonoBehaviour, IDataPersistance
         get { return attackTime; }
     }
 
+    public bool GetIsAttacking
+    {
+        get { return isAttacking; }
+    }
+
 
     // SETTERS
     public void SetCurrentAttackDamage(float newCurrentAttackDamage)
@@ -166,11 +163,6 @@ public class PlayerAttack : MonoBehaviour, IDataPersistance
     public void SetCurrentAttackTime(float newCurrentAttackTime)
     {
         currentAttackTime = newCurrentAttackTime;
-    }
-
-    public void SetAnimationToCooldown(bool newAnimationToCooldown)
-    {
-        animationToCooldown = newAnimationToCooldown;
     }
 
     //! IDataPersistance

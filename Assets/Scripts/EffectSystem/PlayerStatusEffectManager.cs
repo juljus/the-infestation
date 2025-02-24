@@ -45,16 +45,18 @@ public class PlayerStatusEffectManager : MonoBehaviour
         float currentHealth = playerHealth.GetCurrentHealth;
         float maxAttackDamage = playerAttack.GetAttackDamage;
         float attackTime = playerAttack.GetAttackTime;
+        float attackCooldown = playerAttack.GetAttackCooldown;
 
         // get new values
         UsedFunctions usedFunctions = new UsedFunctions();
-        float[] recieveValues = usedFunctions.SetStatsAccordingToStatusEffects(statusEffectList, maxSpeed, currentHealth, maxAttackDamage, attackTime);
+        float[] recieveValues = usedFunctions.SetStatsAccordingToStatusEffects(statusEffectList, maxSpeed, currentHealth, maxAttackDamage, attackTime, attackCooldown);
 
         // set new values
         playerMovement.SetCurrentSpeed(recieveValues[0]);
         playerHealth.SetCurrentHealth(recieveValues[1]);
         playerAttack.SetCurrentAttackDamage(recieveValues[2]); 
         playerAttack.SetCurrentAttackTime(recieveValues[3]);
+        playerAttack.SetCurrentAttackCooldown(recieveValues[4]);
     }
 
     private void ArrangeStatusEffectIcons()

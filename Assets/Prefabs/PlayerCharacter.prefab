@@ -347,6 +347,7 @@ MonoBehaviour:
   currentAttackDamage: 0
   currentAttackTime: 0
   currentAttackCooldown: 0
+  animator: {fileID: 7751207075416738786}
   playerAttackEvent:
     m_PersistentCalls:
       m_Calls: []

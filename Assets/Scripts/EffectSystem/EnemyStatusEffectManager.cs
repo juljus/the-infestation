@@ -29,9 +29,9 @@ public class EnemyStatusEffectManager : MonoBehaviour
         float attackTime = enemyAttackBase.GetAttackTime;
 
         // get new values
-        float[] recieveValues = new float[3];
+        float[] recieveValues = new float[5];
         UsedFunctions usedFunctions = new UsedFunctions();
-        recieveValues = usedFunctions.SetStatsAccordingToStatusEffects(statusEffectList, maxSpeed, currentHealth, attackDamage, attackTime);
+        recieveValues = usedFunctions.SetStatsAccordingToStatusEffects(statusEffectList, maxSpeed, currentHealth, attackDamage, attackTime, 0f);
 
         // set new values
         enemyMovementBase.SetSpeed(recieveValues[0]);

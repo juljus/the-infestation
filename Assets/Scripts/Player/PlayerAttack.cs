@@ -10,6 +10,7 @@ public class PlayerAttack : MonoBehaviour, IDataPersistance
     [SerializeField] private float currentAttackDamage;
     [SerializeField] private float currentAttackTime;
     [SerializeField] private float currentAttackCooldown;
+    [SerializeField] private Animator animator;
 
     private float attackDamage;
     private float attackTime;
@@ -22,7 +23,7 @@ public class PlayerAttack : MonoBehaviour, IDataPersistance
     public UnityEvent playerAttackEvent = new UnityEvent();
 
     private bool isAttacking = false;
-    
+    private bool isAttackingCooldown = false;
     
     void Start()
     {
@@ -43,11 +44,12 @@ public class PlayerAttack : MonoBehaviour, IDataPersistance
     public void Attack()
     {
         if (transform.GetComponent<PlayerLogic>().GetIsStunned > 0) { return; }
-        if (isAttacking) { return; }
+        if (isAttacking || isAttackingCooldown) { return; }
 
         print("attack initiated");
 
         isAttacking = true;
+        animator.SetBool("isAttacking", true);
 
         GameObject target = gameManager.GetComponent<TargetManager>().GetTargetSmart();
 
@@ -55,12 +57,14 @@ public class PlayerAttack : MonoBehaviour, IDataPersistance
         {
             // no enemies on map maybe?
             isAttacking = false;
+            animator.SetBool("isAttacking", false);
             return;
         }
 
         if (Vector2.Distance(transform.position, target.transform.position) > attackRange)
         {
             isAttacking = false;
+            animator.SetBool("isAttacking", false);
             return;
         }
 
@@ -81,6 +85,7 @@ public class PlayerAttack : MonoBehaviour, IDataPersistance
             {
                 attackButtonOverlay.fillAmount = 0;
                 isAttacking = false;
+                animator.SetBool("isAttacking", false);
                 yield break;
             }
 
@@ -88,6 +93,7 @@ public class PlayerAttack : MonoBehaviour, IDataPersistance
             {
                 attackButtonOverlay.fillAmount = 0;
                 isAttacking = false;
+                animator.SetBool("isAttacking", false);
                 yield break;
             }
 
@@ -101,6 +107,7 @@ public class PlayerAttack : MonoBehaviour, IDataPersistance
         {
             attackButtonOverlay.fillAmount = 0;
             isAttacking = false;
+            animator.SetBool("isAttacking", false);
             yield break;
         }
 
@@ -112,12 +119,16 @@ public class PlayerAttack : MonoBehaviour, IDataPersistance
             playerAttackEvent.Invoke();
         }
 
+        isAttacking = false;
+        animator.SetBool("isAttacking", false);
         attackButtonOverlay.GetComponent<UnityEngine.UI.Image>().fillAmount = 1;
+        
         StartCoroutine(AttackCooldown(attackButtonOverlay));
     }
 
     private IEnumerator AttackCooldown(UnityEngine.UI.Image attackButtonOverlay)
     {
+        isAttackingCooldown = true;
         float time = 0;
 
         while (time < currentAttackCooldown)
@@ -128,7 +139,7 @@ public class PlayerAttack : MonoBehaviour, IDataPersistance
         }
 
         attackButtonOverlay.fillAmount = 0;
-        isAttacking = false;
+        isAttackingCooldown = false;
     }
 
 
@@ -148,6 +159,11 @@ public class PlayerAttack : MonoBehaviour, IDataPersistance
         get { return attackTime; }
     }
 
+    public float GetAttackCooldown
+    {
+        get { return attackCooldown; }
+    }
+
     public bool GetIsAttacking
     {
         get { return isAttacking; }
@@ -163,6 +179,11 @@ public class PlayerAttack : MonoBehaviour, IDataPersistance
     public void SetCurrentAttackTime(float newCurrentAttackTime)
     {
         currentAttackTime = newCurrentAttackTime;
+    }
+
+    public void SetCurrentAttackCooldown(float newCurrentAttackCooldown)
+    {
+        currentAttackCooldown = newCurrentAttackCooldown;
     }
 
     //! IDataPersistance

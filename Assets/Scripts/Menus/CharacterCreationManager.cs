@@ -11,6 +11,7 @@ public class CharacterCreationManager : MonoBehaviour, IDataPersistance
 
     [SerializeField] private PlayerScriptableObject playerScriptableObject;
     [SerializeField] private TMPro.TMP_Text characterNameText;
+    [SerializeField] private TMPro.TMP_Text nameInfoText;
 
     public void CreateCharacter()
     {
@@ -28,11 +29,13 @@ public class CharacterCreationManager : MonoBehaviour, IDataPersistance
         if (characterNameText.text.Length < 4)
         {
             Debug.Log("Name too short: " + characterNameText.text);
+            StartCoroutine(FlashRed(nameInfoText));
             return;
         }
         else if (characterNameText.text.Length > 11)
         {
             Debug.Log("Name too long: " + characterNameText.text);
+            StartCoroutine(FlashRed(nameInfoText));
             return;
         }
 
@@ -56,6 +59,19 @@ public class CharacterCreationManager : MonoBehaviour, IDataPersistance
     public void Back()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("CharacterSelection");
+    }
+
+    private IEnumerator FlashRed(TMPro.TMP_Text text)
+    {
+        print("flashing red");
+        text.color = Color.red;
+        yield return new WaitForSeconds(0.1f);
+        text.color = Color.white;
+        yield return new WaitForSeconds(0.1f);
+        text.color = Color.red;
+        yield return new WaitForSeconds(0.1f);
+        text.color = Color.white;
+
     }
 
     // public void DeleteWhiteSpaces()

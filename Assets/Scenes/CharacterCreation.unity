@@ -858,6 +858,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerScriptableObject: {fileID: 11400000, guid: 317fb97f907f64f2e931e12fa4b96947, type: 2}
   characterNameText: {fileID: 117460088}
+  nameInfoText: {fileID: 1137577587}
 --- !u!114 &1125188232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1069,7 +1070,7 @@ GameObject:
   - component: {fileID: 1355716652}
   - component: {fileID: 1355716651}
   m_Layer: 5
-  m_Name: Create
+  m_Name: CreateBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1246,7 +1247,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Back
+  m_text: 'Cancel
 
 '
   m_isRightToLeft: 0
@@ -1338,7 +1339,7 @@ GameObject:
   - component: {fileID: 1892969025}
   - component: {fileID: 1892969024}
   m_Layer: 5
-  m_Name: Back
+  m_Name: CancelBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

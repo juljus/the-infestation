@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/StoryStart.unity
     guid: a002584332bd44009ae02eac88e93123
+  - enabled: 1
+    path: Assets/Scenes/StoryEnd.unity
+    guid: af687c0fc310f42409eae023aac1bf8c
   m_configObjects: {}

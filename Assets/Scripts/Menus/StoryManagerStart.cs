@@ -9,6 +9,8 @@ public class StoryManagerStart : MonoBehaviour
 
     [SerializeField] private TMPro.TMP_Text storyTextUI;
 
+    [SerializeField] private GameObject skipButton;
+
     private int currentStoryIndex = 0;
 
     void Start()
@@ -23,12 +25,21 @@ public class StoryManagerStart : MonoBehaviour
     {
         StopAllCoroutines();
 
+        StartCoroutine(SkipStoryCoroutine());
+    }
+
+    IEnumerator SkipStoryCoroutine()
+    {
         // fade out text
         float currentAlpha = storyTextUI.color.a;
         for (float i = currentAlpha; i > 0; i -= Time.deltaTime)
         {
             storyTextUI.color = new Color(1, 1, 1, i);
+            yield return null;
         }
+
+        // close skip button
+        skipButton.SetActive(false);
 
         UnityEngine.SceneManagement.SceneManager.LoadScene("Game");
     }

@@ -786,6 +786,7 @@ MonoBehaviour:
   - 5
   - 5
   storyTextUI: {fileID: 1175046143}
+  skipButton: {fileID: 758025116}
 --- !u!1 &1527586353
 GameObject:
   m_ObjectHideFlags: 0

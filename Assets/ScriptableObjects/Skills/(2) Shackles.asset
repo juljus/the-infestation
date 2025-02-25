@@ -23,3 +23,5 @@ MonoBehaviour:
   searchRadius: 3
   stunDuration: 5
   moveDistance: 0.25
+  shacklesPrefab: {fileID: 8899282203420938269, guid: 470cf5b6b78164be5a3937ebdcb9a17c, type: 3}
+  rotationsPerSecond: 5

@@ -17,7 +17,7 @@ MonoBehaviour:
   skillIcon: {fileID: 21300000, guid: 480a37f90013d4b679b2caf2757f9786, type: 3}
   id: snzbrz r6j56 yhtrhj snb
   cooldownTime: 4
-  activeTime: 2
+  activeTime: 0.5
   isPassive: 0
   castRange: 7
   daggerSpeed: 18

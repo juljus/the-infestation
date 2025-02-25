@@ -16,12 +16,9 @@ public class ShacklesSkill : Skill
 
     public override void Activate(GameObject player, SkillHelper skillHelper)
     {   
-        GameObject target = GameObject.Find("GameManager").GetComponent<TargetManager>().GetTarget;
-        if (target == null)
-        {
-            GameObject.Find("GameManager").GetComponent<TargetManager>().TargetClosestEnemy();
-            target = GameObject.Find("GameManager").GetComponent<TargetManager>().GetTarget;
-        }
+        GameObject target = GameObject.Find("GameManager").GetComponent<TargetManager>().GetTargetSmart();
+        if (target == null) { return; }
+        GameObject.Find("GameManager").GetComponent<TargetManager>().ClearTarget();
 
         hitEnemies = Physics2D.OverlapCircleAll(target.transform.position, searchRadius);
         timeLeft = activeTime;

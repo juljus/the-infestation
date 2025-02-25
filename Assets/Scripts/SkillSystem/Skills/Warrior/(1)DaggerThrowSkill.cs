@@ -23,6 +23,9 @@ public class DaggerThrowSkill : Skill
         // get the target enemy
         GameObject target = GameObject.Find("GameManager").GetComponent<TargetManager>().GetTargetSmart();
 
+        // clear target from manager
+        GameObject.Find("GameManager").GetComponent<TargetManager>().ClearTarget();
+
         // get the player's position
         Vector2 playerPosition = player.transform.position;
 

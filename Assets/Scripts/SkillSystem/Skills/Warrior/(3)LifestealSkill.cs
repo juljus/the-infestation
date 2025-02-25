@@ -15,6 +15,8 @@ public class LifestealSkill : Skill
     {   
         // get target
         GameObject target = GameObject.Find("GameManager").GetComponent<TargetManager>().GetTargetSmart();
+        if (target == null) { return; }
+        GameObject.Find("GameManager").GetComponent<TargetManager>().ClearTarget();
 
         // steal the life
         target.GetComponent<EnemyBrain>().TakeDamage(lifestealAmount);

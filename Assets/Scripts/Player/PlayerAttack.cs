@@ -129,6 +129,8 @@ public class PlayerAttack : MonoBehaviour, IDataPersistance
         }
 
         isAttacking = false;
+        TargetManager targetManager = gameManager.GetComponent<TargetManager>();
+        targetManager.ClearTarget();
         animator.SetBool("isAttacking", false);
         attackButtonOverlay.GetComponent<UnityEngine.UI.Image>().fillAmount = 1;
         

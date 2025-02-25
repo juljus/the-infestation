@@ -55,5 +55,21 @@ public class TargetManager : MonoBehaviour
         target = closestEnemy;
         target.GetComponent<Target>().SetTarget();
     }
+
+    public GameObject GetClosestEnemy() {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        float minDistance = Mathf.Infinity;
+        GameObject closestEnemy = null;
+
+        foreach (GameObject enemy in enemies) {
+            float distance = Vector2.Distance(GetComponent<PlayerManager>().GetPlayerTransform.position, enemy.transform.position);
+            if (distance < minDistance) {
+                minDistance = distance;
+                closestEnemy = enemy;
+            }
+        }
+
+        return closestEnemy;
+    }
     
 }

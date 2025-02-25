@@ -63,9 +63,18 @@ public class PlayerAttack : MonoBehaviour, IDataPersistance
 
         if (Vector2.Distance(transform.position, target.transform.position) > attackRange)
         {
-            isAttacking = false;
-            animator.SetBool("isAttacking", false);
-            return;
+            // get closest enemy
+            GameObject potentialTarget = gameManager.GetComponent<TargetManager>().GetClosestEnemy();
+
+            if (potentialTarget == null || Vector2.Distance(transform.position, potentialTarget.transform.position) > attackRange)
+            {
+                isAttacking = false;
+                animator.SetBool("isAttacking", false);
+                return;
+            }
+
+            target = potentialTarget;
+            gameManager.GetComponent<TargetManager>().SetTarget(target);
         }
 
         // start attack animation

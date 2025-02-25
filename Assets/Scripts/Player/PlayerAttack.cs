@@ -77,6 +77,23 @@ public class PlayerAttack : MonoBehaviour, IDataPersistance
             gameManager.GetComponent<TargetManager>().SetTarget(target);
         }
 
+        // set player velocity to 0
+        gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+
+        // set player facing direction
+        if (target.transform.position.x > transform.position.x)
+        {
+            // x rotation to 0
+            // sprite.transform.rotation = Quaternion.Euler(0, 0, 0);
+            transform.GetChild(0).localScale = new Vector3(1, 1, 1);
+        }
+        else
+        {
+            // x rotation to 180
+            // sprite.transform.rotation = Quaternion.Euler(0, 180, 0);
+            transform.GetChild(0).localScale = new Vector3(-1, 1, 1);
+        }
+
         // start attack animation
         UnityEngine.UI.Image attackBtnOverlay = attackBtn.transform.GetChild(0).GetComponent<UnityEngine.UI.Image>();
         StartCoroutine(AttackTime(attackBtnOverlay, target));

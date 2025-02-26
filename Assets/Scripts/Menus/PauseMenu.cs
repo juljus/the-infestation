@@ -12,6 +12,7 @@ public class PauseMenu : MonoBehaviour
     private GameObject mapCamera;
     [SerializeField] private GameObject mainCanvas;
     [SerializeField] private GameObject mapCanvas;
+    [SerializeField] private GameObject quitConfirmation;
 
     void Start()
     {
@@ -69,6 +70,16 @@ public class PauseMenu : MonoBehaviour
         GetComponent<DataPersistanceManager>().SaveGame();
 
         UnityEngine.SceneManagement.SceneManager.LoadScene("PreGame");
+    }
+
+    public void ShowQuitConfirmation()
+    {
+        quitConfirmation.SetActive(true);
+    }
+
+    public void HideQuitConfirmation()
+    {
+        quitConfirmation.SetActive(false);
     }
 
     public void SkillMenu()

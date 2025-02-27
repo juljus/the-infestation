@@ -10,6 +10,7 @@ public class PreGameManager : MonoBehaviour, IDataPersistance
     [SerializeField] private TMPro.TMP_Text characterKillsText;
     [SerializeField] private GameObject deleteCharacterPopup;
     [SerializeField] private GameObject deadText;
+    [SerializeField] private GameObject startButtonOverlay;
 
     private int selectedCharacter;
     private int[] characterLevels;
@@ -25,10 +26,11 @@ public class PreGameManager : MonoBehaviour, IDataPersistance
         characterNameText.text = charNames[selectedCharacter];
         characterKillsText.text = "Kills: " + charKills[selectedCharacter];
 
-        // show dead text
+        // if dead...
         if (charDead[selectedCharacter])
         {
             deadText.SetActive(true);
+            startButtonOverlay.SetActive(true);
         }
     }
 

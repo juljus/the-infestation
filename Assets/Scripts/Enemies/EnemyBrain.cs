@@ -170,6 +170,18 @@ public class EnemyBrain : MonoBehaviour
         healthBar.fillAmount = currentHealth / maxHealth;
     }
 
+    public void SetIfChanneling(bool isChanneling)
+    {
+        if (isChanneling)
+        {
+            animator.SetBool("isChanneling", true);
+        }
+        else
+        {
+            animator.SetBool("isChanneling", false);
+        }
+    }
+
     public void Stun() { isStunned ++; }
     public void UnStun() { isStunned --; }
 }

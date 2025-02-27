@@ -39,6 +39,7 @@ MonoBehaviour:
   summonCooldown: 8
   summonDuration: 1
   summonAmount: 3
+  animator: {fileID: 9100000, guid: e90154a608a8d4276891a65db4588034, type: 2}
   phase2HealthThreshold: 100
   phase2MovementSpeed: 6
   phase2AttackCooldown: 1.5

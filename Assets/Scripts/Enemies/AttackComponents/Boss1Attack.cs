@@ -179,6 +179,7 @@ public class Boss1Attack : EnemyAttackBase
 
     private IEnumerator Summon(Rigidbody2D rigidbody, EnemyBrain enemyBrain)
     {
+        enemyBrain.SetIfChanneling(true);
         attackInProgress = true;
 
         for (int i = 0; i < summonAmount; i++)
@@ -188,6 +189,7 @@ public class Boss1Attack : EnemyAttackBase
         }
 
         attackInProgress = false;
+        enemyBrain.SetIfChanneling(false);
         summonOnCooldown = true;
         enemyBrain.StartCoroutine(SummonCooldown());
     }

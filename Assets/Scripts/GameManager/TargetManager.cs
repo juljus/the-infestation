@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TargetManager : MonoBehaviour
@@ -40,7 +41,12 @@ public class TargetManager : MonoBehaviour
     }
 
     public void TargetClosestEnemy() {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        List<GameObject> enemies = new List<GameObject>(GameObject.FindGameObjectsWithTag("Enemy"));
+
+        // add with tags boss and minion also to the list
+        enemies.AddRange(GameObject.FindGameObjectsWithTag("Boss"));
+        enemies.AddRange(GameObject.FindGameObjectsWithTag("Minion"));
+
         float minDistance = Mathf.Infinity;
         GameObject closestEnemy = null;
 
@@ -57,7 +63,12 @@ public class TargetManager : MonoBehaviour
     }
 
     public GameObject GetClosestEnemy() {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        List<GameObject> enemies = new List<GameObject>(GameObject.FindGameObjectsWithTag("Enemy"));
+        
+        // add with tags boss and minion also to the list
+        enemies.AddRange(GameObject.FindGameObjectsWithTag("Boss"));
+        enemies.AddRange(GameObject.FindGameObjectsWithTag("Minion"));
+
         float minDistance = Mathf.Infinity;
         GameObject closestEnemy = null;
 

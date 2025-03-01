@@ -115,6 +115,13 @@ public class EnemyBrain : MonoBehaviour
         GameObject.Find("GameManager").GetComponent<EnemyLogicManager>().enemyDeathEvent.Invoke();
 
         gameManager.GetComponent<MapCompletion>().AddKill();
+
+        // if the enemy was the boss, then trigger the end sequence
+        if (gameObject.tag == "Boss")
+        {
+            gameManager.GetComponent<MapCompletion>().EndSequence();
+            return;
+        }
         
         Destroy(gameObject);
     }

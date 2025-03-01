@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerScriptableObject
   m_EditorClassIdentifier: 
   movementSpeed: 6
-  health: 100
+  health: 1000
   attackDamage: 30
   attackTime: 0.875
   attackRange: 2

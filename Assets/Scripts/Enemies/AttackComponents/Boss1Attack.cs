@@ -185,7 +185,10 @@ public class Boss1Attack : EnemyAttackBase
         for (int i = 0; i < summonAmount; i++)
         {
             yield return new WaitForSeconds(summonDuration);
-            Instantiate(wolfPrefab, rigidbody.transform.position, Quaternion.identity);
+
+            Vector3 randomFactor = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0);
+
+            GameObject wolf = Instantiate(wolfPrefab, rigidbody.transform.position + randomFactor, Quaternion.identity);
         }
 
         attackInProgress = false;

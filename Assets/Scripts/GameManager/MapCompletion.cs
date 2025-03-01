@@ -16,6 +16,7 @@ public class MapCompletion : MonoBehaviour, IDataPersistance
     [SerializeField] private GameObject attackButton;
     [SerializeField] private int[] campfireKillThresholds = new int[4] { 0, 1, 2, 3 };
     [SerializeField] private UnityEngine.UI.Image blackoutImage;
+    [SerializeField] private UnityEngine.UI.Image whiteoutImage;
 
     private void Start()
     {
@@ -33,6 +34,57 @@ public class MapCompletion : MonoBehaviour, IDataPersistance
     // TEMP: function for testing button
     public void SkipToGameEnd()
     {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("StoryEnd");
+    }
+
+    public void EndSequence()
+    {
+        // whiteout image
+        whiteoutImage.color = new Color(1, 1, 1, 0);
+        whiteoutImage.gameObject.SetActive(true);
+
+        // time scale 0
+        Time.timeScale = 0;
+
+        // save
+        transform.GetComponent<DataPersistanceManager>().InGameSave();
+
+        // start end sequence coroutine
+        StartCoroutine(EndSequenceCoroutine());
+    }
+
+    private IEnumerator EndSequenceCoroutine()
+    {
+        // time stuff
+        float startTime = Time.realtimeSinceStartup;
+
+        // over 5 seconds whiteout image fades in
+        float duration = 5f;
+        while (Time.realtimeSinceStartup < startTime + duration)
+        {
+            // using real time so that the fade in is not affected by time scale
+            float elapsed = Time.realtimeSinceStartup - startTime;
+            float alpha = elapsed / duration;
+            whiteoutImage.color = new Color(1, 1, 1, alpha);
+            yield return null;
+        }
+
+        // wait 2 seconds
+        yield return new WaitForSecondsRealtime(2f);
+
+        // then fade to black over 1 second
+        duration = 1f;
+        startTime = Time.realtimeSinceStartup;
+        while (Time.realtimeSinceStartup < startTime + duration)
+        {
+            // using real time so that the fade in is not affected by time scale
+            float elapsed = Time.realtimeSinceStartup - startTime;
+            float alpha = elapsed / duration;
+            whiteoutImage.color = new Color(1 - alpha, 1 - alpha, 1 - alpha, 1);
+            yield return null;
+        }
+
+        // load end scene
         UnityEngine.SceneManagement.SceneManager.LoadScene("StoryEnd");
     }
 

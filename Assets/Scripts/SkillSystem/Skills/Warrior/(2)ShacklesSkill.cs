@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Skills/Warrior/(2)Shackles")]
@@ -8,6 +9,8 @@ public class ShacklesSkill : Skill
     public float searchRadius;
     public float stunDuration;
     public float moveDistance;
+    public GameObject shacklesPrefab;
+    public float rotationsPerSecond;
 
     private Collider2D[] hitEnemies;
     private float timeLeft;
@@ -16,15 +19,28 @@ public class ShacklesSkill : Skill
 
     public override void Activate(GameObject player, SkillHelper skillHelper)
     {   
-        GameObject target = GameObject.Find("GameManager").GetComponent<TargetManager>().GetTarget;
-        if (target == null)
-        {
-            GameObject.Find("GameManager").GetComponent<TargetManager>().TargetClosestEnemy();
-            target = GameObject.Find("GameManager").GetComponent<TargetManager>().GetTarget;
-        }
+        GameObject target = GameObject.Find("GameManager").GetComponent<TargetManager>().GetTargetSmart();
+        if (target == null) { return; }
+        GameObject.Find("GameManager").GetComponent<TargetManager>().ClearTarget();
 
+        // instantiate the shackles
+        GameObject shackles = Instantiate(shacklesPrefab, player.transform.position, quaternion.identity);
+        shackles.GetComponent<PlayerShacklesScript>().SetFlyTime(activeTime);
+        shackles.GetComponent<PlayerShacklesScript>().SetTarget(target);
+        shackles.GetComponent<PlayerShacklesScript>().SetRotationsPerSecond(rotationsPerSecond);
+
+        skillHelper.StartCoroutine(AbilityCoroutine(target));
+    }
+
+    private IEnumerator AbilityCoroutine(GameObject target)
+    {
+        // wait for the projectile to reach the target
+        yield return new WaitForSeconds(activeTime);
+
+        // get all enemies in the search radius and select the closest
         hitEnemies = Physics2D.OverlapCircleAll(target.transform.position, searchRadius);
-        timeLeft = activeTime;
+        // if no enemies are found, return
+        if (hitEnemies.Length == 0) { yield break; }
 
         float closestDistance = Mathf.Infinity;
         GameObject closestEnemy = null;
@@ -41,13 +57,9 @@ public class ShacklesSkill : Skill
             }
         }
 
-        skillHelper.StartCoroutine(AbilityCoroutine(target, closestEnemy));
-    }
-
-    private IEnumerator AbilityCoroutine(GameObject target, GameObject closestEnemy)
-    {
         Vector2 movePos = target.transform.position + new Vector3(UnityEngine.Random.Range(-moveDistance, moveDistance), UnityEngine.Random.Range(-moveDistance, moveDistance), 0);
 
+        timeLeft = activeTime;
         while (timeLeft > 0)
         {
             timeLeft -= Time.deltaTime;

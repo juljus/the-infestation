@@ -6,14 +6,15 @@ using UnityEngine;
 
 public class UsedFunctions
 {
-    public float[] SetStatsAccordingToStatusEffects(EffectSystem.StatusEffect[] statusEffectList, float maxSpeed, float currentHealth, float attackDamage, float attackTime)
+    public float[] SetStatsAccordingToStatusEffects(EffectSystem.StatusEffect[] statusEffectList, float maxSpeed, float currentHealth, float attackDamage, float attackTime, float attackCooldown)
     {
-        float[] returnValues = new float[4];
+        float[] returnValues = new float[5];
 
         float newSpeed = maxSpeed;
         float newHealth = currentHealth;
         float newAttackDamage = attackDamage;
         float newAttackTime = attackTime;
+        float newAttackCooldown = attackCooldown;
 
         for (int i = 0; i < statusEffectList.Length; i++)
         {
@@ -34,6 +35,7 @@ public class UsedFunctions
                         break;
                     case "attackTimeMod":
                         newAttackTime *= statusEffect.value;
+                        newAttackCooldown *= statusEffect.value;
                         break;
                 }
             }
@@ -43,6 +45,7 @@ public class UsedFunctions
         returnValues[1] = newHealth;
         returnValues[2] = newAttackDamage;
         returnValues[3] = newAttackTime;
+        returnValues[4] = newAttackCooldown;
         return returnValues;
     }
 

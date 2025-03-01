@@ -30,6 +30,12 @@ public class MapCompletion : MonoBehaviour, IDataPersistance
         UpdateCampfireKillCounter();
     }
 
+    // TEMP: function for testing button
+    public void SkipToGameEnd()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("StoryEnd");
+    }
+
     public void AddKill()
     {
         currentKills++;

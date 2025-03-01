@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04cb505bbb7904eed8a4cf61d43e8ef5, type: 3}
   m_Name: (7) Attack poison
   m_EditorClassIdentifier: 
-  name: Attack poison
-  skillDescription: 'Passive: applies poison on hit, slowing and damaging the enemy.'
+  name: Poisoned Blade
+  skillDescription: 'Passive: each of your strikes applies poison to the target.'
   skillIcon: {fileID: 21300000, guid: 7eb5a6cb138f64497a216f78f9160d5f, type: 3}
   id: sdkafnoc9who3n9q8273hdc0qn9a98
   cooldownTime: 0

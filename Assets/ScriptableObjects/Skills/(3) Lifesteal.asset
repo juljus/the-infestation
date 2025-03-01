@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: (3) Lifesteal
   m_EditorClassIdentifier: 
   name: Lifesteal
-  skillDescription: Steals HP from the target enemy
+  skillDescription: Steal HP from your current target.
   skillIcon: {fileID: 21300000, guid: 958d3f992a4c64480be989fc63372b16, type: 3}
   id: "adgagGW\u20ACGFhg5e4hsa5<hhfHFS"
   cooldownTime: 3

@@ -79,6 +79,11 @@ public class CharacterSelectionManager : MonoBehaviour, IDataPersistance
         // switch to pre game scene
         UnityEngine.SceneManagement.SceneManager.LoadScene("PreGame");
     }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
     
     //! data persistance
     public void InGameSave(ref GameData data)

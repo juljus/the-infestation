@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae079ff879e464e18a5de367c187f564, type: 3}
   m_Name: PlayerScriptableObject
   m_EditorClassIdentifier: 
-  movementSpeed: 8
+  movementSpeed: 6
   health: 100
   attackDamage: 30
-  attackTime: 1
+  attackTime: 0.875
   attackRange: 2
   attackCooldown: 0.5
   playerSprite: {fileID: 8192642738864673608, guid: 3318e0b36768a4e7d8beaa9a0352626d, type: 3}

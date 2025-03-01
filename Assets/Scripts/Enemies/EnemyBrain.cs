@@ -86,11 +86,13 @@ public class EnemyBrain : MonoBehaviour
         {
             if (player.transform.position.x < transform.position.x)
             {
-                transform.GetChild(2).localScale = new Vector3(1, 1, 1);
+                transform.GetChild(0).localScale = new Vector3(1, 1, 1);
+                transform.GetChild(0).GetChild(0).localScale = new Vector3(1, 1, 1);
             }
             else
             {
-                transform.GetChild(2).localScale = new Vector3(-1, 1, 1);
+                transform.GetChild(0).localScale = new Vector3(-1, 1, 1);
+                transform.GetChild(0).GetChild(0).localScale = new Vector3(-1, 1, 1);
             }
         }
     }
@@ -166,6 +168,18 @@ public class EnemyBrain : MonoBehaviour
         }
 
         healthBar.fillAmount = currentHealth / maxHealth;
+    }
+
+    public void SetIfChanneling(bool isChanneling)
+    {
+        if (isChanneling)
+        {
+            animator.SetBool("isChanneling", true);
+        }
+        else
+        {
+            animator.SetBool("isChanneling", false);
+        }
     }
 
     public void Stun() { isStunned ++; }

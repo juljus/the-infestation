@@ -10,6 +10,7 @@ public class PlayerAttack : MonoBehaviour, IDataPersistance
     [SerializeField] private float currentAttackDamage;
     [SerializeField] private float currentAttackTime;
     [SerializeField] private float currentAttackCooldown;
+    [SerializeField] private Animator animator;
 
     private float attackDamage;
     private float attackTime;
@@ -22,8 +23,7 @@ public class PlayerAttack : MonoBehaviour, IDataPersistance
     public UnityEvent playerAttackEvent = new UnityEvent();
 
     private bool isAttacking = false;
-    private bool animationToCooldown = false;
-    
+    private bool isAttackingCooldown = false;
     
     void Start()
     {
@@ -44,22 +44,54 @@ public class PlayerAttack : MonoBehaviour, IDataPersistance
     public void Attack()
     {
         if (transform.GetComponent<PlayerLogic>().GetIsStunned > 0) { return; }
-        if (isAttacking) { return; }
+        if (isAttacking || isAttackingCooldown) { return; }
+
+        print("attack initiated");
 
         isAttacking = true;
+        animator.SetBool("isAttacking", true);
 
         GameObject target = gameManager.GetComponent<TargetManager>().GetTargetSmart();
 
         if (target == null)
         {
-            gameManager.GetComponent<TargetManager>().TargetClosestEnemy();
-            target = gameManager.GetComponent<TargetManager>().GetTarget;
+            // no enemies on map maybe?
+            isAttacking = false;
+            animator.SetBool("isAttacking", false);
+            return;
         }
 
         if (Vector2.Distance(transform.position, target.transform.position) > attackRange)
         {
-            gameManager.GetComponent<TargetManager>().ClearTarget();
-            return;
+            // get closest enemy
+            GameObject potentialTarget = gameManager.GetComponent<TargetManager>().GetClosestEnemy();
+
+            if (potentialTarget == null || Vector2.Distance(transform.position, potentialTarget.transform.position) > attackRange)
+            {
+                isAttacking = false;
+                animator.SetBool("isAttacking", false);
+                return;
+            }
+
+            target = potentialTarget;
+            gameManager.GetComponent<TargetManager>().SetTarget(target);
+        }
+
+        // set player velocity to 0
+        gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+
+        // set player facing direction
+        if (target.transform.position.x > transform.position.x)
+        {
+            // x rotation to 0
+            // sprite.transform.rotation = Quaternion.Euler(0, 0, 0);
+            transform.GetChild(0).localScale = new Vector3(1, 1, 1);
+        }
+        else
+        {
+            // x rotation to 180
+            // sprite.transform.rotation = Quaternion.Euler(0, 180, 0);
+            transform.GetChild(0).localScale = new Vector3(-1, 1, 1);
         }
 
         // start attack animation
@@ -73,12 +105,21 @@ public class PlayerAttack : MonoBehaviour, IDataPersistance
     {
         float time = 0;
 
-        while (time < currentAttackTime && !animationToCooldown)
+        while (time < currentAttackTime)
         {
+            if (target == null)
+            {
+                attackButtonOverlay.fillAmount = 0;
+                isAttacking = false;
+                animator.SetBool("isAttacking", false);
+                yield break;
+            }
+
             if (Vector2.Distance(transform.position, target.transform.position) > attackRange)
             {
                 attackButtonOverlay.fillAmount = 0;
                 isAttacking = false;
+                animator.SetBool("isAttacking", false);
                 yield break;
             }
 
@@ -88,6 +129,14 @@ public class PlayerAttack : MonoBehaviour, IDataPersistance
         }
 
         // apply damage
+        if (target == null)
+        {
+            attackButtonOverlay.fillAmount = 0;
+            isAttacking = false;
+            animator.SetBool("isAttacking", false);
+            yield break;
+        }
+
         if (Vector2.Distance(transform.position, target.transform.position) <= attackRange)
         {
             target.GetComponent<EnemyBrain>().TakeDamage(currentAttackDamage);
@@ -96,31 +145,29 @@ public class PlayerAttack : MonoBehaviour, IDataPersistance
             playerAttackEvent.Invoke();
         }
 
+        isAttacking = false;
+        TargetManager targetManager = gameManager.GetComponent<TargetManager>();
+        targetManager.ClearTarget();
+        animator.SetBool("isAttacking", false);
         attackButtonOverlay.GetComponent<UnityEngine.UI.Image>().fillAmount = 1;
+        
         StartCoroutine(AttackCooldown(attackButtonOverlay));
     }
 
     private IEnumerator AttackCooldown(UnityEngine.UI.Image attackButtonOverlay)
     {
+        isAttackingCooldown = true;
         float time = 0;
 
-        while (time < currentAttackCooldown && !animationToCooldown)
+        while (time < currentAttackCooldown)
         {
             time += Time.deltaTime;
             attackButtonOverlay.fillAmount = 1 - (time / currentAttackCooldown);
             yield return null;
         }
 
-        while (animationToCooldown && time < currentAttackCooldown + currentAttackTime)
-        {
-            time += Time.deltaTime;
-            attackButtonOverlay.fillAmount = 1 - (time / (currentAttackCooldown + currentAttackTime));
-            yield return null;
-        }
-
         attackButtonOverlay.fillAmount = 0;
-        gameManager.GetComponent<TargetManager>().ClearTarget();
-        isAttacking = false;
+        isAttackingCooldown = false;
     }
 
 
@@ -140,6 +187,16 @@ public class PlayerAttack : MonoBehaviour, IDataPersistance
         get { return attackTime; }
     }
 
+    public float GetAttackCooldown
+    {
+        get { return attackCooldown; }
+    }
+
+    public bool GetIsAttacking
+    {
+        get { return isAttacking; }
+    }
+
 
     // SETTERS
     public void SetCurrentAttackDamage(float newCurrentAttackDamage)
@@ -152,9 +209,9 @@ public class PlayerAttack : MonoBehaviour, IDataPersistance
         currentAttackTime = newCurrentAttackTime;
     }
 
-    public void SetAnimationToCooldown(bool newAnimationToCooldown)
+    public void SetCurrentAttackCooldown(float newCurrentAttackCooldown)
     {
-        animationToCooldown = newAnimationToCooldown;
+        currentAttackCooldown = newCurrentAttackCooldown;
     }
 
     //! IDataPersistance

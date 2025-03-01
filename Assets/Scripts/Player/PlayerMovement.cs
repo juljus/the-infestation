@@ -33,24 +33,30 @@ public class PlayerMovement : MonoBehaviour, IDataPersistance
     public void Movement(InputAction.CallbackContext callbackContext)
     {
         if (transform.GetComponent<PlayerLogic>().GetIsStunned > 0) { return; }
+        if (transform.GetComponent<PlayerAttack>().GetIsAttacking) { return; }
 
         Vector2 movementInput = callbackContext.ReadValue<Vector2>();
 
         if (movementInput != Vector2.zero)
         {
-            facingDirection = movementInput;
+            facingDirection = movementInput.normalized;
 
             if (movementInput.x > 0)
             {
                 directionRight = true;
+
                 // x rotation to 0
-                sprite.transform.rotation = Quaternion.Euler(0, 0, 0);
+                // sprite.transform.rotation = Quaternion.Euler(0, 0, 0);
+                sprite.transform.localScale = new Vector3(1, 1, 1);
+                sprite.transform.GetChild(0).localScale = new Vector3(1, 1, 1);
             }
             else
             {
                 directionRight = false;
                 // x rotation to 180
-                sprite.transform.rotation = Quaternion.Euler(0, 180, 0);
+                // sprite.transform.rotation = Quaternion.Euler(0, 180, 0);
+                sprite.transform.localScale = new Vector3(-1, 1, 1);
+                sprite.transform.GetChild(0).localScale = new Vector3(-1, 1, 1);
             }
 
             isMoving = true;

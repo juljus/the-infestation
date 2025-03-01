@@ -156,23 +156,25 @@ public class PlayerSkillHolder : MonoBehaviour
 
 
         TargetManager targetManager = GameObject.Find("GameManager").GetComponent<TargetManager>();
-        GameObject target = targetManager.GetTarget;
-        if (target == null)
+        GameObject target = null;
+
+        if (skill0.castRange != 0)
         {
-            targetManager.TargetClosestEnemy();
-            target = targetManager.GetTarget;
+            target = targetManager.GetTargetSmart();
+
+            if (target == null)
+            {
+                // no enemies on map maybe?
+                skillStates[skillIndex] = 0;
+                return;
+            }
         }
-        if (skill0.castRange == 0)
+
+        if (skill0.castRange != 0 && Vector2.Distance(transform.position, target.transform.position) > skill0.castRange)
         {
-            targetManager.ClearTarget();
-        }
-        else if (Vector2.Distance(transform.position, target.transform.position) > skill0.castRange)
-        {
-            targetManager.ClearTarget();
             skillStates[skillIndex] = 0;
             return;
         }
-
 
         UnityEngine.UI.Image skill0ButtonOverlay = skill0Button.transform.GetChild(0).GetComponent<UnityEngine.UI.Image>();
         skill0ButtonOverlay.fillAmount = 1;
@@ -189,19 +191,22 @@ public class PlayerSkillHolder : MonoBehaviour
 
 
         TargetManager targetManager = GameObject.Find("GameManager").GetComponent<TargetManager>();
-        GameObject target = targetManager.GetTarget;
-        if (target == null)
+        GameObject target = null;
+
+        if (skill1.castRange != 0)
         {
-            targetManager.TargetClosestEnemy();
-            target = targetManager.GetTarget;
+            target = targetManager.GetTargetSmart();
+
+            if (target == null)
+            {
+                // no enemies on map maybe?
+                skillStates[skillIndex] = 0;
+                return;
+            }
         }
-        if (skill1.castRange == 0)
+
+        if (skill1.castRange != 0 && Vector2.Distance(transform.position, target.transform.position) > skill1.castRange)
         {
-            targetManager.ClearTarget();
-        }
-        else if (Vector2.Distance(transform.position, target.transform.position) > skill1.castRange)
-        {
-            targetManager.ClearTarget();
             skillStates[skillIndex] = 0;
             return;
         }
@@ -222,19 +227,22 @@ public class PlayerSkillHolder : MonoBehaviour
 
 
         TargetManager targetManager = GameObject.Find("GameManager").GetComponent<TargetManager>();
-        GameObject target = targetManager.GetTarget;
-        if (target == null)
+        GameObject target = null;
+
+        if (skill2.castRange != 0)
         {
-            targetManager.TargetClosestEnemy();
-            target = targetManager.GetTarget;
+            target = targetManager.GetTargetSmart();
+
+            if (target == null)
+            {
+                // no enemies on map maybe?
+                skillStates[skillIndex] = 0;
+                return;
+            }
         }
-        if (skill2.castRange == 0)
+
+        if (skill2.castRange != 0 && Vector2.Distance(transform.position, target.transform.position) > skill2.castRange)
         {
-            targetManager.ClearTarget();
-        }
-        else if (Vector2.Distance(transform.position, target.transform.position) > skill2.castRange)
-        {
-            targetManager.ClearTarget();
             skillStates[skillIndex] = 0;
             return;
         }

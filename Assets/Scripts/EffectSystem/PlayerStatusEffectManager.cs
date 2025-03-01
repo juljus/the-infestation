@@ -6,13 +6,13 @@ using UnityEngine;
 public class PlayerStatusEffectManager : MonoBehaviour
 {
     private Vector2 effectCanvasStartPosition;
-    private float statusEffectIconStep = 110f;
+    private float statusEffectIconStep = 220f;
     private EffectSystem.StatusEffect[] statusEffectList;
 
     void Start()
     {
         // set the canvas start position
-        effectCanvasStartPosition = new Vector2(-1199f, 370f);
+        effectCanvasStartPosition = new Vector2(0f, 0f);
     }
 
     void Update()
@@ -45,16 +45,18 @@ public class PlayerStatusEffectManager : MonoBehaviour
         float currentHealth = playerHealth.GetCurrentHealth;
         float maxAttackDamage = playerAttack.GetAttackDamage;
         float attackTime = playerAttack.GetAttackTime;
+        float attackCooldown = playerAttack.GetAttackCooldown;
 
         // get new values
         UsedFunctions usedFunctions = new UsedFunctions();
-        float[] recieveValues = usedFunctions.SetStatsAccordingToStatusEffects(statusEffectList, maxSpeed, currentHealth, maxAttackDamage, attackTime);
+        float[] recieveValues = usedFunctions.SetStatsAccordingToStatusEffects(statusEffectList, maxSpeed, currentHealth, maxAttackDamage, attackTime, attackCooldown);
 
         // set new values
         playerMovement.SetCurrentSpeed(recieveValues[0]);
         playerHealth.SetCurrentHealth(recieveValues[1]);
         playerAttack.SetCurrentAttackDamage(recieveValues[2]); 
         playerAttack.SetCurrentAttackTime(recieveValues[3]);
+        playerAttack.SetCurrentAttackCooldown(recieveValues[4]);
     }
 
     private void ArrangeStatusEffectIcons()

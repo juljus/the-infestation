@@ -5,12 +5,12 @@ using UnityEngine.UI;
 
 public class PreGameManager : MonoBehaviour, IDataPersistance
 {
-    [SerializeField] private GameObject characterIcon;
     [SerializeField] private TMPro.TMP_Text characterLevelText;
     [SerializeField] private TMPro.TMP_Text characterNameText;
     [SerializeField] private TMPro.TMP_Text characterKillsText;
     [SerializeField] private GameObject deleteCharacterPopup;
     [SerializeField] private GameObject deadText;
+    [SerializeField] private GameObject startButtonOverlay;
 
     private int selectedCharacter;
     private int[] characterLevels;
@@ -26,17 +26,18 @@ public class PreGameManager : MonoBehaviour, IDataPersistance
         characterNameText.text = charNames[selectedCharacter];
         characterKillsText.text = "Kills: " + charKills[selectedCharacter];
 
-        // show dead text
+        // if dead...
         if (charDead[selectedCharacter])
         {
             deadText.SetActive(true);
+            startButtonOverlay.SetActive(true);
         }
     }
 
     public void StartGame()
     {
         // load the game scene
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Game");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("StoryStart");
     }
 
     public void Back()

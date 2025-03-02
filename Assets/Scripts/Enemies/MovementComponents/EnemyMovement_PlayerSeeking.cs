@@ -51,4 +51,9 @@ public class EnemyMovement_PlayerSeeking : EnemyMovementBase
 
         return clone;
     }
+
+    public override bool GetIsAggroed()
+    {
+        return isAggroed;
+    }
 }

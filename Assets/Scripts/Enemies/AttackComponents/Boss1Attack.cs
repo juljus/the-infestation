@@ -89,6 +89,13 @@ public class Boss1Attack : EnemyAttackBase
 
     public override void TryAttack(Transform target, Rigidbody2D rigidBody, float playerDistance, EnemyBrain enemyBrain)
     {
+        bool isAggroed = enemyBrain.GetEnemyMovement.GetIsAggroed();
+
+        if (isAggroed == false)
+        {
+            return;
+        }
+
         if (justStarted)
         {
             JustStarted(enemyBrain);

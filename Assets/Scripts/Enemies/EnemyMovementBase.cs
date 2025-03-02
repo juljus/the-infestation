@@ -31,4 +31,6 @@ public class EnemyMovementBase : ScriptableObject
     public virtual void Move(Transform target, Rigidbody2D rigidBody, float playerDistance) {}
     
     public virtual EnemyMovementBase Clone() { return null; }
+
+    public virtual bool GetIsAggroed() { return false; }
 }

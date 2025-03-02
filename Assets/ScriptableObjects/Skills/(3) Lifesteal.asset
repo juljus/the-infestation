@@ -17,7 +17,7 @@ MonoBehaviour:
   skillIcon: {fileID: 21300000, guid: 958d3f992a4c64480be989fc63372b16, type: 3}
   id: "adgagGW\u20ACGFhg5e4hsa5<hhfHFS"
   cooldownTime: 3
-  activeTime: 0.5
+  activeTime: 1
   isPassive: 0
   castRange: 2
   lifestealAmount: 20

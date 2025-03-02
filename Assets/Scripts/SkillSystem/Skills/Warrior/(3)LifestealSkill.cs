@@ -18,9 +18,29 @@ public class LifestealSkill : Skill
         if (target == null) { return; }
         GameObject.Find("GameManager").GetComponent<TargetManager>().ClearTarget();
 
+        // face the target
+        player.GetComponent<PlayerMovement>().FaceTarget(target);
+
+        // start the coroutine
+        skillHelper.StartCoroutine(AbilityCoroutine(target, player));        
+    }
+
+    private IEnumerator AbilityCoroutine(GameObject target, GameObject player)
+    {
+        // is throwing
+        player.GetComponent<PlayerLogic>().SetIfThrowing(true);
+
+        // wait for active time / 2
+        yield return new WaitForSeconds(activeTime / 2);
+
         // steal the life
         target.GetComponent<EnemyBrain>().TakeDamage(lifestealAmount);
         player.GetComponent<PlayerHealth>().Heal(lifestealAmount);
-        
+
+        // wait for the other half of active time
+        yield return new WaitForSeconds(activeTime / 2);
+
+        // is not throwing
+        player.GetComponent<PlayerLogic>().SetIfThrowing(false);
     }
 }

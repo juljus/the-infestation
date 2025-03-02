@@ -17,7 +17,7 @@ MonoBehaviour:
   skillIcon: {fileID: 21300000, guid: ccc93abeb359b4120b75c1aee1888c27, type: 3}
   id: jiuBOYF665rcv6u5f6c85FC8G6RD
   cooldownTime: 7
-  activeTime: 0.5
+  activeTime: 1
   isPassive: 0
   castRange: 6
   searchRadius: 3

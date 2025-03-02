@@ -26,6 +26,9 @@ public class DaggerThrowSkill : Skill
         // clear target from manager
         GameObject.Find("GameManager").GetComponent<TargetManager>().ClearTarget();
 
+        // face the target
+        player.GetComponent<PlayerMovement>().FaceTarget(target);
+
         // start the coroutine
         skillHelper.StartCoroutine(AbilityCoroutine(target, player));
     }

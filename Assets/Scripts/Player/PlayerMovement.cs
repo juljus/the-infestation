@@ -45,16 +45,13 @@ public class PlayerMovement : MonoBehaviour, IDataPersistance
             {
                 directionRight = true;
 
-                // x rotation to 0
-                // sprite.transform.rotation = Quaternion.Euler(0, 0, 0);
                 sprite.transform.localScale = new Vector3(1, 1, 1);
                 sprite.transform.GetChild(0).localScale = new Vector3(1, 1, 1);
             }
             else
             {
                 directionRight = false;
-                // x rotation to 180
-                // sprite.transform.rotation = Quaternion.Euler(0, 180, 0);
+
                 sprite.transform.localScale = new Vector3(-1, 1, 1);
                 sprite.transform.GetChild(0).localScale = new Vector3(-1, 1, 1);
             }
@@ -69,6 +66,30 @@ public class PlayerMovement : MonoBehaviour, IDataPersistance
         rigidBody.velocity = new Vector2(movementInput.x * currentSpeed, movementInput.y * currentSpeed);
 
         animator.SetBool("isMoving", isMoving);
+    }
+
+    // PUBLIC FUNCTIONS
+    public void FaceTarget(GameObject target)
+    {
+        Vector2 targetPosition = target.transform.position;
+        Vector2 direction = targetPosition - (Vector2)transform.position;
+
+        facingDirection = direction.normalized;
+
+        if (direction.x > 0)
+        {
+            directionRight = true;
+
+            sprite.transform.localScale = new Vector3(1, 1, 1);
+            sprite.transform.GetChild(0).localScale = new Vector3(1, 1, 1);
+        }
+        else
+        {
+            directionRight = false;
+
+            sprite.transform.localScale = new Vector3(-1, 1, 1);
+            sprite.transform.GetChild(0).localScale = new Vector3(-1, 1, 1);
+        }
     }
 
     // Getters

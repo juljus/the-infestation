@@ -23,13 +23,36 @@ public class ShacklesSkill : Skill
         if (target == null) { return; }
         GameObject.Find("GameManager").GetComponent<TargetManager>().ClearTarget();
 
+        // face the target
+        player.GetComponent<PlayerMovement>().FaceTarget(target);
+
+        skillHelper.StartCoroutine(AnimationCoroutine(target, player, skillHelper));
+    }
+
+    private IEnumerator AnimationCoroutine(GameObject target, GameObject player, SkillHelper skillHelper)
+    {
+        // is throwing
+        player.GetComponent<PlayerLogic>().SetIfThrowing(true);
+
+        // wait for half of active time
+        yield return new WaitForSeconds(activeTime / 2);
+
+        // extra height to account for player sprite
+        Vector3 extraHeight = new Vector3(0, 1f, 0);
+
         // instantiate the shackles
-        GameObject shackles = Instantiate(shacklesPrefab, player.transform.position, quaternion.identity);
+        GameObject shackles = Instantiate(shacklesPrefab, player.transform.position + extraHeight, quaternion.identity);
         shackles.GetComponent<PlayerShacklesScript>().SetFlyTime(activeTime);
         shackles.GetComponent<PlayerShacklesScript>().SetTarget(target);
         shackles.GetComponent<PlayerShacklesScript>().SetRotationsPerSecond(rotationsPerSecond);
 
         skillHelper.StartCoroutine(AbilityCoroutine(target));
+
+        // wait for the other half of active time
+        yield return new WaitForSeconds(activeTime / 2);
+
+        // is not throwing
+        player.GetComponent<PlayerLogic>().SetIfThrowing(false);
     }
 
     private IEnumerator AbilityCoroutine(GameObject target)

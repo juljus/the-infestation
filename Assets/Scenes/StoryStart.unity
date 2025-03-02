@@ -776,15 +776,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   storyText:
-  - Over time different universes connect, but recently there has been an influx
-    of connections
-  - "which has streched the army thin, sending just one soldier to each universe
-    for cleanup\u2026"
-  - "You, a young reqruit, have also been assigned your first mission\u2026"
+  - It is not particularly uncommon for universes to connect,
+  - just recently there has been a sudden increase in connections.
+  - This has streched the imperiums army thin...
+  - they have only been sending a single soldier to each universe for cleanup.
+  - You, a young recruit have just recieved your first assignement...
+  - clear a connected universe of the infestation before it can endanger the imperium!
   storyTextDuration:
-  - 5
-  - 5
-  - 5
+  - 2.5
+  - 2.5
+  - 2
+  - 2.5
+  - 2.5
+  - 5.5
   storyTextUI: {fileID: 1175046143}
   skipButton: {fileID: 758025116}
 --- !u!1 &1527586353

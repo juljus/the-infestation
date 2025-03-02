@@ -21,6 +21,6 @@ MonoBehaviour:
   isPassive: 1
   castRange: 0
   effectIcon: {fileID: 1888989378498572931, guid: ae47331325ec1466ba6a8e7b247cf581, type: 3}
-  poisonDamage: 40
-  speedMod: 0.5
-  duration: 20
+  poisonDamage: 100
+  speedMod: 0.6
+  duration: 10

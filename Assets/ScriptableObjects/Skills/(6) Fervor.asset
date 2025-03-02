@@ -20,7 +20,7 @@ MonoBehaviour:
   activeTime: 0
   isPassive: 1
   castRange: 0
-  attackTimeMod: 0.7
-  speedMod: 1.2
-  buffDuration: 10
+  attackTimeMod: 0.9
+  speedMod: 1.1
+  buffDuration: 5
   effectIcon: {fileID: 4120460849218955196, guid: a164314f8a5fe44b29520350293af418, type: 3}

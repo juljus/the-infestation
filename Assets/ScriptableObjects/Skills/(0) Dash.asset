@@ -21,4 +21,4 @@ MonoBehaviour:
   isPassive: 0
   castRange: 0
   dashRange: 6
-  shieldAmount: 30
+  shieldAmount: 200

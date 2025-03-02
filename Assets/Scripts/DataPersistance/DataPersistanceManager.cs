@@ -37,6 +37,7 @@ public class DataPersistanceManager : MonoBehaviour
         this.gameData.playerAttackCooldown[this.gameData.selectedChar] = playerScriptableObject.attackCooldown;
         this.gameData.playerMovementSpeed[this.gameData.selectedChar] = playerScriptableObject.movementSpeed;
         this.gameData.playerHealth[this.gameData.selectedChar] = playerScriptableObject.health;
+        this.gameData.playerHealthRegen[this.gameData.selectedChar] = playerScriptableObject.healthRegen;
 
         this.gameData.charLevels[this.gameData.selectedChar] = 0;
         this.gameData.charCoords[this.gameData.selectedChar] = new float[2];

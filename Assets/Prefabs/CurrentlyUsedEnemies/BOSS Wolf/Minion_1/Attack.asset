@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98c88c7972e3f4005a464c9e868f55ee, type: 3}
   m_Name: Attack
   m_EditorClassIdentifier: 
-  damage: 10
+  damage: 100
   attackDistance: 0.8
   attackRange: 2.2
   attackTime: 0.6

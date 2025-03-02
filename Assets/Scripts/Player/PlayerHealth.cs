@@ -10,6 +10,8 @@ public class PlayerHealth : MonoBehaviour, IDataPersistance
 
     private float health;
     private float currentHealth;
+    private float healthRegen;
+
     [SerializeField] private float currentShield;
 
     private float lastDamageRecieved;
@@ -23,6 +25,11 @@ public class PlayerHealth : MonoBehaviour, IDataPersistance
     {
         currentHealth = health;
         gameManager = GameObject.Find("GameManager");
+    }
+
+    void Update()
+    {
+        RegenHealth();
     }
 
 
@@ -84,6 +91,15 @@ public class PlayerHealth : MonoBehaviour, IDataPersistance
         takeDamageEvent.Invoke();
 
         AfterHealthChange();
+    }
+
+    private void RegenHealth()
+    {
+        if (currentHealth < health)
+        {
+            currentHealth += healthRegen * Time.deltaTime;
+            AfterHealthChange();
+        }
     }
 
 
@@ -162,6 +178,7 @@ public class PlayerHealth : MonoBehaviour, IDataPersistance
         int selectedCharacter = data.selectedChar;
 
         this.health = data.playerHealth[selectedCharacter];
+        this.healthRegen = data.playerHealthRegen[selectedCharacter];
     }
 
     public void SaveData(ref GameData data)

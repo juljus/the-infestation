@@ -21,8 +21,8 @@ MonoBehaviour:
   isPassive: 0
   castRange: 6
   daggerSpeed: 18
-  daggerDamage: 10
-  daggerEffectValue: 30
-  daggerEffectDuration: 4
+  daggerDamage: 50
+  daggerEffectValue: 150
+  daggerEffectDuration: 3
   daggerEffectIsStackable: 1
   daggerPrefab: {fileID: 8899282203420938269, guid: 8bdef54ba945d4da6b20ab0f53c96c76, type: 3}

@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efcc33f0adfcf40999e4ba7bde394685, type: 3}
   m_Name: Attack
   m_EditorClassIdentifier: 
-  damage: 10
+  damage: 65
   attackDistance: 2
   attackRange: 4
   attackTime: 0.875
-  attackCooldown: 2
+  attackCooldown: 3
   attackEffectType1: 
   attackEffectValue1: 0
   attackEffectDuration1: 0
@@ -38,16 +38,16 @@ MonoBehaviour:
   wolfPrefab: {fileID: 841709866427684504, guid: 06649c2b3bda74ae9b67eac36a28df82, type: 3}
   summonCooldown: 20
   summonDuration: 1.25
-  summonAmount: 3
-  phase2HealthThreshold: 30
+  summonAmount: 2
+  phase2HealthThreshold: 1000
   phase2MovementSpeed: 6
-  phase2AttackCooldown: 1.5
+  phase2AttackCooldown: 2
   phase2AttackDuration: 0.875
-  phase2AttackDamage: 15
-  phase2AttackRange: 1
-  phase2StoppingDistance: 0.4
-  phase2AttackDistance: 0.4
-  phase2SummonCooldown: 20
+  phase2AttackDamage: 75
+  phase2AttackRange: 4
+  phase2StoppingDistance: 2
+  phase2AttackDistance: 2
+  phase2SummonCooldown: 15
   phase2SummonDuration: 1.25
-  phase2SummonAmount: 6
+  phase2SummonAmount: 4
   phase2WolfPrefab: {fileID: 841709866427684504, guid: 8ced6204c8a3d47b3a14e6b8f1bb3f1b, type: 3}

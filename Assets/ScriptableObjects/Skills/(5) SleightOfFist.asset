@@ -22,5 +22,5 @@ MonoBehaviour:
   isPassive: 1
   castRange: 0
   damageMod: 1.5
-  triggerChance: 0.5
+  triggerChance: 0.4
   effectIcon: {fileID: 6280444325833525280, guid: b86e80624b81e4ce0b9db0150ce96a26, type: 3}

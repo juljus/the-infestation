@@ -2924,7 +2924,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: The Invasion
+  m_text: The Infestation
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 950ec2bdb63ef4b49b6c787098eefb9a, type: 2}
   m_sharedMaterial: {fileID: -3953243556346298741, guid: 950ec2bdb63ef4b49b6c787098eefb9a, type: 2}

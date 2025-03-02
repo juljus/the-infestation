@@ -21,6 +21,8 @@ public class PlayerSkillHolder : MonoBehaviour
     private Coroutine skill1CooldownCoroutine;
     private Coroutine skill2CooldownCoroutine;
 
+    private bool castInProgress = false;
+
     void Start()
     {
         skillHelper = GameObject.Find("GameManager").GetComponent<SkillHelper>();
@@ -152,6 +154,14 @@ public class PlayerSkillHolder : MonoBehaviour
     public void ActivateSkill0()
     {
         int skillIndex = 0;
+
+        // get isAttacking from PlayerAttack
+        if (transform.GetComponent<PlayerAttack>().GetIsAttacking) { return; }
+
+        // check if any other skill is being casted
+        if (castInProgress) { return; }
+
+        // check if skill is not off cooldown
         if (skillStates[skillIndex] != 0) { return; }
 
 
@@ -181,12 +191,21 @@ public class PlayerSkillHolder : MonoBehaviour
         
         skill0.Activate(gameObject, skillHelper);
         skillStates[skillIndex] = 1;
+        castInProgress = true;
         skill0ActiveCoroutine = StartCoroutine(ActiveDuration(skill0.activeTime, skill0.cooldownTime, skill0.castRange, skill0ButtonOverlay, skillIndex));
     }
 
     public void ActivateSkill1()
     {
         int skillIndex = 1;
+
+        // get isAttacking from PlayerAttack
+        if (transform.GetComponent<PlayerAttack>().GetIsAttacking) { return; }
+
+        // check if any other skill is being casted
+        if (castInProgress) { return; }
+
+        // check if skill is not off cooldown
         if (skillStates[skillIndex] != 0) { return; }
 
 
@@ -217,14 +236,22 @@ public class PlayerSkillHolder : MonoBehaviour
         
         skill1.Activate(gameObject, skillHelper);
         skillStates[skillIndex] = 1;
+        castInProgress = true;
         skill1ActiveCoroutine = StartCoroutine(ActiveDuration(skill1.activeTime, skill1.cooldownTime, skill1.castRange, skill1ButtonOverlay, skillIndex));
     }
 
     public void ActivateSkill2()
     {
         int skillIndex = 2;
-        if (skillStates[skillIndex] != 0) { return; }
 
+        // get isAttacking from PlayerAttack
+        if (transform.GetComponent<PlayerAttack>().GetIsAttacking) { return; }
+
+        // check if any other skill is being casted
+        if (castInProgress) { return; }
+
+        // check if skill is not off cooldown
+        if (skillStates[skillIndex] != 0) { return; }
 
         TargetManager targetManager = GameObject.Find("GameManager").GetComponent<TargetManager>();
         GameObject target = null;
@@ -253,6 +280,7 @@ public class PlayerSkillHolder : MonoBehaviour
         
         skill2.Activate(gameObject, skillHelper);
         skillStates[skillIndex] = 1;
+        castInProgress = true;
         skill2ActiveCoroutine = StartCoroutine(ActiveDuration(skill2.activeTime, skill2.cooldownTime, skill2.castRange, skill2ButtonOverlay, skillIndex));
     }
 
@@ -262,6 +290,7 @@ public class PlayerSkillHolder : MonoBehaviour
         yield return new WaitForSeconds(activeDuration);
 
         skillStates[skillIndex] = 2;
+        castInProgress = false;
 
         switch (skillIndex)
         {
@@ -323,5 +352,11 @@ public class PlayerSkillHolder : MonoBehaviour
             default:
                 return null;
         }
+    }
+
+    // GETTERS
+    public bool GetCastInProgress
+    {
+        get { return castInProgress; }
     }
 }

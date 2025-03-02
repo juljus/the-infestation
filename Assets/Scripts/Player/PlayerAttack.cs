@@ -45,6 +45,7 @@ public class PlayerAttack : MonoBehaviour, IDataPersistance
     {
         if (transform.GetComponent<PlayerLogic>().GetIsStunned > 0) { return; }
         if (isAttacking || isAttackingCooldown) { return; }
+        if (transform.GetComponent<PlayerSkillHolder>().GetCastInProgress) { return; }
 
         print("attack initiated");
 

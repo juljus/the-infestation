@@ -7,6 +7,8 @@ public class PlayerLogic : MonoBehaviour
     private PlayerScriptableObject playerScriptableObject;
 
     private int isStunned;
+
+    [SerializeField] private Animator playerAnimator;
     
     void Start()
     {
@@ -45,4 +47,9 @@ public class PlayerLogic : MonoBehaviour
     // SETTERS
     public void Stun() { isStunned ++; }
     public void UnStun() { isStunned --; }
+
+    public void SetIfThrowing(bool isThrowing)
+    {
+        playerAnimator.SetBool("isThrowing", isThrowing);
+    }
 }

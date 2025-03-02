@@ -26,11 +26,25 @@ public class DaggerThrowSkill : Skill
         // clear target from manager
         GameObject.Find("GameManager").GetComponent<TargetManager>().ClearTarget();
 
+        // start the coroutine
+        skillHelper.StartCoroutine(AbilityCoroutine(target, player));
+    }
+
+    private IEnumerator AbilityCoroutine(GameObject target, GameObject player)
+    {
+        // is throwing
+        player.GetComponent<PlayerLogic>().SetIfThrowing(true);
+
+        yield return new WaitForSeconds(activeTime / 2);
+
         // get the player's position
         Vector2 playerPosition = player.transform.position;
 
+        // extra height to account for player sprite
+        Vector2 extraHeight = new Vector2(0, 1f);
+
         // instantiate the dagger
-        GameObject dagger = Instantiate(daggerPrefab, playerPosition, Quaternion.identity);
+        GameObject dagger = Instantiate(daggerPrefab, playerPosition + extraHeight, Quaternion.identity);
 
         // set the dagger's attributes
         PlayerDaggerScript daggerScript = dagger.GetComponent<PlayerDaggerScript>();
@@ -43,6 +57,10 @@ public class DaggerThrowSkill : Skill
         daggerScript.SetDaggerEffectValue(daggerEffectValue);
         daggerScript.SetDaggerEffectDuration(daggerEffectDuration);
         daggerScript.SetDaggerEffectIsStackable(daggerEffectIsStackable);
-        
+
+        yield return new WaitForSeconds(activeTime / 2);
+
+        // is not throwing
+        player.GetComponent<PlayerLogic>().SetIfThrowing(false);
     }
 }

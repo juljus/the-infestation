@@ -81,8 +81,8 @@ public class EnemyBrain : MonoBehaviour
         //     animator.SetBool("isMoving", false);
         // }
 
-        // check if target is to the left or right ( if not healer )
-        if (attack.GetType() != typeof(EnemyAttack_RangedHeal))
+        // check if target is to the left or right ( if not healer ) (and if aggroed)
+        if (movement.GetIsAggroed() && attack.GetType() != typeof(EnemyAttack_RangedHeal))
         {
             if (player.transform.position.x < transform.position.x)
             {

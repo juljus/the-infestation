@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 10
   attackDistance: 0.8
-  attackRange: 1.5
+  attackRange: 2.2
   attackTime: 0.6
-  attackCooldown: 3
-  attackEffectType1: damageMod
-  attackEffectValue1: 0.7
-  attackEffectDuration1: 3
-  attackEffectIcon1: {fileID: 1888989378498572931, guid: ae47331325ec1466ba6a8e7b247cf581, type: 3}
+  attackCooldown: 1.5
+  attackEffectType1: 
+  attackEffectValue1: 0
+  attackEffectDuration1: 0
+  attackEffectIcon1: {fileID: 0}
   attackEffectIsStackable1: 0
-  attackEffectIsRemovable1: 1
+  attackEffectIsRemovable1: 0
   attackEffectType2: 
   attackEffectValue2: 0
   attackEffectDuration2: 0

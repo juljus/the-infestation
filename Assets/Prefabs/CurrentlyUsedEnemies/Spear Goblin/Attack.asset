@@ -18,7 +18,7 @@ MonoBehaviour:
   attackTime: 0.8
   attackCooldown: 2
   attackEffectType1: speedMod
-  attackEffectValue1: 0.8
+  attackEffectValue1: 0.4
   attackEffectDuration1: 5
   attackEffectIcon1: {fileID: 6105795678443708983, guid: e1cd8ec275ca7490d967cd1c55caff71, type: 3}
   attackEffectIsStackable1: 0

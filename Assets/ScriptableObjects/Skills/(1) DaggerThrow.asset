@@ -19,7 +19,7 @@ MonoBehaviour:
   cooldownTime: 4
   activeTime: 1
   isPassive: 0
-  castRange: 7
+  castRange: 6
   daggerSpeed: 18
   daggerDamage: 10
   daggerEffectValue: 30

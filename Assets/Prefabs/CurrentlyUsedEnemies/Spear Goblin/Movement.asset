@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Movement
   m_EditorClassIdentifier: 
   aggroRange: 6
-  deaggroRange: 9
+  deaggroRange: 12
   stoppingDistance: 3
   speed: 4
   currentSpeed: 0

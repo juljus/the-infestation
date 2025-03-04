@@ -63,7 +63,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistance
             isMoving = false;
         }
 
-        rigidBody.velocity = new Vector2(movementInput.x * currentSpeed, movementInput.y * currentSpeed);
+        rigidBody.linearVelocity = new Vector2(movementInput.x * currentSpeed, movementInput.y * currentSpeed);
 
         animator.SetBool("isMoving", isMoving);
     }

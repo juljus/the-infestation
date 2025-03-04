@@ -79,7 +79,7 @@ public class PlayerAttack : MonoBehaviour, IDataPersistance
         }
 
         // set player velocity to 0
-        gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        gameObject.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
 
         // set player facing direction
         if (target.transform.position.x > transform.position.x)

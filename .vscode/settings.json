@@ -56,9 +56,8 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "praktiline-too.sln",
+    "dotnet.defaultSolution": "the-infestation.sln",
     "better-comments.tags": [
-
         {
             "tag": "!",
             "color": "#2ce9ff",

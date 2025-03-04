@@ -37,14 +37,14 @@ public class DashSkill : Skill
         while (timeElapsed < activeTime)
         {
             // move in the facing direction
-            rb.velocity = facingDirection * dashRange / activeTime;
+            rb.linearVelocity = facingDirection * dashRange / activeTime;
 
             timeElapsed += Time.fixedDeltaTime;
             yield return null;
         }
 
         // stop the dash
-        rb.velocity = Vector2.zero;
+        rb.linearVelocity = Vector2.zero;
 
         Debug.Log("trying....");
         // if upgraded give a shield

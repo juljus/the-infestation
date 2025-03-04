@@ -9,8 +9,6 @@ public class StoryManagerEnd : MonoBehaviour, IDataPersistance
 
     [SerializeField] private TMPro.TMP_Text storyTextUI;
 
-    [SerializeField] private GameObject skipButton;
-
     private int currentStoryIndex = 0;
 
     void Start()
@@ -24,29 +22,6 @@ public class StoryManagerEnd : MonoBehaviour, IDataPersistance
         storyTextUI.color = new Color(1, 1, 1, 0);
 
         StartCoroutine(ShowStoryText());
-    }
-
-    public void SkipStory()
-    {
-        StopAllCoroutines();
-
-        StartCoroutine(SkipStoryCoroutine());
-    }
-
-    IEnumerator SkipStoryCoroutine()
-    {
-        // fade out text
-        float currentAlpha = storyTextUI.color.a;
-        for (float i = currentAlpha; i > 0; i -= Time.deltaTime)
-        {
-            storyTextUI.color = new Color(1, 1, 1, i);
-            yield return null;
-        }
-
-        // close skip button
-        skipButton.SetActive(false);
-
-        UnityEngine.SceneManagement.SceneManager.LoadScene("PreGame");
     }
 
     IEnumerator ShowStoryText()
@@ -85,8 +60,11 @@ public class StoryManagerEnd : MonoBehaviour, IDataPersistance
             currentStoryIndex++;
             print("incremented index");
         }
+        
+        // wait for a bit
+        yield return new WaitForSeconds(1);
 
-
+        // load pregame scene
         UnityEngine.SceneManagement.SceneManager.LoadScene("PreGame");
     }
 

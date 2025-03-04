@@ -30,6 +30,9 @@ public class StoryManagerStart : MonoBehaviour
 
     IEnumerator SkipStoryCoroutine()
     {
+        // hide skip button
+        skipButton.SetActive(false);
+
         // fade out text
         float currentAlpha = storyTextUI.color.a;
         for (float i = currentAlpha; i > 0; i -= Time.deltaTime)
@@ -38,8 +41,8 @@ public class StoryManagerStart : MonoBehaviour
             yield return null;
         }
 
-        // close skip button
-        skipButton.SetActive(false);
+        // wait for a bit
+        yield return new WaitForSeconds(0.5f);
 
         UnityEngine.SceneManagement.SceneManager.LoadScene("Game");
     }
@@ -77,6 +80,13 @@ public class StoryManagerStart : MonoBehaviour
             currentStoryIndex++;
         }
 
+        // hide skip button
+        skipButton.SetActive(false);
+
+        // wait for a bit
+        yield return new WaitForSeconds(0.5f);
+
+        // load game scene
         UnityEngine.SceneManagement.SceneManager.LoadScene("Game");
     }
 }

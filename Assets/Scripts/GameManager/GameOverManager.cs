@@ -8,6 +8,7 @@ public class GameOverManager : MonoBehaviour, IDataPersistance
     private bool charDead = false;
 
     [SerializeField] private GameObject gameOverScreen;
+    [SerializeField] private UnityEngine.UI.Image blackScreen;
 
     void Start()
     {
@@ -28,15 +29,39 @@ public class GameOverManager : MonoBehaviour, IDataPersistance
         // stop the game
         Time.timeScale = 0;
 
-        // set the char as dead
-        charDead = true;
+        // start game over coroutine
+        StartCoroutine(GameOverCoroutine());
+    }
 
-        // trigger saves
-        transform.GetComponent<DataPersistanceManager>().SaveGame();
-        transform.GetComponent<DataPersistanceManager>().InGameSave();
+    private IEnumerator GameOverCoroutine()
+    {
+        // set active black screen
+        blackScreen.color = new Color(0, 0, 0, 0);
+        blackScreen.gameObject.SetActive(true);
+
+        // fade in black screen
+        float fadeTime = 2f;
+        float elapsedTime = 0f;
+        float startTime = Time.realtimeSinceStartup;
+
+        while (elapsedTime < fadeTime)
+        {
+            elapsedTime = Time.realtimeSinceStartup - startTime;
+            blackScreen.color = new Color(0, 0, 0, elapsedTime / fadeTime);
+            yield return null;
+        }
         
-        // show the game over screen
-        gameOverScreen.SetActive(true);
+        // wait for 1 second
+        startTime = Time.realtimeSinceStartup;
+        float waitTime = 1f;
+
+        while (Time.realtimeSinceStartup - startTime < waitTime)
+        {
+            yield return null;
+        }
+
+        // switch to pregame scene
+        UnityEngine.SceneManagement.SceneManager.LoadScene("PreGame");
     }
 
     //! IDataPersistance

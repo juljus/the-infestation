@@ -22,9 +22,6 @@ public class MapCompletion : MonoBehaviour, IDataPersistance
     {
         player = transform.GetComponent<PlayerManager>().GetPlayer;
 
-        // start blackout animation
-        StartCoroutine(Blackout());
-
         levelManager = transform.GetComponent<LevelManager>();
         level = levelManager.GetPlayerLevel;
         LightCampfires();

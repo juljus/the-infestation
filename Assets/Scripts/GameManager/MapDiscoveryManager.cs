@@ -10,7 +10,9 @@ public class MapDiscoveryManager : MonoBehaviour, IDataPersistance
     [SerializeField] private GameObject tilesParent;
     [SerializeField] private GameObject discoverableTile;
 
-    private void TilesToList()
+    public static bool gameStarting = false;
+
+    private IEnumerator TilesToList()
     {
         // empty lists
         discoverableTilesX.Clear();
@@ -21,27 +23,48 @@ public class MapDiscoveryManager : MonoBehaviour, IDataPersistance
         {
             discoverableTilesX.Add(child.position.x);
             discoverableTilesY.Add(child.position.y);
+
+            yield return null;
+        }
+
+        if (gameStarting)
+        {
+            gameStarting = false;
+            Time.timeScale = 1;
         }
     }
 
-    private void ListToTiles()
+    private IEnumerator ListToTiles()
     {
         // delete all tiles on map and then replace them from the list
         foreach (Transform child in tilesParent.transform)
         {
             Destroy(child.gameObject);
+
+            yield return null;
         }
 
         for (int i = 0; i < discoverableTilesX.Count; i++)
         {
             GameObject tile = Instantiate(discoverableTile, new Vector3(discoverableTilesX[i], discoverableTilesY[i], 0), Quaternion.identity) as GameObject;
             tile.transform.SetParent(tilesParent.transform);
+
+            yield return null;
+        }
+
+        if (gameStarting)
+        {
+            gameStarting = false;
+            Time.timeScale = 1;
         }
     }
 
     //! IDataPersistance
     public void LoadData(GameData data)
     {
+        gameStarting = true;
+        Time.timeScale = 0;
+
         int selectedChar = data.selectedChar;
 
         discoverableTilesX = data.discoverableTilesX[selectedChar];
@@ -50,12 +73,12 @@ public class MapDiscoveryManager : MonoBehaviour, IDataPersistance
         if (discoverableTilesX.Count == 0)
         {
             print("starting sequence");
-            TilesToList();
+            StartCoroutine(TilesToList());
         }
         else
         {
             print("replacing tiles");
-            ListToTiles();
+            StartCoroutine(ListToTiles());
         }
     }
 
@@ -65,7 +88,7 @@ public class MapDiscoveryManager : MonoBehaviour, IDataPersistance
 
     public void InGameSave(ref GameData data)
     {
-        TilesToList();
+        StartCoroutine(TilesToList());
 
         int selectedChar = data.selectedChar;
 

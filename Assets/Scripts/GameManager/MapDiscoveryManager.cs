@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MapDiscoveryManager : MonoBehaviour, IDataPersistance
@@ -23,8 +24,45 @@ public class MapDiscoveryManager : MonoBehaviour, IDataPersistance
         {
             discoverableTilesX.Add(child.position.x);
             discoverableTilesY.Add(child.position.y);
+            
+            print("game still starting");
 
             yield return null;
+        }
+
+        if (gameStarting)
+        {
+            gameStarting = false;
+            Time.timeScale = 1;
+        }
+    }
+
+    private void TilesToListLegacy()
+    {
+        // empty lists
+        discoverableTilesX.Clear();
+        discoverableTilesY.Clear();
+
+        // loop through all tiles and put them into the list
+        foreach (Transform child in tilesParent.transform)
+        {
+            discoverableTilesX.Add(child.position.x);
+            discoverableTilesY.Add(child.position.y);
+        }
+    }
+
+    private void ListToTilesLegacy()
+    {
+        // delete all tiles on map and then replace them from the list
+        foreach (Transform child in tilesParent.transform)
+        {
+            Destroy(child.gameObject);
+        }
+
+        for (int i = 0; i < discoverableTilesX.Count; i++)
+        {
+            GameObject tile = Instantiate(discoverableTile, new Vector3(discoverableTilesX[i], discoverableTilesY[i], 0), Quaternion.identity) as GameObject;
+            tile.transform.SetParent(tilesParent.transform);
         }
 
         if (gameStarting)
@@ -48,6 +86,8 @@ public class MapDiscoveryManager : MonoBehaviour, IDataPersistance
         {
             GameObject tile = Instantiate(discoverableTile, new Vector3(discoverableTilesX[i], discoverableTilesY[i], 0), Quaternion.identity) as GameObject;
             tile.transform.SetParent(tilesParent.transform);
+
+            print("game still starting");
 
             yield return null;
         }
@@ -73,12 +113,14 @@ public class MapDiscoveryManager : MonoBehaviour, IDataPersistance
         if (discoverableTilesX.Count == 0)
         {
             print("starting sequence");
-            StartCoroutine(TilesToList());
+            // StartCoroutine(TilesToList());
+            TilesToListLegacy();
         }
         else
         {
             print("replacing tiles");
-            StartCoroutine(ListToTiles());
+            // StartCoroutine(ListToTiles());
+            ListToTilesLegacy();
         }
     }
 
@@ -88,7 +130,8 @@ public class MapDiscoveryManager : MonoBehaviour, IDataPersistance
 
     public void InGameSave(ref GameData data)
     {
-        StartCoroutine(TilesToList());
+        // StartCoroutine(TilesToList());
+        TilesToListLegacy();
 
         int selectedChar = data.selectedChar;
 

@@ -40,6 +40,21 @@ public class CharacterCreationManager : MonoBehaviour, IDataPersistance
         }
 
         // set all the player stats
+        if (playerScriptableObject == null)
+        {
+            Debug.LogError("PlayerScriptableObject is null");
+        }
+
+        if (GameObject.Find("GameManager") == null)
+        {
+            Debug.LogError("GameManager is null");
+        }
+
+        if (GameObject.Find("GameManager").GetComponent<DataPersistanceManager>() == null)
+        {
+            Debug.LogError("DataPersistanceManager is null");
+        }
+
         GameObject.Find("GameManager").GetComponent<DataPersistanceManager>().SetPlayerStats(playerScriptableObject);
 
         // set the name

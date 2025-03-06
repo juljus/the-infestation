@@ -18,8 +18,6 @@ public class CampfireScript : MonoBehaviour
 
     public void SetIfBurning(bool isBurning)
     {
-        print("Setting if burning: " + isBurning + " for " + gameObject.name);
-
         if (isBurning)
         {
             animator.SetBool("isBurning", true);

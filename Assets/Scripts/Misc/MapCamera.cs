@@ -12,12 +12,9 @@ public class MapCamera : MonoBehaviour
 
     void Update()
     {
-        Debug.Log("Touch Count: " + Input.touchCount); // Add this line
-
         if (Input.touchCount == 1)
         {
             Touch touch = Input.GetTouch(0);
-            Debug.Log("Touch Phase: " + touch.phase); // Add this line
 
             if (touch.phase == TouchPhase.Began)
             {

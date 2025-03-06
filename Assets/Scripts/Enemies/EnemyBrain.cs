@@ -103,10 +103,8 @@ public class EnemyBrain : MonoBehaviour
     // HACK: this is totally not good practice, but i didnt manage to think of a better way to do this
     public IEnumerator IsMovingCoroutine()
     {
-        print("isRunning true");
         animator.SetBool("isRunning", true);
         yield return new WaitForSeconds(0.1f);
-        print("isRunning false");
         animator.SetBool("isRunning", false);
     }
 

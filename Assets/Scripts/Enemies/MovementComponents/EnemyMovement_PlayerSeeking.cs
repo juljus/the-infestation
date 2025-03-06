@@ -30,7 +30,6 @@ public class EnemyMovement_PlayerSeeking : EnemyMovementBase
                 rigidBody.transform.GetComponent<EnemyBrain>().StopCoroutine(rigidBody.transform.GetComponent<EnemyBrain>().isMovingCoroutineInstance);
             }
 
-            Debug.Log("PlayerSeeking: Moving");
             // start the IsMovingCoroutine
             rigidBody.transform.GetComponent<EnemyBrain>().isMovingCoroutineInstance = rigidBody.transform.GetComponent<EnemyBrain>().StartCoroutine(rigidBody.transform.GetComponent<EnemyBrain>().IsMovingCoroutine());
 

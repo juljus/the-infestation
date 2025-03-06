@@ -30,11 +30,9 @@ public class StoryManagerEnd : MonoBehaviour, IDataPersistance
         {
             // change text
             storyTextUI.text = storyText[currentStoryIndex];
-            print("showing story text");
 
             // wait for a bit
             yield return new WaitForSeconds(1);
-            print("waiting complete");
 
             // increase alpha gradually
             for (float i = 0; i < 1; i += Time.deltaTime)
@@ -46,7 +44,6 @@ public class StoryManagerEnd : MonoBehaviour, IDataPersistance
 
             // wait for duration
             yield return new WaitForSeconds(storyTextDuration[currentStoryIndex]);
-            print("duration complete");
 
             // decrease alpha gradually
             for (float i = 1; i > 0; i -= Time.deltaTime)
@@ -58,7 +55,6 @@ public class StoryManagerEnd : MonoBehaviour, IDataPersistance
 
             // increment index
             currentStoryIndex++;
-            print("incremented index");
         }
         
         // wait for a bit
@@ -66,7 +62,7 @@ public class StoryManagerEnd : MonoBehaviour, IDataPersistance
 
         // load pregame scene
         // UnityEngine.SceneManagement.SceneManager.LoadScene("PreGame");
-        PersistentSceneManager.instance.LoadSceneWithoutLoadingScreen("Game", "PreGame");
+        PersistentSceneManager.instance.LoadScene("Game", "PreGame");
     }
 
     //! IDataPersistance

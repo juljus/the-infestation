@@ -46,11 +46,9 @@ public class DashSkill : Skill
         // stop the dash
         rb.linearVelocity = Vector2.zero;
 
-        Debug.Log("trying....");
         // if upgraded give a shield
         if (isUpgraded)
         {
-            Debug.Log("giving shield");
             PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
             playerHealth.SetShield(shieldAmount);
         }

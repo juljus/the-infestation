@@ -39,7 +39,6 @@ public class SkillUnlockManager : MonoBehaviour
 
     public void ShowUnlockedButtons()
     {
-        print("ShowUnlockedButtons");
         int buttonsUnlocked = 0;
         for (int i = 0; i < unlockedActiveSkills.Length; i++)
         {

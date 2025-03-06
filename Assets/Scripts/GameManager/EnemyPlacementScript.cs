@@ -56,13 +56,11 @@ public class EnemyPlacementScript : MonoBehaviour, IDataPersistance
         {
             this.enemyPositionsX[selectedChar].Add(enemy.transform.position.x);
             this.enemyPositionsY[selectedChar].Add(enemy.transform.position.y);
-            print("Enemy Name: " + enemy.name);
 
             foreach (GameObject enemyPrefab in this.enemyPrefabs)
             {
                 if (enemyPrefab.name == enemy.name)
                 {
-                    print("Enemy ID: " + this.enemyPrefabs.IndexOf(enemyPrefab));
                     enemyIDs[selectedChar].Add(this.enemyPrefabs.IndexOf(enemyPrefab));
                 }
             }

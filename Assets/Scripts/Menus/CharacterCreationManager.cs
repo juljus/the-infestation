@@ -28,13 +28,11 @@ public class CharacterCreationManager : MonoBehaviour, IDataPersistance
         // check if name is of acceptable length (3 - 10)
         if (characterNameText.text.Length < 4)
         {
-            Debug.Log("Name too short: " + characterNameText.text);
             StartCoroutine(FlashRed(nameInfoText));
             return;
         }
         else if (characterNameText.text.Length > 11)
         {
-            Debug.Log("Name too long: " + characterNameText.text);
             StartCoroutine(FlashRed(nameInfoText));
             return;
         }
@@ -58,7 +56,6 @@ public class CharacterCreationManager : MonoBehaviour, IDataPersistance
         GameObject.Find("GameManager").GetComponent<DataPersistanceManager>().SetPlayerStats(playerScriptableObject);
 
         // set the name
-        Debug.Log("Setting name: " + characterNameText.text);
         charNames[slectedCharacter] = characterNameText.text;
 
         // set as existing
@@ -68,18 +65,18 @@ public class CharacterCreationManager : MonoBehaviour, IDataPersistance
         transform.GetComponent<DataPersistanceManager>().SaveGame();
 
         // switch to pre game scene
-        PersistentSceneManager.instance.LoadSceneWithoutLoadingScreen("CharacterCreation", "PreGame");
+        PersistentSceneManager.instance.LoadScene("CharacterCreation", "PreGame");
     }
 
     public void Back()
     {
         // load the character selection scene
-        PersistentSceneManager.instance.LoadSceneWithoutLoadingScreen("CharacterCreation", "CharacterSelection");
+        PersistentSceneManager.instance.LoadScene("CharacterCreation", "CharacterSelection");
     }
 
     private IEnumerator FlashRed(TMPro.TMP_Text text)
     {
-        print("flashing red");
+
         text.color = Color.red;
         yield return new WaitForSeconds(0.1f);
         text.color = Color.white;

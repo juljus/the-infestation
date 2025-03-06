@@ -32,8 +32,6 @@ public class AttackPoisonSkill : Skill
 
     private void ApplyPoison()
     {
-        Debug.Log("applying poison");
-
         GameObject target = GameObject.Find("GameManager").GetComponent<TargetManager>().GetTarget;
 
         if (target != null)

@@ -191,6 +191,7 @@ public class PlayerSkillHolder : MonoBehaviour
         
         skill0.Activate(gameObject, skillHelper);
         skillStates[skillIndex] = 1;
+        transform.GetComponent<PlayerAttack>().SetIsAttacking(true);
         castInProgress = true;
         skill0ActiveCoroutine = StartCoroutine(ActiveDuration(skill0.activeTime, skill0.cooldownTime, skill0.castRange, skill0ButtonOverlay, skillIndex));
     }
@@ -236,6 +237,7 @@ public class PlayerSkillHolder : MonoBehaviour
         
         skill1.Activate(gameObject, skillHelper);
         skillStates[skillIndex] = 1;
+        transform.GetComponent<PlayerAttack>().SetIsAttacking(true);
         castInProgress = true;
         skill1ActiveCoroutine = StartCoroutine(ActiveDuration(skill1.activeTime, skill1.cooldownTime, skill1.castRange, skill1ButtonOverlay, skillIndex));
     }
@@ -280,6 +282,7 @@ public class PlayerSkillHolder : MonoBehaviour
         
         skill2.Activate(gameObject, skillHelper);
         skillStates[skillIndex] = 1;
+        transform.GetComponent<PlayerAttack>().SetIsAttacking(true);
         castInProgress = true;
         skill2ActiveCoroutine = StartCoroutine(ActiveDuration(skill2.activeTime, skill2.cooldownTime, skill2.castRange, skill2ButtonOverlay, skillIndex));
     }
@@ -290,6 +293,7 @@ public class PlayerSkillHolder : MonoBehaviour
         yield return new WaitForSeconds(activeDuration);
 
         skillStates[skillIndex] = 2;
+        transform.GetComponent<PlayerAttack>().SetIsAttacking(false);
         castInProgress = false;
 
         switch (skillIndex)

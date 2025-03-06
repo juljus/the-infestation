@@ -16,18 +16,12 @@ public class AttackPoisonSkill : Skill
     {
         // add listener
         player.GetComponent<PlayerAttack>().playerAttackEvent.AddListener(ApplyPoison);
-
-        // add icon
-        player.GetComponent<EffectSystem>().TakeStatusEffect(id, "speedMod", 1, 0, effectIcon, false, false, false);
     }
 
     public override void Deactivate(GameObject player)
     {
         // remove listener
         player.GetComponent<PlayerAttack>().playerAttackEvent.RemoveListener(ApplyPoison);
-
-        // remove icon
-        player.GetComponent<EffectSystem>().RemoveStatusEffectById(id);
     }
 
     private void ApplyPoison()

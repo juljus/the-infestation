@@ -19,9 +19,6 @@ public class DashRefreshSkill : Skill
         // add listener
         GameObject.Find("GameManager").GetComponent<EnemyLogicManager>().enemyDeathEvent.AddListener(Refresh);
 
-        // // add icon
-        // player.GetComponent<EffectSystem>().TakeStatusEffect(id, "speedMod", 1, 0, effectIcon, false, false, false);
-
         // upgrade dash
         player.GetComponent<PlayerSkillHolder>().GetSkillById(0).SetIsUpgraded(true);
     }
@@ -30,9 +27,6 @@ public class DashRefreshSkill : Skill
     {
         // remove listener
         GameObject.Find("GameManager").GetComponent<EnemyLogicManager>().enemyDeathEvent.RemoveListener(Refresh);
-
-        // // remove icon
-        // player.GetComponent<EffectSystem>().RemoveStatusEffectById(id);
     }
 
     private void Refresh()

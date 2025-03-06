@@ -80,18 +80,7 @@ public class PlayerAttack : MonoBehaviour, IDataPersistance
         gameObject.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
 
         // set player facing direction
-        if (target.transform.position.x > transform.position.x)
-        {
-            // x rotation to 0
-            // sprite.transform.rotation = Quaternion.Euler(0, 0, 0);
-            transform.GetChild(0).localScale = new Vector3(1, 1, 1);
-        }
-        else
-        {
-            // x rotation to 180
-            // sprite.transform.rotation = Quaternion.Euler(0, 180, 0);
-            transform.GetChild(0).localScale = new Vector3(-1, 1, 1);
-        }
+        transform.GetComponent<PlayerMovement>().FaceTarget(target);
 
         // start attack animation
         UnityEngine.UI.Image attackBtnOverlay = attackBtn.transform.GetChild(0).GetComponent<UnityEngine.UI.Image>();
@@ -198,6 +187,11 @@ public class PlayerAttack : MonoBehaviour, IDataPersistance
 
 
     // SETTERS
+    public void SetIsAttacking(bool newIsAttacking)
+    {
+        isAttacking = newIsAttacking;
+    }
+
     public void SetCurrentAttackDamage(float newCurrentAttackDamage)
     {
         currentAttackDamage = newCurrentAttackDamage;

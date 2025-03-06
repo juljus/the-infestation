@@ -10,6 +10,10 @@ public class PersistentSceneManager : MonoBehaviour
     [SerializeField] private Canvas loadingScreen;
     [SerializeField] private Camera loadingCamera;
 
+    [SerializeField] private UnityEngine.UI.Image blackScreen;
+
+    private float fadeDuration = 0.2f;
+
     // LOADING ANIMATION
     [Header("Loading Animation")]
     [SerializeField] private GameObject starParent;
@@ -98,13 +102,72 @@ public class PersistentSceneManager : MonoBehaviour
 
     public void LoadScene(string startScene, string tarScene)
     {
+        // start loading coroutine
+        StartCoroutine(LoadSceneCoroutine(startScene, tarScene));
+    }
+
+    public IEnumerator LoadSceneCoroutine(string startScene, string tarScene)
+    {
+        // fade to black
+        float startTime = Time.realtimeSinceStartup;
+        float duration = fadeDuration;
+
+        blackScreen.gameObject.SetActive(true);
+
+        while (Time.realtimeSinceStartup < startTime + duration)
+        {
+            float elapsed = Time.realtimeSinceStartup - startTime;
+            float alpha = elapsed / duration;
+            blackScreen.color = new Color(0, 0, 0, alpha);
+            yield return null;
+        }
+
         // unload start scene and load target scene
         SceneManager.UnloadSceneAsync(startScene);
         SceneManager.LoadScene(tarScene, LoadSceneMode.Additive);
+
+        // fade to transparent
+        startTime = Time.realtimeSinceStartup;
+
+        while (Time.realtimeSinceStartup < startTime + duration)
+        {
+            float elapsed = Time.realtimeSinceStartup - startTime;
+            float alpha = 1 - elapsed / duration;
+            blackScreen.color = new Color(0, 0, 0, alpha);
+            yield return null;
+        }
+
+        blackScreen.gameObject.SetActive(false);
     }
 
     public void LoadSceneWithLoadingScreen(string startScene, string tarScene)
     {
+        // start loading coroutine
+        StartCoroutine(LoadingScreenCoroutine(startScene, tarScene));
+    }
+
+    private IEnumerator LoadingScreenCoroutine(string startScene, string tarScene)
+    {
+        if (tarScene == "Game")
+        {
+            // set game starting to true
+            MapDiscoveryManager.gameStarting = true;
+        }
+
+        // fade to black
+        float startTime = Time.realtimeSinceStartup;
+        float duration = fadeDuration;
+
+        blackScreen.gameObject.SetActive(true);
+
+        while (Time.realtimeSinceStartup < startTime + duration)
+        {
+            float elapsed = Time.realtimeSinceStartup - startTime;
+            float alpha = elapsed / duration;
+            blackScreen.color = new Color(0, 0, 0, alpha);
+            yield return null;
+        }
+
         // display loading screen and camera
         loadingCamera.enabled = true;
         loadingScreen.enabled = true;
@@ -112,14 +175,7 @@ public class PersistentSceneManager : MonoBehaviour
         // unload start scene and load target scene
         SceneManager.UnloadSceneAsync(startScene);
         AsyncOperation loadingScene = SceneManager.LoadSceneAsync(tarScene, LoadSceneMode.Additive);
-        // loadingScene.allowSceneActivation = false;
 
-        // start loading coroutine
-        StartCoroutine(LoadingScreenCoroutine(loadingScene));
-    }
-
-    private IEnumerator LoadingScreenCoroutine(AsyncOperation loadingScene)
-    {
         while (!loadingScene.isDone)
         {
             print("loading scene progress: " + loadingScene.progress);
@@ -136,5 +192,18 @@ public class PersistentSceneManager : MonoBehaviour
         // hide loading screen and camera
         loadingCamera.enabled = false;
         loadingScreen.enabled = false;
+
+        // fade to transparent
+        startTime = Time.realtimeSinceStartup;
+        
+        while (Time.realtimeSinceStartup < startTime + duration)
+        {
+            float elapsed = Time.realtimeSinceStartup - startTime;
+            float alpha = 1 - elapsed / duration;
+            blackScreen.color = new Color(0, 0, 0, alpha);
+            yield return null;
+        }
+
+        blackScreen.gameObject.SetActive(false);
     }
 }

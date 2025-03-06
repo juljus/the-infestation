@@ -28,13 +28,6 @@ public class MapCompletion : MonoBehaviour, IDataPersistance
         UpdateCampfireKillCounter();
     }
 
-    // TEMP: function for testing button
-    public void SkipToGameEnd()
-    {
-        // UnityEngine.SceneManagement.SceneManager.LoadScene("StoryEnd");
-        PersistentSceneManager.instance.LoadScene("Game", "StoryEnd");
-    }
-
     public void EndSequence()
     {
         // whiteout image
@@ -83,7 +76,6 @@ public class MapCompletion : MonoBehaviour, IDataPersistance
         }
 
         // load end scene
-        // UnityEngine.SceneManagement.SceneManager.LoadScene("StoryEnd");
         PersistentSceneManager.instance.LoadScene("Game", "StoryEnd");
     }
 

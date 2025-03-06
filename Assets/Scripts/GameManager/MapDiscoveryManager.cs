@@ -13,7 +13,7 @@ public class MapDiscoveryManager : MonoBehaviour, IDataPersistance
 
     [SerializeField] private int chunkSize = 100;
 
-    public static bool gameStarting = true;
+    public static bool gameStarting = false;
 
     private IEnumerator TilesToList()
     {

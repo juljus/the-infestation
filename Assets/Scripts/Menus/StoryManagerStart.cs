@@ -29,32 +29,12 @@ public class StoryManagerStart : MonoBehaviour
     {
         StopAllCoroutines();
 
-        StartCoroutine(SkipStoryCoroutine());
-    }
-
-    IEnumerator SkipStoryCoroutine()
-    {
-        // hide skip button
-        skipButton.SetActive(false);
-
-        // fade out text
-        float currentAlpha = storyTextUI.color.a;
-        for (float i = currentAlpha; i > 0; i -= Time.deltaTime)
-        {
-            storyTextUI.color = new Color(1, 1, 1, i);
-            yield return null;
-        }
-
         // load game scene
         PersistentSceneManager.instance.LoadSceneWithLoadingScreen("StoryStart", "Game");
     }
 
     IEnumerator ShowStoryText()
     {
-        // // start loading game scene
-        // AsyncOperation gameSceneAsync = SceneManager.LoadSceneAsync("Game", LoadSceneMode.Additive);
-        // gameSceneAsync.allowSceneActivation = false;
-
         while (currentStoryIndex < storyText.Length)
         {
             // change text
@@ -86,8 +66,8 @@ public class StoryManagerStart : MonoBehaviour
             currentStoryIndex++;
         }
 
-        // hide skip button
-        skipButton.SetActive(false);
+        // // hide skip button
+        // skipButton.SetActive(false);
 
         // load game scene
         PersistentSceneManager.instance.LoadSceneWithLoadingScreen("StoryStart", "Game");

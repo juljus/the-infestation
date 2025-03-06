@@ -23,7 +23,6 @@ public class GameOverManager : MonoBehaviour, IDataPersistance
     public void BackToMenu()
     {
         Time.timeScale = 1;
-        // UnityEngine.SceneManagement.SceneManager.LoadScene("PreGame");
         PersistentSceneManager.instance.LoadSceneWithLoadingScreen("Game", "PreGame");
     }
 
@@ -71,7 +70,6 @@ public class GameOverManager : MonoBehaviour, IDataPersistance
         }
 
         // switch to pregame scene
-        // PersistentSceneManager.instance.LoadScene("Game", "PreGame");
         PersistentSceneManager.instance.LoadSceneWithLoadingScreen("Game", "PreGame");
     }
 

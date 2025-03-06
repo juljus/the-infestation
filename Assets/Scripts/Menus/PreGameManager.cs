@@ -37,13 +37,13 @@ public class PreGameManager : MonoBehaviour, IDataPersistance
     public void StartGame()
     {
         // load the game scene
-        PersistentSceneManager.instance.LoadSceneWithoutLoadingScreen("PreGame", "StoryStart");
+        PersistentSceneManager.instance.LoadScene("PreGame", "StoryStart");
     }
 
     public void Back()
     {
         // load the character selection scene
-        PersistentSceneManager.instance.LoadSceneWithoutLoadingScreen("PreGame", "CharacterSelection");
+        PersistentSceneManager.instance.LoadScene("PreGame", "CharacterSelection");
     }
 
     public void DeleteCharacterPopupOn()
@@ -66,7 +66,7 @@ public class PreGameManager : MonoBehaviour, IDataPersistance
         transform.GetComponent<DataPersistanceManager>().SaveGame();
 
         // load the character selection scene
-        PersistentSceneManager.instance.LoadSceneWithoutLoadingScreen("PreGame", "CharacterSelection");
+        PersistentSceneManager.instance.LoadScene("PreGame", "CharacterSelection");
     }
 
     //! data persistance

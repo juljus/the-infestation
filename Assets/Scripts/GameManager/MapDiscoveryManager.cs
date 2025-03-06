@@ -22,6 +22,7 @@ public class MapDiscoveryManager : MonoBehaviour, IDataPersistance
         discoverableTilesY.Clear();
 
         // loop through all tiles and put them into the list
+        int count = 0;
         foreach (Transform child in tilesParent.transform)
         {
             discoverableTilesX.Add(child.position.x);
@@ -29,7 +30,12 @@ public class MapDiscoveryManager : MonoBehaviour, IDataPersistance
             
             print("game still starting");
 
-            // yield return null;
+            count++;
+
+            if (count % (chunkSize * 6) == 0)
+            {
+                yield return null;
+            }
         }
 
         if (gameStarting)
@@ -89,7 +95,7 @@ public class MapDiscoveryManager : MonoBehaviour, IDataPersistance
 
             count++;
 
-            if (count % (chunkSize * 3) == 0)
+            if (count % (chunkSize * 6) == 0)
             {
                 yield return null;
             }

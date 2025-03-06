@@ -5,9 +5,7 @@ using UnityEngine;
 public class StarPopupScript : MonoBehaviour
 {
     [SerializeField] private GameObject starParent;
-
     [SerializeField] private GameObject starGO;
-
     [SerializeField] private int starCount;
     [SerializeField] private float starCycleTime;
     [SerializeField] private float starInnerRadius;

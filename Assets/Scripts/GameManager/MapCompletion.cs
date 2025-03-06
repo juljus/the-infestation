@@ -32,7 +32,7 @@ public class MapCompletion : MonoBehaviour, IDataPersistance
     public void SkipToGameEnd()
     {
         // UnityEngine.SceneManagement.SceneManager.LoadScene("StoryEnd");
-        PersistentSceneManager.instance.LoadSceneWithoutLoadingScreen("Game", "StoryEnd");
+        PersistentSceneManager.instance.LoadScene("Game", "StoryEnd");
     }
 
     public void EndSequence()
@@ -84,7 +84,7 @@ public class MapCompletion : MonoBehaviour, IDataPersistance
 
         // load end scene
         // UnityEngine.SceneManagement.SceneManager.LoadScene("StoryEnd");
-        PersistentSceneManager.instance.LoadSceneWithoutLoadingScreen("Game", "StoryEnd");
+        PersistentSceneManager.instance.LoadScene("Game", "StoryEnd");
     }
 
     public void AddKill()
@@ -144,12 +144,10 @@ public class MapCompletion : MonoBehaviour, IDataPersistance
 
     public void campfireMenuButtonPressed()
     {
-        print("campfireMenuButtonPressed");
         
         level = levelManager.GetPlayerLevel;
         if (campfireStandingNextTo <= level)
         {
-            print("You can interact with this campfire");
             CampfireMenuOn();
         }
         else if (campfireStandingNextTo == level + 1)
@@ -157,18 +155,17 @@ public class MapCompletion : MonoBehaviour, IDataPersistance
             // check if enough kills
             if (currentKills >= campfireKillThresholds[campfireStandingNextTo])
             {
-                print("You have enough kills to light this campfire");
                 levelManager.GainLevel();
                 LightCampfires();
             }
             else
             {
-                print("You need more kills to light this campfire");
+                // not enough kills
             }
         }
         else
         {
-            print("You can't interact with this campfire yet");
+            // not next to a campfire
         }
     }
 

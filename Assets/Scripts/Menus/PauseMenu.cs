@@ -41,8 +41,6 @@ public class PauseMenu : MonoBehaviour
         // switch to map canvas
         mainCanvas.GetComponent<Canvas>().enabled = false;
         mapCanvas.GetComponent<Canvas>().enabled = true;
-
-        print("map canvas active");
     }
 
     public void HideMap()
@@ -70,7 +68,7 @@ public class PauseMenu : MonoBehaviour
         GetComponent<DataPersistanceManager>().SaveGame();
 
         // UnityEngine.SceneManagement.SceneManager.LoadScene("PreGame");
-        PersistentSceneManager.instance.LoadSceneWithoutLoadingScreen("Game", "PreGame");
+        PersistentSceneManager.instance.LoadScene("Game", "PreGame");
     }
 
     public void ShowQuitConfirmation()

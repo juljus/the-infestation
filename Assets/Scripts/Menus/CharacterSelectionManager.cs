@@ -65,7 +65,7 @@ public class CharacterSelectionManager : MonoBehaviour, IDataPersistance
         transform.GetComponent<DataPersistanceManager>().SaveGame();
 
         // switch to character creation scene
-        PersistentSceneManager.instance.LoadSceneWithoutLoadingScreen("CharacterSelection", "CharacterCreation");
+        PersistentSceneManager.instance.LoadScene("CharacterSelection", "CharacterCreation");
     }
 
     public void SelectCharacter(int charNum)
@@ -77,7 +77,7 @@ public class CharacterSelectionManager : MonoBehaviour, IDataPersistance
         transform.GetComponent<DataPersistanceManager>().SaveGame();
 
         // switch to pre game scene
-        PersistentSceneManager.instance.LoadSceneWithoutLoadingScreen("CharacterSelection", "PreGame");
+        PersistentSceneManager.instance.LoadScene("CharacterSelection", "PreGame");
     }
 
     public void QuitGame()

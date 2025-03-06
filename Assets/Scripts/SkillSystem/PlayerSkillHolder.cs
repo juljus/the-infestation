@@ -47,9 +47,50 @@ public class PlayerSkillHolder : MonoBehaviour
         castInProgress = false;
 
         // set skill buttons to 0
-        skill0Button.transform.GetChild(0).GetComponent<UnityEngine.UI.Image>().fillAmount = 0;
-        skill1Button.transform.GetChild(0).GetComponent<UnityEngine.UI.Image>().fillAmount = 0;
-        skill2Button.transform.GetChild(0).GetComponent<UnityEngine.UI.Image>().fillAmount = 0;
+        try
+        {
+            skill0Button.transform.GetChild(0).GetComponent<UnityEngine.UI.Image>().fillAmount = 0;
+        }
+        catch (UnityException)
+        {
+            print("Skill 0 button overlay probably not intantiated yet");
+        }
+
+        try
+        {
+            skill1Button.transform.GetChild(0).GetComponent<UnityEngine.UI.Image>().fillAmount = 0;
+        }
+        catch (UnityException)
+        {
+            print("Skill 1 button overlay probably not intantiated yet");
+        }
+
+        try
+        {
+            skill2Button.transform.GetChild(0).GetComponent<UnityEngine.UI.Image>().fillAmount = 0;
+        }
+        catch (UnityException)
+        {
+            print("Skill 2 button overlay probably not intantiated yet");
+        }
+
+
+        // skill0Button.transform.GetChild(0).GetComponent<UnityEngine.UI.Image>().fillAmount = 0;
+        // skill1Button.transform.GetChild(0).GetComponent<UnityEngine.UI.Image>().fillAmount = 0;
+        // skill2Button.transform.GetChild(0).GetComponent<UnityEngine.UI.Image>().fillAmount = 0;
+
+        // if (skill0Button.transform.GetChild(0) != null)
+        // {
+        //     skill0Button.transform.GetChild(0).GetComponent<UnityEngine.UI.Image>().fillAmount = 0;
+        // }
+        // if (skill1Button.transform.GetChild(0) != null)
+        // {
+        //     skill1Button.transform.GetChild(0).GetComponent<UnityEngine.UI.Image>().fillAmount = 0;
+        // }
+        // if (skill2Button.transform.GetChild(0) != null)
+        // {
+        //     skill2Button.transform.GetChild(0).GetComponent<UnityEngine.UI.Image>().fillAmount = 0;
+        // }
     }
 
     public void SkipSkill0ActiveDuration()

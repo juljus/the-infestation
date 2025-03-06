@@ -9,7 +9,7 @@ public class PersistentSceneManager : MonoBehaviour
     public static PersistentSceneManager instance;
 
     [SerializeField] private Canvas loadingScreen;
-    [SerializeField] private GameObject loadingCamera;
+    [SerializeField] private Camera loadingCamera;
 
     private void Awake()
     {
@@ -18,27 +18,26 @@ public class PersistentSceneManager : MonoBehaviour
         SceneManager.LoadSceneAsync("CharacterSelection", LoadSceneMode.Additive);
     }
 
-    public void LoadGameScene()
-    {
-        SceneManager.UnloadSceneAsync("StoryStart");
-        SceneManager.LoadSceneAsync("Game", LoadSceneMode.Additive);
-    }
-
-    public void LoadScene(string startScene, string tarScene)
+    public void LoadGameScene(string startScene)
     {
         // display loading screen and camera
-        loadingCamera.SetActive(true);
+        loadingCamera.enabled = true;
         loadingScreen.enabled = true;
-
-
 
         // unload start scene and load target scene
         SceneManager.UnloadSceneAsync(startScene);
-        AsyncOperation loadingScene = SceneManager.LoadSceneAsync(tarScene, LoadSceneMode.Additive);
+        AsyncOperation loadingScene = SceneManager.LoadSceneAsync("Game", LoadSceneMode.Additive);
         loadingScene.allowSceneActivation = false;
 
         // start loading coroutine
         StartCoroutine(LoadingScene(loadingScene));
+    }
+
+    public void LoadSceneWithoutLoadingScreen(string startScene, string tarScene)
+    {
+        // unload start scene and load target scene
+        SceneManager.UnloadSceneAsync(startScene);
+        SceneManager.LoadScene(tarScene, LoadSceneMode.Additive);
     }
 
     private IEnumerator LoadingScene(AsyncOperation loadingScene)
@@ -48,10 +47,26 @@ public class PersistentSceneManager : MonoBehaviour
             yield return null;
         }
 
-        // hide loading screen and camera
-        loadingCamera.SetActive(false);
-        loadingScreen.enabled = false;
+        // wait for a bit
+        yield return new WaitForSeconds(2f);
 
         loadingScene.allowSceneActivation = true;
+
+        // set the loading screen and camera to be active again (also the star coroutine)
+        loadingCamera.enabled = true;
+        loadingScreen.enabled = true;
+        StartCoroutine(gameObject.GetComponent<StarPopupScript>().CycleStars());
+
+
+        while (MapDiscoveryManager.gameStarting)
+        {
+            yield return null;
+        }
+
+        print("NOW HIDING LOADING SCREEN");
+
+        // hide loading screen and camera
+        loadingCamera.enabled = false;
+        loadingScreen.enabled = false;
     }
 }

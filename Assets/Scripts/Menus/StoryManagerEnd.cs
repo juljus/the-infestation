@@ -65,7 +65,8 @@ public class StoryManagerEnd : MonoBehaviour, IDataPersistance
         yield return new WaitForSeconds(1);
 
         // load pregame scene
-        UnityEngine.SceneManagement.SceneManager.LoadScene("PreGame");
+        // UnityEngine.SceneManagement.SceneManager.LoadScene("PreGame");
+        PersistentSceneManager.instance.LoadSceneWithoutLoadingScreen("Game", "PreGame");
     }
 
     //! IDataPersistance

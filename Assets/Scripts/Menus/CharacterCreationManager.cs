@@ -68,13 +68,13 @@ public class CharacterCreationManager : MonoBehaviour, IDataPersistance
         transform.GetComponent<DataPersistanceManager>().SaveGame();
 
         // switch to pre game scene
-        PersistentSceneManager.instance.LoadScene("CharacterCreation", "PreGame");
+        PersistentSceneManager.instance.LoadSceneWithoutLoadingScreen("CharacterCreation", "PreGame");
     }
 
     public void Back()
     {
         // load the character selection scene
-        PersistentSceneManager.instance.LoadScene("CharacterCreation", "CharacterSelection");
+        PersistentSceneManager.instance.LoadSceneWithoutLoadingScreen("CharacterCreation", "CharacterSelection");
     }
 
     private IEnumerator FlashRed(TMPro.TMP_Text text)

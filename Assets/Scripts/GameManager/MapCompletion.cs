@@ -31,7 +31,8 @@ public class MapCompletion : MonoBehaviour, IDataPersistance
     // TEMP: function for testing button
     public void SkipToGameEnd()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("StoryEnd");
+        // UnityEngine.SceneManagement.SceneManager.LoadScene("StoryEnd");
+        PersistentSceneManager.instance.LoadSceneWithoutLoadingScreen("Game", "StoryEnd");
     }
 
     public void EndSequence()
@@ -82,7 +83,8 @@ public class MapCompletion : MonoBehaviour, IDataPersistance
         }
 
         // load end scene
-        UnityEngine.SceneManagement.SceneManager.LoadScene("StoryEnd");
+        // UnityEngine.SceneManagement.SceneManager.LoadScene("StoryEnd");
+        PersistentSceneManager.instance.LoadSceneWithoutLoadingScreen("Game", "StoryEnd");
     }
 
     public void AddKill()

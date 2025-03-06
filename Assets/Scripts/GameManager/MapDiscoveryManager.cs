@@ -11,7 +11,9 @@ public class MapDiscoveryManager : MonoBehaviour, IDataPersistance
     [SerializeField] private GameObject tilesParent;
     [SerializeField] private GameObject discoverableTile;
 
-    public static bool gameStarting = false;
+    [SerializeField] private int chunkSize = 100;
+
+    public static bool gameStarting = true;
 
     private IEnumerator TilesToList()
     {
@@ -27,14 +29,17 @@ public class MapDiscoveryManager : MonoBehaviour, IDataPersistance
             
             print("game still starting");
 
-            yield return null;
+            // yield return null;
         }
 
         if (gameStarting)
         {
+            print("SET GAME STARTING TO FALSE");
             gameStarting = false;
             Time.timeScale = 1;
         }
+
+        yield return null;
     }
 
     private void TilesToListLegacy()
@@ -75,34 +80,48 @@ public class MapDiscoveryManager : MonoBehaviour, IDataPersistance
     private IEnumerator ListToTiles()
     {
         // delete all tiles on map and then replace them from the list
+        int count = 0;
         foreach (Transform child in tilesParent.transform)
         {
+            print("destroying the tiles on map");
+
             Destroy(child.gameObject);
 
-            yield return null;
+            count++;
+
+            if (count % (chunkSize * 3) == 0)
+            {
+                yield return null;
+            }
         }
 
         for (int i = 0; i < discoverableTilesX.Count; i++)
         {
+            print("game still starting");
+
             GameObject tile = Instantiate(discoverableTile, new Vector3(discoverableTilesX[i], discoverableTilesY[i], 0), Quaternion.identity) as GameObject;
             tile.transform.SetParent(tilesParent.transform);
 
-            print("game still starting");
-
-            yield return null;
+            if (i % chunkSize == 0 && i != 0)
+            {
+                yield return null;
+            }
         }
 
         if (gameStarting)
         {
+            print("SET GAME STARTING TO FALSE");
             gameStarting = false;
             Time.timeScale = 1;
         }
+
+        yield return null;
     }
 
     //! IDataPersistance
     public void LoadData(GameData data)
     {
-        gameStarting = true;
+        print("loading data into map discovery manager");
         Time.timeScale = 0;
 
         int selectedChar = data.selectedChar;
@@ -112,15 +131,15 @@ public class MapDiscoveryManager : MonoBehaviour, IDataPersistance
 
         if (discoverableTilesX.Count == 0)
         {
-            print("starting sequence");
-            // StartCoroutine(TilesToList());
-            TilesToListLegacy();
+            print("starting tile to list");
+            StartCoroutine(TilesToList());
+            // TilesToListLegacy();
         }
         else
         {
-            print("replacing tiles");
-            // StartCoroutine(ListToTiles());
-            ListToTilesLegacy();
+            print("starting list to tile");
+            StartCoroutine(ListToTiles());
+            // ListToTilesLegacy();
         }
     }
 
@@ -130,8 +149,10 @@ public class MapDiscoveryManager : MonoBehaviour, IDataPersistance
 
     public void InGameSave(ref GameData data)
     {
-        // StartCoroutine(TilesToList());
-        TilesToListLegacy();
+        print("saving data from map discovery manager");
+        print("starting tile to list");
+        StartCoroutine(TilesToList());
+        // TilesToListLegacy();
 
         int selectedChar = data.selectedChar;
 

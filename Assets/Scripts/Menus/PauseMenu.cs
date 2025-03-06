@@ -68,7 +68,7 @@ public class PauseMenu : MonoBehaviour
         GetComponent<DataPersistanceManager>().SaveGame();
 
         // UnityEngine.SceneManagement.SceneManager.LoadScene("PreGame");
-        PersistentSceneManager.instance.LoadScene("Game", "PreGame");
+        PersistentSceneManager.instance.LoadSceneWithLoadingScreen("Game", "PreGame");
     }
 
     public void ShowQuitConfirmation()

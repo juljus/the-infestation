@@ -157,8 +157,8 @@ public class MapDiscoveryManager : MonoBehaviour, IDataPersistance
     {
         print("saving data from map discovery manager");
         print("starting tile to list");
-        StartCoroutine(TilesToList());
-        // TilesToListLegacy();
+        // StartCoroutine(TilesToList());
+        TilesToListLegacy();
 
         int selectedChar = data.selectedChar;
 

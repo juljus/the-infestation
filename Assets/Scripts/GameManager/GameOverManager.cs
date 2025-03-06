@@ -10,6 +10,8 @@ public class GameOverManager : MonoBehaviour, IDataPersistance
     [SerializeField] private GameObject gameOverScreen;
     [SerializeField] private UnityEngine.UI.Image blackScreen;
 
+    private bool gameOver = false;
+
     void Start()
     {
         if (charDead)
@@ -22,11 +24,18 @@ public class GameOverManager : MonoBehaviour, IDataPersistance
     {
         Time.timeScale = 1;
         // UnityEngine.SceneManagement.SceneManager.LoadScene("PreGame");
-        PersistentSceneManager.instance.LoadScene("Game", "PreGame");
+        PersistentSceneManager.instance.LoadSceneWithLoadingScreen("Game", "PreGame");
     }
 
     public void GameOver()
     {
+        if (gameOver)
+        {
+            return;
+        }
+
+        gameOver = true;
+
         // stop the game
         Time.timeScale = 0;
 
@@ -62,8 +71,8 @@ public class GameOverManager : MonoBehaviour, IDataPersistance
         }
 
         // switch to pregame scene
-        // UnityEngine.SceneManagement.SceneManager.LoadScene("PreGame");
-        PersistentSceneManager.instance.LoadScene("Game", "PreGame");
+        // PersistentSceneManager.instance.LoadScene("Game", "PreGame");
+        PersistentSceneManager.instance.LoadSceneWithLoadingScreen("Game", "PreGame");
     }
 
     //! IDataPersistance

@@ -62,7 +62,7 @@ public class StoryManagerEnd : MonoBehaviour, IDataPersistance
 
         // load pregame scene
         // UnityEngine.SceneManagement.SceneManager.LoadScene("PreGame");
-        PersistentSceneManager.instance.LoadScene("Game", "PreGame");
+        PersistentSceneManager.instance.LoadScene("StoryEnd", "PreGame");
     }
 
     //! IDataPersistance

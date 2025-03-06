@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -104,7 +103,7 @@ public class PersistentSceneManager : MonoBehaviour
         SceneManager.LoadScene(tarScene, LoadSceneMode.Additive);
     }
 
-    public void LoadGameScene(string startScene)
+    public void LoadSceneWithLoadingScreen(string startScene, string tarScene)
     {
         // display loading screen and camera
         loadingCamera.enabled = true;
@@ -112,31 +111,20 @@ public class PersistentSceneManager : MonoBehaviour
 
         // unload start scene and load target scene
         SceneManager.UnloadSceneAsync(startScene);
-        AsyncOperation loadingScene = SceneManager.LoadSceneAsync("Game", LoadSceneMode.Additive);
+        AsyncOperation loadingScene = SceneManager.LoadSceneAsync(tarScene, LoadSceneMode.Additive);
         // loadingScene.allowSceneActivation = false;
 
         // start loading coroutine
-        StartCoroutine(LoadGameSceneCoroutine(loadingScene));
+        StartCoroutine(LoadingScreenCoroutine(loadingScene));
     }
 
-    private IEnumerator LoadGameSceneCoroutine(AsyncOperation loadingScene)
+    private IEnumerator LoadingScreenCoroutine(AsyncOperation loadingScene)
     {
         while (!loadingScene.isDone)
         {
             print("loading scene progress: " + loadingScene.progress);
             yield return null;
         }
-
-        // // allow the scene to be activated
-        // loadingScene.allowSceneActivation = true;
-
-        // // wait for a bit
-        // yield return new WaitForSeconds(2f);
-
-        // // set the loading screen and camera to be active again (also the star coroutine)
-        // loadingCamera.enabled = true;
-        // loadingScreen.enabled = true;
-
 
         while (MapDiscoveryManager.gameStarting)
         {

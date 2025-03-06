@@ -45,11 +45,8 @@ public class StoryManagerStart : MonoBehaviour
             yield return null;
         }
 
-        // wait for a bit
-        yield return new WaitForSeconds(0.5f);
-
         // load game scene
-        PersistentSceneManager.instance.LoadGameScene("StoryStart");
+        PersistentSceneManager.instance.LoadSceneWithLoadingScreen("StoryStart", "Game");
     }
 
     IEnumerator ShowStoryText()
@@ -93,7 +90,7 @@ public class StoryManagerStart : MonoBehaviour
         skipButton.SetActive(false);
 
         // load game scene
-        PersistentSceneManager.instance.LoadGameScene("StoryStart");
+        PersistentSceneManager.instance.LoadSceneWithLoadingScreen("StoryStart", "Game");
 
         // print("opening loading screen");
 

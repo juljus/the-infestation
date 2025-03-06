@@ -188,7 +188,28 @@ public class MapCompletion : MonoBehaviour, IDataPersistance
     public void RestAtCampfire()
     {
         // start blackout animation
-        StartCoroutine(Blackout());
+        StartCoroutine(RestAtCampfireCoroutine());
+    }
+
+    private IEnumerator RestAtCampfireCoroutine()
+    {
+        // start blackout
+        float alpha = 1;
+        Time.timeScale = 0;
+
+        blackoutImage.gameObject.SetActive(true);
+        blackoutImage.color = new Color(0, 0, 0, alpha);
+
+        float realTime = Time.realtimeSinceStartup;
+
+        while (realTime + 0.5f > Time.realtimeSinceStartup)
+        {
+            // set alpha
+            alpha = 1 - (realTime + 0.5f - Time.realtimeSinceStartup) * 2;
+            blackoutImage.color = new Color(0, 0, 0, alpha);
+
+            yield return null;
+        }
 
         // trigger InGameSave
         transform.GetComponent<DataPersistanceManager>().InGameSave();
@@ -204,6 +225,23 @@ public class MapCompletion : MonoBehaviour, IDataPersistance
 
         // campfire menu off
         CampfireMenuOff();
+
+        // start fade out
+        realTime = Time.realtimeSinceStartup;
+
+        while (realTime + 0.5f > Time.realtimeSinceStartup)
+        {
+            // set alpha
+            alpha = (realTime + 0.5f - Time.realtimeSinceStartup) * 2;
+            blackoutImage.color = new Color(0, 0, 0, alpha);
+
+            yield return null;
+        }
+
+        Time.timeScale = 1;
+        blackoutImage.gameObject.SetActive(false);
+
+        yield return null;
     }
 
     public void ShowCampfireMenuButton()

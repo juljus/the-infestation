@@ -23,6 +23,8 @@ public class EnemyProjectile_Heal : MonoBehaviour
     private float damage;
     [SerializeField] private GameObject target;
 
+    private float extraTarHeight = 1f;
+
     void Start()
     {        
         // get from parent object
@@ -62,7 +64,7 @@ public class EnemyProjectile_Heal : MonoBehaviour
         }
 
         //move projectile towards player
-        transform.position = Vector2.MoveTowards(transform.position, target.transform.position, projectileSpeed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, target.transform.position + new Vector3(0, extraTarHeight, 0), projectileSpeed * Time.deltaTime);
 
         // rotate based on move direction
         Vector3 moveDirection = target.transform.position - transform.position;

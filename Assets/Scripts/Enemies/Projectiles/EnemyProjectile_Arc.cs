@@ -26,6 +26,8 @@ public class EnemyProjectile_Arc : MonoBehaviour
     private Vector3 startPos;
     private float projectileArcHeight;
 
+    private float extraTarHeight = 1f;
+
     void Start()
     {        
         // get from parent object
@@ -59,7 +61,7 @@ public class EnemyProjectile_Arc : MonoBehaviour
 
     void Update()
     {
-        targetPos = target.transform.position;
+        targetPos = target.transform.position + new Vector3(0, extraTarHeight, 0);
 
         // // compute the next position, without arc added in
         // Vector3 nextPos = Vector3.MoveTowards(transform.position, targetPos, projectileSpeed * Time.deltaTime);

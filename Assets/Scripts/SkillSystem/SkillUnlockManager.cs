@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SkillUnlockManager : MonoBehaviour
+public class SkillUnlockManager : MonoBehaviour, IDataPersistance
 {
     [SerializeField] private GameObject skill0Button;
     [SerializeField] private GameObject skill1Button;
@@ -13,14 +13,14 @@ public class SkillUnlockManager : MonoBehaviour
 
     private int[] unlockedActiveSkills = {-1, -1, -1};
 
-    void Start() 
-    {
-        selectedCharacterLearnedSkills = transform.GetComponent<SkillMenuManager>().GetSelectedCharacterLearnedSkills;
-        playerScriptableObject = transform.GetComponent<PlayerManager>().GetPlayerScriptableObject;
+    // void Start() 
+    // {
+    //     selectedCharacterLearnedSkills = transform.GetComponent<SkillMenuManager>().GetSelectedCharacterLearnedSkills;
+    //     playerScriptableObject = transform.GetComponent<PlayerManager>().GetPlayerScriptableObject;
 
-        ShowUnlockedButtons();
-        ApplyPassiveSkills();
-    }
+    //     ShowUnlockedButtons();
+    //     ApplyPassiveSkills();
+    // }
 
     public void ApplyPassiveSkills()
     {
@@ -131,5 +131,22 @@ public class SkillUnlockManager : MonoBehaviour
     public int[] GetUnlockedActiveSkills
     {
         get { return unlockedActiveSkills; }
+    }
+
+    public void LoadData(GameData data)
+    {
+        selectedCharacterLearnedSkills = transform.GetComponent<SkillMenuManager>().GetSelectedCharacterLearnedSkills;
+        playerScriptableObject = transform.GetComponent<PlayerManager>().GetPlayerScriptableObject;
+
+        ShowUnlockedButtons();
+        ApplyPassiveSkills();
+    }
+
+    public void InGameSave(ref GameData data)
+    {
+    }
+
+    public void SaveData(ref GameData data)
+    {
     }
 }

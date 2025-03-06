@@ -14,6 +14,9 @@ public class GameOverManager : MonoBehaviour, IDataPersistance
 
     private bool gameOver = false;
 
+    private float playerPosX;
+    private float playerPosY;
+
     void Start()
     {
         if (charDead)
@@ -46,6 +49,8 @@ public class GameOverManager : MonoBehaviour, IDataPersistance
 
     private IEnumerator GameOverCoroutine()
     {
+        GameObject player = GameObject.Find("GameManager").GetComponent<PlayerManager>().GetPlayer;
+
         // set active black screen
         blackScreen.color = new Color(0, 0, 0, 0);
         blackScreen.gameObject.SetActive(true);
@@ -62,17 +67,51 @@ public class GameOverManager : MonoBehaviour, IDataPersistance
             yield return null;
         }
         
-        // wait for 1 second
+        // wait for 0.5 second
         startTime = Time.realtimeSinceStartup;
-        float waitTime = 1f;
+        float waitTime = 0.5f;
 
         while (Time.realtimeSinceStartup - startTime < waitTime)
         {
             yield return null;
         }
 
-        // switch to pregame scene
-        PersistentSceneManager.instance.LoadSceneWithLoadingScreen("Game", "PreGame");
+        // trigger LoadData functions
+        transform.GetComponent<DataPersistanceManager>().LoadGame();
+
+        // replace all enemies
+        transform.GetComponent<EnemyPlacementScript>().PlaceEnemies();
+
+        // reset player position
+        player.transform.position = new Vector3(playerPosX, playerPosY, 0);
+
+        // reset player health / cooldowns
+        player.GetComponent<PlayerHealth>().ResetHealth();
+
+        PlayerSkillHolder playerSkillHolder = player.transform.GetComponent<PlayerSkillHolder>();
+        playerSkillHolder.ResetAllSkills();
+
+        PlayerAttack playerAttack = player.transform.GetComponent<PlayerAttack>();
+        playerAttack.SetIsAttacking(false);
+
+        // fade out black screen
+        startTime = Time.realtimeSinceStartup;
+        fadeTime = 0.5f;
+        elapsedTime = 0f;
+
+        while (elapsedTime < fadeTime)
+        {
+            elapsedTime = Time.realtimeSinceStartup - startTime;
+            blackScreen.color = new Color(0, 0, 0, 1 - elapsedTime / fadeTime);
+            yield return null;
+        }
+
+        // set black screen inactive
+        blackScreen.gameObject.SetActive(false);
+
+        // start the game
+        gameOver = false;
+        Time.timeScale = 1;
     }
 
     //! IDataPersistance
@@ -82,6 +121,10 @@ public class GameOverManager : MonoBehaviour, IDataPersistance
         int selectedChar = data.selectedChar;
 
         charDead = data.charDead[selectedChar];
+
+        float[] playerPos = data.charCoords[selectedChar];
+        playerPosX = playerPos[0];
+        playerPosY = playerPos[1];
     }
 
     public void SaveData(ref GameData data)

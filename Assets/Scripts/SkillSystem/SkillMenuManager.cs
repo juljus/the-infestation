@@ -28,14 +28,14 @@ public class SkillMenuManager : MonoBehaviour, IDataPersistance
     [SerializeField] private TMP_Text descriptionText;
     [SerializeField] private GameObject learnButton;
 
-    private void Start()
-    {
-        playerScriptableObject = transform.GetComponent<PlayerManager>().GetPlayerScriptableObject;
+    // private void Start()
+    // {
+    //     playerScriptableObject = transform.GetComponent<PlayerManager>().GetPlayerScriptableObject;
 
-        SetSkillButtonIcons();
+    //     SetSkillButtonIcons();
 
-        AvailableSkillList();
-    }
+    //     AvailableSkillList();
+    // }
 
     private void SetSkillButtonIcons()
     {
@@ -253,6 +253,12 @@ public class SkillMenuManager : MonoBehaviour, IDataPersistance
 
         this.selectedCharacterLearnedSkills = new bool[learnedSkills[selectedCharacter].Length];
         Array.Copy(learnedSkills[selectedCharacter], this.selectedCharacterLearnedSkills, learnedSkills[selectedCharacter].Length);
+
+        playerScriptableObject = transform.GetComponent<PlayerManager>().GetPlayerScriptableObject;
+
+        SetSkillButtonIcons();
+
+        AvailableSkillList();
     }
 
     public void SaveData(ref GameData data)

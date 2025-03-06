@@ -8,10 +8,10 @@ public class LevelManager : MonoBehaviour, IDataPersistance
     private int thisCharLevel;
     [SerializeField] private TMPro.TMP_Text levelText;
 
-    void Start()
-    {
-        levelText.text = "Level: " + thisCharLevel;
-    }
+    // void Start()
+    // {
+    //     levelText.text = "Level: " + thisCharLevel;
+    // }
 
     public void GainLevel()
     {
@@ -48,6 +48,8 @@ public class LevelManager : MonoBehaviour, IDataPersistance
         int[] charLevels = data.charLevels;
 
         this.thisCharLevel = charLevels[selectedCharacter];
+
+        levelText.text = "Level: " + thisCharLevel;
     }
 
     public void SaveData(ref GameData data)

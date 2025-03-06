@@ -179,7 +179,7 @@ public class MapCompletion : MonoBehaviour, IDataPersistance
 
     public void RestAtCampfire()
     {
-        // start blackout animation
+        // start coroutine
         StartCoroutine(RestAtCampfireCoroutine());
     }
 

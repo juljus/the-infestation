@@ -134,18 +134,20 @@ public class MapDiscoveryManager : MonoBehaviour, IDataPersistance
 
         discoverableTilesX = data.discoverableTilesX[selectedChar];
         discoverableTilesY = data.discoverableTilesY[selectedChar];
-
-        if (discoverableTilesX.Count == 0)
+        if (gameStarting)
         {
-            print("starting tile to list");
-            StartCoroutine(TilesToList());
-            // TilesToListLegacy();
-        }
-        else
-        {
-            print("starting list to tile");
-            StartCoroutine(ListToTiles());
-            // ListToTilesLegacy();
+            if (discoverableTilesX.Count == 0)
+            {
+                print("starting tile to list");
+                StartCoroutine(TilesToList());
+                // TilesToListLegacy();
+            }
+            else
+            {
+                print("starting list to tile");
+                StartCoroutine(ListToTiles());
+                // ListToTilesLegacy();
+            }
         }
     }
 

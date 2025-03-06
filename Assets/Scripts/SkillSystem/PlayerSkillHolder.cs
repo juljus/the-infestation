@@ -23,6 +23,13 @@ public class PlayerSkillHolder : MonoBehaviour
 
     private bool castInProgress = false;
 
+    // 0 = ready, 1 = active, 2 = cooldown
+    private List<int> skillStates = new List<int> {0, 0, 0};
+
+    private int[] unlockedActiveSkills = new int[3];
+
+    private SkillHelper skillHelper;
+
     void Start()
     {
         skillHelper = GameObject.Find("GameManager").GetComponent<SkillHelper>();
@@ -30,13 +37,19 @@ public class PlayerSkillHolder : MonoBehaviour
 
     public void ResetAllSkills()
     {
-        SkipSkill0ActiveDuration();
-        SkipSkill1ActiveDuration();
-        SkipSkill2ActiveDuration();
+        // stop all coroutines
+        StopAllCoroutines();
 
-        SkipSkill0Cooldown();
-        SkipSkill1Cooldown();
-        SkipSkill2Cooldown();
+        // set skill states to 0
+        skillStates = new List<int> {0, 0, 0};
+
+        // set castInProgress to false
+        castInProgress = false;
+
+        // set skill buttons to 0
+        skill0Button.transform.GetChild(0).GetComponent<UnityEngine.UI.Image>().fillAmount = 0;
+        skill1Button.transform.GetChild(0).GetComponent<UnityEngine.UI.Image>().fillAmount = 0;
+        skill2Button.transform.GetChild(0).GetComponent<UnityEngine.UI.Image>().fillAmount = 0;
     }
 
     public void SkipSkill0ActiveDuration()
@@ -122,14 +135,6 @@ public class PlayerSkillHolder : MonoBehaviour
             StopCoroutine(skill2CooldownCoroutine);
         }
     }
-
-    
-    // 0 = ready, 1 = active, 2 = cooldown
-    private List<int> skillStates = new List<int> {0, 0, 0};
-
-    private int[] unlockedActiveSkills = new int[3];
-
-    private SkillHelper skillHelper;
 
     public void LearnSkills()
     {

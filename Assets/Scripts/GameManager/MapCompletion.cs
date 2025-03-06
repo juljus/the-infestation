@@ -215,6 +215,9 @@ public class MapCompletion : MonoBehaviour, IDataPersistance
         PlayerSkillHolder playerSkillHolder = player.transform.GetComponent<PlayerSkillHolder>();
         playerSkillHolder.ResetAllSkills();
 
+        PlayerAttack playerAttack = player.transform.GetComponent<PlayerAttack>();
+        playerAttack.SetIsAttacking(false);
+
         // campfire menu off
         CampfireMenuOff();
 

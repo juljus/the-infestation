@@ -83,6 +83,20 @@ public class GameOverManager : MonoBehaviour, IDataPersistance
         // reset player position
         player.transform.position = new Vector3(playerPosX, playerPosY, 0);
 
+        // remove all effects
+        // HACK: rn need to remove all effect types one by one
+        player.transform.GetComponent<EffectSystem>().RemoveStatusEffectByTypeAndValue("speedMod", false);
+        player.transform.GetComponent<EffectSystem>().RemoveStatusEffectByTypeAndValue("speedMod", true);
+
+        player.transform.GetComponent<EffectSystem>().RemoveStatusEffectByTypeAndValue("damageMod", false);
+        player.transform.GetComponent<EffectSystem>().RemoveStatusEffectByTypeAndValue("damageMod", true);
+
+        player.transform.GetComponent<EffectSystem>().RemoveStatusEffectByTypeAndValue("healthMod", false);
+        player.transform.GetComponent<EffectSystem>().RemoveStatusEffectByTypeAndValue("healthMod", true);
+        
+        player.transform.GetComponent<EffectSystem>().RemoveStatusEffectByTypeAndValue("attackTimeMod", false);
+        player.transform.GetComponent<EffectSystem>().RemoveStatusEffectByTypeAndValue("attackTimeMod", true);
+
         // reset player health / cooldowns
         player.GetComponent<PlayerHealth>().ResetHealth();
 

@@ -24,14 +24,6 @@ public class PlayerLogic : MonoBehaviour
     void Update()
     {
         // TEMP:
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            GameObject enemy = GameObject.Find("Enemy");
-            enemy.GetComponent<EffectSystem>().TakeStatusEffect("odagfpjplo3", "speedMod", 0.2f, 10f);
-            print("Enemy slowed by 20% for 10 seconds");
-        }
-
-        // TEMP:
         // when D is pressed, remove all slow effects
         if (Input.GetKeyDown(KeyCode.D))
         {

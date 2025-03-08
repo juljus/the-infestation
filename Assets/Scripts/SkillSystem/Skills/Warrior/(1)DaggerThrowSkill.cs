@@ -26,6 +26,9 @@ public class DaggerThrowSkill : Skill
         // clear target from manager
         GameObject.Find("GameManager").GetComponent<TargetManager>().ClearTarget();
 
+        // set player velocity to 0
+        player.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
+
         // face the target
         player.GetComponent<PlayerMovement>().FaceTarget(target);
 

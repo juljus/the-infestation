@@ -21,6 +21,9 @@ public class LifestealSkill : Skill
         // face the target
         player.GetComponent<PlayerMovement>().FaceTarget(target);
 
+        // set player velocity to 0
+        player.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
+
         // start the coroutine
         skillHelper.StartCoroutine(AbilityCoroutine(target, player));        
     }

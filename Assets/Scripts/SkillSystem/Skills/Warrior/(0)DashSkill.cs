@@ -24,6 +24,10 @@ public class DashSkill : Skill
         // get the player's movement script
         PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
 
+        // set player velocity to 0
+        player.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
+
+
         // start the dash
         skillHelper.StartCoroutine(AbilityCoroutine(rb, playerMovement, player));
     }

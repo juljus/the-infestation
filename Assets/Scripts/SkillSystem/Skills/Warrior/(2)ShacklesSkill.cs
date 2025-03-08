@@ -23,6 +23,10 @@ public class ShacklesSkill : Skill
         if (target == null) { return; }
         GameObject.Find("GameManager").GetComponent<TargetManager>().ClearTarget();
 
+        // set player velocity to 0
+        player.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
+
+
         // face the target
         player.GetComponent<PlayerMovement>().FaceTarget(target);
 

@@ -203,6 +203,11 @@ public class MapCompletion : MonoBehaviour, IDataPersistance
             yield return null;
         }
 
+        blackoutImage.color = new Color(0, 0, 0, 1);
+
+        // wait gor a bit
+        yield return new WaitForSecondsRealtime(0.2f);
+
         // trigger InGameSave
         transform.GetComponent<DataPersistanceManager>().InGameSave();
 

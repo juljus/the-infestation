@@ -5,8 +5,6 @@ using UnityEngine.UIElements;
 
 public class GameOverManager : MonoBehaviour, IDataPersistance
 {
-    // TODO: death should put the player back to last save
-
     private bool charDead = false;
 
     [SerializeField] private GameObject gameOverScreen;

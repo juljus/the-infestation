@@ -36,10 +36,10 @@ MonoBehaviour:
   attackInProgress: 0
   target: {fileID: 0}
   wolfPrefab: {fileID: 841709866427684504, guid: 06649c2b3bda74ae9b67eac36a28df82, type: 3}
-  summonCooldown: 20
+  summonCooldown: 15
   summonDuration: 1.25
-  summonAmount: 2
-  phase2HealthThreshold: 1000
+  summonAmount: 4
+  phase2HealthThreshold: 700
   phase2MovementSpeed: 6
   phase2AttackCooldown: 2
   phase2AttackDuration: 0.875

@@ -57,6 +57,9 @@ public class ShacklesSkill : Skill
 
         // is not throwing
         player.GetComponent<PlayerLogic>().SetIfThrowing(false);
+        
+        // set animation
+        player.GetComponent<PlayerMovement>().StopRunAnimation();
     }
 
     private IEnumerator AbilityCoroutine(GameObject target)

@@ -139,6 +139,9 @@ public class PlayerAttack : MonoBehaviour, IDataPersistance
         animator.SetBool("isAttacking", false);
         attackButtonOverlay.GetComponent<UnityEngine.UI.Image>().fillAmount = 1;
         
+        // set run animation
+        transform.GetComponent<PlayerMovement>().StopRunAnimation();
+        
         StartCoroutine(AttackCooldown(attackButtonOverlay));
     }
 

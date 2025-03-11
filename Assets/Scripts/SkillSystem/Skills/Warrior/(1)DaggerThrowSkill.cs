@@ -68,5 +68,8 @@ public class DaggerThrowSkill : Skill
 
         // is not throwing
         player.GetComponent<PlayerLogic>().SetIfThrowing(false);
+        
+        // set animation
+        player.GetComponent<PlayerMovement>().StopRunAnimation();
     }
 }

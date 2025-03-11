@@ -109,6 +109,11 @@ public class PlayerMovement : MonoBehaviour, IDataPersistance
         currentSpeed = newSpeed;
     }
 
+    public void StopRunAnimation()
+    {
+        animator.SetBool("isMoving", false);
+    }
+
     //! IDataPersistance
     public void InGameSave(ref GameData data)
     {

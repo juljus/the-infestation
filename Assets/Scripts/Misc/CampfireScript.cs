@@ -11,6 +11,8 @@ public class CampfireScript : MonoBehaviour
     [SerializeField] private UnityEngine.UI.Image bar;
     [SerializeField] private TMPro.TMP_Text text;
 
+    [SerializeField] private GameObject campfireArea;
+
     private void Start()
     {
         gameManager = GameObject.Find("GameManager");
@@ -21,10 +23,16 @@ public class CampfireScript : MonoBehaviour
         if (isBurning)
         {
             animator.SetBool("isBurning", true);
+
+            // hide the campfire area
+            campfireArea.SetActive(false);
         }
         else
         {
             animator.SetBool("isBurning", false);
+
+            // show the campfire area
+            campfireArea.SetActive(true);
         }
     }
 

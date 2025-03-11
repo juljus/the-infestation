@@ -148,11 +148,12 @@ public class PersistentSceneManager : MonoBehaviour
 
     private IEnumerator LoadingScreenCoroutine(string startScene, string tarScene)
     {
-        if (tarScene == "Game")
-        {
-            // set game starting to true
-            MapDiscoveryManager.gameStarting = true;
-        }
+        // TEMP: no more mao discovery manager
+        // if (tarScene == "Game")
+        // {
+        //     // set game starting to true
+        //     MapDiscoveryManager.gameStarting = true;
+        // }
 
         // fade to black
         float startTime = Time.realtimeSinceStartup;
@@ -182,10 +183,11 @@ public class PersistentSceneManager : MonoBehaviour
             yield return null;
         }
 
-        while (MapDiscoveryManager.gameStarting)
-        {
-            yield return null;
-        }
+        // TEMP: no more mao discovery manager
+        // while (MapDiscoveryManager.gameStarting)
+        // {
+        //     yield return null;
+        // }
 
         print("NOW HIDING LOADING SCREEN");
 

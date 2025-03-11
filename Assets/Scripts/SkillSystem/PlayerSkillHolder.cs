@@ -229,6 +229,7 @@ public class PlayerSkillHolder : MonoBehaviour
         if (skill0.castRange != 0 && Vector2.Distance(transform.position, target.transform.position) > skill0.castRange)
         {
             skillStates[skillIndex] = 0;
+            targetManager.ClearTarget();
             return;
         }
 
@@ -274,6 +275,7 @@ public class PlayerSkillHolder : MonoBehaviour
         if (skill1.castRange != 0 && Vector2.Distance(transform.position, target.transform.position) > skill1.castRange)
         {
             skillStates[skillIndex] = 0;
+            targetManager.ClearTarget();
             return;
         }
 
@@ -319,6 +321,7 @@ public class PlayerSkillHolder : MonoBehaviour
         if (skill2.castRange != 0 && Vector2.Distance(transform.position, target.transform.position) > skill2.castRange)
         {
             skillStates[skillIndex] = 0;
+            targetManager.ClearTarget();
             return;
         }
 

@@ -49,6 +49,8 @@ public class DashSkill : Skill
 
         // stop the dash
         rb.linearVelocity = Vector2.zero;
+        
+        // TODO: set animation
 
         // if upgraded give a shield
         if (isUpgraded)

@@ -14,6 +14,8 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private GameObject mapCanvas;
     [SerializeField] private GameObject quitConfirmation;
 
+    [SerializeField] private GameObject playerSprite;
+
     void Start()
     {
         mainCamera = GameObject.Find("MainCamera");
@@ -29,14 +31,15 @@ public class PauseMenu : MonoBehaviour
 
     public void ShowMap()
     {
+        // disable player sprite
+        playerSprite.SetActive(false);
+
         // move map camera to player position
         mapCamera.transform.position = mainCamera.transform.position;
 
         // switch to map camera
         mainCamera.GetComponent<Camera>().enabled = false;
         mapCamera.GetComponent<Camera>().enabled = true;
-
-
 
         // switch to map canvas
         mainCanvas.GetComponent<Canvas>().enabled = false;
@@ -45,6 +48,9 @@ public class PauseMenu : MonoBehaviour
 
     public void HideMap()
     {
+        // enable player sprite
+        playerSprite.SetActive(true);
+
         // switch to main camera
         mainCamera.GetComponent<Camera>().enabled = true;
         mapCamera.GetComponent<Camera>().enabled = false;

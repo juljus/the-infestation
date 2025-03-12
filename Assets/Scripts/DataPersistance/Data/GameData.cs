@@ -36,6 +36,9 @@ public class GameData
     public List<float>[] enemyPositionsY = new List<float>[4] { new List<float>(), new List<float>(), new List<float>(), new List<float>() };
     public List<int>[] enemyIDs = new List<int>[4] { new List<int>(), new List<int>(), new List<int>(), new List<int>() };
 
+    //! misc
+    public bool tutorialComplete = false;
+
     // // map discovery tiles
     // public List<float>[] discoverableTilesX = new List<float>[4] { new List<float>(), new List<float>(), new List<float>(), new List<float>() };
     // public List<float>[] discoverableTilesY = new List<float>[4] { new List<float>(), new List<float>(), new List<float>(), new List<float>() };

@@ -81,10 +81,17 @@ public class TutorialManager : MonoBehaviour, IDataPersistance
         tutorialOverlays[9].SetActive(true);
     }
 
-    // (10) close tutorial overlay and end tutorial
+    // (10) close pause menu tutorial overlay and open in game tutorial overlay (campfire
     public void Tutorial10()
     {
         tutorialOverlays[9].SetActive(false);
+        tutorialOverlays[10].SetActive(true);
+    }
+
+    // (10) close tutorial overlay and end tutorial
+    public void Tutorial11()
+    {
+        tutorialOverlays[10].SetActive(false);
         EndTutorial();
     }
 

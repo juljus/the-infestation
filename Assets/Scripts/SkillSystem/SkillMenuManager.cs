@@ -66,7 +66,15 @@ public class SkillMenuManager : MonoBehaviour, IDataPersistance
         GameObject button = UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject;
 
         // get the index of the button
-        currentSkillIndex = System.Array.IndexOf(skillButtons, button);
+        if (button.name == "TutorialSkillButton")
+        {
+            print("Tutorial button pressed");
+            currentSkillIndex = 0;
+        }
+        else
+        {
+            currentSkillIndex = System.Array.IndexOf(skillButtons, button);
+        }
 
         // open the preview menu
         previewMenu.SetActive(true);

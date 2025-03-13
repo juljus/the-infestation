@@ -1,5 +1,5 @@
 # ninja log v5
-511	751	1741708451631789597	/Users/juljus/Documents/GitHub/the-infestation/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/4r6h6d6a/obj/armeabi-v7a/libswappywrapper.so	88e981217b3e50cf
-2	510	1741708451389859703	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	b10850af90a6c937
 3	473	1741725748871843905	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	b10850af90a6c937
 473	731	1741725749128509157	/Users/juljus/Documents/GitHub/the-infestation/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/4r6h6d6a/obj/armeabi-v7a/libswappywrapper.so	88e981217b3e50cf
+4	21179	1741854276067258900	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	b10850af90a6c937
+21180	34386	1741854289273505499	/Users/juljus/Documents/GitHub/the-infestation/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/4r6h6d6a/obj/armeabi-v7a/libswappywrapper.so	88e981217b3e50cf

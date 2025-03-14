@@ -44,6 +44,7 @@ public class EnemyBrain : MonoBehaviour
     {
         if (isStunned > 0)
         {
+            print("STUNNED");
             return;
         }
 
@@ -185,6 +186,8 @@ public class EnemyBrain : MonoBehaviour
         }
     }
 
-    public void Stun() { isStunned ++; }
+    public void Stun() { isStunned ++;
+        print("GOT STUNNED");
+    }
     public void UnStun() { isStunned --; }
 }

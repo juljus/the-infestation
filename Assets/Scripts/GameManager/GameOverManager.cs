@@ -80,6 +80,9 @@ public class GameOverManager : MonoBehaviour, IDataPersistance
         // replace all enemies
         transform.GetComponent<EnemyPlacementScript>().PlaceEnemies();
 
+        // reset boss
+        transform.GetComponent<MapCompletion>().ResetBoss();
+
         // reset player position
         player.transform.position = new Vector3(playerPosX, playerPosY, 0);
 

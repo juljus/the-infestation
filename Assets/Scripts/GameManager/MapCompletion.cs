@@ -17,9 +17,28 @@ public class MapCompletion : MonoBehaviour, IDataPersistance
     [SerializeField] private int[] campfireKillThresholds = new int[4] { 0, 1, 2, 3 };
     [SerializeField] private UnityEngine.UI.Image blackoutImage;
     [SerializeField] private UnityEngine.UI.Image whiteoutImage;
+    private GameObject bossPrefab;
+    private Vector3 bossCoords;
+    private GameObject boss;
 
     private void Start()
     {
+        // set boss
+        bossCoords = GameObject.FindGameObjectWithTag("Boss").transform.position;
+        bossPrefab = GameObject.FindGameObjectWithTag("Boss");
+        
+        // spawn boss
+        boss = Instantiate(bossPrefab, bossCoords, Quaternion.identity);
+        GameObject structures = GameObject.Find("Structures");
+        boss.transform.SetParent(structures.transform);
+
+        // set boss prefab inactive
+        if (bossPrefab != null)
+        {
+            bossPrefab.SetActive(false);
+        }
+
+
         player = transform.GetComponent<PlayerManager>().GetPlayer;
 
         levelManager = transform.GetComponent<LevelManager>();
@@ -177,6 +196,30 @@ public class MapCompletion : MonoBehaviour, IDataPersistance
         Time.timeScale = 1;
     }
 
+    public void ResetBoss()
+    {
+        // delete boss minions and boss
+        GameObject[] bossMinions = GameObject.FindGameObjectsWithTag("Minion");
+        if (bossMinions.Length > 0)
+        {
+            foreach (GameObject minion in bossMinions)
+            {
+                Destroy(minion);
+            }
+        }
+
+        if (boss != null)
+        {
+            Destroy(boss);
+        }
+
+        // spawn boss
+        boss = Instantiate(bossPrefab, bossCoords, Quaternion.identity);
+        GameObject structures = GameObject.Find("Structures");
+        boss.transform.SetParent(structures.transform);
+        boss.SetActive(true);
+    }
+
     public void RestAtCampfire()
     {
         // start coroutine
@@ -205,7 +248,7 @@ public class MapCompletion : MonoBehaviour, IDataPersistance
 
         blackoutImage.color = new Color(0, 0, 0, 1);
 
-        // wait gor a bit
+        // wait for a bit
         yield return new WaitForSecondsRealtime(0.2f);
 
         // trigger InGameSave
@@ -213,6 +256,9 @@ public class MapCompletion : MonoBehaviour, IDataPersistance
 
         // replace all enemies
         transform.GetComponent<EnemyPlacementScript>().PlaceEnemies();
+
+        // reset boss
+        ResetBoss();
 
         // reset player health / cooldowns
         player.GetComponent<PlayerHealth>().ResetHealth();

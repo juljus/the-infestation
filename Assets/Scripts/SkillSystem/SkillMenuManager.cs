@@ -11,6 +11,7 @@ public class SkillMenuManager : MonoBehaviour, IDataPersistance
 {
     [SerializeField] private GameObject skillMenu;
     [SerializeField] private GameObject[] skillButtons;
+    [SerializeField] private GameObject[] treeOverlays;
     [SerializeField] private string[] skillIDs;
     private PlayerScriptableObject playerScriptableObject;
     private int[] skillTierUnlockLevel = {0, 1, 2, 3};
@@ -66,7 +67,15 @@ public class SkillMenuManager : MonoBehaviour, IDataPersistance
         GameObject button = UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject;
 
         // get the index of the button
-        currentSkillIndex = System.Array.IndexOf(skillButtons, button);
+        if (button.name == "TutorialSkillButton")
+        {
+            print("Tutorial button pressed");
+            currentSkillIndex = 0;
+        }
+        else
+        {
+            currentSkillIndex = System.Array.IndexOf(skillButtons, button);
+        }
 
         // open the preview menu
         previewMenu.SetActive(true);
@@ -201,16 +210,25 @@ public class SkillMenuManager : MonoBehaviour, IDataPersistance
             {
                 //white
                 skillButtons[i].GetComponent<Image>().color = new Color(1, 1, 1, 1);
+
+                // show corresponding tree overlay
+                treeOverlays[i].SetActive(true);
             }
             else if (availableSkills[i] == true)
             {
                 // blue
                 skillButtons[i].GetComponent<Image>().color = new Color(0.5f, 0.5f, 1, 1);
+
+                // hide corresponding tree overlay
+                treeOverlays[i].SetActive(false);
             }
             else
             {
                 // grey
                 skillButtons[i].GetComponent<Image>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+
+                // hide corresponding tree overlay
+                treeOverlays[i].SetActive(false);
             }
         }
     }

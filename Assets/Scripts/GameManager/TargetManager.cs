@@ -8,12 +8,13 @@ public class TargetManager : MonoBehaviour
     [SerializeField] private GameObject target;
     [SerializeField] private float targetRange;
 
-    private void Update() {
-        float distance = Vector2.Distance(GetComponent<PlayerManager>().GetPlayerTransform.position, target.transform.position);
-        if (distance > targetRange) {
-            ClearTarget();
-        }
-    }
+    // TEMP: not used
+    // private void Update() {
+    //     float distance = Vector2.Distance(GetComponent<PlayerManager>().GetPlayerTransform.position, target.transform.position);
+    //     if (distance > targetRange) {
+    //         ClearTarget();
+    //     }
+    // }
 
     public GameObject GetTarget {
         get { return target; }
@@ -29,14 +30,17 @@ public class TargetManager : MonoBehaviour
 
     public void SetTarget(GameObject newTarget) {
         if (target != null) {
-            target.GetComponent<Target>().ClearTarget();
+            // TEMP: commented out the tar indicator part
+            // target.GetComponent<Target>().ClearTarget();
         }
         target = newTarget;
-        target.GetComponent<Target>().SetTarget();
+        // TEMP: commented out the tar indicator part
+        // target.GetComponent<Target>().SetTarget();
     }
 
     public void ClearTarget() {
-        target.GetComponent<Target>().ClearTarget();
+        // TEMP: commented out the tar indicator part
+        // target.GetComponent<Target>().ClearTarget();
         target = null;
     }
 
@@ -59,7 +63,9 @@ public class TargetManager : MonoBehaviour
         }
 
         target = closestEnemy;
-        target.GetComponent<Target>().SetTarget();
+
+        // TEMP: commented out the tar indicator part
+        // target.GetComponent<Target>().SetTarget();
     }
 
     public GameObject GetClosestEnemy() {

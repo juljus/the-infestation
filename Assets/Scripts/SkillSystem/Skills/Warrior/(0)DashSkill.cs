@@ -49,6 +49,9 @@ public class DashSkill : Skill
 
         // stop the dash
         rb.linearVelocity = Vector2.zero;
+        
+        // set animation
+        player.GetComponent<PlayerMovement>().StopRunAnimation();
 
         // if upgraded give a shield
         if (isUpgraded)

@@ -45,5 +45,8 @@ public class LifestealSkill : Skill
 
         // is not throwing
         player.GetComponent<PlayerLogic>().SetIfThrowing(false);
+        
+        // set animation
+        player.GetComponent<PlayerMovement>().StopRunAnimation();
     }
 }

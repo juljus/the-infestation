@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1360cac33e2d400e8242b30e9ed3cfb, type: 3}
   m_Name: Health
   m_EditorClassIdentifier: 
-  maxHealth: 250
+  maxHealth: 200

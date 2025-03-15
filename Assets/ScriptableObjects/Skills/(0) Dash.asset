@@ -16,9 +16,9 @@ MonoBehaviour:
   skillDescription: Move quickly in your facing direction.
   skillIcon: {fileID: 21300000, guid: dfd9e49c2492a4c839dc8c5680eec4ab, type: 3}
   id: "\xF6logikufjnycbgxvc6r "
-  cooldownTime: 4
+  cooldownTime: 5
   activeTime: 0.2
   isPassive: 0
   castRange: 0
   dashRange: 6
-  shieldAmount: 200
+  shieldAmount: 175

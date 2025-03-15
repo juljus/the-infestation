@@ -2,24 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// TEMP: commented out the tar indicator part
 public class Target : MonoBehaviour
 {
-    [SerializeField] private UnityEngine.UI.Image tarIndicator;
+    // [SerializeField] private UnityEngine.UI.Image tarIndicator;
 
-    private void Start() {
-        tarIndicator.gameObject.SetActive(false);
-    }
+    // private void Start() {
+    //     tarIndicator.gameObject.SetActive(false);
+    // }
 
-    private void OnMouseDown() {
-        GameObject gameManager = GameObject.Find("GameManager");
-        gameManager.GetComponent<TargetManager>().SetTarget(gameObject);
-    }
+    // private void OnMouseDown() {
+    //     GameObject gameManager = GameObject.Find("GameManager");
+    //     gameManager.GetComponent<TargetManager>().SetTarget(gameObject);
+    // }
 
-    public void ClearTarget() {
-        tarIndicator.gameObject.SetActive(false);
-    }
+    // public void ClearTarget() {
+    //     tarIndicator.gameObject.SetActive(false);
+    // }
 
-    public void SetTarget() {
-        tarIndicator.gameObject.SetActive(true);
-    }
+    // public void SetTarget() {
+    //     tarIndicator.gameObject.SetActive(true);
+    // }
 }

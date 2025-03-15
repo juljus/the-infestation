@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 849f53e26c3b647bea1d17736c626dfa, type: 3}
   m_Name: Attack
   m_EditorClassIdentifier: 
-  damage: 175
+  damage: 160
   attackDistance: 3
   attackRange: 4
   attackTime: 0.8
@@ -20,15 +20,15 @@ MonoBehaviour:
   attackEffectType1: speedMod
   attackEffectValue1: 0.4
   attackEffectDuration1: 5
-  attackEffectIcon1: {fileID: 6105795678443708983, guid: e1cd8ec275ca7490d967cd1c55caff71, type: 3}
+  attackEffectIcon1: {fileID: 0}
   attackEffectIsStackable1: 0
   attackEffectIsRemovable1: 1
-  attackEffectType2: 
-  attackEffectValue2: 0
-  attackEffectDuration2: 0
-  attackEffectIcon2: {fileID: 0}
+  attackEffectType2: healthMod
+  attackEffectValue2: 30
+  attackEffectDuration2: 5
+  attackEffectIcon2: {fileID: 6105795678443708983, guid: c28d865f02e4d474abf996a295b0620e, type: 3}
   attackEffectIsStackable2: 0
-  attackEffectIsRemovable2: 0
+  attackEffectIsRemovable2: 1
   currentDamage: 5
   currentAttackTime: 0
   attackOnCooldown: 0

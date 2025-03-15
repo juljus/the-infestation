@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Poisoned Blade
   skillDescription: 'Passive: each of your strikes applies poison to the target.'
-  skillIcon: {fileID: 21300000, guid: 7eb5a6cb138f64497a216f78f9160d5f, type: 3}
+  skillIcon: {fileID: -5018221342190995470, guid: 9d53ee270ab9c4a2a98f7fe5897838d6, type: 3}
   id: sdkafnoc9who3n9q8273hdc0qn9a98
   cooldownTime: 0
   activeTime: 0

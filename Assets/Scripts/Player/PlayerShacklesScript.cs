@@ -84,6 +84,13 @@ public class PlayerShacklesScript : MonoBehaviour
             }
         }
 
+        // if no enemies are found, return
+        if (closestEnemy == null || target == null)
+        { 
+            Destroy(gameObject);
+            yield break;
+        }
+
         // apply stuns
         target.GetComponent<EnemyBrain>().Stun();
         closestEnemy.GetComponent<EnemyBrain>().Stun();

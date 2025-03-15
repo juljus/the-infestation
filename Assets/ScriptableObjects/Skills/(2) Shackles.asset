@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Shackles
   skillDescription: Bind the target enemy toghether with another, stunning them both.
-  skillIcon: {fileID: 21300000, guid: ccc93abeb359b4120b75c1aee1888c27, type: 3}
+  skillIcon: {fileID: 4331915847835289040, guid: e76695e7a95094619ab6e154604a83f7, type: 3}
   id: jiuBOYF665rcv6u5f6c85FC8G6RD
   cooldownTime: 10
   activeTime: 1

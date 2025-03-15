@@ -15,7 +15,7 @@ MonoBehaviour:
   name: Dash Upgrade
   skillDescription: 'Passive: makes your dash refresh on kill and applies a small
     shield on you when used.'
-  skillIcon: {fileID: 21300000, guid: 9133f6e55cddd4dddae68e606cb6dce8, type: 3}
+  skillIcon: {fileID: 3517735281223704203, guid: af4a947224b9d4f828bfe84d5d19eb1d, type: 3}
   id: kanv8coc73w9can8n8mnkbdcnawiuhO78B8yg87
   cooldownTime: 0
   activeTime: 0

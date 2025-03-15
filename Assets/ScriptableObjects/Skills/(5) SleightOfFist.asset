@@ -15,7 +15,7 @@ MonoBehaviour:
   name: Sleight of Fist
   skillDescription: 'Passive: on attack you have a chance to dissapear and launch
     another strike.'
-  skillIcon: {fileID: 21300000, guid: 48f2f43bb4a304299ab2abb0c2b8421a, type: 3}
+  skillIcon: {fileID: -6626568825339918248, guid: 26aa798689ba045d588bfa0a06bb7f12, type: 3}
   id: agju87o49hfcjim8ygdhsnaoi738go<uciog7
   cooldownTime: 0
   activeTime: 1
@@ -23,4 +23,4 @@ MonoBehaviour:
   castRange: 0
   damageMod: 0.75
   triggerChance: 0.25
-  effectIcon: {fileID: 6280444325833525280, guid: b86e80624b81e4ce0b9db0150ce96a26, type: 3}
+  effectIcon: {fileID: 4120460849218955196, guid: 5260f17be262144aca862f2afe38f778, type: 3}

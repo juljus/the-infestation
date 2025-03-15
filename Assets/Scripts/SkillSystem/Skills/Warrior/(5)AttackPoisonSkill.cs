@@ -7,7 +7,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Skills/Warrior/(11)AttackPoison")]
 public class AttackPoisonSkill : Skill
 {
-    public UnityEngine.UI.Image effectIcon;
+    // public UnityEngine.UI.Image effectIcon;
     public float poisonDamage;
     public float speedMod;
     public float duration;

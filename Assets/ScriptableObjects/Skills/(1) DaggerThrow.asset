@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Dagger
   skillDescription: Throw a poisoned dagger at your current target.
-  skillIcon: {fileID: 21300000, guid: 480a37f90013d4b679b2caf2757f9786, type: 3}
+  skillIcon: {fileID: 1614860934970821444, guid: 7f63d757434464a049a13015d9eb3f96, type: 3}
   id: snzbrz r6j56 yhtrhj snb
   cooldownTime: 4
   activeTime: 1

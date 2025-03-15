@@ -14,6 +14,6 @@ public class CameraMovement : MonoBehaviour
 
     void Update()
     {
-        mainCamera.transform.position = new Vector3(player.position.x, player.position.y, -1000);
+        mainCamera.transform.position = new Vector3(player.position.x, player.position.y + 0.7f, -1000);
     }
 }

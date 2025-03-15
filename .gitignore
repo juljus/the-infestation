@@ -73,3 +73,5 @@ crashlytics-build.properties
 
 # More stuff
 .DS_Store
+Assets/Scenes/Game.unity
+*.unity

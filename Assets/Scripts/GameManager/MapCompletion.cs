@@ -155,7 +155,6 @@ public class MapCompletion : MonoBehaviour, IDataPersistance
 
     public void campfireMenuButtonPressed()
     {
-        
         level = levelManager.GetPlayerLevel;
         if (campfireStandingNextTo <= level)
         {

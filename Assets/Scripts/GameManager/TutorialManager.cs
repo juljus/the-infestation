@@ -99,6 +99,9 @@ public class TutorialManager : MonoBehaviour, IDataPersistance
     public void EndTutorial()
     {
         tutorialComplete = true;
+
+        // save data
+        transform.GetComponent<DataPersistanceManager>().SaveGame();
     }
 
 

@@ -9,6 +9,7 @@ public class CharacterSelectionManager : MonoBehaviour, IDataPersistance
     [SerializeField] private TMPro.TMP_Text[] characterLevelText = new TMPro.TMP_Text[4];
     [SerializeField] private TMPro.TMP_Text[] characterNameText = new TMPro.TMP_Text[4];
     [SerializeField] private GameObject[] deadText;
+    [SerializeField] private GameObject[] emptyText = new GameObject[4];
 
     private int selectedCharacter;
     private bool[] charExists = new bool[4];
@@ -18,7 +19,7 @@ public class CharacterSelectionManager : MonoBehaviour, IDataPersistance
 
     void Start()
     {
-        // hide character icons, level and name
+        // hide character icons, level, name and empty text
         for (int i = 0; i < 4; i++)
         {
             if (charExists[i])
@@ -29,12 +30,18 @@ public class CharacterSelectionManager : MonoBehaviour, IDataPersistance
 
                 characterNameText[i].text = charNames[i];
                 characterLevelText[i].text = "Level: " + charLevels[i];
+
+                // hide
+                emptyText[i].SetActive(false);
             }
             else
             {
                 characterIcons[i].SetActive(false);
                 characterNameText[i].gameObject.SetActive(false);
                 characterLevelText[i].gameObject.SetActive(false);
+
+                // show
+                emptyText[i].SetActive(true);
             }
         }
 

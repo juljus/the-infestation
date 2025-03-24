@@ -55,13 +55,11 @@ public class PersistentSceneManager : MonoBehaviour
     }
     private IEnumerator CycleStars()
     {
-        print("START CYCLE STARS");
         float timeCounter = Time.realtimeSinceStartup;
 
         // delete last star and move all stars one index down then place new star at the end
         while (true)
         {
-            print("CYCLE STARS");
             if (Time.realtimeSinceStartup - timeCounter >= starMinCycleTime)
             {
                 timeCounter = Time.realtimeSinceStartup;
@@ -179,7 +177,6 @@ public class PersistentSceneManager : MonoBehaviour
 
         while (!loadingScene.isDone)
         {
-            print("loading scene progress: " + loadingScene.progress);
             yield return null;
         }
 
@@ -188,8 +185,6 @@ public class PersistentSceneManager : MonoBehaviour
         // {
         //     yield return null;
         // }
-
-        print("NOW HIDING LOADING SCREEN");
 
         // hide loading screen and camera
         loadingCamera.enabled = false;

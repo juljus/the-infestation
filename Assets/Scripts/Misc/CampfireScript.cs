@@ -5,6 +5,7 @@ using UnityEngine;
 public class CampfireScript : MonoBehaviour
 {
     private GameObject gameManager;
+    private MapCompletion mapCompletion;
 
     [SerializeField] private float enemyCheckRadius;
     [SerializeField] private Animator animator;
@@ -12,10 +13,35 @@ public class CampfireScript : MonoBehaviour
     [SerializeField] private TMPro.TMP_Text text;
 
     [SerializeField] private GameObject campfireArea;
+    
+    private bool buttonShouldBeShown = false;
+    private bool buttonShown = false;
 
     private void Start()
     {
         gameManager = GameObject.Find("GameManager");
+        mapCompletion = gameManager.GetComponent<MapCompletion>();
+    }
+
+    private void FixedUpdate()
+    {
+        // if the button should be shown and it hasn't been shown yet, show the button
+        if (buttonShouldBeShown && !buttonShown)
+        {
+            mapCompletion.ShowCampfireMenuButton();
+            mapCompletion.SetCampfireStandingNextTo(int.Parse(gameObject.name));
+            buttonShown = true;
+        }
+
+        // if the button should not be shown and it has been shown, hide the button
+        if (!buttonShouldBeShown && buttonShown)
+        {
+            mapCompletion.HideCampfireMenuButton();
+            buttonShown = false;
+        }
+
+        // set button should be shown to false
+        buttonShouldBeShown = false;
     }
 
     public void SetIfBurning(bool isBurning)
@@ -52,22 +78,25 @@ public class CampfireScript : MonoBehaviour
         bar.transform.parent.gameObject.SetActive(true);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        // if enemies nearby, don't show the campfire menu button
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, enemyCheckRadius);
-        foreach (Collider2D collider in colliders)
-        {
-            if (collider.CompareTag("Enemy"))
-            {
-                return;
-            }
-        }
-
+        // if the collision is the player check if there are enemies nearby
         if (collision.CompareTag("Player"))
         {
-            gameManager.GetComponent<MapCompletion>().ShowCampfireMenuButton();
-            gameManager.GetComponent<MapCompletion>().SetCampfireStandingNextTo(int.Parse(gameObject.name));
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, enemyCheckRadius);
+            if (colliders.Length > 0)
+            {
+                foreach (Collider2D collider in colliders)
+                {
+                    if (collider.CompareTag("Enemy") || collider.CompareTag("Boss") || collider.CompareTag("Minion"))
+                    {
+                        return;
+                    }
+                }
+            }
+
+            // if no enemies nearby, set the campfire button as should be shown
+            buttonShouldBeShown = true;
         }
     }
 

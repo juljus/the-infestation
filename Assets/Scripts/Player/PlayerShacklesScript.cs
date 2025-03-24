@@ -23,9 +23,7 @@ public class PlayerShacklesScript : MonoBehaviour
     {
         // if the target is null, end the shackles
         if (target == null)
-        {
-            print("Target is null");
-            
+        {            
             EndShackles(closestEnemy);
 
             return;
@@ -34,8 +32,6 @@ public class PlayerShacklesScript : MonoBehaviour
         // if the closest enemy is null after the stun, end the shackles
         if (hasStunned && closestEnemy == null)
         {
-            print("Closest enemy is null");
-
             EndShackles(closestEnemy);
 
             return;

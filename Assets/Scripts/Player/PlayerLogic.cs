@@ -21,18 +21,6 @@ public class PlayerLogic : MonoBehaviour
         // playerSprite.transform.localScale = new Vector3(1, 1, 1);
     }
 
-    void Update()
-    {
-        // TEMP:
-        // when D is pressed, remove all slow effects
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            print("Remove all slow effects");
-            GetComponent<EffectSystem>().RemoveStatusEffectByTypeAndValue("speedMod", false);
-        }
-
-    }
-
     // GETTERS
     public int GetIsStunned { get { return isStunned; } }
 

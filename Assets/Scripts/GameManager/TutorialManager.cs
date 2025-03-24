@@ -33,9 +33,7 @@ public class TutorialManager : MonoBehaviour, IDataPersistance
     // (3) close skill menu tutorial overlay and open skill menu tutorial overlay nr 2
     public void Tutorial3()
     {
-        print("HIDING NR 2");
         tutorialOverlays[2].SetActive(false);
-        print("SHOWING NR 3");
         tutorialOverlays[3].SetActive(true);
     }
 

@@ -69,7 +69,6 @@ public class SkillMenuManager : MonoBehaviour, IDataPersistance
         // get the index of the button
         if (button.name == "TutorialSkillButton")
         {
-            print("Tutorial button pressed");
             currentSkillIndex = 0;
         }
         else

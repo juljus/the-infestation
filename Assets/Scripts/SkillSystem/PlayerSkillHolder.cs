@@ -53,7 +53,7 @@ public class PlayerSkillHolder : MonoBehaviour
         }
         catch (UnityException)
         {
-            print("Skill 0 button overlay probably not intantiated yet");
+            Debug.LogError("Skill 0 button overlay probably not intantiated yet");
         }
 
         try
@@ -62,7 +62,7 @@ public class PlayerSkillHolder : MonoBehaviour
         }
         catch (UnityException)
         {
-            print("Skill 1 button overlay probably not intantiated yet");
+            Debug.LogError("Skill 1 button overlay probably not intantiated yet");
         }
 
         try
@@ -71,7 +71,7 @@ public class PlayerSkillHolder : MonoBehaviour
         }
         catch (UnityException)
         {
-            print("Skill 2 button overlay probably not intantiated yet");
+            Debug.LogError("Skill 2 button overlay probably not intantiated yet");
         }
 
 

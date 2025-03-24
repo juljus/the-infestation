@@ -13,41 +13,50 @@ public class PlayerShacklesScript : MonoBehaviour
 
     private Collider2D[] hitEnemies;
     private float timeLeft;
+    private GameObject closestEnemy = null;
     private bool isRotating = true;
+    private bool hasStunned = false;
+
 
     // Update is called once per frame
     void Update()
     {
+        // if the target is null, end the shackles
+        if (target == null)
+        {
+            print("Target is null");
+            
+            EndShackles(closestEnemy);
+
+            return;
+        }
+
+        // if the closest enemy is null after the stun, end the shackles
+        if (hasStunned && closestEnemy == null)
+        {
+            print("Closest enemy is null");
+
+            EndShackles(closestEnemy);
+
+            return;
+        }
+
+        // if the shackles have reached the target, move the shackles to the target's position
         if (activeTime <= 0)
         {
-            // move the shackles to the target
-            if (target != null)
-            {
-                transform.position = target.transform.position;
-            }
-            else
-            {
-                Destroy(gameObject);
-            }
+            transform.position = target.transform.position;
         }
 
         // calculate speed
         float shacklesSpeed = Vector2.Distance(transform.position, target.transform.position) / activeTime;
         activeTime -= Time.deltaTime;
 
-        if (target != null)
-        {
-            transform.position = Vector2.MoveTowards(transform.position, target.transform.position, shacklesSpeed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, target.transform.position, shacklesSpeed * Time.deltaTime);
 
-            // rotate the shackles at the speed of x rotations per second
-            if (isRotating)
-            {
-                transform.Rotate(0, 0, 360 * rotationsPerSecond * Time.deltaTime);
-            }
-        }
-        else
+        // rotate the shackles at the speed of x rotations per second
+        if (isRotating)
         {
-            Destroy(gameObject);
+            transform.Rotate(0, 0, 360 * rotationsPerSecond * Time.deltaTime);
         }
     }
 
@@ -70,7 +79,6 @@ public class PlayerShacklesScript : MonoBehaviour
 
         // find the closest enemy
         float closestDistance = Mathf.Infinity;
-        GameObject closestEnemy = null;
         foreach (Collider2D enemy in hitEnemies)
         {
             if (enemy.tag == "Enemy" && enemy.gameObject != target)
@@ -87,13 +95,14 @@ public class PlayerShacklesScript : MonoBehaviour
         // if no enemies are found, return
         if (closestEnemy == null || target == null)
         { 
-            Destroy(gameObject);
+            EndShackles(closestEnemy);
             yield break;
         }
 
         // apply stuns
         target.GetComponent<EnemyBrain>().Stun();
         closestEnemy.GetComponent<EnemyBrain>().Stun();
+        hasStunned = true;
 
         // calculate the position to move the enemy to
         Vector2 movePos = target.transform.position + new Vector3(UnityEngine.Random.Range(-moveDistance, moveDistance), UnityEngine.Random.Range(-moveDistance, moveDistance), 0);
@@ -117,9 +126,18 @@ public class PlayerShacklesScript : MonoBehaviour
         // wait for the stun duration
         yield return new WaitForSeconds(stunDuration);
 
-        // remove the stuns
-        target.GetComponent<EnemyBrain>().UnStun();
-        closestEnemy.GetComponent<EnemyBrain>().UnStun();
+        // end the shackles
+        EndShackles(closestEnemy);
+    }
+
+    private void EndShackles(GameObject closestEnemy)
+    {
+        // remove the stuns if they were applied
+        if (hasStunned)
+        {
+            if (target != null) { target.GetComponent<EnemyBrain>().UnStun(); }
+            if (closestEnemy != null) { closestEnemy.GetComponent<EnemyBrain>().UnStun(); }
+        }
 
         // destroy the shackles
         Destroy(gameObject);

@@ -8,6 +8,7 @@ public class GameData
 {
     //! misc
     public bool tutorialComplete = false;
+    public bool[] storyShown = new bool[4];
 
     //! characters   
     public int selectedChar = 0;

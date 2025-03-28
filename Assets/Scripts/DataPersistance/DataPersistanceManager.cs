@@ -47,9 +47,7 @@ public class DataPersistanceManager : MonoBehaviour
         this.gameData.enemyPositionsY[this.gameData.selectedChar] = new List<float>();
         this.gameData.enemyIDs[this.gameData.selectedChar] = new List<int>();
         this.gameData.charDead[this.gameData.selectedChar] = false;
-
-        // this.gameData.discoverableTilesX[this.gameData.selectedChar] = new List<float>();
-        // this.gameData.discoverableTilesY[this.gameData.selectedChar] = new List<float>();
+        this.gameData.storyShown[this.gameData.selectedChar] = false;
 
         print("Player Stats Saved");
 

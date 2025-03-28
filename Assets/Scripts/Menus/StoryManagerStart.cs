@@ -41,7 +41,7 @@ public class StoryManagerStart : MonoBehaviour
             storyTextUI.text = storyText[currentStoryIndex];
 
             // wait for a bit
-            yield return new WaitForSecondsRealtime(1);
+            yield return new WaitForSecondsRealtime(0.2f);
 
             // increase alpha gradually
             for (float i = 0; i < 1; i += Time.deltaTime)
@@ -66,41 +66,7 @@ public class StoryManagerStart : MonoBehaviour
             currentStoryIndex++;
         }
 
-        // // hide skip button
-        // skipButton.SetActive(false);
-
         // load game scene
         PersistentSceneManager.instance.LoadSceneWithLoadingScreen("StoryStart", "Game");
-
-        // print("opening loading screen");
-
-        // // set current progress as 0
-        // float startProgress = gameSceneAsync.progress;
-        // float currentProgress = gameSceneAsync.progress;
-        // float endProgress = 0.9f;
-
-        // // show loading screen with loading bar
-        // LoadingScreen.SetActive(true);
-        // LoadingBar.fillAmount = 0;
-        
-
-        // // wait for the game scene to be loaded
-        // while (gameSceneAsync.progress < 0.9f || MapDiscoveryManager.gameStarting)
-        // {
-        //     print("load progress: " + gameSceneAsync.progress);
-
-        //     // update bar based on keeping start and end progress in mind
-        //     currentProgress = gameSceneAsync.progress;
-        //     LoadingBar.fillAmount = Mathf.Lerp(startProgress, endProgress, currentProgress);
-            
-        //     yield return null;
-        // }
-
-        // print("at last! opening game scene");
-
-        // gameSceneAsync.allowSceneActivation = true;
-
-        // // unload this scene
-        // SceneManager.UnloadSceneAsync("StoryStart");
     }
 }

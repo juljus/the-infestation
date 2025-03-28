@@ -18,6 +18,7 @@ public class PreGameManager : MonoBehaviour, IDataPersistance
     private string[] charNames;
     private int[] charKills;
     private bool[] charDead;
+    private bool[] storyShown;
 
     void Start()
     {
@@ -36,8 +37,18 @@ public class PreGameManager : MonoBehaviour, IDataPersistance
 
     public void StartGame()
     {
-        // load the game scene
-        PersistentSceneManager.instance.LoadScene("PreGame", "StoryStart");
+        // load the game scene if story has been shown
+        // else load the story scene
+        if (storyShown[selectedCharacter])
+        {
+            PersistentSceneManager.instance.LoadScene("PreGame", "Game");
+        }
+        else
+        {
+            storyShown[selectedCharacter] = true;
+            transform.GetComponent<DataPersistanceManager>().SaveGame();
+            PersistentSceneManager.instance.LoadScene("PreGame", "StoryStart");
+        }
     }
 
     public void Back()
@@ -76,12 +87,15 @@ public class PreGameManager : MonoBehaviour, IDataPersistance
     public void LoadData(GameData data) {
         this.selectedCharacter = data.selectedChar;
         this.characterLevels = data.charLevels;
-        this.charExists = data.charExists;
         this.charNames = data.charNames;
         this.charKills = data.charKills;
         this.charDead = data.charDead;
+
+        this.charExists = data.charExists;
+        this.storyShown = data.storyShown;
     }
     public void SaveData(ref GameData data) {
         data.charExists = this.charExists;
+        data.storyShown = this.storyShown;
     }
 }

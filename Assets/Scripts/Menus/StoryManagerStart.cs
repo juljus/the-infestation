@@ -17,6 +17,8 @@ public class StoryManagerStart : MonoBehaviour
 
     private int currentStoryIndex = 0;
 
+    private bool isSkipping = false;
+
     void Start()
     {
         // set alpha at 0
@@ -33,7 +35,12 @@ public class StoryManagerStart : MonoBehaviour
         PersistentSceneManager.instance.LoadSceneWithLoadingScreen("StoryStart", "Game");
     }
 
-    IEnumerator ShowStoryText()
+    public void SkipOne()
+    {
+        isSkipping = true;
+    }
+
+    private IEnumerator ShowStoryText()
     {
         while (currentStoryIndex < storyText.Length)
         {
@@ -44,7 +51,7 @@ public class StoryManagerStart : MonoBehaviour
             yield return new WaitForSecondsRealtime(0.2f);
 
             // increase alpha gradually
-            for (float i = 0; i < 1; i += Time.deltaTime)
+            for (float i = 0; i < 1; i += Time.deltaTime * 2)
             {
                 storyTextUI.color = new Color(1, 1, 1, i);
                 yield return null;
@@ -52,10 +59,19 @@ public class StoryManagerStart : MonoBehaviour
             storyTextUI.color = new Color(1, 1, 1, 1);
 
             // wait for duration
-            yield return new WaitForSecondsRealtime(storyTextDuration[currentStoryIndex]);
+            float startTime = Time.realtimeSinceStartup;
+            for (float i = Time.realtimeSinceStartup; i < startTime + storyTextDuration[currentStoryIndex]; i = Time.realtimeSinceStartup)
+            {
+                if (isSkipping)
+                {
+                    isSkipping = false;
+                    break;
+                }
+                yield return null;
+            }
 
             // decrease alpha gradually
-            for (float i = 1; i > 0; i -= Time.deltaTime)
+            for (float i = 1; i > 0; i -= Time.deltaTime * 2)
             {
                 storyTextUI.color = new Color(1, 1, 1, i);
                 yield return null;

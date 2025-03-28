@@ -41,7 +41,7 @@ public class PreGameManager : MonoBehaviour, IDataPersistance
         // else load the story scene
         if (storyShown[selectedCharacter])
         {
-            PersistentSceneManager.instance.LoadScene("PreGame", "Game");
+            PersistentSceneManager.instance.LoadSceneWithLoadingScreen("PreGame", "Game");
         }
         else
         {
